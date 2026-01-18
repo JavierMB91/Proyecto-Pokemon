@@ -772,6 +772,47 @@ function handleEncounterSubmit() {
     closeEncounterModal();
 }
 
+// --- FUNCIONES DE EXPORTACIÓN/IMPORTACIÓN ---
+function exportProgress() {
+    try {
+        // Convertimos los datos a texto y luego a Base64 (compatible con emojis/tildes)
+        const json = JSON.stringify(userProgress);
+        const encoded = btoa(encodeURIComponent(json));
+        
+        navigator.clipboard.writeText(encoded).then(() => {
+            alert("✅ ¡Código copiado al portapapeles!\n\nEnvíalo a tu otro dispositivo e impórtalo allí para sincronizar tus datos.");
+        }).catch(() => {
+            // Fallback si falla el portapapeles automático
+            prompt("Copia este código manualmente y pégalo en el otro dispositivo:", encoded);
+        });
+    } catch (e) {
+        console.error(e);
+        alert("Error al exportar los datos.");
+    }
+}
+
+function importProgress() {
+    const input = prompt("Pega aquí el código de exportación de tu otro dispositivo:");
+    if (!input) return;
+    
+    try {
+        // Decodificamos el Base64 a objeto
+        const json = decodeURIComponent(atob(input));
+        const data = JSON.parse(json);
+        
+        if (data && typeof data === 'object') {
+            if (confirm("⚠️ Esto sobrescribirá tus datos actuales en este dispositivo con los importados.\n¿Estás seguro?")) {
+                userProgress = data;
+                saveProgress();
+                renderApp();
+                alert("✅ Datos importados correctamente.");
+            }
+        }
+    } catch (e) {
+        alert("❌ El código introducido no es válido.");
+    }
+}
+
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', () => {
     loadNav();
@@ -804,5 +845,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (encounterConfirmBtn) {
         encounterConfirmBtn.addEventListener('click', handleEncounterSubmit);
         document.getElementById('encounter-cancel').addEventListener('click', closeEncounterModal);
+    }
+
+    // Inyectar botones de Exportar/Importar debajo del botón de Reset
+    const resetContainer = document.querySelector('.reset-container');
+    if (resetContainer) {
+        const dataControls = document.createElement('div');
+        dataControls.className = 'data-controls';
+        
+        const btnExport = document.createElement('button');
+        btnExport.textContent = '📤 Exportar Datos';
+        btnExport.className = 'btn-data';
+        btnExport.onclick = exportProgress;
+        
+        const btnImport = document.createElement('button');
+        btnImport.textContent = '📥 Importar Datos';
+        btnImport.className = 'btn-data';
+        btnImport.onclick = importProgress;
+        
+        dataControls.appendChild(btnExport);
+        dataControls.appendChild(btnImport);
+        resetContainer.appendChild(dataControls);
     }
 });
