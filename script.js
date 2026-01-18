@@ -120,7 +120,20 @@ const seedsData = [
         name: "Huerto",
         money: "-",
         gyms: [
-            { city: "Semillas Picantes", leader: "Huerto", id: "spicy-seeds", type: "seed", waterTime: 5, harvestTime: 16 }
+            { city: "Semillas Picantes", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
+            { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, timerPrefix: "Recogida en:", readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
+            { city: "Recogida de Semillas", leader: "Recoger", id: "spicy-seeds-harvest", type: "seed-harvest", prevId: "spicy-seeds-water", rootId: "spicy-seeds-plant", waitHours: 16 }
+        ]
+    }
+];
+
+// --- DATOS DE ENCUENTROS ---
+const encountersData = [
+    {
+        name: "Kanto",
+        money: "-",
+        gyms: [
+            { city: "Central Energía", leader: "Zapdos", id: "zapdos-kanto", type: "encounter", average: "8.000" }
         ]
     }
 ];
@@ -130,6 +143,7 @@ const seedsData = [
 const STORAGE_KEY = 'pokemmo_gym_progress';
 let userProgress = {};
 let pendingSeedData = null; // Variable temporal para guardar datos mientras el modal está abierto
+let pendingEncounterId = null; // Variable temporal para el modal de encuentros
 
 // Cargar progreso desde LocalStorage
 function loadProgress() {
@@ -154,36 +168,36 @@ function toggleGym(regionName, gymData, element) {
     const uniqueId = gymData.id || gymData.leader;
     const id = getGymId(regionName, uniqueId);
     
-    if (gymData.type === 'seed') {
-        const progress = userProgress[id];
-        const now = new Date();
-        
-        if (!progress) {
-            // Estado 1: Abrir Modal para Plantar
+    if (gymData.type === 'seed-plant') {
+        if (!userProgress[id]) {
             pendingSeedData = { regionName, gymData };
             openSeedModal();
-            return; // Detenemos aquí, el guardado se hará al confirmar el modal
         } else {
-            const date = new Date(progress.timestamp);
-            const elapsed = now - date;
-            
-            if (progress.stage === 'planted') {
-                const waterTimeMs = gymData.waterTime * 60 * 60 * 1000;
-                if (elapsed >= waterTimeMs) {
-                    // Estado 2: Regar (Inicia timer de 16h)
-                    userProgress[id] = {
-                        timestamp: now.toISOString(),
-                        stage: 'watered'
-                    };
-                } else {
-                    // Cancelar si se pulsa antes de tiempo
-                    delete userProgress[id];
-                }
-            } else if (progress.stage === 'watered') {
-                // Estado 3: Recoger (Borrar/Resetear)
-                delete userProgress[id];
+            // Si se desmarca plantar, borramos todo el ciclo
+            delete userProgress[id];
+            if (gymData.nextId) {
+                const waterId = getGymId(regionName, "spicy-seeds-water");
+                const harvestId = getGymId(regionName, "spicy-seeds-harvest");
+                delete userProgress[waterId];
+                delete userProgress[harvestId];
             }
         }
+    } else if (gymData.type === 'seed-water') {
+        if (userProgress[id]) {
+            delete userProgress[id];
+            // Si se desmarca riego, borramos cosecha
+            const harvestId = getGymId(regionName, "spicy-seeds-harvest");
+            delete userProgress[harvestId];
+        } else {
+            userProgress[id] = { timestamp: new Date().toISOString() };
+        }
+    } else if (gymData.type === 'seed-harvest') {
+        // Al recoger, reiniciamos todo el ciclo
+        const plantId = getGymId(regionName, gymData.rootId);
+        const waterId = getGymId(regionName, gymData.prevId);
+        delete userProgress[id];
+        delete userProgress[waterId];
+        delete userProgress[plantId];
     } else {
         // Lógica normal de gimnasios
         if (userProgress[id]) {
@@ -224,6 +238,15 @@ function updateTimers() {
             const readyLabel = timer.getAttribute('data-ready-label') || 'Disponible';
             timer.innerHTML = `✅ ${readyLabel}`;
             timer.classList.add('ready');
+            
+            // Habilitar el siguiente paso visualmente si existe
+            const currentGymId = timer.getAttribute('data-gym-id');
+            if (currentGymId) {
+                const nextStageItem = document.querySelector(`.gym-item[data-prev-id="${currentGymId}"]`);
+                if (nextStageItem) {
+                    nextStageItem.classList.remove('disabled');
+                }
+            }
         }
     });
 }
@@ -235,28 +258,42 @@ function createGymItem(regionName, gym) {
     const progressData = userProgress[gymId];
     const isCompleted = !!progressData;
     
-    let cooldown = gym.cooldown || 18;
-    let prefix = '⏳';
-    let readyLabel = 'Disponible';
+    let cooldown = gym.duration || gym.cooldown || 18;
+    let prefix = gym.timerPrefix || '⏳';
+    let readyLabel = gym.readyLabel || 'Disponible';
+    let isDisabled = false;
 
-    // Configuración especial para semillas
-    if (gym.type === 'seed' && isCompleted) {
-        if (progressData.stage === 'planted') {
-            cooldown = gym.waterTime;
-            prefix = 'Riego en:';
-            readyLabel = 'Regar';
-        } else if (progressData.stage === 'watered') {
-            cooldown = gym.harvestTime;
-            prefix = 'Recolección en:';
-            readyLabel = 'Recoger';
+    // Lógica de dependencias para semillas (Deshabilitar si no es el momento)
+    if (gym.prevId) {
+        const prevGymId = getGymId(regionName, gym.prevId);
+        const prevProgress = userProgress[prevGymId];
+        
+        if (!prevProgress) {
+            isDisabled = true;
+        } else if (gym.waitHours) {
+            // Verificar si ha pasado el tiempo necesario desde el paso anterior
+            const prevDate = new Date(prevProgress.timestamp);
+            const now = new Date();
+            const elapsedHours = (now - prevDate) / (1000 * 60 * 60);
+            if (elapsedHours < gym.waitHours) {
+                isDisabled = true;
+            }
         }
     }
 
     const item = document.createElement('li');
-    item.className = `gym-item ${isCompleted ? 'completed' : ''}`;
+    item.className = `gym-item ${isCompleted ? 'completed' : ''} ${isDisabled ? 'disabled' : ''}`;
     
     // Evento Click
     item.onclick = () => toggleGym(regionName, gym, item);
+    
+    // Atributos para encadenamiento
+    const fullId = getGymId(regionName, uniqueId);
+    item.setAttribute('data-gym-id', fullId);
+    if (gym.prevId) {
+        const prevFullId = getGymId(regionName, gym.prevId);
+        item.setAttribute('data-prev-id', prevFullId);
+    }
 
     // Formatear fecha si existe (Hora Española)
     let dateHtml = '';
@@ -270,7 +307,7 @@ function createGymItem(regionName, gym) {
 
         dateHtml = `
             <div class="gym-status-right">
-                <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}"
+                <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
                    data-prefix="${prefix}" data-ready-label="${readyLabel}"></p>
                 <p class="gym-date">📅 ${dateStr}</p>
             </div>`;
@@ -278,8 +315,10 @@ function createGymItem(regionName, gym) {
 
     // Determinar qué mostrar en la info (Líder o Cantidad de semillas)
     let infoText = `<p>Líder: ${gym.leader}</p>`;
-    if (gym.type === 'seed') {
+    if (gym.type === 'seed-plant') {
         infoText = (isCompleted && progressData.count) ? `<p>Semillas: ${progressData.count}</p>` : '';
+    } else if (gym.type === 'seed-water' || gym.type === 'seed-harvest') {
+        infoText = ''; // Ocultar texto de líder para pasos intermedios
     }
 
     // HTML interno del item
@@ -292,6 +331,48 @@ function createGymItem(regionName, gym) {
             ${infoText}
         </div>
         ${dateHtml}
+    `;
+    
+    return item;
+}
+
+// Helper para crear el elemento de Encuentros
+function createEncounterItem(regionName, gym) {
+    const uniqueId = gym.id;
+    const gymId = getGymId(regionName, uniqueId);
+    const progress = userProgress[gymId] || { count: 0 };
+    const count = progress.count;
+    
+    // Cálculo de probabilidad para Encuentro Legendario (Estimado 1/8.000)
+    const encounterRate = 8000;
+    const currentProb = (1 - Math.pow(1 - 1/encounterRate, count)) * 100;
+    
+    const item = document.createElement('li');
+    item.className = 'gym-item';
+    
+    // Evento Click para abrir modal
+    item.onclick = () => {
+        pendingEncounterId = gymId;
+        openEncounterModal();
+    };
+
+    item.innerHTML = `
+        <div class="gym-info">
+            <h3>${gym.leader}</h3>
+            ${gym.average ? `<p>Promedio Encuentros: ${gym.average}</p>` : ''}
+            <div style="margin: 5px 0;">
+                 <span class="encounter-count">${count.toLocaleString('es-ES')}</span>
+            </div>
+            <div class="encounter-stats">
+                <p>Probabilidad actual: <strong>${currentProb.toFixed(2)}%</strong></p>
+                <div class="encounter-milestones">
+                    <p><strong>Hitos (1/8k):</strong></p>
+                    <p>5.500 enc. ≈ 50%</p>
+                    <p>8.000 enc. ≈ 63%</p>
+                    <p>18.000 enc. ≈ 90%</p>
+                </div>
+            </div>
+        </div>
     `;
     
     return item;
@@ -314,6 +395,9 @@ function renderApp() {
     } else if (window.location.pathname.includes('semillas.html')) {
         currentData = seedsData;
         maxSlots = 1; 
+    } else if (window.location.pathname.includes('encuentros.html')) {
+        currentData = encountersData;
+        maxSlots = 0; // No necesitamos huecos vacíos
     } else {
         currentData = gymsData;
     }
@@ -326,7 +410,13 @@ function renderApp() {
         // Header de la región
         const header = document.createElement('div');
         header.className = 'region-header';
-        header.innerHTML = `${region.name}<br><span style="font-size: 0.8rem; color: var(--poke-white);">${region.money} ¥</span>`;
+        
+        let moneyHtml = '';
+        if (region.money && region.money !== '-') {
+            moneyHtml = `<br><span style="font-size: 0.8rem; color: var(--poke-white);">${region.money} ¥</span>`;
+        }
+        
+        header.innerHTML = `${region.name}${moneyHtml}`;
         card.appendChild(header);
 
         // Lista de gimnasios
@@ -334,7 +424,11 @@ function renderApp() {
         list.className = 'gym-list';
 
         region.gyms.forEach(gym => {
-            list.appendChild(createGymItem(region.name, gym));
+            if (gym.type === 'encounter') {
+                list.appendChild(createEncounterItem(region.name, gym));
+            } else {
+                list.appendChild(createGymItem(region.name, gym));
+            }
         });
 
         // Rellenar huecos visuales para mantener la altura homogénea
@@ -424,7 +518,35 @@ function hideResetModal() {
 }
 
 function confirmReset() {
-    userProgress = {};
+    // Determinar qué datos corresponden a la página actual para borrar solo esos
+    let currentData = [];
+    if (window.location.pathname.includes('altoMandoTracker.html')) {
+        currentData = eliteFourData;
+    } else if (window.location.pathname.includes('semillas.html')) {
+        currentData = seedsData;
+    } else if (window.location.pathname.includes('encuentros.html')) {
+        currentData = encountersData;
+    } else {
+        currentData = gymsData;
+    }
+
+    // Borrar solo las claves asociadas a los datos de la página actual
+    currentData.forEach(region => {
+        region.gyms.forEach(item => {
+            const uniqueId = item.id || item.leader;
+            const id = getGymId(region.name, uniqueId);
+            delete userProgress[id];
+        });
+
+        if (region.specialTrainers) {
+            region.specialTrainers.forEach(trainer => {
+                const uniqueId = trainer.id || trainer.leader;
+                const id = getGymId(region.name, uniqueId);
+                delete userProgress[id];
+            });
+        }
+    });
+
     saveProgress();
     renderApp();
     hideResetModal();
@@ -479,7 +601,6 @@ function handleSeedSubmit() {
         
         userProgress[id] = {
             timestamp: new Date().toISOString(),
-            stage: 'planted',
             count: parseInt(input.value)
         };
         
@@ -488,6 +609,58 @@ function handleSeedSubmit() {
     }
     
     closeSeedModal();
+}
+
+// --- FUNCIONES MODAL ENCUENTROS ---
+function openEncounterModal() {
+    const modal = document.getElementById('encounter-modal');
+    if (modal) modal.classList.add('active');
+    const input = document.getElementById('encounter-input');
+    if (input) setTimeout(() => input.focus(), 100);
+}
+
+function closeEncounterModal() {
+    const modal = document.getElementById('encounter-modal');
+    if (modal) modal.classList.remove('active');
+    const input = document.getElementById('encounter-input');
+    if (input) input.value = '';
+    const error = document.getElementById('encounter-error');
+    if (error) error.style.display = 'none';
+    pendingEncounterId = null;
+}
+
+function handleEncounterSubmit() {
+    const input = document.getElementById('encounter-input');
+    if (!input) return;
+
+    // Validar input de encuentros
+    let validation = { valid: false, message: "Error" };
+    if (typeof validateEncounterInput === 'function') {
+        validation = validateEncounterInput(input.value);
+    }
+
+    if (!validation.valid) {
+        const error = document.getElementById('encounter-error');
+        if (error) {
+            error.textContent = validation.message;
+            error.style.display = 'block';
+        }
+        return;
+    }
+
+    if (pendingEncounterId) {
+        const currentCount = userProgress[pendingEncounterId]?.count || 0;
+        const addAmount = parseInt(input.value);
+        
+        userProgress[pendingEncounterId] = {
+            count: currentCount + addAmount,
+            timestamp: new Date().toISOString()
+        };
+        
+        saveProgress();
+        renderApp();
+    }
+    closeEncounterModal();
 }
 
 // --- INICIALIZACIÓN ---
@@ -515,5 +688,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (seedConfirmBtn) {
         seedConfirmBtn.addEventListener('click', handleSeedSubmit);
         document.getElementById('seed-cancel').addEventListener('click', closeSeedModal);
+    }
+
+    // Eventos del modal de encuentros
+    const encounterConfirmBtn = document.getElementById('encounter-confirm');
+    if (encounterConfirmBtn) {
+        encounterConfirmBtn.addEventListener('click', handleEncounterSubmit);
+        document.getElementById('encounter-cancel').addEventListener('click', closeEncounterModal);
     }
 });

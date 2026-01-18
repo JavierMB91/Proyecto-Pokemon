@@ -158,6 +158,24 @@ header::after {
     background-color: #f9f9f9;
 }
 
+/* --- ITEM DESHABILITADO --- */
+.gym-item.disabled {
+    background-color: #f0f0f0;
+    color: #aaa;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.gym-item.disabled .gym-info h3,
+.gym-item.disabled .gym-info p {
+    color: #aaa;
+}
+
+.gym-item.disabled .custom-checkbox {
+    border-color: #ddd;
+    background-color: #eee;
+}
+
 /* --- ITEM VACÍO (PLACEHOLDER) --- */
 .gym-item.placeholder {
     cursor: default;
@@ -285,6 +303,13 @@ header::after {
 
 .gym-timer.ready {
     color: var(--success-green);
+}
+
+/* --- CONTADOR ENCUENTROS --- */
+.encounter-count {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--poke-blue);
 }
 
 /* --- BOTÓN RESET --- */
