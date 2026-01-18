@@ -132,8 +132,18 @@ const encountersData = [
     {
         name: "Kanto",
         money: "-",
+        gyms: [] // Se actualizará dinámicamente según el mes
+    },
+    {
+        name: "Johto",
+        money: "-",
+        gyms: [] // Se actualizará dinámicamente según el mes
+    },
+    {
+        name: "Shiny Hunting",
+        money: "-",
         gyms: [
-            { city: "Central Energía", leader: "Zapdos", id: "zapdos-kanto", type: "encounter", average: "8.000" }
+            { city: "Cualquier Pokémon", leader: "Contador Shiny", id: "shiny-counter-generic", type: "encounter", average: "30.000", shinyRate: 30000 }
         ]
     }
 ];
@@ -161,6 +171,48 @@ function saveProgress() {
 // Generar ID único para cada gimnasio
 function getGymId(regionName, leaderName) {
     return `${regionName}-${leaderName}`.replace(/\s+/g, '-').toLowerCase();
+}
+
+// Función para calcular qué legendario errante toca según el mes (1-12)
+function getRoamingLegendaries(month) {
+    // Rotación Kanto: Zapdos -> Articuno -> Moltres
+    const kantoRotation = ["Zapdos", "Articuno", "Moltres"];
+    
+    // Rotación Johto: Entei -> Raikou -> Suicune
+    const johtoRotation = ["Entei", "Raikou", "Suicune"];
+
+    // Calculamos el índice (0, 1 o 2) basado en el mes
+    // (Mes - 1) % 3 asegura que Enero (1) sea índice 0
+    const index = (month - 1) % 3;
+
+    return {
+        kanto: kantoRotation[index],
+        johto: johtoRotation[index]
+    };
+}
+
+// Función para actualizar los datos de encuentros con los legendarios del mes actual
+function updateEncountersData() {
+    const currentMonth = new Date().getMonth() + 1; // Obtener mes actual (1-12)
+    const legendaries = getRoamingLegendaries(currentMonth);
+
+    // Actualizar Kanto (Índice 0 en encountersData)
+    encountersData[0].gyms = [{
+        city: "Legendario Errante",
+        leader: legendaries.kanto,
+        id: `${legendaries.kanto.toLowerCase()}-kanto`,
+        type: "encounter",
+        average: "8.000"
+    }];
+
+    // Actualizar Johto (Índice 1 en encountersData)
+    encountersData[1].gyms = [{
+        city: "Legendario Errante",
+        leader: legendaries.johto,
+        id: `${legendaries.johto.toLowerCase()}-johto`,
+        type: "encounter",
+        average: "8.000"
+    }];
 }
 
 // Alternar estado del gimnasio
@@ -343,9 +395,19 @@ function createEncounterItem(regionName, gym) {
     const progress = userProgress[gymId] || { count: 0 };
     const count = progress.count;
     
-    // Cálculo de probabilidad para Encuentro Legendario (Estimado 1/8.000)
-    const encounterRate = 8000;
-    const currentProb = (1 - Math.pow(1 - 1/encounterRate, count)) * 100;
+    // Cálculo de probabilidad dinámico
+    // Si gym.shinyRate está definido (Shiny Hunting), lo usamos. Si no, usamos 8000 (Legendarios).
+    const rate = gym.shinyRate || 8000;
+    const currentProb = (1 - Math.pow(1 - 1/rate, count)) * 100;
+
+    // Calcular hitos dinámicamente
+    const m50 = Math.ceil(Math.log(0.5) / Math.log(1 - 1/rate));
+    const m63 = rate;
+    const m90 = Math.ceil(Math.log(0.1) / Math.log(1 - 1/rate));
+
+    // Formateadores
+    const f = (n) => n.toLocaleString('es-ES');
+    const rateTitle = rate >= 1000 ? (rate/1000) + 'k' : rate;
     
     const item = document.createElement('li');
     item.className = 'gym-item';
@@ -366,10 +428,10 @@ function createEncounterItem(regionName, gym) {
             <div class="encounter-stats">
                 <p>Probabilidad actual: <strong>${currentProb.toFixed(2)}%</strong></p>
                 <div class="encounter-milestones">
-                    <p><strong>Hitos (1/8k):</strong></p>
-                    <p>5.500 enc. ≈ 50%</p>
-                    <p>8.000 enc. ≈ 63%</p>
-                    <p>18.000 enc. ≈ 90%</p>
+                    <p><strong>Hitos (1/${rateTitle}):</strong></p>
+                    <p>${f(m50)} enc. ≈ 50%</p>
+                    <p>${f(m63)} enc. ≈ 63%</p>
+                    <p>${f(m90)} enc. ≈ 90%</p>
                 </div>
             </div>
         </div>
@@ -396,6 +458,7 @@ function renderApp() {
         currentData = seedsData;
         maxSlots = 1; 
     } else if (window.location.pathname.includes('encuentros.html')) {
+        updateEncountersData(); // Calcular rotación mensual antes de renderizar
         currentData = encountersData;
         maxSlots = 0; // No necesitamos huecos vacíos
     } else {
@@ -511,10 +574,56 @@ async function loadFooter() {
 // Funciones del Modal
 function showResetModal() {
     document.getElementById('modal-overlay').classList.add('active');
+    const modal = document.getElementById('modal-overlay');
+    
+    // Lógica específica para la página de encuentros
+    if (window.location.pathname.includes('encuentros.html')) {
+        const content = modal.querySelector('.modal-content');
+        
+        // Generar botones dinámicamente según las regiones disponibles en encountersData
+        let buttonsHtml = '';
+        encountersData.forEach(region => {
+            const safeId = region.name.replace(/\s+/g, '-').toLowerCase();
+            buttonsHtml += `<button class="btn-modal btn-confirm" id="reset-${safeId}">${region.name}</button>`;
+        });
+
+        content.innerHTML = `
+            <h3>Reiniciar Encuentros</h3>
+            <p>Selecciona la región a reiniciar:</p>
+            <div class="modal-actions" style="flex-wrap: wrap; gap: 10px;">
+                <button class="btn-modal btn-cancel" id="modal-cancel-dynamic">Cancelar</button>
+                ${buttonsHtml}
+            </div>
+        `;
+        
+        // Asignar eventos a los nuevos botones
+        document.getElementById('modal-cancel-dynamic').onclick = hideResetModal;
+        encountersData.forEach(region => {
+            const safeId = region.name.replace(/\s+/g, '-').toLowerCase();
+            const btn = document.getElementById(`reset-${safeId}`);
+            if (btn) btn.onclick = () => resetSpecificRegion(region.name);
+        });
+    }
+    
+    modal.classList.add('active');
 }
 
 function hideResetModal() {
     document.getElementById('modal-overlay').classList.remove('active');
+}
+
+function resetSpecificRegion(regionName) {
+    const region = encountersData.find(r => r.name === regionName);
+    if (region) {
+        region.gyms.forEach(item => {
+            const uniqueId = item.id || item.leader;
+            const id = getGymId(region.name, uniqueId);
+            delete userProgress[id];
+        });
+        saveProgress();
+        renderApp();
+    }
+    hideResetModal();
 }
 
 function confirmReset() {
