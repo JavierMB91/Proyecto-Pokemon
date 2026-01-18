@@ -877,5 +877,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dataControls.appendChild(btnExport);
         dataControls.appendChild(btnImport);
         resetContainer.appendChild(dataControls);
+
+        // Mensaje informativo sobre el guardado
+        const infoMsg = document.createElement('p');
+        infoMsg.textContent = 'ℹ️ Los datos se guardan solo en este dispositivo.';
+        infoMsg.style.fontSize = '0.8rem';
+        infoMsg.style.marginTop = '10px';
+        infoMsg.style.opacity = '0.7';
+        resetContainer.appendChild(infoMsg);
     }
 });
