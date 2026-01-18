@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Quitamos la clase para iniciar el Fade-Out
             document.body.classList.remove('page-loaded');
 
-            // Esperamos a que termine la animación (300ms) antes de ir a la nueva página
+            // Esperamos a que termine la animación (150ms) antes de ir a la nueva página
             setTimeout(() => {
                 window.location.href = link.href;
-            }, 300); 
+            }, 150); 
         }
     });
 });
