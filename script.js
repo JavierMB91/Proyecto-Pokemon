@@ -181,6 +181,9 @@ let pendingEncounterId = null; // Variable temporal para el modal de encuentros
 
 // Cargar progreso desde LocalStorage
 async function loadProgress() {
+    // Reiniciar estado para evitar mezclar datos de sesiones anteriores
+    userProgress = {};
+
     // 1. Si hay usuario logueado, intentamos cargar de la nube
     if (currentUser && db) {
         try {
@@ -201,12 +204,12 @@ async function loadProgress() {
 
 // Guardar progreso en LocalStorage
 async function saveProgress() {
-    // 1. Guardar en LocalStorage (siempre, como copia local)
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
-
-    // 2. Guardar en la nube si hay usuario
+    // 1. Guardar en la nube si hay usuario
     if (currentUser && db) {
         db.collection('users').doc(currentUser.uid).set(userProgress).catch(console.error);
+    } else {
+        // 2. Si NO hay usuario, guardar en LocalStorage (modo invitado)
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
     }
 }
 
