@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeMMO Semillas Tracker</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Semillas Tracker</h1>
+    </header>
+
+    <!-- Aquí se cargará nav.html -->
+    <div id="nav-placeholder"></div>
+
+    <div class="container" id="app">
+        <!-- El contenido se generará dinámicamente con JS -->
+    </div>
+
+    <div class="reset-container">
+        <button class="btn-reset" id="btn-reset">Reiniciar Progreso</button>
+    </div>
+
+    <!-- Aquí se cargará footer.html -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <h3>¿Reiniciar Progreso?</h3>
+            <p>¿Estás seguro de que quieres borrar todo el progreso?</p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" id="modal-cancel">Cancelar</button>
+                <button class="btn-modal btn-confirm" id="modal-confirm">Sí, reiniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Semillas (Input) -->
+    <div class="modal-overlay" id="seed-modal">
+        <div class="modal-content">
+            <h3>Plantar Semillas</h3>
+            <p>Introduce el número de semillas plantadas:</p>
+            <input type="number" id="seed-input" class="modal-input" placeholder="Ej: 5">
+            <p id="seed-error" class="error-message"></p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" id="seed-cancel">Cancelar</button>
+                <button class="btn-modal btn-confirm" id="seed-confirm">Plantar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Validaciones -->
+    <script src="validations.js"></script>
+    <!-- Enlace al archivo JS externo -->
+    <script src="script.js"></script>
+</body>
+</html>

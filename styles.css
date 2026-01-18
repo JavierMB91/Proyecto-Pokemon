@@ -25,7 +25,7 @@ body {
     background-color: var(--bg-color);
     color: var(--poke-black);
     line-height: 1.6;
-    padding-bottom: 40px;
+    padding-bottom: 0;
 }
 
 /* --- HEADER --- */
@@ -39,6 +39,37 @@ header {
     top: 0;
     z-index: 100;
     border-bottom: 5px solid var(--poke-black);
+}
+
+/* --- NAVEGACIÓN --- */
+.main-nav {
+    background-color: var(--poke-black);
+    border-bottom: 4px solid var(--poke-blue);
+    margin-bottom: 20px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+.main-nav a:hover {
+    background-color: var(--poke-red);
+    color: var(--poke-yellow);
 }
 
 header h1 {
@@ -351,4 +382,61 @@ header::after {
 .btn-confirm {
     background-color: var(--poke-red);
     color: white;
+}
+
+/* --- INPUT MODAL --- */
+.modal-input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin: 15px 0;
+    width: 80%;
+    font-size: 1rem;
+}
+
+.error-message {
+    color: var(--poke-red);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    display: none;
+    font-weight: bold;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--poke-black);
+    color: var(--poke-white);
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+    border-top: 5px solid var(--poke-red);
+    font-size: 0.9rem;
+}
+
+.footer-content p {
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.footer-links {
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: var(--poke-yellow);
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.disclaimer {
+    font-size: 0.8rem;
+    font-style: italic;
+    opacity: 0.6;
 }
