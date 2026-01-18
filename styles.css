@@ -1,0 +1,354 @@
+/* --- VARIABLES Y RESET --- */
+:root {
+    --poke-red: #FF3B30;
+    --poke-dark-red: #CC0000;
+    --poke-white: #F2F2F2;
+    --poke-black: #212121;
+    --poke-yellow: #FFCB05;
+    --poke-blue: #3B4CCA;
+    --bg-color: #E0E0E0;
+    --card-bg: #FFFFFF;
+    --success-green: #4CAF50;
+    --success-bg: #E8F5E9;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--poke-black);
+    line-height: 1.6;
+    padding-bottom: 40px;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: var(--poke-red);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 5px solid var(--poke-black);
+}
+
+header h1 {
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0px var(--poke-blue);
+    font-size: 1.8rem;
+}
+
+header::after {
+    /* Decoración tipo Pokeball en el centro */
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: 5px solid var(--poke-black);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 0 0 5px white, inset 0 0 0 10px var(--poke-black);
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.container {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* --- TARJETAS DE REGIÓN --- */
+.region-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    border: 1px solid #ddd;
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.region-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.region-header {
+    background-color: var(--poke-black);
+    color: var(--poke-yellow);
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 4px solid var(--poke-red);
+}
+
+/* --- LISTA DE GIMNASIOS --- */
+.gym-list {
+    list-style: none;
+}
+
+.gym-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+.gym-item:last-child {
+    border-bottom: none;
+}
+
+.gym-item:hover {
+    background-color: #f9f9f9;
+}
+
+/* --- ITEM VACÍO (PLACEHOLDER) --- */
+.gym-item.placeholder {
+    cursor: default;
+    background-color: #fff;
+}
+
+/* --- ENTRENADORES ESPECIALES --- */
+.special-trainers-box {
+    margin: 15px;
+    border: 2px dashed var(--poke-blue);
+    border-radius: var(--radius);
+    background-color: #f8fbff;
+    overflow: hidden;
+}
+
+.special-trainers-header {
+    background-color: var(--poke-blue);
+    color: white;
+    padding: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Ajuste para cuando la caja especial está fuera */
+.special-trainers-box.standalone {
+    margin: 0;
+    flex: 1 1 300px;
+    max-width: 400px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    /* Estilos para que parezca una tarjeta sólida independiente */
+    border: 1px solid #ddd;
+    background-color: var(--card-bg);
+    transition: transform 0.2s ease;
+}
+
+.special-trainers-box.standalone:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* --- ESTADO COMPLETADO --- */
+.gym-item.completed {
+    background-color: var(--success-bg);
+}
+
+.gym-item.completed .gym-info h3,
+.gym-item.completed .gym-info p {
+    color: #2e7d32;
+    opacity: 0.8;
+}
+
+/* --- CHECKBOX PERSONALIZADO --- */
+.checkbox-wrapper {
+    margin-right: 15px;
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.custom-checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background: white;
+}
+
+.gym-item.completed .custom-checkbox {
+    background-color: var(--success-green);
+    border-color: var(--success-green);
+    color: white;
+}
+
+.gym-item.completed .custom-checkbox::after {
+    content: '✔';
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* --- TEXTOS --- */
+.gym-info {
+    flex-grow: 1;
+}
+
+.gym-info h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.gym-info p {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.gym-date {
+    font-size: 0.75rem;
+    color: #2e7d32;
+    font-weight: 600;
+    margin-left: 0;
+    text-align: right;
+}
+
+.gym-status-right {
+    text-align: right;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.gym-timer {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #ef6c00; /* Naranja */
+    margin-bottom: 2px;
+}
+
+.gym-timer.ready {
+    color: var(--success-green);
+}
+
+/* --- BOTÓN RESET --- */
+.reset-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.btn-reset {
+    background-color: var(--poke-black);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-reset:hover {
+    background-color: var(--poke-red);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+    header h1 { font-size: 1.4rem; }
+    .container { padding: 0 10px; }
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    border: 2px solid var(--poke-black);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-content h3 {
+    margin-bottom: 15px;
+    color: var(--poke-red);
+    text-transform: uppercase;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: var(--poke-black);
+}
+
+.btn-confirm {
+    background-color: var(--poke-red);
+    color: white;
+}

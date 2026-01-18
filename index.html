@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeMMO Gym Tracker</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>PokeMMO Gym Tracker</h1>
+    </header>
+
+    <div class="container" id="app">
+        <!-- El contenido se generará dinámicamente con JS -->
+    </div>
+
+    <div class="reset-container">
+        <button class="btn-reset" id="btn-reset">Reiniciar Progreso</button>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <h3>¿Reiniciar Progreso?</h3>
+            <p>¿Estás seguro de que quieres borrar todo el progreso?</p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" id="modal-cancel">Cancelar</button>
+                <button class="btn-modal btn-confirm" id="modal-confirm">Sí, reiniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JS externo -->
+    <script src="script.js"></script>
+</body>
+</html>
