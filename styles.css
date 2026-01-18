@@ -20,6 +20,10 @@
     padding: 0;
 }
 
+html {
+    background-color: var(--bg-color); /* Mantiene el color de fondo durante la transición */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
@@ -29,6 +33,12 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    opacity: 0; /* Estado inicial: invisible */
+    transition: opacity 0.3s ease-in-out; /* Suavizado de 0.3 segundos */
+}
+
+body.page-loaded {
+    opacity: 1; /* Estado final: visible */
 }
 
 /* --- HEADER --- */
