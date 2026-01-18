@@ -626,8 +626,9 @@ function showResetModal() {
     document.getElementById('modal-overlay').classList.add('active');
     const modal = document.getElementById('modal-overlay');
     
+    const path = window.location.pathname.toLowerCase();
     // Lógica específica para la página de encuentros
-    if (window.location.pathname.includes('encuentros.html')) {
+    if (path.includes('encuentros')) {
         const content = modal.querySelector('.modal-content');
         
         // Generar botones dinámicamente según las regiones disponibles en encountersData
@@ -679,11 +680,12 @@ function resetSpecificRegion(regionName) {
 function confirmReset() {
     // Determinar qué datos corresponden a la página actual para borrar solo esos
     let currentData = [];
-    if (window.location.pathname.includes('altoMandoTracker.html')) {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('altomandotracker')) {
         currentData = eliteFourData;
-    } else if (window.location.pathname.includes('semillas.html')) {
+    } else if (path.includes('semillas')) {
         currentData = seedsData;
-    } else if (window.location.pathname.includes('encuentros.html')) {
+    } else if (path.includes('encuentros')) {
         currentData = encountersData;
     } else {
         currentData = gymsData;
