@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokeMMO Alto Mando Tracker</title>
+    <title>PokeMMO Nº Encuentros</title>
     <!-- Enlace al archivo CSS externo -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
 
     <header>
-        <h1>Alto Mando Tracker</h1>
+        <h1>Nº Encuentros</h1>
     </header>
 
     <!-- Aquí se cargará nav.html -->
@@ -27,7 +27,7 @@
     <!-- Aquí se cargará footer.html -->
     <div id="footer-placeholder"></div>
 
-    <!-- Modal de Confirmación -->
+    <!-- Modal de Confirmación Reset -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-content">
             <h3>¿Reiniciar Progreso?</h3>
@@ -39,13 +39,24 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <!-- Modal de Añadir Encuentros -->
+    <div class="modal-overlay" id="encounter-modal">
+        <div class="modal-content">
+            <h3>Añadir Encuentros</h3>
+            <p>Introduce cuántos encuentros quieres sumar:</p>
+            <input type="number" id="encounter-input" class="modal-input" placeholder="Ej: 50">
+            <p id="encounter-error" class="error-message"></p>
+            <div class="modal-actions">
+                <button class="btn-modal btn-cancel" id="encounter-cancel">Cancelar</button>
+                <button class="btn-modal btn-confirm" id="encounter-confirm">Añadir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/validaciones.js"></script>
     <!-- Script de Transiciones -->
-    <script src="transitions.js"></script>
-    <!-- Enlace al archivo JS externo -->
-    <script src="script.js"></script>
+    <script src="../js/transiciones.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>

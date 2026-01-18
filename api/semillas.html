@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokeMMO Nº Encuentros</title>
+    <title>PokeMMO Semillas Tracker</title>
     <!-- Enlace al archivo CSS externo -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
 
     <header>
-        <h1>Nº Encuentros</h1>
+        <h1>Semillas Tracker</h1>
     </header>
 
     <!-- Aquí se cargará nav.html -->
@@ -27,7 +27,7 @@
     <!-- Aquí se cargará footer.html -->
     <div id="footer-placeholder"></div>
 
-    <!-- Modal de Confirmación Reset -->
+    <!-- Modal de Confirmación -->
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-content">
             <h3>¿Reiniciar Progreso?</h3>
@@ -39,28 +39,25 @@
         </div>
     </div>
 
-    <!-- Modal de Añadir Encuentros -->
-    <div class="modal-overlay" id="encounter-modal">
+    <!-- Modal de Semillas (Input) -->
+    <div class="modal-overlay" id="seed-modal">
         <div class="modal-content">
-            <h3>Añadir Encuentros</h3>
-            <p>Introduce cuántos encuentros quieres sumar:</p>
-            <input type="number" id="encounter-input" class="modal-input" placeholder="Ej: 50">
-            <p id="encounter-error" class="error-message"></p>
+            <h3>Plantar Semillas</h3>
+            <p>Introduce el número de semillas plantadas:</p>
+            <input type="number" id="seed-input" class="modal-input" placeholder="Ej: 5">
+            <p id="seed-error" class="error-message"></p>
             <div class="modal-actions">
-                <button class="btn-modal btn-cancel" id="encounter-cancel">Cancelar</button>
-                <button class="btn-modal btn-confirm" id="encounter-confirm">Añadir</button>
+                <button class="btn-modal btn-cancel" id="seed-cancel">Cancelar</button>
+                <button class="btn-modal btn-confirm" id="seed-confirm">Plantar</button>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="validations.js"></script>
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <!-- Script de Validaciones -->
+    <script src="../js/validaciones.js"></script>
     <!-- Script de Transiciones -->
-    <script src="transitions.js"></script>
-    <script src="script.js"></script>
+    <script src="../js/transiciones.js"></script>
+    <!-- Enlace al archivo JS externo -->
+    <script src="../js/script.js"></script>
 </body>
 </html>

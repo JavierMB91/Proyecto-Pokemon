@@ -150,28 +150,27 @@ const encountersData = [
 
 // --- LÓGICA DE LA APLICACIÓN ---
 
-// --- CONFIGURACIÓN FIREBASE ---
-// ¡IMPORTANTE! Reemplaza esto con los datos de tu proyecto de Firebase Console
-const firebaseConfig = {
-  apiKey: "AIzaSyDucXqkZ8OQ4YD4weyJBGjr8TaCo8fs7qY",
-  authDomain: "pokemmo-utility.firebaseapp.com",
-  projectId: "pokemmo-utility",
-  storageBucket: "pokemmo-utility.firebasestorage.app",
-  messagingSenderId: "109249237514",
-  appId: "1:109249237514:web:4bf9bcf1eb026b2c12c5f3",
-  measurementId: "G-JB5REL83EH"
-};
-
-// Inicializar Firebase
-let auth, db;
+// --- CONFIGURACIÓN BACKEND LOCAL ---
+const API_URL = '../api';
 let currentUser = null;
 
-if (typeof firebase !== 'undefined') {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
+// Función para verificar sesión al inicio
+async function checkSession() {
+    try {
+        const res = await fetch(`${API_URL}/auth.php?action=check`);
+        const data = await res.json();
+        if (data.logged_in) {
+            currentUser = data.user;
+        } else {
+            currentUser = null;
+        }
+    } catch (e) {
+        console.error("Error verificando sesión:", e);
+        currentUser = null;
     }
-    auth = firebase.auth();
-    db = firebase.firestore();
+    setupAuthUI();
+    await loadProgress();
+    renderApp();
 }
 
 const STORAGE_KEY = 'pokemmo_gym_progress';
@@ -184,18 +183,19 @@ async function loadProgress() {
     // Reiniciar estado para evitar mezclar datos de sesiones anteriores
     userProgress = {};
 
-    // 1. Si hay usuario logueado, intentamos cargar de la nube
-    if (currentUser && db) {
+    // 1. Si hay usuario logueado, cargamos de la API local
+    if (currentUser) {
         try {
-            const doc = await db.collection('users').doc(currentUser.uid).get();
-            if (doc.exists) {
-                userProgress = doc.data();
+            const res = await fetch(`${API_URL}/progress.php`);
+            if (res.ok) {
+                const data = await res.json();
+                userProgress = data || {};
             }
             // IMPORTANTE: Si estamos logueados, terminamos aquí (tenga datos o no).
             // NO cargamos localStorage para evitar mezclar la sesión de invitado con la cuenta.
-            return; 
+            return;
         } catch (e) {
-            console.error("Error cargando de Firebase:", e);
+            console.error("Error cargando de API:", e);
         }
     }
 
@@ -206,9 +206,13 @@ async function loadProgress() {
 
 // Guardar progreso en LocalStorage
 async function saveProgress() {
-    // 1. Guardar en la nube si hay usuario
-    if (currentUser && db) {
-        db.collection('users').doc(currentUser.uid).set(userProgress).catch(console.error);
+    // 1. Guardar en la API si hay usuario
+    if (currentUser) {
+        fetch(`${API_URL}/progress.php`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(userProgress)
+        }).catch(console.error);
     } else {
         // 2. Si NO hay usuario, guardar en LocalStorage (modo invitado)
         localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
@@ -746,7 +750,7 @@ function handleSeedSubmit() {
     if (typeof validateSeedInput === 'function') {
         validation = validateSeedInput(input.value);
     } else {
-        console.error("Error: validateSeedInput no existe. Verifica que 'validations.js' se haya cargado correctamente (cuidado con 'Validations.js' vs 'validations.js').");
+        console.error("Error: validateSeedInput no existe. Verifica que 'validaciones.js' se haya cargado correctamente.");
         validation = { valid: false, message: "Error interno: No se pudo cargar el validador." };
     }
 
@@ -804,7 +808,7 @@ function handleEncounterSubmit() {
     if (typeof validateEncounterInput === 'function') {
         validation = validateEncounterInput(input.value);
     } else {
-        console.error("Error: validateEncounterInput no existe. Verifica que 'validations.js' se haya cargado correctamente.");
+        console.error("Error: validateEncounterInput no existe. Verifica que 'validaciones.js' se haya cargado correctamente.");
         validation = { valid: false, message: "Error interno: No se pudo cargar el validador." };
     }
 
@@ -848,8 +852,9 @@ function setupAuthUI() {
         userContainer.style.right = '20px';
         userContainer.style.transform = 'translateY(-50%)';
         userContainer.style.display = 'flex';
-        userContainer.style.alignItems = 'center';
-        userContainer.style.gap = '10px';
+        userContainer.style.flexDirection = 'column';
+        userContainer.style.alignItems = 'flex-end';
+        userContainer.style.gap = '5px';
         header.appendChild(userContainer);
         header.style.position = 'relative'; // Necesario para el absolute
     }
@@ -857,6 +862,12 @@ function setupAuthUI() {
     userContainer.innerHTML = ''; // Limpiar
 
     if (currentUser) {
+        // Wrapper para alinear nombre y botón en fila cuando está logueado
+        const wrapper = document.createElement('div');
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.gap = '10px';
+
         // Usuario logueado
         const userInfo = document.createElement('span');
         userInfo.textContent = currentUser.displayName ? `Hola, ${currentUser.displayName.split(' ')[0]}` : 'Hola!';
@@ -870,22 +881,92 @@ function setupAuthUI() {
         btnLogout.style.padding = '5px 10px';
         btnLogout.style.fontSize = '0.8rem';
         btnLogout.style.backgroundColor = '#333';
-        btnLogout.onclick = () => auth.signOut();
-
-        userContainer.appendChild(userInfo);
-        userContainer.appendChild(btnLogout);
-    } else {
-        // Botón de Login
-        const btnLogin = document.createElement('button');
-        btnLogin.textContent = 'G Iniciar Sesión';
-        btnLogin.className = 'btn-data';
-        btnLogin.style.backgroundColor = 'white';
-        btnLogin.style.color = '#333';
-        btnLogin.onclick = () => {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider).catch(alert);
+        btnLogout.onclick = async () => {
+            await fetch(`${API_URL}/auth.php?action=logout`);
+            currentUser = null;
+            setupAuthUI();
+            await loadProgress();
+            renderApp();
         };
-        userContainer.appendChild(btnLogin);
+
+        wrapper.appendChild(userInfo);
+        wrapper.appendChild(btnLogout);
+        userContainer.appendChild(wrapper);
+    } else {
+        // Formulario simple de Login/Registro
+        const formContainer = document.createElement('div');
+        formContainer.style.display = 'flex';
+        formContainer.style.gap = '5px';
+        formContainer.style.alignItems = 'center';
+
+        const emailInput = document.createElement('input');
+        emailInput.type = 'email';
+        emailInput.placeholder = 'Email';
+        emailInput.style.padding = '5px';
+        emailInput.style.borderRadius = '4px';
+        emailInput.style.border = 'none';
+        emailInput.style.width = '120px';
+
+        const passInput = document.createElement('input');
+        passInput.type = 'password';
+        passInput.placeholder = 'Contraseña';
+        passInput.style.padding = '5px';
+        passInput.style.borderRadius = '4px';
+        passInput.style.border = 'none';
+        passInput.style.width = '100px';
+
+        const btnLogin = document.createElement('button');
+        btnLogin.textContent = 'Entrar';
+        btnLogin.className = 'btn-data';
+        btnLogin.style.padding = '5px 10px';
+        btnLogin.style.fontSize = '0.8rem';
+        
+        const btnRegister = document.createElement('button');
+        btnRegister.textContent = 'Registro';
+        btnRegister.className = 'btn-data';
+        btnRegister.style.padding = '5px 10px';
+        btnRegister.style.fontSize = '0.8rem';
+        btnRegister.style.backgroundColor = '#4CAF50';
+
+        const handleAuth = async (action) => {
+            const email = emailInput.value;
+            const password = passInput.value;
+            if(!email || !password) return alert("Rellena email y contraseña");
+
+            try {
+                const res = await fetch(`${API_URL}/auth.php?action=${action}`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+                if(data.success) {
+                    currentUser = data.user;
+                    setupAuthUI();
+                    await loadProgress();
+                    renderApp();
+                } else {
+                    alert(data.message || "Error");
+                }
+            } catch(e) { console.error(e); alert("Error de conexión"); }
+        };
+
+        btnLogin.onclick = () => handleAuth('login');
+        btnRegister.onclick = () => handleAuth('register');
+
+        formContainer.appendChild(emailInput);
+        formContainer.appendChild(passInput);
+        formContainer.appendChild(btnLogin);
+        formContainer.appendChild(btnRegister);
+        userContainer.appendChild(formContainer);
+
+        // Mensaje informativo debajo del botón
+        const infoMsg = document.createElement('span');
+        infoMsg.textContent = 'ℹ️ Usa tu email para guardar en la base de datos local.';
+        infoMsg.style.fontSize = '0.85rem';
+        infoMsg.style.color = 'white';
+        infoMsg.style.opacity = '0.9';
+        userContainer.appendChild(infoMsg);
     }
 }
 
@@ -893,19 +974,9 @@ function setupAuthUI() {
 document.addEventListener('DOMContentLoaded', async () => {
     loadNav();
     loadFooter();
-    await loadProgress(); // Esperamos a que carguen los datos antes de pintar
-    renderApp();
-
-    // Escuchar cambios de sesión (Login/Logout)
-    if (auth) {
-        auth.onAuthStateChanged(async (user) => {
-            currentUser = user;
-            setupAuthUI(); // Actualizar botón
-            // Recargar datos al cambiar de usuario
-            await loadProgress();
-            renderApp();
-        });
-    }
+    
+    // Verificar sesión con PHP al iniciar
+    await checkSession();
     
     // Actualizar temporizadores cada segundo (1000 ms)
     setInterval(updateTimers, 1000);
@@ -932,17 +1003,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (encounterConfirmBtn) {
         encounterConfirmBtn.addEventListener('click', handleEncounterSubmit);
         document.getElementById('encounter-cancel').addEventListener('click', closeEncounterModal);
-    }
-
-    // Inyectar mensaje informativo debajo del botón de Reset
-    const resetContainer = document.querySelector('.reset-container');
-    if (resetContainer) {
-        // Mensaje informativo sobre el guardado
-        const infoMsg = document.createElement('p');
-        infoMsg.textContent = 'ℹ️ Inicia sesión para guardar en la nube.';
-        infoMsg.style.fontSize = '0.8rem';
-        infoMsg.style.marginTop = '10px';
-        infoMsg.style.opacity = '0.7';
-        resetContainer.appendChild(infoMsg);
     }
 });
