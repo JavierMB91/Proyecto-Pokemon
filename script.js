@@ -150,22 +150,64 @@ const encountersData = [
 
 // --- LÓGICA DE LA APLICACIÓN ---
 
+// --- CONFIGURACIÓN FIREBASE ---
+// ¡IMPORTANTE! Reemplaza esto con los datos de tu proyecto de Firebase Console
+const firebaseConfig = {
+  apiKey: "AIzaSyDucXqkZ8OQ4YD4weyJBGjr8TaCo8fs7qY",
+  authDomain: "pokemmo-utility.firebaseapp.com",
+  projectId: "pokemmo-utility",
+  storageBucket: "pokemmo-utility.firebasestorage.app",
+  messagingSenderId: "109249237514",
+  appId: "1:109249237514:web:4bf9bcf1eb026b2c12c5f3",
+  measurementId: "G-JB5REL83EH"
+};
+
+// Inicializar Firebase
+let auth, db;
+let currentUser = null;
+
+if (typeof firebase !== 'undefined') {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    auth = firebase.auth();
+    db = firebase.firestore();
+}
+
 const STORAGE_KEY = 'pokemmo_gym_progress';
 let userProgress = {};
 let pendingSeedData = null; // Variable temporal para guardar datos mientras el modal está abierto
 let pendingEncounterId = null; // Variable temporal para el modal de encuentros
 
 // Cargar progreso desde LocalStorage
-function loadProgress() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-        userProgress = JSON.parse(stored);
+async function loadProgress() {
+    // 1. Si hay usuario logueado, intentamos cargar de la nube
+    if (currentUser && db) {
+        try {
+            const doc = await db.collection('users').doc(currentUser.uid).get();
+            if (doc.exists) {
+                userProgress = doc.data();
+                return; // Salimos, ya tenemos los datos de la nube
+            }
+        } catch (e) {
+            console.error("Error cargando de Firebase:", e);
+        }
     }
+
+    // 2. Fallback: Cargar de LocalStorage (si no hay internet o no hay usuario)
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) userProgress = JSON.parse(stored);
 }
 
 // Guardar progreso en LocalStorage
-function saveProgress() {
+async function saveProgress() {
+    // 1. Guardar en LocalStorage (siempre, como copia local)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
+
+    // 2. Guardar en la nube si hay usuario
+    if (currentUser && db) {
+        db.collection('users').doc(currentUser.uid).set(userProgress).catch(console.error);
+    }
 }
 
 // Generar ID único para cada gimnasio
@@ -824,12 +866,80 @@ function importProgress() {
     }
 }
 
+// --- GESTIÓN DE USUARIO (LOGIN) ---
+function setupAuthUI() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    // Crear contenedor de usuario si no existe
+    let userContainer = document.getElementById('user-auth-container');
+    if (!userContainer) {
+        userContainer = document.createElement('div');
+        userContainer.id = 'user-auth-container';
+        // Estilos para que flote a la derecha del header
+        userContainer.style.position = 'absolute';
+        userContainer.style.top = '50%';
+        userContainer.style.right = '20px';
+        userContainer.style.transform = 'translateY(-50%)';
+        userContainer.style.display = 'flex';
+        userContainer.style.alignItems = 'center';
+        userContainer.style.gap = '10px';
+        header.appendChild(userContainer);
+        header.style.position = 'relative'; // Necesario para el absolute
+    }
+
+    userContainer.innerHTML = ''; // Limpiar
+
+    if (currentUser) {
+        // Usuario logueado
+        const userInfo = document.createElement('span');
+        userInfo.textContent = currentUser.displayName ? `Hola, ${currentUser.displayName.split(' ')[0]}` : 'Hola!';
+        userInfo.style.color = 'white';
+        userInfo.style.fontWeight = 'bold';
+        userInfo.style.fontSize = '0.9rem';
+
+        const btnLogout = document.createElement('button');
+        btnLogout.textContent = 'Salir';
+        btnLogout.className = 'btn-data'; // Reusamos estilo
+        btnLogout.style.padding = '5px 10px';
+        btnLogout.style.fontSize = '0.8rem';
+        btnLogout.style.backgroundColor = '#333';
+        btnLogout.onclick = () => auth.signOut();
+
+        userContainer.appendChild(userInfo);
+        userContainer.appendChild(btnLogout);
+    } else {
+        // Botón de Login
+        const btnLogin = document.createElement('button');
+        btnLogin.textContent = 'G Iniciar Sesión';
+        btnLogin.className = 'btn-data';
+        btnLogin.style.backgroundColor = 'white';
+        btnLogin.style.color = '#333';
+        btnLogin.onclick = () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(alert);
+        };
+        userContainer.appendChild(btnLogin);
+    }
+}
+
 // --- INICIALIZACIÓN ---
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     loadNav();
     loadFooter();
-    loadProgress();
+    await loadProgress(); // Esperamos a que carguen los datos antes de pintar
     renderApp();
+
+    // Escuchar cambios de sesión (Login/Logout)
+    if (auth) {
+        auth.onAuthStateChanged(async (user) => {
+            currentUser = user;
+            setupAuthUI(); // Actualizar botón
+            // Recargar datos al cambiar de usuario
+            await loadProgress();
+            renderApp();
+        });
+    }
     
     // Actualizar temporizadores cada segundo (1000 ms)
     setInterval(updateTimers, 1000);
@@ -880,7 +990,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Mensaje informativo sobre el guardado
         const infoMsg = document.createElement('p');
-        infoMsg.textContent = 'ℹ️ Los datos se guardan solo en este dispositivo.';
+        infoMsg.textContent = 'ℹ️ Inicia sesión para guardar en la nube.';
         infoMsg.style.fontSize = '0.8rem';
         infoMsg.style.marginTop = '10px';
         infoMsg.style.opacity = '0.7';
