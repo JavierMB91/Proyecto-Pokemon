@@ -450,14 +450,15 @@ function renderApp() {
     // Determinar qué datos mostrar según la URL
     let currentData = [];
     let maxSlots = 8; // Por defecto para gimnasios
+    const path = window.location.pathname.toLowerCase();
 
-    if (window.location.pathname.includes('altoMandoTracker.html')) {
+    if (path.includes('altomandotracker')) {
         currentData = eliteFourData;
         maxSlots = 1; // El Alto Mando es 1 combate (run completa)
-    } else if (window.location.pathname.includes('semillas.html')) {
+    } else if (path.includes('semillas')) {
         currentData = seedsData;
         maxSlots = 1; 
-    } else if (window.location.pathname.includes('encuentros.html')) {
+    } else if (path.includes('encuentros')) {
         updateEncountersData(); // Calcular rotación mensual antes de renderizar
         currentData = encountersData;
         maxSlots = 0; // No necesitamos huecos vacíos
