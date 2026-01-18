@@ -26,6 +26,9 @@ body {
     color: var(--poke-black);
     line-height: 1.6;
     padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* --- HEADER --- */
@@ -428,6 +431,10 @@ header::after {
 }
 
 /* --- FOOTER --- */
+#footer-placeholder {
+    margin-top: auto;
+}
+
 .main-footer {
     background-color: var(--poke-black);
     color: var(--poke-white);
