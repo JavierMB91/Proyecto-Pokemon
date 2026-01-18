@@ -548,6 +548,8 @@ async function loadNav() {
         const response = await fetch('nav.html');
         if (response.ok) {
             placeholder.innerHTML = await response.text();
+        } else {
+            console.error(`Error cargando nav.html: ${response.status}. Verifica si el archivo en Git se llama 'Nav.html' (mayúscula) en lugar de 'nav.html'.`);
         }
     } catch (error) {
         console.error("Error cargando navegación (posiblemente por protocolo file://):", error);
@@ -565,6 +567,8 @@ async function loadFooter() {
         const response = await fetch('footer.html');
         if (response.ok) {
             placeholder.innerHTML = await response.text();
+        } else {
+            console.error(`Error cargando footer.html: ${response.status}. Verifica mayúsculas/minúsculas en el nombre del archivo.`);
         }
     } catch (error) {
         console.error("Error cargando footer:", error);
@@ -691,6 +695,9 @@ function handleSeedSubmit() {
     
     if (typeof validateSeedInput === 'function') {
         validation = validateSeedInput(input.value);
+    } else {
+        console.error("Error: validateSeedInput no existe. Verifica que 'validations.js' se haya cargado correctamente (cuidado con 'Validations.js' vs 'validations.js').");
+        validation = { valid: false, message: "Error interno: No se pudo cargar el validador." };
     }
 
     if (!validation.valid) {
@@ -746,6 +753,9 @@ function handleEncounterSubmit() {
     let validation = { valid: false, message: "Error" };
     if (typeof validateEncounterInput === 'function') {
         validation = validateEncounterInput(input.value);
+    } else {
+        console.error("Error: validateEncounterInput no existe. Verifica que 'validations.js' se haya cargado correctamente.");
+        validation = { valid: false, message: "Error interno: No se pudo cargar el validador." };
     }
 
     if (!validation.valid) {
