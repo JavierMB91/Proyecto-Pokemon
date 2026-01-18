@@ -190,8 +190,10 @@ async function loadProgress() {
             const doc = await db.collection('users').doc(currentUser.uid).get();
             if (doc.exists) {
                 userProgress = doc.data();
-                return; // Salimos, ya tenemos los datos de la nube
             }
+            // IMPORTANTE: Si estamos logueados, terminamos aquí (tenga datos o no).
+            // NO cargamos localStorage para evitar mezclar la sesión de invitado con la cuenta.
+            return; 
         } catch (e) {
             console.error("Error cargando de Firebase:", e);
         }
@@ -974,6 +976,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Inyectar botones de Exportar/Importar debajo del botón de Reset
+    // Inyectar mensaje informativo debajo del botón de Reset
     const resetContainer = document.querySelector('.reset-container');
     if (resetContainer) {
         const dataControls = document.createElement('div');
