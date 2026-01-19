@@ -151,7 +151,8 @@ const encountersData = [
 // --- LÓGICA DE LA APLICACIÓN ---
 
 // --- CONFIGURACIÓN BACKEND LOCAL ---
-const API_URL = './api';
+// Detectar si estamos dentro de la carpeta 'api' (ej. semillas.html) o en la raíz
+const API_URL = window.location.pathname.includes('/api/') ? '.' : './api';
 let currentUser = null;
 
 // Función para verificar sesión al inicio
