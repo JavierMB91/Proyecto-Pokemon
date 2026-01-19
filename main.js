@@ -4,7 +4,7 @@ const path = require('path');
 
 // --- CONFIGURACIÓN DE AUTO-UPDATE PARA REPO PRIVADO ---
 // IMPORTANTE: Reemplaza 'TU_GITHUB_TOKEN' con tu token real de GitHub.
-autoUpdater.requestHeaders = { "Authorization": "token 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" };
+autoUpdater.requestHeaders = { "Authorization": "token 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" };
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
 
@@ -33,6 +33,11 @@ function createWindow() {
     // Apunta a la carpeta api/ donde tienes tus HTMLs
     win.loadFile('api/index.html'); 
     
+    // Evita que el título del HTML sobrescriba el título de la ventana (para que se vea la versión)
+    win.on('page-title-updated', (e) => {
+        e.preventDefault();
+    });
+
     // Opcional: Ocultar la barra de menú predeterminada (Archivo, Editar, etc.)
     win.setMenuBarVisibility(false);
 }
