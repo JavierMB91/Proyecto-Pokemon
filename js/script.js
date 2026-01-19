@@ -151,7 +151,7 @@ const encountersData = [
 // --- LÓGICA DE LA APLICACIÓN ---
 
 // --- CONFIGURACIÓN BACKEND LOCAL ---
-const API_URL = '../api';
+const API_URL = './api';
 let currentUser = null;
 
 // Función para verificar sesión al inicio
