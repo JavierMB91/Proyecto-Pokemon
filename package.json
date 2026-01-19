@@ -1,6 +1,6 @@
 {
   "name": "pokemmo-tracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
   "scripts": {
@@ -9,12 +9,26 @@
   },
   "author": "Entrenador",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JavierMB91/Proyecto-Pokemon.git"
+  },
   "devDependencies": {
     "electron": "^28.2.0",
     "electron-builder": "^24.9.0"
   },
+  "dependencies": {
+    "electron-updater": "^6.7.3"
+  },
   "build": {
     "appId": "com.pokemmo.tracker",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "JavierMB91",
+        "repo": "Proyecto-Pokemon"
+      }
+    ],
     "win": {
       "target": "nsis",
       "icon": "img/favicon.png"
