@@ -26,7 +26,8 @@
       {
         "provider": "github",
         "owner": "JavierMB91",
-        "repo": "Proyecto-Pokemon"
+        "repo": "Proyecto-Pokemon",
+        "private": true
       }
     ],
     "win": {
