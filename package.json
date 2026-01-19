@@ -1,13 +1,11 @@
 {
   "name": "pokemmo-tracker",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder",
-    "clean-dist": "powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue }\"",
-    "predist": "npm run clean-dist"
+    "dist": "electron-builder"
   },
   "author": "Entrenador",
   "license": "ISC",
