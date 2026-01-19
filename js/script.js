@@ -913,13 +913,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const seedConfirmBtn = document.getElementById('seed-confirm');
     if (seedConfirmBtn) {
         seedConfirmBtn.addEventListener('click', handleSeedSubmit);
-        document.getElementById('seed-cancel').addEventListener('click', closeSeedModal);
+        const seedCancelBtn = document.getElementById('seed-cancel');
+        if (seedCancelBtn) {
+            seedCancelBtn.addEventListener('click', closeSeedModal);
+        }
     }
 
     // Eventos del modal de encuentros
     const encounterConfirmBtn = document.getElementById('encounter-confirm');
     if (encounterConfirmBtn) {
         encounterConfirmBtn.addEventListener('click', handleEncounterSubmit);
-        document.getElementById('encounter-cancel').addEventListener('click', closeEncounterModal);
+        const encounterCancelBtn = document.getElementById('encounter-cancel');
+        if (encounterCancelBtn) {
+            encounterCancelBtn.addEventListener('click', closeEncounterModal);
+        }
     }
 });
