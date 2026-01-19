@@ -419,9 +419,15 @@ function createEncounterItem(regionName, gym) {
         openEncounterModal();
     };
 
+    // Imagen personalizada para Zapdos
+    let zapdosGif = '';
+    if (gym.leader === 'Zapdos') {
+        zapdosGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;">';
+    }
+
     item.innerHTML = `
         <div class="gym-info">
-            <h3>${gym.leader}</h3>
+            <h3>${gym.leader}${zapdosGif}</h3>
             ${gym.average ? `<p>Promedio Encuentros: ${gym.average}</p>` : ''}
             <div style="margin: 5px 0;">
                  <span class="encounter-count">${count.toLocaleString('es-ES')}</span>
