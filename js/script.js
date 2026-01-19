@@ -900,8 +900,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Eventos del modal
-    document.getElementById('modal-cancel').addEventListener('click', hideResetModal);
-    document.getElementById('modal-confirm').addEventListener('click', confirmReset);
+    const modalCancel = document.getElementById('modal-cancel');
+    if (modalCancel) {
+        modalCancel.addEventListener('click', hideResetModal);
+    }
+    const modalConfirm = document.getElementById('modal-confirm');
+    if (modalConfirm) {
+        modalConfirm.addEventListener('click', confirmReset);
+    }
 
     // Eventos del modal de semillas (solo si existe en la página)
     const seedConfirmBtn = document.getElementById('seed-confirm');
