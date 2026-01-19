@@ -1,0 +1,11 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.pokemmo.tracker
+win:
+  target: nsis
+  icon: img/favicon.png
+files:
+  - filter:
+      - '**/*'
+electronVersion: 28.3.3
