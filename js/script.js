@@ -425,6 +425,8 @@ function createEncounterItem(regionName, gym) {
         pokemonGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
     } else if (gym.leader === 'Entei') {
         pokemonGif = '<img src="../img/entei.gif" alt="Entei" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
+    } else if (gym.leader === 'Contador Shiny') {
+        pokemonGif = '<img src="../img/charizard.gif" alt="Charizard" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
     }
 
     item.innerHTML = `
