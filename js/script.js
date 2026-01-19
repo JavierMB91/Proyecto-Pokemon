@@ -570,23 +570,6 @@ async function loadNav() {
     }
 }
 
-// --- FOOTER ---
-async function loadFooter() {
-    const placeholder = document.getElementById('footer-placeholder');
-    if (!placeholder) return;
-
-    try {
-        const response = await fetch('footer.html');
-        if (response.ok) {
-            placeholder.innerHTML = await response.text();
-        } else {
-            console.error(`Error cargando footer.html: ${response.status}. Verifica mayúsculas/minúsculas en el nombre del archivo.`);
-        }
-    } catch (error) {
-        console.error("Error cargando footer:", error);
-    }
-}
-
 // Funciones del Modal
 function showResetModal() {
     document.getElementById('modal-overlay').classList.add('active');
@@ -885,7 +868,6 @@ function importData(event) {
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
     loadNav();
-    loadFooter();
     
     // Iniciar aplicación local
     setupAuthUI();

@@ -11,7 +11,10 @@ autoUpdater.autoInstallOnAppQuit = true;
 // Eventos de log para depuración (opcional)
 autoUpdater.on('checking-for-update', () => console.log('Buscando actualizaciones...'));
 autoUpdater.on('update-available', () => console.log('Actualización disponible.'));
-autoUpdater.on('error', (err) => console.error('Error en actualización:', err));
+autoUpdater.on('error', (err) => {
+    console.error('Error en actualización:', err);
+    dialog.showErrorBox('Error de Actualización', 'Hubo un problema buscando actualizaciones: ' + (err.message || err));
+});
 
 function createWindow() {
     const win = new BrowserWindow({
