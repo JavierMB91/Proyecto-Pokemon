@@ -419,15 +419,17 @@ function createEncounterItem(regionName, gym) {
         openEncounterModal();
     };
 
-    // Imagen personalizada para Zapdos
-    let zapdosGif = '';
+    // Imagen personalizada para Zapdos y Entei
+    let pokemonGif = '';
     if (gym.leader === 'Zapdos') {
-        zapdosGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
+        pokemonGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
+    } else if (gym.leader === 'Entei') {
+        pokemonGif = '<img src="../img/entei.gif" alt="Entei" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
     }
 
     item.innerHTML = `
         <div class="gym-info">
-            <h3>${gym.leader}${zapdosGif}</h3>
+            <h3>${gym.leader}${pokemonGif}</h3>
             ${gym.average ? `<p>Promedio Encuentros: ${gym.average}</p>` : ''}
             <div style="margin: 5px 0;">
                  <span class="encounter-count">${count.toLocaleString('es-ES')}</span>
