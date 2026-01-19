@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "clean-dist": "powershell -Command \"Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue\""
   },
   "author": "Entrenador",
   "license": "ISC",
