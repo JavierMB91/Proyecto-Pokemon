@@ -150,29 +150,7 @@ const encountersData = [
 
 // --- LÓGICA DE LA APLICACIÓN ---
 
-// --- CONFIGURACIÓN BACKEND LOCAL ---
-// Detectar si estamos dentro de la carpeta 'api' (ej. semillas.html) o en la raíz
-const API_URL = window.location.pathname.includes('/api/') ? '.' : './api';
-let currentUser = null;
-
-// Función para verificar sesión al inicio
-async function checkSession() {
-    try {
-        const res = await fetch(`${API_URL}/auth.php?action=check`);
-        const data = await res.json();
-        if (data.logged_in) {
-            currentUser = data.user;
-        } else {
-            currentUser = null;
-        }
-    } catch (e) {
-        console.error("Error verificando sesión:", e);
-        currentUser = null;
-    }
-    setupAuthUI();
-    await loadProgress();
-    renderApp();
-}
+// --- CONFIGURACIÓN LOCAL (SIN SERVIDOR) ---
 
 const STORAGE_KEY = 'pokemmo_gym_progress';
 let userProgress = {};
@@ -181,43 +159,14 @@ let pendingEncounterId = null; // Variable temporal para el modal de encuentros
 
 // Cargar progreso desde LocalStorage
 async function loadProgress() {
-    // Reiniciar estado para evitar mezclar datos de sesiones anteriores
     userProgress = {};
-
-    // 1. Si hay usuario logueado, cargamos de la API local
-    if (currentUser) {
-        try {
-            const res = await fetch(`${API_URL}/progress.php`);
-            if (res.ok) {
-                const data = await res.json();
-                userProgress = data || {};
-            }
-            // IMPORTANTE: Si estamos logueados, terminamos aquí (tenga datos o no).
-            // NO cargamos localStorage para evitar mezclar la sesión de invitado con la cuenta.
-            return;
-        } catch (e) {
-            console.error("Error cargando de API:", e);
-        }
-    }
-
-    // 2. Fallback: Cargar de LocalStorage (si no hay internet o no hay usuario)
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) userProgress = JSON.parse(stored);
 }
 
 // Guardar progreso en LocalStorage
 async function saveProgress() {
-    // 1. Guardar en la API si hay usuario
-    if (currentUser) {
-        fetch(`${API_URL}/progress.php`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(userProgress)
-        }).catch(console.error);
-    } else {
-        // 2. Si NO hay usuario, guardar en LocalStorage (modo invitado)
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
-    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
 }
 
 // Generar ID único para cada gimnasio
@@ -837,138 +786,90 @@ function handleEncounterSubmit() {
     closeEncounterModal();
 }
 
-// --- GESTIÓN DE USUARIO (LOGIN) ---
+// --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
 function setupAuthUI() {
     const header = document.querySelector('header');
     if (!header) return;
 
-    // Crear contenedor de usuario si no existe
     let userContainer = document.getElementById('user-auth-container');
     if (!userContainer) {
         userContainer = document.createElement('div');
         userContainer.id = 'user-auth-container';
-        // Estilos para que flote a la derecha del header
         userContainer.style.position = 'absolute';
         userContainer.style.top = '50%';
         userContainer.style.right = '20px';
         userContainer.style.transform = 'translateY(-50%)';
         userContainer.style.display = 'flex';
-        userContainer.style.flexDirection = 'column';
-        userContainer.style.alignItems = 'flex-end';
-        userContainer.style.gap = '5px';
+        userContainer.style.gap = '10px';
         header.appendChild(userContainer);
-        header.style.position = 'relative'; // Necesario para el absolute
+        header.style.position = 'relative';
     }
 
-    userContainer.innerHTML = ''; // Limpiar
+    userContainer.innerHTML = '';
 
-    if (currentUser) {
-        // Wrapper para alinear nombre y botón en fila cuando está logueado
-        const wrapper = document.createElement('div');
-        wrapper.style.display = 'flex';
-        wrapper.style.alignItems = 'center';
-        wrapper.style.gap = '10px';
+    // Botón Exportar
+    const btnExport = document.createElement('button');
+    btnExport.textContent = '💾 Guardar Archivo';
+    btnExport.className = 'btn-data';
+    btnExport.style.padding = '5px 10px';
+    btnExport.style.fontSize = '0.8rem';
+    btnExport.onclick = exportData;
 
-        // Usuario logueado
-        const userInfo = document.createElement('span');
-        userInfo.textContent = currentUser.displayName ? `Hola, ${currentUser.displayName.split(' ')[0]}` : 'Hola!';
-        userInfo.style.color = 'white';
-        userInfo.style.fontWeight = 'bold';
-        userInfo.style.fontSize = '0.9rem';
+    // Botón Importar
+    const btnImport = document.createElement('button');
+    btnImport.textContent = '📂 Cargar Archivo';
+    btnImport.className = 'btn-data';
+    btnImport.style.padding = '5px 10px';
+    btnImport.style.fontSize = '0.8rem';
+    btnImport.style.backgroundColor = '#4CAF50';
+    btnImport.onclick = () => document.getElementById('import-file').click();
 
-        const btnLogout = document.createElement('button');
-        btnLogout.textContent = 'Salir';
-        btnLogout.className = 'btn-data'; // Reusamos estilo
-        btnLogout.style.padding = '5px 10px';
-        btnLogout.style.fontSize = '0.8rem';
-        btnLogout.style.backgroundColor = '#333';
-        btnLogout.onclick = async () => {
-            await fetch(`${API_URL}/auth.php?action=logout`);
-            currentUser = null;
-            setupAuthUI();
-            await loadProgress();
+    // Input oculto para importar
+    const inputFile = document.createElement('input');
+    inputFile.type = 'file';
+    inputFile.id = 'import-file';
+    inputFile.accept = '.json';
+    inputFile.style.display = 'none';
+    inputFile.onchange = importData;
+
+    userContainer.appendChild(btnExport);
+    userContainer.appendChild(btnImport);
+    userContainer.appendChild(inputFile);
+}
+
+function exportData() {
+    const dataStr = JSON.stringify(userProgress, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pokemmo_tracker_backup_${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            userProgress = data;
+            saveProgress();
             renderApp();
-        };
-
-        wrapper.appendChild(userInfo);
-        wrapper.appendChild(btnLogout);
-        userContainer.appendChild(wrapper);
-    } else {
-        // Formulario simple de Login/Registro
-        const formContainer = document.createElement('div');
-        formContainer.style.display = 'flex';
-        formContainer.style.gap = '5px';
-        formContainer.style.alignItems = 'center';
-
-        const emailInput = document.createElement('input');
-        emailInput.type = 'email';
-        emailInput.placeholder = 'Email';
-        emailInput.style.padding = '5px';
-        emailInput.style.borderRadius = '4px';
-        emailInput.style.border = 'none';
-        emailInput.style.width = '120px';
-
-        const passInput = document.createElement('input');
-        passInput.type = 'password';
-        passInput.placeholder = 'Contraseña';
-        passInput.style.padding = '5px';
-        passInput.style.borderRadius = '4px';
-        passInput.style.border = 'none';
-        passInput.style.width = '100px';
-
-        const btnLogin = document.createElement('button');
-        btnLogin.textContent = 'Entrar';
-        btnLogin.className = 'btn-data';
-        btnLogin.style.padding = '5px 10px';
-        btnLogin.style.fontSize = '0.8rem';
-        
-        const btnRegister = document.createElement('button');
-        btnRegister.textContent = 'Registro';
-        btnRegister.className = 'btn-data';
-        btnRegister.style.padding = '5px 10px';
-        btnRegister.style.fontSize = '0.8rem';
-        btnRegister.style.backgroundColor = '#4CAF50';
-
-        const handleAuth = async (action) => {
-            const email = emailInput.value;
-            const password = passInput.value;
-            if(!email || !password) return alert("Rellena email y contraseña");
-
-            try {
-                const res = await fetch(`${API_URL}/auth.php?action=${action}`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ email, password })
-                });
-                const data = await res.json();
-                if(data.success) {
-                    currentUser = data.user;
-                    setupAuthUI();
-                    await loadProgress();
-                    renderApp();
-                } else {
-                    alert(data.message || "Error");
-                }
-            } catch(e) { console.error(e); alert("Error de conexión"); }
-        };
-
-        btnLogin.onclick = () => handleAuth('login');
-        btnRegister.onclick = () => handleAuth('register');
-
-        formContainer.appendChild(emailInput);
-        formContainer.appendChild(passInput);
-        formContainer.appendChild(btnLogin);
-        formContainer.appendChild(btnRegister);
-        userContainer.appendChild(formContainer);
-
-        // Mensaje informativo debajo del botón
-        const infoMsg = document.createElement('span');
-        infoMsg.textContent = 'ℹ️ Usa tu email para guardar en la base de datos local.';
-        infoMsg.style.fontSize = '0.85rem';
-        infoMsg.style.color = 'white';
-        infoMsg.style.opacity = '0.9';
-        userContainer.appendChild(infoMsg);
-    }
+            alert('Datos cargados correctamente.');
+        } catch (error) {
+            console.error("Error al leer el archivo:", error);
+            alert('Error al leer el archivo. Asegúrate de que es un JSON válido.');
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
 }
 
 // --- INICIALIZACIÓN ---
@@ -976,8 +877,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadNav();
     loadFooter();
     
-    // Verificar sesión con PHP al iniciar
-    await checkSession();
+    // Iniciar aplicación local
+    setupAuthUI();
+    await loadProgress();
+    renderApp();
     
     // Actualizar temporizadores cada segundo (1000 ms)
     setInterval(updateTimers, 1000);
