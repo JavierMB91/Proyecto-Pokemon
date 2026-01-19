@@ -186,9 +186,12 @@ function getRoamingLegendaries(month) {
     // (Mes - 1) % 3 asegura que Enero (1) sea índice 0
     const index = (month - 1) % 3;
 
+    // FORZAR ZAPDOS PARA VER EL GIF (Deshaz este cambio luego para restaurar la rotación real)
     return {
         kanto: kantoRotation[index],
         johto: johtoRotation[index]
+        kanto: "Zapdos", 
+        johto: "Raikou"
     };
 }
 
@@ -422,7 +425,8 @@ function createEncounterItem(regionName, gym) {
     // Imagen personalizada para Zapdos
     let zapdosGif = '';
     if (gym.leader === 'Zapdos') {
-        zapdosGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;">';
+        zapdosGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
+        zapdosGif = '<img src="img/zapdos.gif" alt="Zapdos" style="height: 40px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
     }
 
     item.innerHTML = `
