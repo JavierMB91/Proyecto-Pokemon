@@ -492,6 +492,10 @@ function renderApp() {
         // Lista de gimnasios
         const list = document.createElement('ul');
         list.className = 'gym-list';
+        
+        if (path.includes('encuentros')) {
+            list.classList.add('horizontal-layout');
+        }
 
         region.gyms.forEach(gym => {
             if (gym.type === 'encounter') {

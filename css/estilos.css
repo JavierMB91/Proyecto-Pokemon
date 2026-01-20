@@ -468,3 +468,27 @@ header::after {
     display: none;
     font-weight: bold;
 }
+
+/* --- LAYOUT HORIZONTAL (ENCUENTROS) --- */
+.gym-list.horizontal-layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gym-list.horizontal-layout .gym-item {
+    flex: 1 1 45%; /* Ocupa el 45% del espacio (caben 2) */
+    border-bottom: none;
+    border-right: 1px solid #eee;
+    flex-direction: column; /* Contenido centrado verticalmente */
+    text-align: center;
+    justify-content: center;
+}
+
+.gym-list.horizontal-layout .gym-item:last-child {
+    border-right: none;
+}
+
+.gym-list.horizontal-layout .gym-info {
+    text-align: center;
+    width: 100%;
+}
