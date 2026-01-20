@@ -410,12 +410,13 @@ function createEncounterItem(regionName, gym) {
     let pokemonGif = '';
     const legendaries = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
     if (legendaries.includes(gym.leader)) {
-        pokemonGif = `<img src="../img/${gym.leader.toLowerCase()}.gif" alt="${gym.leader}" style="height: 60px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display='none'">`;
+        pokemonGif = `<div style="margin-top: 5px;"><img src="../img/${gym.leader.toLowerCase()}.gif" alt="${gym.leader}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
     }
 
     item.innerHTML = `
         <div class="gym-info">
-            <h3>${gym.leader}${pokemonGif}</h3>
+            <h3>${gym.leader}</h3>
+            ${pokemonGif}
             ${gym.average ? `<p>Promedio Encuentros: ${gym.average}</p>` : ''}
             <div style="margin: 10px 0;">
                  <span class="encounter-count">${count.toLocaleString('es-ES')}</span>

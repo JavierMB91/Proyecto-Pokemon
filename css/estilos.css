@@ -22,7 +22,7 @@
 
 html {
     background-color: var(--bg-color); /* Mantiene el color de fondo durante la transición */
-    font-size: 18px; /* Aumentar tamaño de letra base para toda la app */
+    font-size: 17px; /* Aumentar tamaño de letra base para toda la app */
 }
 
 body {
