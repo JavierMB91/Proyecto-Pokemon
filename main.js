@@ -6,8 +6,10 @@ const path = require('path');
 // IMPORTANTE: Reemplaza 'TU_GITHUB_TOKEN' con tu token real de GitHub.
 autoUpdater.requestHeaders = { 
   "Authorization": "token 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",
-  "Accept": "application/vnd.github.v3.raw" 
+  "Accept": "application/octet-stream",
+  "Cache-Control": "no-cache"
 };
+autoUpdater.requestHeaders["User-Agent"] = "electron-builder";
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
 autoUpdater.allowPrerelease = true; // Permite actualizaciones aunque sean 'pre-releases'
