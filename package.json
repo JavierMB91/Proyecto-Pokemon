@@ -1,6 +1,6 @@
 {
   "name": "pokemmo-tracker",
-  "version": "1.0.33",
+  "version": "1.0.34",
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
   "scripts": {
@@ -19,7 +19,8 @@
   "devDependencies": {
     "dotenv-cli": "^11.0.0",
     "electron": "^28.2.0",
-    "electron-builder": "^24.9.0"
+    "electron-builder": "^24.9.0",
+    "rimraf": "^6.1.2"
   },
   "dependencies": {
     "electron-updater": "^6.7.3"
