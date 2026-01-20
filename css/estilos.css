@@ -142,6 +142,11 @@ header::after {
     box-shadow: 0 8px 15px rgba(0,0,0,0.15);
 }
 
+.region-card.wide-card {
+    max-width: 800px; /* Permitir que sea más ancha para los encuentros horizontales */
+    width: 100%;
+}
+
 .region-header {
     background-color: var(--poke-black);
     color: var(--poke-yellow);

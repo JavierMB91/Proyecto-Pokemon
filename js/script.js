@@ -406,7 +406,7 @@ function createEncounterItem(regionName, gym) {
     const item = document.createElement('li');
     item.className = 'gym-item';
     
-    // Imagen personalizada para Zapdos y Entei
+    // Imagen personalizada para Legendarios
     let pokemonGif = '';
     const legendaries = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
     if (legendaries.includes(gym.leader)) {
@@ -502,6 +502,7 @@ function renderApp() {
         
         if (path.includes('encuentros')) {
             list.classList.add('horizontal-layout');
+            card.classList.add('wide-card');
         }
 
         region.gyms.forEach(gym => {
