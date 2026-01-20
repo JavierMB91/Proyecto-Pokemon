@@ -130,14 +130,9 @@ const seedsData = [
 // --- DATOS DE ENCUENTROS ---
 const encountersData = [
     {
-        name: "Kanto",
+        name: "Mes Actual",
         money: "-",
-        gyms: [] // Se actualizará dinámicamente según el mes
-    },
-    {
-        name: "Johto",
-        money: "-",
-        gyms: [] // Se actualizará dinámicamente según el mes
+        gyms: [] // Se actualizará dinámicamente
     },
     {
         name: "Shiny Hunting",
@@ -194,26 +189,31 @@ function getRoamingLegendaries(month) {
 
 // Función para actualizar los datos de encuentros con los legendarios del mes actual
 function updateEncountersData() {
-    const currentMonth = new Date().getMonth() + 1; // Obtener mes actual (1-12)
+    const date = new Date();
+    const currentMonth = date.getMonth() + 1; // Obtener mes actual (1-12)
+    const monthName = date.toLocaleString('es-ES', { month: 'long' });
+    const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+    
     const legendaries = getRoamingLegendaries(currentMonth);
 
-    // Actualizar Kanto (Índice 0 en encountersData)
-    encountersData[0].gyms = [{
-        city: "Legendario Errante",
-        leader: legendaries.kanto,
-        id: `${legendaries.kanto.toLowerCase()}-kanto`,
-        type: "encounter",
-        average: "8.000"
-    }];
-
-    // Actualizar Johto (Índice 1 en encountersData)
-    encountersData[1].gyms = [{
-        city: "Legendario Errante",
-        leader: legendaries.johto,
-        id: `${legendaries.johto.toLowerCase()}-johto`,
-        type: "encounter",
-        average: "8.000"
-    }];
+    // Actualizar la tarjeta del mes (Índice 0 en encountersData)
+    encountersData[0].name = capitalizedMonth;
+    encountersData[0].gyms = [
+        {
+            city: "Kanto",
+            leader: legendaries.kanto,
+            id: `${legendaries.kanto.toLowerCase()}-kanto`,
+            type: "encounter",
+            average: "8.000"
+        },
+        {
+            city: "Johto",
+            leader: legendaries.johto,
+            id: `${legendaries.johto.toLowerCase()}-johto`,
+            type: "encounter",
+            average: "8.000"
+        }
+    ];
 }
 
 // Alternar estado del gimnasio
@@ -472,7 +472,7 @@ function renderApp() {
     } else if (path.includes('encuentros')) {
         updateEncountersData(); // Calcular rotación mensual antes de renderizar
         currentData = encountersData;
-        maxSlots = 0; // No necesitamos huecos vacíos
+        maxSlots = 2; // Igualar altura (2 slots para legendarios, 1+1 para shiny)
     } else {
         currentData = gymsData;
     }
