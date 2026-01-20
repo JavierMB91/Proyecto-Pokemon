@@ -5,8 +5,8 @@ const path = require('path');
 // --- CONFIGURACIÓN DE AUTO-UPDATE PARA REPO PRIVADO ---
 // IMPORTANTE: Reemplaza 'TU_GITHUB_TOKEN' con tu token real de GitHub.
 autoUpdater.requestHeaders = { 
-    "Authorization": "Bearer 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",
-    "Accept": "application/octet-stream"
+  "Authorization": "token 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",
+  "Accept": "application/vnd.github.v3.raw" 
 };
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
