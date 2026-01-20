@@ -413,12 +413,6 @@ function createEncounterItem(regionName, gym) {
     const item = document.createElement('li');
     item.className = 'gym-item';
     
-    // Evento Click para abrir modal
-    item.onclick = () => {
-        pendingEncounterId = gymId;
-        openEncounterModal();
-    };
-
     // Imagen personalizada para Zapdos y Entei
     let pokemonGif = '';
     if (gym.leader === 'Zapdos') {
@@ -433,16 +427,20 @@ function createEncounterItem(regionName, gym) {
         <div class="gym-info">
             <h3>${gym.leader}${pokemonGif}</h3>
             ${gym.average ? `<p>Promedio Encuentros: ${gym.average}</p>` : ''}
-            <div style="margin: 5px 0;">
+            <div style="margin: 10px 0;">
                  <span class="encounter-count">${count.toLocaleString('es-ES')}</span>
             </div>
+            
+            <!-- Formulario Inline para añadir combates -->
+            <div class="encounter-form">
+                <input type="number" id="input-${gymId}" class="encounter-input-inline" placeholder="Cant." min="1">
+                <button class="btn-add-inline" onclick="addEncounter('${gymId}', 'input-${gymId}')">Añadir</button>
+            </div>
+
             <div class="encounter-stats">
                 <p>Probabilidad actual: <strong>${currentProb.toFixed(2)}%</strong></p>
                 <div class="encounter-milestones">
-                    <p><strong>Hitos (1/${rateTitle}):</strong></p>
-                    <p>${f(m50)} enc. ≈ 50%</p>
-                    <p>${f(m63)} enc. ≈ 63%</p>
-                    <p>${f(m90)} enc. ≈ 90%</p>
+                    <p><small>50%: ${f(m50)} | 90%: ${f(m90)}</small></p>
                 </div>
             </div>
         </div>
@@ -450,6 +448,25 @@ function createEncounterItem(regionName, gym) {
     
     return item;
 }
+
+// Función para añadir encuentros directamente desde la tarjeta
+window.addEncounter = function(gymId, inputId) {
+    const input = document.getElementById(inputId);
+    if (!input || !input.value) return;
+    
+    const amount = parseInt(input.value);
+    if (isNaN(amount) || amount <= 0) return;
+
+    if (!userProgress[gymId]) {
+        userProgress[gymId] = { count: 0 };
+    }
+    
+    userProgress[gymId].count += amount;
+    userProgress[gymId].timestamp = new Date().toISOString();
+    
+    saveProgress();
+    renderApp();
+};
 
 // Renderizar la interfaz
 function renderApp() {
