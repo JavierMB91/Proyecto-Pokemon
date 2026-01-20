@@ -168,7 +168,7 @@ header::after {
 .gym-item {
     display: flex;
     align-items: center;
-    padding: 8px 12px;
+    padding: 15px 20px; /* Aumentado para hacer el recuadro más grande */
     border-bottom: 1px solid #eee;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -275,6 +275,14 @@ header::after {
     background: white;
 }
 
+/* --- IMAGEN DE SEMILLA/GIMNASIO --- */
+.gym-image {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin-right: 15px;
+}
+
 .gym-item.completed .custom-checkbox {
     background-color: var(--success-green);
     border-color: var(--success-green);
@@ -308,6 +316,13 @@ header::after {
     color: #2e7d32;
     font-weight: 600;
     margin-left: 0;
+    text-align: right;
+}
+
+.gym-end-time {
+    font-size: 0.75rem;
+    color: #d32f2f; /* Rojo oscuro para diferenciar */
+    font-weight: 600;
     text-align: right;
 }
 

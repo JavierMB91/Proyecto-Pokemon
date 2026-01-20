@@ -120,7 +120,7 @@ const seedsData = [
         name: "Huerto",
         money: "-",
         gyms: [
-            { city: "Semillas Picantes", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
+            { city: "Semillas Picantes", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", image: "semilla_picante.png", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
             { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, timerPrefix: "Recogida en:", readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
             { city: "Recogida de Semillas", leader: "Recoger", id: "spicy-seeds-harvest", type: "seed-harvest", prevId: "spicy-seeds-water", rootId: "spicy-seeds-plant", waitHours: 16 }
         ]
@@ -361,11 +361,19 @@ function createGymItem(regionName, gym) {
             hour: '2-digit', minute: '2-digit'
         });
 
+        // Calcular hora final
+        const endTime = new Date(date.getTime() + (cooldown * 60 * 60 * 1000));
+        const endTimeStr = endTime.toLocaleString('es-ES', {
+            timeZone: 'Europe/Madrid',
+            hour: '2-digit', minute: '2-digit'
+        });
+
         dateHtml = `
             <div class="gym-status-right">
                 <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
                    data-prefix="${prefix}" data-ready-label="${readyLabel}"></p>
                 <p class="gym-date">📅 ${dateStr}</p>
+                <p class="gym-end-time">🏁 Fin: ${endTimeStr}</p>
             </div>`;
     }
 
@@ -377,11 +385,18 @@ function createGymItem(regionName, gym) {
         infoText = ''; // Ocultar texto de líder para pasos intermedios
     }
 
+    // Lógica de imagen (si existe la propiedad 'image' en los datos)
+    let imageHtml = '';
+    if (gym.image) {
+        imageHtml = `<img src="../img/${gym.image}" alt="${gym.city}" class="gym-image">`;
+    }
+
     // HTML interno del item
     item.innerHTML = `
         <div class="checkbox-wrapper">
             <div class="custom-checkbox"></div>
         </div>
+        ${imageHtml}
         <div class="gym-info">
             <h3>${gym.city}</h3>
             ${infoText}
