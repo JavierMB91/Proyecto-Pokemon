@@ -486,12 +486,7 @@ function renderApp() {
         const header = document.createElement('div');
         header.className = 'region-header';
         
-        let moneyHtml = '';
-        if (region.money && region.money !== '-') {
-            moneyHtml = `<br><span style="font-size: 0.8rem; color: var(--poke-white);">${region.money} ¥</span>`;
-        }
-        
-        header.innerHTML = `${region.name}${moneyHtml}`;
+        header.innerHTML = `${region.name}`;
         card.appendChild(header);
 
         // Lista de gimnasios
@@ -530,7 +525,7 @@ function renderApp() {
             
             const specialHeader = document.createElement('div');
             specialHeader.className = 'region-header';
-            specialHeader.innerHTML = `Combates Especiales<br><span style="font-size: 0.8rem; color: var(--poke-white);">18.300 ¥</span>`;
+            specialHeader.innerHTML = `Combates Especiales`;
             specialBox.appendChild(specialHeader);
             
             const specialList = document.createElement('ul');
