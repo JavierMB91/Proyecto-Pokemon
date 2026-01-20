@@ -222,10 +222,20 @@ function toggleGym(regionName, gymData, element) {
             // Si se desmarca plantar, borramos todo el ciclo
             delete userProgress[id];
             if (gymData.nextId) {
-                const waterId = getGymId(regionName, "spicy-seeds-water");
-                const harvestId = getGymId(regionName, "spicy-seeds-harvest");
-                delete userProgress[waterId];
-                delete userProgress[harvestId];
+                // Limpieza dinámica de pasos siguientes basada en nextId
+                let currentNextId = gymData.nextId;
+                const regionData = seedsData.find(r => r.name === regionName);
+                
+                while (currentNextId && regionData) {
+                    const nextGym = regionData.gyms.find(g => g.id === currentNextId);
+                    if (nextGym) {
+                        const nextFullId = getGymId(regionName, nextGym.id);
+                        delete userProgress[nextFullId];
+                        currentNextId = nextGym.nextId;
+                    } else {
+                        break;
+                    }
+                }
             }
         }
     } else if (gymData.type === 'seed-water') {
@@ -478,7 +488,6 @@ function renderApp() {
         currentData = seedsData;
         maxSlots = 1; 
     } else if (path.includes('encuentros')) {
-        updateEncountersData(); // Calcular rotación mensual antes de renderizar
         currentData = encountersData;
         maxSlots = 2; // Igualar altura (2 slots para legendarios, 1+1 para shiny)
     } else {
@@ -877,6 +886,12 @@ function importData(event) {
 document.addEventListener('DOMContentLoaded', async () => {
     loadNav();
     
+    // Actualizar datos de encuentros solo una vez al cargar
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('encuentros')) {
+        updateEncountersData();
+    }
+
     // Iniciar aplicación local
     setupAuthUI();
     await loadProgress();
