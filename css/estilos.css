@@ -22,6 +22,7 @@
 
 html {
     background-color: var(--bg-color); /* Mantiene el color de fondo durante la transición */
+    font-size: 18px; /* Aumentar tamaño de letra base para toda la app */
 }
 
 body {
@@ -143,7 +144,8 @@ header::after {
 }
 
 .region-card.wide-card {
-    max-width: 800px; /* Permitir que sea más ancha para los encuentros horizontales */
+    max-width: 1100px; /* Permitir que sea aún más ancha */
+    flex-basis: 100%; /* Forzar a la tarjeta a ocupar su propia fila y expandirse */
     width: 100%;
 }
 
@@ -291,13 +293,13 @@ header::after {
 }
 
 .gym-info h3 {
-    font-size: 1rem;
+    font-size: 1.2rem; /* Aumentado de 1rem */
     margin-bottom: 4px;
     color: #333;
 }
 
 .gym-info p {
-    font-size: 0.85rem;
+    font-size: 1rem; /* Aumentado de 0.85rem */
     color: #666;
 }
 
@@ -484,7 +486,7 @@ header::after {
 }
 
 .gym-list.horizontal-layout .gym-item {
-    flex: 1 1 250px; /* Ancho base reducido para asegurar horizontalidad */
+    flex: 1 1 45%; /* Ocupar casi la mitad del espacio para forzar horizontalidad */
     max-width: 450px; /* Límite de ancho para que no se estiren demasiado */
     border: 1px solid #e0e0e0;
     border-radius: 15px; /* Bordes redondeados */
@@ -540,7 +542,7 @@ header::after {
 }
 
 .encounter-input-inline {
-    width: 80px;
+    width: 140px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
