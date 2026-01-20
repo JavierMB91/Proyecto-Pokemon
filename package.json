@@ -1,11 +1,12 @@
 {
   "name": "pokemmo-tracker",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "release": "git add . && git commit -m \"chore: update version\" && git push && npm run dist -- --publish always"
   },
   "author": "Entrenador",
   "license": "ISC",
