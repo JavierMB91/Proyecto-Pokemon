@@ -2,18 +2,10 @@ const { app, BrowserWindow, dialog } = require('electron');
 const { autoUpdater } = require('electron-updater');
 const path = require('path');
 
-// --- CONFIGURACIÓN DE AUTO-UPDATE PARA REPO PRIVADO ---
-// IMPORTANTE: Reemplaza 'TU_GITHUB_TOKEN' con tu token real de GitHub.
-autoUpdater.requestHeaders = { 
-  "Authorization": "token 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",
-  "Accept": "application/octet-stream",
-  "Cache-Control": "no-cache"
-};
-autoUpdater.requestHeaders["User-Agent"] = "electron-builder";
+// --- CONFIGURACIÓN DE AUTO-UPDATE ---
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
 autoUpdater.allowPrerelease = true; // Permite actualizaciones aunque sean 'pre-releases'
-autoUpdater.forceDevUpdateConfig = true; // Fuerza a la app a que use la API en lugar de las URLs directas
 
 // Eventos de log para depuración (opcional)
 autoUpdater.on('checking-for-update', () => console.log('Buscando actualizaciones...'));
