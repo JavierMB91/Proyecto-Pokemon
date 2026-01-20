@@ -484,7 +484,7 @@ header::after {
 }
 
 .gym-list.horizontal-layout .gym-item {
-    flex: 1 1 300px; /* Ancho base */
+    flex: 1 1 250px; /* Ancho base reducido para asegurar horizontalidad */
     max-width: 450px; /* Límite de ancho para que no se estiren demasiado */
     border: 1px solid #e0e0e0;
     border-radius: 15px; /* Bordes redondeados */
@@ -495,6 +495,7 @@ header::after {
     text-align: center;
     justify-content: center;
     transition: transform 0.2s, box-shadow 0.2s;
+    padding: 20px; /* Más espacio interno */
 }
 
 .gym-list.horizontal-layout .gym-info {
@@ -505,6 +506,29 @@ header::after {
 .gym-list.horizontal-layout .gym-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA ENCUENTROS (LETRAS GRANDES) --- */
+.gym-list.horizontal-layout .gym-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.gym-list.horizontal-layout .encounter-count {
+    font-size: 2.5rem;
+    margin: 15px 0;
+    display: block;
+}
+
+.gym-list.horizontal-layout .encounter-stats {
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.gym-list.horizontal-layout .encounter-input-inline,
+.gym-list.horizontal-layout .btn-add-inline {
+    font-size: 1.1rem;
+    padding: 8px 15px;
 }
 
 /* --- FORMULARIO INLINE ENCUENTROS --- */
