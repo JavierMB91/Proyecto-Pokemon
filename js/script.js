@@ -291,16 +291,19 @@ function updateTimers() {
             timer.innerHTML = `${prefix} ${hours}h ${minutes}m ${seconds}s`;
             timer.classList.remove('ready');
         } else {
-            const readyLabel = timer.getAttribute('data-ready-label') || 'Disponible';
-            timer.innerHTML = `✅ ${readyLabel}`;
-            timer.classList.add('ready');
-            
-            // Habilitar el siguiente paso visualmente si existe
-            const currentGymId = timer.getAttribute('data-gym-id');
-            if (currentGymId) {
-                const nextStageItem = document.querySelector(`.gym-item[data-prev-id="${currentGymId}"]`);
-                if (nextStageItem) {
-                    nextStageItem.classList.remove('disabled');
+            // Solo actuar si el temporizador acaba de terminar
+            if (!timer.classList.contains('ready')) {
+                const readyLabel = timer.getAttribute('data-ready-label') || 'Disponible';
+                timer.innerHTML = `✅ ${readyLabel}`;
+                timer.classList.add('ready');
+                
+                // Habilitar el siguiente paso visualmente si existe
+                const currentGymId = timer.getAttribute('data-gym-id');
+                if (currentGymId) {
+                    const nextStageItem = document.querySelector(`.gym-item[data-prev-id="${currentGymId}"]`);
+                    if (nextStageItem) {
+                        nextStageItem.classList.remove('disabled');
+                    }
                 }
             }
         }

@@ -7,7 +7,7 @@
     --poke-yellow: #FFCB05;
     --poke-blue: #3B4CCA;
     --bg-color: #E0E0E0;
-    --card-bg: #FFFFFF;
+    --card-bg: #FDFDFD; /* Un blanco más suave, menos brillante */
     --success-green: #4CAF50;
     --success-bg: #E8F5E9;
     --shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -204,7 +204,7 @@ header::after {
 /* --- ITEM VACÍO (PLACEHOLDER) --- */
 .gym-item.placeholder {
     cursor: default;
-    background-color: #fff;
+    background-color: var(--card-bg);
 }
 
 /* --- ENTRENADORES ESPECIALES --- */
@@ -272,7 +272,7 @@ header::after {
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-    background: white;
+    background: var(--card-bg);
 }
 
 /* --- IMAGEN DE SEMILLA/GIMNASIO --- */
@@ -505,7 +505,7 @@ header::after {
     max-width: 450px; /* Límite de ancho para que no se estiren demasiado */
     border: 1px solid #e0e0e0;
     border-radius: 15px; /* Bordes redondeados */
-    background-color: #fff;
+    background-color: var(--card-bg);
     box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra suave */
     margin: 0;
     flex-direction: column; /* Contenido centrado verticalmente */
@@ -523,6 +523,12 @@ header::after {
 .gym-list.horizontal-layout .gym-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+/* Mejorar legibilidad de textos en tarjetas de encuentro */
+.gym-list.horizontal-layout .gym-info p {
+    color: #333; /* Un gris más oscuro para mejor contraste */
+    font-size: 1rem; /* Ligeramente más grande que el 0.9rem por defecto */
 }
 
 /* --- ESTILOS ESPECÍFICOS PARA ENCUENTROS (LETRAS GRANDES) --- */
