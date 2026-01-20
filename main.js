@@ -9,7 +9,11 @@ autoUpdater.allowPrerelease = true; // Permite actualizaciones aunque sean 'pre-
 
 // Eventos de log para depuración (opcional)
 autoUpdater.on('checking-for-update', () => console.log('Buscando actualizaciones...'));
-autoUpdater.on('update-available', () => console.log('Actualización disponible.'));
+autoUpdater.on('update-available', (info) => console.log('Actualización disponible:', info));
+autoUpdater.on('update-not-available', (info) => console.log('No hay actualizaciones disponibles.', info));
+autoUpdater.on('download-progress', (progressObj) => {
+    console.log(`Descargando: ${progressObj.percent.toFixed(2)}%`);
+});
 autoUpdater.on('error', (err) => {
     console.error('Error en actualización:', err);
     dialog.showErrorBox('Error de Actualización', 'Hubo un problema buscando actualizaciones: ' + (err.message || err));
