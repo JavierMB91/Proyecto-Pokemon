@@ -1,6 +1,6 @@
 {
   "name": "pokemmo-tracker",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
   "scripts": {
