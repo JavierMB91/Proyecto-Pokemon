@@ -473,24 +473,33 @@ header::after {
 .gym-list.horizontal-layout {
     display: flex;
     flex-wrap: wrap;
-}
-
-.gym-list.horizontal-layout .gym-item {
-    flex: 1 1 300px; /* Ancho base de 300px, crece si hay espacio */
-    border-bottom: none;
-    border-right: 1px solid #eee;
-    flex-direction: column; /* Contenido centrado verticalmente */
-    text-align: center;
+    gap: 20px; /* Separación entre tarjetas */
+    padding: 20px;
     justify-content: center;
 }
 
-.gym-list.horizontal-layout .gym-item:last-child {
-    border-right: none;
+.gym-list.horizontal-layout .gym-item {
+    flex: 1 1 300px; /* Ancho base */
+    max-width: 450px; /* Límite de ancho para que no se estiren demasiado */
+    border: 1px solid #e0e0e0;
+    border-radius: 15px; /* Bordes redondeados */
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra suave */
+    margin: 0;
+    flex-direction: column; /* Contenido centrado verticalmente */
+    text-align: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .gym-list.horizontal-layout .gym-info {
     text-align: center;
     width: 100%;
+}
+
+.gym-list.horizontal-layout .gym-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 /* --- FORMULARIO INLINE ENCUENTROS --- */

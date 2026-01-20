@@ -133,13 +133,6 @@ const encountersData = [
         name: "Mes Actual",
         money: "-",
         gyms: [] // Se actualizará dinámicamente
-    },
-    {
-        name: "Shiny Hunting",
-        money: "-",
-        gyms: [
-            { city: "Cualquier Pokémon", leader: "Contador Shiny", id: "shiny-counter-generic", type: "encounter", average: "30.000", shinyRate: 30000 }
-        ]
     }
 ];
 
@@ -171,11 +164,11 @@ function getGymId(regionName, leaderName) {
 
 // Función para calcular qué legendario errante toca según el mes (1-12)
 function getRoamingLegendaries(month) {
-    // Rotación Kanto: Zapdos -> Articuno -> Moltres
-    const kantoRotation = ["Zapdos", "Articuno", "Moltres"];
+    // Rotación Kanto: Zapdos -> Moltres -> Articuno
+    const kantoRotation = ["Zapdos", "Moltres", "Articuno"];
     
-    // Rotación Johto: Entei -> Raikou -> Suicune
-    const johtoRotation = ["Entei", "Raikou", "Suicune"];
+    // Rotación Johto: Entei -> Suicune -> Raikou
+    const johtoRotation = ["Entei", "Suicune", "Raikou"];
 
     // Calculamos el índice (0, 1 o 2) basado en el mes
     // (Mes - 1) % 3 asegura que Enero (1) sea índice 0
@@ -415,12 +408,9 @@ function createEncounterItem(regionName, gym) {
     
     // Imagen personalizada para Zapdos y Entei
     let pokemonGif = '';
-    if (gym.leader === 'Zapdos') {
-        pokemonGif = '<img src="../img/zapdos.gif" alt="Zapdos" style="height: 60px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
-    } else if (gym.leader === 'Entei') {
-        pokemonGif = '<img src="../img/entei.gif" alt="Entei" style="height: 60px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
-    } else if (gym.leader === 'Contador Shiny') {
-        pokemonGif = '<img src="../img/charizard.gif" alt="Charizard" style="height: 60px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display=\'none\'">';
+    const legendaries = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
+    if (legendaries.includes(gym.leader)) {
+        pokemonGif = `<img src="../img/${gym.leader.toLowerCase()}.gif" alt="${gym.leader}" style="height: 60px; vertical-align: middle; margin-left: 10px;" onerror="this.style.display='none'">`;
     }
 
     item.innerHTML = `

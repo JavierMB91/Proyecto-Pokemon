@@ -1,12 +1,13 @@
 {
   "name": "pokemmo-tracker",
-  "version": "1.0.24",
+  "version": "1.0.26",
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder",
-    "release": "git add . && git commit -m \"chore: update version\" && git push && npm run dist -- --publish always"
+    "clean": "powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue }\"",
+    "release": "npm run clean && git add . && git commit -m \"chore: update version\" && git push && npm run dist -- --publish always"
   },
   "author": "Entrenador",
   "license": "ISC",
