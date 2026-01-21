@@ -143,7 +143,6 @@ const encountersData = [
 const STORAGE_KEY = 'pokemmo_gym_progress';
 let userProgress = {};
 let pendingSeedData = null; // Variable temporal para guardar datos mientras el modal está abierto
-let pendingEncounterId = null; // Variable temporal para el modal de encuentros
 
 // Cargar progreso desde LocalStorage
 async function loadProgress() {
@@ -196,15 +195,13 @@ function updateEncountersData() {
             city: "Kanto",
             leader: legendaries.kanto,
             id: `${legendaries.kanto.toLowerCase()}-kanto`,
-            type: "encounter",
-            average: "8.000"
+            type: "encounter"
         },
         {
             city: "Johto",
             leader: legendaries.johto,
             id: `${legendaries.johto.toLowerCase()}-johto`,
-            type: "encounter",
-            average: "8.000"
+            type: "encounter"
         }
     ];
 }
@@ -412,25 +409,6 @@ function createGymItem(regionName, gym) {
 
 // Helper para crear el elemento de Encuentros
 function createEncounterItem(regionName, gym) {
-    const uniqueId = gym.id;
-    const gymId = getGymId(regionName, uniqueId);
-    const progress = userProgress[gymId] || { count: 0 };
-    const count = progress.count;
-    
-    // Cálculo de probabilidad dinámico
-    // Si gym.shinyRate está definido (Shiny Hunting), lo usamos. Si no, usamos 8000 (Legendarios).
-    const rate = gym.shinyRate || 8000;
-    const currentProb = (1 - Math.pow(1 - 1/rate, count)) * 100;
-
-    // Calcular hitos dinámicamente
-    const m50 = Math.ceil(Math.log(0.5) / Math.log(1 - 1/rate));
-    const m63 = rate;
-    const m90 = Math.ceil(Math.log(0.1) / Math.log(1 - 1/rate));
-
-    // Formateadores
-    const f = (n) => n.toLocaleString('es-ES');
-    const rateTitle = rate >= 1000 ? (rate/1000) + 'k' : rate;
-    
     const item = document.createElement('li');
     item.className = 'gym-item';
     
@@ -445,47 +423,12 @@ function createEncounterItem(regionName, gym) {
         <div class="gym-info">
             <h3>${gym.leader}</h3>
             ${pokemonGif}
-            ${gym.average ? `<p>Promedio Encuentros: ${gym.average}</p>` : ''}
-            <div style="margin: 10px 0;">
-                 <span class="encounter-count">${count.toLocaleString('es-ES')}</span>
-            </div>
-            
-            <!-- Formulario Inline para añadir combates -->
-            <div class="encounter-form">
-                <input type="number" id="input-${gymId}" class="encounter-input-inline" placeholder="Cant." min="1">
-                <button class="btn-add-inline" onclick="addEncounter('${gymId}', 'input-${gymId}')">Añadir</button>
-            </div>
-
-            <div class="encounter-stats">
-                <p>Probabilidad actual: <strong>${currentProb.toFixed(2)}%</strong></p>
-                <div class="encounter-milestones">
-                    <p><small>50%: ${f(m50)} | 90%: ${f(m90)}</small></p>
-                </div>
-            </div>
+            <p>Región: ${gym.city}</p>
         </div>
     `;
     
     return item;
 }
-
-// Función para añadir encuentros directamente desde la tarjeta
-window.addEncounter = function(gymId, inputId) {
-    const input = document.getElementById(inputId);
-    if (!input || !input.value) return;
-    
-    const amount = parseInt(input.value);
-    if (isNaN(amount) || amount <= 0) return;
-
-    if (!userProgress[gymId]) {
-        userProgress[gymId] = { count: 0 };
-    }
-    
-    userProgress[gymId].count += amount;
-    userProgress[gymId].timestamp = new Date().toISOString();
-    
-    saveProgress();
-    renderApp();
-};
 
 // Renderizar la interfaz
 function renderApp() {
@@ -499,15 +442,15 @@ function renderApp() {
     let maxSlots = 8; // Por defecto para gimnasios
     const path = window.location.pathname.toLowerCase();
 
-    if (path.includes('altomandotracker')) {
+    if (path.includes('rotacionlegendarios')) {
+        currentData = encountersData;
+        maxSlots = 2; // Igualar altura (2 slots para legendarios, 1+1 para shiny)
+    } else if (path.includes('altomandotracker')) {
         currentData = eliteFourData;
         maxSlots = 1; // El Alto Mando es 1 combate (run completa)
     } else if (path.includes('semillas')) {
         currentData = seedsData;
         maxSlots = 1; 
-    } else if (path.includes('encuentros')) {
-        currentData = encountersData;
-        maxSlots = 2; // Igualar altura (2 slots para legendarios, 1+1 para shiny)
     } else {
         currentData = gymsData;
     }
@@ -528,7 +471,7 @@ function renderApp() {
         const list = document.createElement('ul');
         list.className = 'gym-list';
         
-        if (path.includes('encuentros')) {
+        if (path.includes('rotacionlegendarios')) {
             list.classList.add('horizontal-layout');
             card.classList.add('wide-card');
         }
@@ -612,7 +555,7 @@ function showResetModal() {
     
     const path = window.location.pathname.toLowerCase();
     // Lógica específica para la página de encuentros
-    if (path.includes('encuentros')) {
+    if (path.includes('rotacionlegendarios')) {
         const content = modal.querySelector('.modal-content');
         
         // Generar botones dinámicamente según las regiones disponibles en encountersData
@@ -669,7 +612,7 @@ function confirmReset() {
         currentData = eliteFourData;
     } else if (path.includes('semillas')) {
         currentData = seedsData;
-    } else if (path.includes('encuentros')) {
+    } else if (path.includes('rotacionlegendarios')) {
         currentData = encountersData;
     } else {
         currentData = gymsData;
@@ -757,61 +700,6 @@ function handleSeedSubmit() {
     }
     
     closeSeedModal();
-}
-
-// --- FUNCIONES MODAL ENCUENTROS ---
-function openEncounterModal() {
-    const modal = document.getElementById('encounter-modal');
-    if (modal) modal.classList.add('active');
-    const input = document.getElementById('encounter-input');
-    if (input) setTimeout(() => input.focus(), 100);
-}
-
-function closeEncounterModal() {
-    const modal = document.getElementById('encounter-modal');
-    if (modal) modal.classList.remove('active');
-    const input = document.getElementById('encounter-input');
-    if (input) input.value = '';
-    const error = document.getElementById('encounter-error');
-    if (error) error.style.display = 'none';
-    pendingEncounterId = null;
-}
-
-function handleEncounterSubmit() {
-    const input = document.getElementById('encounter-input');
-    if (!input) return;
-
-    // Validar input de encuentros
-    let validation = { valid: false, message: "Error" };
-    if (typeof validateEncounterInput === 'function') {
-        validation = validateEncounterInput(input.value);
-    } else {
-        console.error("Error: validateEncounterInput no existe. Verifica que 'validaciones.js' se haya cargado correctamente.");
-        validation = { valid: false, message: "Error interno: No se pudo cargar el validador." };
-    }
-
-    if (!validation.valid) {
-        const error = document.getElementById('encounter-error');
-        if (error) {
-            error.textContent = validation.message;
-            error.style.display = 'block';
-        }
-        return;
-    }
-
-    if (pendingEncounterId) {
-        const currentCount = userProgress[pendingEncounterId]?.count || 0;
-        const addAmount = parseInt(input.value);
-        
-        userProgress[pendingEncounterId] = {
-            count: currentCount + addAmount,
-            timestamp: new Date().toISOString()
-        };
-        
-        saveProgress();
-        renderApp();
-    }
-    closeEncounterModal();
 }
 
 // --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
@@ -906,7 +794,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Actualizar datos de encuentros solo una vez al cargar
     const path = window.location.pathname.toLowerCase();
-    if (path.includes('encuentros')) {
+    if (path.includes('rotacionlegendarios')) {
         updateEncountersData();
     }
 
@@ -941,16 +829,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const seedCancelBtn = document.getElementById('seed-cancel');
         if (seedCancelBtn) {
             seedCancelBtn.addEventListener('click', closeSeedModal);
-        }
-    }
-
-    // Eventos del modal de encuentros
-    const encounterConfirmBtn = document.getElementById('encounter-confirm');
-    if (encounterConfirmBtn) {
-        encounterConfirmBtn.addEventListener('click', handleEncounterSubmit);
-        const encounterCancelBtn = document.getElementById('encounter-cancel');
-        if (encounterCancelBtn) {
-            encounterCancelBtn.addEventListener('click', closeEncounterModal);
         }
     }
 });
