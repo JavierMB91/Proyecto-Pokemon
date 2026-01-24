@@ -69,14 +69,6 @@ app.on('window-all-closed', () => {
 // --- EVENTOS DEL AUTO-UPDATER ---
 
 autoUpdater.on('update-downloaded', (info) => {
-    dialog.showMessageBox({
-        type: 'info',
-        title: 'Actualización lista',
-        message: `La versión ${info.version} se ha descargado. ¿Quieres reiniciar ahora para instalarla?`,
-        buttons: ['Reiniciar', 'Más tarde']
-    }).then((result) => {
-        if (result.response === 0) { // Si pulsa "Reiniciar"
-            autoUpdater.quitAndInstall();
-        }
-    });
+    // Instalar y reiniciar automáticamente sin preguntar al usuario
+    autoUpdater.quitAndInstall();
 });
