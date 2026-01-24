@@ -586,6 +586,7 @@ header::after {
     padding: 15px;
     text-align: center;
     border-top: 1px solid #eee;
+    margin-top: auto; /* Empuja el pie de página hacia abajo */
 }
 
 /* --- SELECCIÓN DE BAYAS --- */
@@ -691,10 +692,10 @@ header::after {
 
 /* Huerto: Altura ajustada al contenido */
 #app.seeds-column .region-card {
-    min-height: 370px; /* Altura mínima para asegurar que el botón de reinicio no se corte */
+    min-height: 400px; /* Altura mínima para asegurar que el botón de reinicio no se corte */
 }
 
 /* Información de Bayas: Altura mínima fija grande */
 #berry-info-container.seeds-column .region-card {
-    min-height: 800px; /* Aumentado para que quepa la baya más larga sin scroll */
+    min-height: 680px; /* Altura ajustada para la baya más larga sin que sobre mucho espacio */
 }
