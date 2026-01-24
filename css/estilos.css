@@ -142,11 +142,6 @@ header::after {
     flex-direction: column;
 }
 
-.region-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-}
-
 .region-card.wide-card {
     max-width: 1100px; /* Permitir que sea aún más ancha */
     flex-basis: 100%; /* Forzar a la tarjeta a ocupar su propia fila y expandirse */
@@ -241,11 +236,6 @@ header::after {
     border: 1px solid #ddd;
     background-color: var(--card-bg);
     transition: transform 0.2s ease;
-}
-
-.special-trainers-box.standalone:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
 }
 
 /* --- ESTADO COMPLETADO --- */
@@ -591,13 +581,19 @@ header::after {
     background-color: #2a3a9e;
 }
 
+/* --- FOOTER DE TARJETA --- */
+.region-card-footer {
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
 /* --- SELECCIÓN DE BAYAS --- */
 .berry-selector-wrapper {
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    flex-grow: 1; /* Occupy available space */
 }
 
 .berry-select {
@@ -676,11 +672,12 @@ header::after {
     align-items: flex-start; /* Alineación superior: Huerto no se estira hasta abajo */
     justify-content: center;
     gap: 40px; /* Separación fija y amplia entre los dos recuadros */
+    max-width: 1400px; /* Aumentar ancho máximo para que quepan las columnas de 600px */
 }
 
 .seeds-column {
-    flex: 0 0 550px; /* Ancho fijo en píxeles: NO cambiará según el contenido */
-    width: 550px;    /* Refuerzo del ancho fijo */
+    flex: 0 0 600px; /* Ancho fijo en píxeles: NO cambiará según el contenido */
+    width: 600px;    /* Refuerzo del ancho fijo */
     max-width: 95%;  /* Para que no se salga de la pantalla en móviles */
     display: flex;
     flex-direction: column;
@@ -694,16 +691,10 @@ header::after {
 
 /* Huerto: Altura ajustada al contenido */
 #app.seeds-column .region-card {
-    min-height: auto;
+    min-height: 370px; /* Altura mínima para asegurar que el botón de reinicio no se corte */
 }
 
 /* Información de Bayas: Altura mínima fija grande */
 #berry-info-container.seeds-column .region-card {
-    min-height: 850px;
-}
-
-/* Permitir scroll interno si el contenido excede la altura fija */
-.seeds-column .region-card .gym-list,
-.seeds-column .region-card .berry-selector-wrapper {
-    flex-grow: 1;
+    min-height: 800px; /* Aumentado para que quepa la baya más larga sin scroll */
 }
