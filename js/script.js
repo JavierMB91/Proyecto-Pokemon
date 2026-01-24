@@ -270,6 +270,7 @@ function toggleGym(regionName, gymData, element) {
 function updateTimers() {
     const timers = document.querySelectorAll('.gym-timer[data-timestamp]');
     const now = new Date().getTime();
+    const idsToReset = [];
 
     timers.forEach(timer => {
         const timestamp = timer.getAttribute('data-timestamp');
@@ -288,23 +289,43 @@ function updateTimers() {
             timer.innerHTML = `${prefix} ${hours}h ${minutes}m ${seconds}s`;
             timer.classList.remove('ready');
         } else {
-            // Solo actuar si el temporizador acaba de terminar
-            if (!timer.classList.contains('ready')) {
-                const readyLabel = timer.getAttribute('data-ready-label') || 'Disponible';
-                timer.innerHTML = `✅ ${readyLabel}`;
-                timer.classList.add('ready');
-                
-                // Habilitar el siguiente paso visualmente si existe
-                const currentGymId = timer.getAttribute('data-gym-id');
-                if (currentGymId) {
-                    const nextStageItem = document.querySelector(`.gym-item[data-prev-id="${currentGymId}"]`);
-                    if (nextStageItem) {
-                        nextStageItem.classList.remove('disabled');
+            // Auto-reset para Gimnasios y Alto Mando
+            if (timer.getAttribute('data-auto-reset') === 'true') {
+                idsToReset.push(timer.getAttribute('data-gym-id'));
+            } else {
+                // Solo actuar si el temporizador acaba de terminar (para semillas u otros sin auto-reset)
+                if (!timer.classList.contains('ready')) {
+                    const readyLabel = timer.getAttribute('data-ready-label') || 'Disponible';
+                    timer.innerHTML = `✅ ${readyLabel}`;
+                    timer.classList.add('ready');
+                    
+                    // Habilitar el siguiente paso visualmente si existe
+                    const currentGymId = timer.getAttribute('data-gym-id');
+                    if (currentGymId) {
+                        const nextStageItem = document.querySelector(`.gym-item[data-prev-id="${currentGymId}"]`);
+                        if (nextStageItem) {
+                            nextStageItem.classList.remove('disabled');
+                        }
                     }
                 }
             }
         }
     });
+
+    // Procesar resets automáticos
+    if (idsToReset.length > 0) {
+        let changed = false;
+        idsToReset.forEach(id => {
+            if (userProgress[id]) {
+                delete userProgress[id];
+                changed = true;
+            }
+        });
+        if (changed) {
+            saveProgress();
+            renderApp();
+        }
+    }
 }
 
 // Helper para crear el elemento HTML de un gimnasio/entrenador
@@ -368,10 +389,13 @@ function createGymItem(regionName, gym) {
             hour: '2-digit', minute: '2-digit'
         });
 
+        // Determinar si debe reiniciarse automáticamente (Gimnasios y Alto Mando no tienen 'type')
+        const shouldAutoReset = !gym.type;
+
         dateHtml = `
             <div class="gym-status-right">
                 <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
-                   data-prefix="${prefix}" data-ready-label="${readyLabel}"></p>
+                   data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
                 <p class="gym-date">📅 ${dateStr}</p>
                 <p class="gym-end-time">🏁 Fin: ${endTimeStr}</p>
             </div>`;

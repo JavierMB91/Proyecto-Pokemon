@@ -494,6 +494,7 @@ header::after {
 /* --- LAYOUT HORIZONTAL (ENCUENTROS) --- */
 .gym-list.horizontal-layout {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 20px; /* Separación entre tarjetas */
     padding: 20px;
@@ -501,7 +502,8 @@ header::after {
 }
 
 .gym-list.horizontal-layout .gym-item {
-    flex: 1 1 45%; /* Ocupar casi la mitad del espacio para forzar horizontalidad */
+    flex: 1 1 40%; /* Ocupar casi la mitad del espacio para forzar horizontalidad */
+    min-width: 300px;
     max-width: 450px; /* Límite de ancho para que no se estiren demasiado */
     border: 1px solid #e0e0e0;
     border-radius: 15px; /* Bordes redondeados */
