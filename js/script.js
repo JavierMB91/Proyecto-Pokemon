@@ -363,7 +363,6 @@ function createGymItem(regionName, gym) {
     
     // Evento Click
     item.onclick = (e) => {
-        if (e.target.closest('.puzzle-toggle') || e.target.closest('.puzzle-container')) return;
         toggleGym(regionName, gym, item);
     };
     
@@ -418,19 +417,10 @@ function createGymItem(regionName, gym) {
         imageHtml = `<img src="../img/${gym.image}" alt="${gym.city}" class="gym-image">`;
     }
 
-    // Lógica para Sabrina (Puzzle)
-    let puzzleHtml = '';
+    // Botón Puzzle para Sabrina
     let puzzleBtn = '';
-    let gymInfoStyle = '';
-    let gymInfoContent = `<h3>${gym.city}</h3>${infoText}`;
-
     if (gym.leader === 'Sabrina') {
-        item.style.flexWrap = 'wrap';
-        puzzleBtn = `<button class="puzzle-toggle" style="margin-left: auto; margin-right: 10px; cursor: pointer; border: 1px solid #ccc; background: #f0f0f0; border-radius: 15px; padding: 4px 12px; font-size: 0.85rem; transition: background 0.2s;">🧩 Puzzle</button>`;
-        puzzleHtml = `<div class="puzzle-container" style="display: none; width: 100%; margin-top: 15px; text-align: center; order: 100; border-top: 1px dashed #ddd; padding-top: 10px;"><img src="../img/Sabrina_puzzle.jpg" alt="Puzzle Sabrina" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>`;
-        
-        gymInfoStyle = 'display: flex; align-items: center;';
-        gymInfoContent = `<div><h3>${gym.city}</h3>${infoText}</div>${puzzleBtn}`;
+        puzzleBtn = ` <button onclick="event.stopPropagation(); showImageModal('../img/Sabrina_puzzle.jpg')" style="border: none; background: none; cursor: pointer; font-size: 1.1rem; vertical-align: middle;" title="Ver solución">🧩</button>`;
     }
 
     // HTML interno del item
@@ -439,26 +429,12 @@ function createGymItem(regionName, gym) {
             <div class="custom-checkbox"></div>
         </div>
         ${imageHtml}
-        <div class="gym-info" style="${gymInfoStyle}">
-            ${gymInfoContent}
+        <div class="gym-info">
+            <h3>${gym.city}${puzzleBtn}</h3>
+            ${infoText}
         </div>
         ${dateHtml}
-        ${puzzleHtml}
     `;
-    
-    if (gym.leader === 'Sabrina') {
-        const btn = item.querySelector('.puzzle-toggle');
-        const container = item.querySelector('.puzzle-container');
-        if (btn && container) {
-            btn.onclick = (e) => {
-                e.stopPropagation();
-                const isHidden = container.style.display === 'none';
-                container.style.display = isHidden ? 'block' : 'none';
-                btn.innerHTML = isHidden ? '❌ Cerrar' : '🧩 Puzzle';
-                btn.style.backgroundColor = isHidden ? '#ffcdd2' : '#f0f0f0';
-            };
-        }
-    }
     
     return item;
 }
@@ -697,6 +673,34 @@ function confirmReset() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// --- MODAL DE IMAGEN ---
+function setupImageModal() {
+    if (!document.getElementById('img-modal-overlay')) {
+        const modal = document.createElement('div');
+        modal.id = 'img-modal-overlay';
+        modal.className = 'modal-overlay';
+        modal.onclick = (e) => {
+            if(e.target === modal) modal.classList.remove('active');
+        };
+        modal.innerHTML = `
+            <div class="modal-content" style="background: transparent; border: none; box-shadow: none; max-width: 95%; width: auto; padding: 0; display: flex; flex-direction: column; align-items: center;">
+                <img id="img-modal-target" src="" style="max-width: 100%; max-height: 85vh; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <button onclick="document.getElementById('img-modal-overlay').classList.remove('active')" style="margin-top: 15px; padding: 8px 20px; background: white; border: none; border-radius: 20px; cursor: pointer; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">Cerrar</button>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+}
+
+window.showImageModal = function(src) {
+    const modal = document.getElementById('img-modal-overlay');
+    const img = document.getElementById('img-modal-target');
+    if (modal && img) {
+        img.src = src;
+        modal.classList.add('active');
+    }
+};
+
 // --- FUNCIONES MODAL SEMILLAS ---
 function openSeedModal() {
     const modal = document.getElementById('seed-modal');
@@ -847,6 +851,7 @@ function importData(event) {
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
     loadNav();
+    setupImageModal();
     
     // Actualizar datos de encuentros solo una vez al cargar
     const path = window.location.pathname.toLowerCase();
