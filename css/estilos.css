@@ -148,6 +148,13 @@ header::after {
     width: 100%;
 }
 
+.region-card.elite-four-card {
+    flex: 0 0 250px;
+    width: 250px;
+    height: 200px;
+    min-height: 200px;
+}
+
 .region-header {
     background-color: var(--poke-black);
     color: var(--poke-yellow);
@@ -735,7 +742,6 @@ header::after {
     border: 1px solid #ccc;
     font-size: 0.95rem;
     text-align: center;
-    cursor: pointer; /* Mano en el input numérico */
 }
 
 .btn-plant-confirm {

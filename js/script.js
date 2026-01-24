@@ -279,45 +279,22 @@ function toggleGym(regionName, gymData, element) {
     const id = getGymId(regionName, uniqueId);
     
     if (gymData.type === 'seed-plant') {
-        if (!userProgress[id]) {
-            // Ahora se usa el botón de confirmar en línea, no el clic en la fila
-            return;
-        } else {
-            // Si se desmarca plantar, borramos todo el ciclo
-            delete userProgress[id];
-            if (gymData.nextId) {
-                // Limpieza dinámica de pasos siguientes basada en nextId
-                let currentNextId = gymData.nextId;
-                const regionData = seedsData.find(r => r.name === regionName);
-                
-                while (currentNextId && regionData) {
-                    const nextGym = regionData.gyms.find(g => g.id === currentNextId);
-                    if (nextGym) {
-                        const nextFullId = getGymId(regionName, nextGym.id);
-                        delete userProgress[nextFullId];
-                        currentNextId = nextGym.nextId;
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
+        // Si ya está plantado, no permitir desmarcar (solo botón reiniciar)
+        // Si no está plantado, se usa el botón inline
+        return;
     } else if (gymData.type === 'seed-water') {
+        // Si ya está regado, no permitir desmarcar
         if (userProgress[id]) {
-            delete userProgress[id];
-            // Si se desmarca riego, borramos cosecha
-            const harvestId = getGymId(regionName, "spicy-seeds-harvest");
-            delete userProgress[harvestId];
-        } else {
-            userProgress[id] = { timestamp: new Date().toISOString() };
+            return;
         }
+        userProgress[id] = { timestamp: new Date().toISOString() };
     } else if (gymData.type === 'seed-harvest') {
-        // Al recoger, reiniciamos todo el ciclo
-        const plantId = getGymId(regionName, gymData.rootId);
-        const waterId = getGymId(regionName, gymData.prevId);
-        delete userProgress[id];
-        delete userProgress[waterId];
-        delete userProgress[plantId];
+        // Si ya está recogido, no permitir desmarcar
+        if (userProgress[id]) {
+            return;
+        }
+        // Marcar como recogido (sin reiniciar el ciclo automáticamente)
+        userProgress[id] = { timestamp: new Date().toISOString() };
     } else {
         // Lógica normal de gimnasios
         if (userProgress[id]) {
@@ -428,8 +405,12 @@ function createGymItem(regionName, gym) {
     const item = document.createElement('li');
     
     // Determinar si la fila debe tener cursor de mano (solo si es clicable a nivel de fila)
-    // Si es 'seed-plant' y no está completado, usamos controles internos, así que la fila no es clicable
-    const isRowClickable = !(gym.type === 'seed-plant' && !isCompleted);
+    let isRowClickable = true;
+    if (gym.type === 'seed-plant') {
+        isRowClickable = false; // Plantar usa controles inline o está bloqueado
+    } else if ((gym.type === 'seed-water' || gym.type === 'seed-harvest') && isCompleted) {
+        isRowClickable = false; // Pasos completados no se pueden desmarcar con clic
+    }
     item.className = `gym-item ${isCompleted ? 'completed' : ''} ${isDisabled ? 'disabled' : ''} ${!isRowClickable ? 'no-pointer' : ''}`;
     
     // Evento Click
