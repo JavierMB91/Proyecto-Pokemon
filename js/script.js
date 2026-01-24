@@ -362,7 +362,10 @@ function createGymItem(regionName, gym) {
     item.className = `gym-item ${isCompleted ? 'completed' : ''} ${isDisabled ? 'disabled' : ''}`;
     
     // Evento Click
-    item.onclick = () => toggleGym(regionName, gym, item);
+    item.onclick = (e) => {
+        if (e.target.closest('.puzzle-toggle') || e.target.closest('.puzzle-container')) return;
+        toggleGym(regionName, gym, item);
+    };
     
     // Atributos para encadenamiento
     const fullId = getGymId(regionName, uniqueId);
@@ -415,18 +418,47 @@ function createGymItem(regionName, gym) {
         imageHtml = `<img src="../img/${gym.image}" alt="${gym.city}" class="gym-image">`;
     }
 
+    // Lógica para Sabrina (Puzzle)
+    let puzzleHtml = '';
+    let puzzleBtn = '';
+    let gymInfoStyle = '';
+    let gymInfoContent = `<h3>${gym.city}</h3>${infoText}`;
+
+    if (gym.leader === 'Sabrina') {
+        item.style.flexWrap = 'wrap';
+        puzzleBtn = `<button class="puzzle-toggle" style="margin-left: auto; margin-right: 10px; cursor: pointer; border: 1px solid #ccc; background: #f0f0f0; border-radius: 15px; padding: 4px 12px; font-size: 0.85rem; transition: background 0.2s;">🧩 Puzzle</button>`;
+        puzzleHtml = `<div class="puzzle-container" style="display: none; width: 100%; margin-top: 15px; text-align: center; order: 100; border-top: 1px dashed #ddd; padding-top: 10px;"><img src="../img/Sabrina_puzzle.jpg" alt="Puzzle Sabrina" style="max-width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>`;
+        
+        gymInfoStyle = 'display: flex; align-items: center;';
+        gymInfoContent = `<div><h3>${gym.city}</h3>${infoText}</div>${puzzleBtn}`;
+    }
+
     // HTML interno del item
     item.innerHTML = `
         <div class="checkbox-wrapper">
             <div class="custom-checkbox"></div>
         </div>
         ${imageHtml}
-        <div class="gym-info">
-            <h3>${gym.city}</h3>
-            ${infoText}
+        <div class="gym-info" style="${gymInfoStyle}">
+            ${gymInfoContent}
         </div>
         ${dateHtml}
+        ${puzzleHtml}
     `;
+    
+    if (gym.leader === 'Sabrina') {
+        const btn = item.querySelector('.puzzle-toggle');
+        const container = item.querySelector('.puzzle-container');
+        if (btn && container) {
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                const isHidden = container.style.display === 'none';
+                container.style.display = isHidden ? 'block' : 'none';
+                btn.innerHTML = isHidden ? '❌ Cerrar' : '🧩 Puzzle';
+                btn.style.backgroundColor = isHidden ? '#ffcdd2' : '#f0f0f0';
+            };
+        }
+    }
     
     return item;
 }
