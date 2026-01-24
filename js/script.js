@@ -210,7 +210,6 @@ const berriesData = [
 
 const STORAGE_KEY = 'pokemmo_gym_progress';
 let userProgress = {};
-let pendingSeedData = null; // Variable temporal para guardar datos mientras el modal está abierto
 
 // Cargar progreso desde LocalStorage
 async function loadProgress() {
@@ -281,18 +280,8 @@ function toggleGym(regionName, gymData, element) {
     
     if (gymData.type === 'seed-plant') {
         if (!userProgress[id]) {
-            // Capture selected berry from dropdown
-            const select = element.querySelector('.gym-berry-select');
-            let selectedBerry = "Semilla Genérica";
-            if (select) {
-                if (select.value === "") {
-                    alert("Por favor, selecciona una baya primero.");
-                    return; // Stop if no berry selected
-                }
-                selectedBerry = select.value;
-            }
-            pendingSeedData = { regionName, gymData, berryName: selectedBerry };
-            openSeedModal();
+            // Ahora se usa el botón de confirmar en línea, no el clic en la fila
+            return;
         } else {
             // Si se desmarca plantar, borramos todo el ciclo
             delete userProgress[id];
@@ -437,7 +426,11 @@ function createGymItem(regionName, gym) {
     }
 
     const item = document.createElement('li');
-    item.className = `gym-item ${isCompleted ? 'completed' : ''} ${isDisabled ? 'disabled' : ''}`;
+    
+    // Determinar si la fila debe tener cursor de mano (solo si es clicable a nivel de fila)
+    // Si es 'seed-plant' y no está completado, usamos controles internos, así que la fila no es clicable
+    const isRowClickable = !(gym.type === 'seed-plant' && !isCompleted);
+    item.className = `gym-item ${isCompleted ? 'completed' : ''} ${isDisabled ? 'disabled' : ''} ${!isRowClickable ? 'no-pointer' : ''}`;
     
     // Evento Click
     item.onclick = (e) => {
@@ -498,9 +491,11 @@ function createGymItem(regionName, gym) {
             });
             
             infoText = `
-                <select class="gym-berry-select" onclick="event.stopPropagation()">
-                    ${options}
-                </select>
+                <div class="seed-plant-controls" onclick="event.stopPropagation()">
+                    <select class="gym-berry-select">${options}</select>
+                    <input type="number" class="seed-count-input" placeholder="#" min="1">
+                    <button class="btn-plant-confirm" onclick="handleInlinePlant('${regionName}', '${uniqueId}', this)">✔</button>
+                </div>
             `;
         }
     } else if (gym.type === 'seed-water' || gym.type === 'seed-harvest') {
@@ -892,67 +887,34 @@ window.showImageModal = function(src) {
     }
 };
 
-// --- FUNCIONES MODAL SEMILLAS ---
-function openSeedModal() {
-    const modal = document.getElementById('seed-modal');
-    if (modal) modal.classList.add('active');
-    // Enfocar el input
-    const input = document.getElementById('seed-input');
-    if (input) setTimeout(() => input.focus(), 100);
-}
+// --- FUNCIÓN PLANTAR EN LÍNEA ---
+window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
+    const container = btnElement.parentElement;
+    const select = container.querySelector('.gym-berry-select');
+    const input = container.querySelector('.seed-count-input');
 
-function closeSeedModal() {
-    const modal = document.getElementById('seed-modal');
-    if (modal) modal.classList.remove('active');
-    // Limpiar
-    const input = document.getElementById('seed-input');
-    if (input) input.value = '';
-    const error = document.getElementById('seed-error');
-    if (error) error.style.display = 'none';
-    pendingSeedData = null;
-}
+    const berryName = select.value;
+    const count = parseInt(input.value);
 
-function handleSeedSubmit() {
-    const input = document.getElementById('seed-input');
-    if (!input) return;
-
-    // validateSeedInput está en validations.js
-    let validation = { valid: false, message: "Error de validación" };
-    
-    if (typeof validateSeedInput === 'function') {
-        validation = validateSeedInput(input.value);
-    } else {
-        console.error("Error: validateSeedInput no existe. Verifica que 'validaciones.js' se haya cargado correctamente.");
-        validation = { valid: false, message: "Error interno: No se pudo cargar el validador." };
+    if (!berryName) {
+        alert("Por favor, selecciona una baya.");
+        return;
     }
-
-    if (!validation.valid) {
-        const error = document.getElementById('seed-error');
-        if (error) {
-            error.textContent = validation.message;
-            error.style.display = 'block';
-        }
+    if (!count || count <= 0) {
+        alert("Por favor, introduce una cantidad válida.");
         return;
     }
 
-    // Si es válido, procedemos a guardar
-    if (pendingSeedData) {
-        const { regionName, gymData, berryName } = pendingSeedData;
-        const uniqueId = gymData.id || gymData.leader;
-        const id = getGymId(regionName, uniqueId);
-        
-        userProgress[id] = {
-            timestamp: new Date().toISOString(),
-            count: parseInt(input.value),
-            berryName: berryName // Save the berry name
-        };
-        
-        saveProgress();
-        renderApp();
-    }
-    
-    closeSeedModal();
-}
+    const id = getGymId(regionName, uniqueId);
+    userProgress[id] = {
+        timestamp: new Date().toISOString(),
+        count: count,
+        berryName: berryName
+    };
+
+    saveProgress();
+    renderApp();
+};
 
 // --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
 function setupAuthUI() {
@@ -1078,15 +1040,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     const modalConfirm = document.getElementById('modal-confirm');
     if (modalConfirm) {
         modalConfirm.addEventListener('click', confirmReset);
-    }
-
-    // Eventos del modal de semillas (solo si existe en la página)
-    const seedConfirmBtn = document.getElementById('seed-confirm');
-    if (seedConfirmBtn) {
-        seedConfirmBtn.addEventListener('click', handleSeedSubmit);
-        const seedCancelBtn = document.getElementById('seed-cancel');
-        if (seedCancelBtn) {
-            seedCancelBtn.addEventListener('click', closeSeedModal);
-        }
     }
 });
