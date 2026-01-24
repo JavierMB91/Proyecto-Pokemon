@@ -120,7 +120,7 @@ const seedsData = [
         name: "Huerto",
         money: "-",
         gyms: [
-            { city: "Semillas Picantes", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", image: "semilla_picante.png", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
+            { city: "Seleccionar Baya", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", image: "semilla_picante.png", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
             { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, timerPrefix: "Recogida en:", readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
             { city: "Recogida de Semillas", leader: "Recoger", id: "spicy-seeds-harvest", type: "seed-harvest", prevId: "spicy-seeds-water", rootId: "spicy-seeds-plant", waitHours: 16 }
         ]
@@ -134,6 +134,74 @@ const encountersData = [
         money: "-",
         gyms: [] // Se actualizará dinámicamente
     }
+];
+
+// --- DATOS DE BAYAS ---
+const berriesData = [
+    { name: "Baya Acardo", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Tierra de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo tierra.", combination: "Sem. Muy picante x1 + Sem. Muy Dulce x1", times: "42 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Alcho", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Roca de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo roca.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", times: "42 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Algama", description: "Al usarla con un Pokemon, se gana su amistad, pero también reduce su Ataque de base al subir de nivel", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque.", combination: "Sem. Muy seca x1 + Sem. Ácida x1", times: "44 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Andano", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", times: "42 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Ango", description: "Los Pokemon pueden usarla para restaurar algunos PS. Su sabor puede causar confusión.", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Dulce.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Dulce\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Dulce! [Vease: Capitulo 3])", combination: "Sem. Muy dulce x2", times: "20 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Anjiro", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Dragón de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo dragón.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", times: "42 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Aostan", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", times: "20 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Arabol", description: "Si la lleva un Pokemón, aumenta mucho una característica en un momento de apuro.", usage: "Al estar equipada, sube 2 niveles una carácterística al azar al llegar al 25% de los PS máximos.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1. + Sem. Muy amarga x1", times: "67 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Aranja", description: "Los Pokemon pueden llevarla o usarla para restaurar 10 PS.", usage: "Al estar equipada, recuperará 10 PS automáticamente al llegar al 25% de los PS.\nSe puede usar en un Pokemon para que recupere 10 PS dentro o fuera de combate.", combination: "Sem. Seca x1 + Sem. Amarga x1 + Sem. Ácida x1", times: "16 horas\n8 horas", flavor: "-", color: "- (Crea un PokeCubo gris)" },
+    { name: "Baya Aricoc", description: "Si la lleva un Pokemon, sube mucho la Defensa Especial en un momento de apuro.", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa Especial al llegar al 25% de los PS", combination: "Sem. Picante x1 + Sem. Muy seca x1 + Sem. Muy ácida x1", times: "67 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Aslac", description: "Si la lleva un Pokemon, sube mucho la Velocidad en un momento de apuro.", usage: "Al estar equipada, sube automáticamente 2 niveles la Velocidad al llegar al 25% de los PS", combination: "Sem. Muy dulce x1 + Sem. Amarga x1 + Sem. Muy ácida x1", times: "67 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Atania", description: "Los Pokemon pueden llevarla o usarla para despertar del sueño.", usage: "Al estar equipada, despierta automáticamente al pokemon apenas se duerma.\nSe puede usar sobre un Pokemon para que despierte dentro o fuera de combate", combination: "Sem. Seca x3\nSem. Muy seca x1 + Sem. Seca x1", times: "16 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Baribá", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Acero de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo acero.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", times: "42 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Caoca", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Fuego de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fuego.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1", times: "42 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Caquic", description: "Los Pokemon pueden llevarla o usarla para despertar del sueño.", usage: "Al estar equipada, cura automáticamente la confusión al pokemon apenas se lo confunda.\nSe puede usar sobre un Pokemon para que se cure de la confusión dentro de combate", combination: "Sem. Picante x1 + Sem. Seca x1 + Sem. Dulce x1", times: "16 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Chilan", description: "Si la lleva un Pokemon, debilita un ataque de tipo Normal de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque de tipo normal.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", times: "42 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Chiri", description: "El Pokemon que la lleva puede actuar en primer lugar una vez cuando se encuentra en un momento de apuro.", usage: "Al estar equipada, sube automáticamente a +8 la prioridad al efectuar un movimiento teniendo 25% o menos de los PS máximos, pero se va al acabar el turno.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", times: "44 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Dillo", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Siniestro de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo siniestro.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", times: "42 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Drasi", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Fantasma de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fantasma.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", times: "42 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Enigma", description: "Restaura los PS de un Pokémon si la lleva cuando le alcanza un ataque supereficaz.", usage: "Al estar equipada, restaura un 25% de los PS al recibir un ataque muy efectivo.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", times: "42 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Frambu", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los gourmets.", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy seca x1", times: "16 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Gonlan", description: "Si la lleva un Pokemon, sube mucho la Defensa en un momento de apuro.", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Seca x1 + Sem. Muy amarga x1", times: "67 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Grana", description: "Al usarla con un Pokemon, se gana su amistad, pero también reduce su PS de base al subir de nivel", usage: "Baja 10 EVs (Puntos de Esfuerzo) de PS.", combination: "Sem. Muy picante x1 + Sem. Amarga", times: "44 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Gualot", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Eléctrico de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Eléctrico.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", times: "42 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Guaya", description: "Los Pokemon pueden usarla para restaurar algunos PS. Su sabor puede causar confusión.", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Amargo.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Amargo.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Amargo! [Vease: Capitulo 3])", combination: "Sem. Muy amarga x2", times: "20 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Higog", description: "Los Pokemon pueden usarla para restaurar algunos PS. Su sabor puede causar confusión.", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Picante.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Picante.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Picante! [Vease: Capitulo 3])", combination: "Sem. Muy picante x2", times: "20 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Ispero", description: "Al usarla con un Pokemon, se gana su amistad, pero también reduce su Defensa de base al subir de nivel.", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa.", combination: "Sem. Picante x1 + Sem. Muy dulce x1", times: "44 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Jaboca", description: "Si la lleva un Pokemón cuando otro le lanza un ataque físico, este último también recibe daño", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque físico (No necesariamente de contacto)", combination: "Sem. Muy amarga x1 + Sem. Muy ácida x1", times: "44 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Kebia", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Veneno de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Veneno.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", times: "42 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Kouba", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Volador de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Volador.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", times: "42 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Lagro", description: "Si la lleva un Pokemon, sube mucho la Precisión en un momento de apuro.", usage: "Al estar equipada, sube automáticamente 2 niveles la Precisión al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", times: "44 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Latano", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los gourmets.", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy Dulce x1", times: "16 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Lichi", description: "Si la lleva un Pokemon, sube mucho el Ataque en un momento de apuro.", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Seca x1 + Sem. Muy dulce x1", times: "67 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Magua", description: "Si la lleva un Pokemón cuando otro le lanza un ataque especial, este último también recibe daño", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque especial.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", times: "44 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Mais", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", times: "20 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Meloc", description: "Los Pokemon pueden llevarla o usarla para curarse del envenenamiento.", usage: "Al estar equipada, cura automáticamente el envenenamiento al pokemon apenas se envenene.\nSe puede usar sobre un Pokemon para curar el envenenamiento dentro o fuera de combate", combination: "Sem. Muy dulce x1 + Sem. Dulce x1\nSem. Dulce x3", times: "16 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Meluce", description: "Al usarla con un Pokemon, se gana su amistad, pero también reduce su Ataque Especial de base al subir de nivel.", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque Especial.", combination: "Sem. Seca x1 + Sem. Muy amarga x1", times: "44 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Monli", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", times: "20 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Oram", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los gourmets.", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Seca x1 + Sem. Muy dulce x1", times: "16 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Pabaya", description: "Los Pokemon pueden usarla para restaurar algunos PS. Su sabor puede causar confusión.", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Ácido.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Ácido.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Ácido! [Vease: Capitulo 3])", combination: "Sem. Muy ácida x2", times: "20 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Pasio", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Agua de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Agua.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", times: "42 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Payapa", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Psiquico de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Psiquico.", combination: "Sem. Muy dulce x1 + Sem. Muy ácida x1", times: "42 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Peragu", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los gourmets.", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy ácida x1", times: "16 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Perasi", description: "Los Pokemon pueden llevarla o usarla para descongelarse.", usage: "Al estar equipada, descongela automáticamente al pokemon apenas se congele.\nSe puede usar sobre un Pokemon para que se descongele dentro o fuera de combate", combination: "Sem. Muy ácida x1 + Sem. Ácida x1\nSem. Ácida x3", times: "16 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Pinia", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los gourmets.", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy ácida x1", times: "16 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Plama", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", times: "42 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Pomaro", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Lucha de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Lucha.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", times: "42 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Rautan", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", times: "20 horas\n8 horas", flavor: "Amarga", color: "Verde" },
+    { name: "Baya Rimoya", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Hielo de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Hielo.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", times: "42 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Rudion", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", times: "42 horas\n8 horas", flavor: "Amarga", color: "Verde" },
+    { name: "Baya Safre", description: "Los Pokemon pueden llevarla o usarla para curarse las quemaduras.", usage: "Al estar equipada, cura de las quemaduras automáticamente al pokemon apenas se queme.\nSe puede usar sobre un Pokemon para curar las quemaduras dentro o fuera de combate", combination: "Sem. Muy amarga x1 + Sem. Amarga x1\nSem. Amarga x3", times: "16 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Sambia", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", times: "42 horas\n8 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Tamar", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Planta de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Planta.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", times: "42 horas\n8 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Tamate", description: "Al usarla con un Pokemon, se gana su amistad, pero también reduce su Velocidad de base al subir de nivel", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Velocidad.", combination: "Sem. Muy picante x1 + Sem. Seca x1", times: "44 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Uvav", description: "Al usarla con un Pokemon, se gana su amistad, pero también reduce su Defensa Especial de base al subir de nivel.", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa Especial.", combination: "Sem. Dulce x1 + Sem. Muy ácida x1", times: "44 horas\n8 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Wikano", description: "Una Baya muy rara en la región de Teselia. Muy apreciada por los Gourmets.", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy picante x1 + Sem. Seca x1", times: "42 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Wiki", description: "Los Pokemon pueden usarla para restaurar algunos PS. Su sabor puede causar confusión.", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Seco.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Seco.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Seco! [Vease: Capitulo 3])", combination: "Sem. Muy seca x2", times: "20 horas\n8 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Yapati", description: "Si la lleva un Pokemon, sube mucho el Ataque Especial en un momento de apuro.", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque Especial al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1 + Sem. Ácida x1", times: "67 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Yecana", description: "Si la lleva un Pokemon, debilita un ataque supereficaz de tipo Bicho de un enemigo.", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Bicho.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", times: "42 horas\n8 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Zanama", description: "Los Pokemon pueden llevarla o usarla para restaurar 10 PP de un movimiento.", usage: "Al estar equipada, si los PP de un movimiento llegan a 0, restaurará 10 PP de dicho movimiento (o los máximos, en caso de no llegar a 10)\nSe puede usar sobre un movimiento de un Pokemon para restaurar 10 PP de dicho movimiento (O hasta el límite, en caso de no haberse consumido mas de 10 PP o tener un límite inferior a 10PP) dentro o fuera de combate.", combination: "Sem. Muy picante x1 + Sem. Dulce x1 + Sem. Amarga x1", times: "20 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Zidra", description: "Cuando la lleva un Pokemon, si sus PS bajan a la mitad, le curará automáticamente un cuarto de sus PS totales.", usage: "Al estar equipada, restaura 25% de los PS máximos al llegar a los 50% PS o menos de vida.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1 + Sem. Muy ácida x1", times: "44 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Ziuela", description: "Los Pokemon pueden llevarla o usarla para recuperarse de problemas de estado.", usage: "Al estar equipada, cura automáticamente de cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) al pokemon apenas se le aplique uno.\nSe puede usar sobre un Pokemon para curar cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Muy seca x1 + Sem. Muy dulce x1", times: "44 horas\n8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Zonlan", description: "Si la lleva un Pokemon, aumenta la probabilidad de dar un golpe crítico en un momento de apuro.", usage: "Al estar equipada, sube automáticamente dos niveles la probabilidad de golpe crítico por un turno, al bajar su vida a 25% o menos de los PS máximos, pero vuelve a la normalidad al acabar el turno.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1 + Sem. Muy ácida x1", times: "67 horas\n3 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Zreza", description: "Los Pokemon pueden llevarla o usarla para curarse la parálisis.", usage: "Al estar equipada, cura de la parálisis automáticamente al pokemon apenas se paralice.\nSe puede usar sobre un Pokemon para curar la parálisis dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Picante x1\nSem. Picante x3", times: "16 horas\n8 horas", flavor: "Picante", color: "Rojo" }
 ];
 
 // --- LÓGICA DE LA APLICACIÓN ---
@@ -213,7 +281,17 @@ function toggleGym(regionName, gymData, element) {
     
     if (gymData.type === 'seed-plant') {
         if (!userProgress[id]) {
-            pendingSeedData = { regionName, gymData };
+            // Capture selected berry from dropdown
+            const select = element.querySelector('.gym-berry-select');
+            let selectedBerry = "Semilla Genérica";
+            if (select) {
+                if (select.value === "") {
+                    alert("Por favor, selecciona una baya primero.");
+                    return; // Stop if no berry selected
+                }
+                selectedBerry = select.value;
+            }
+            pendingSeedData = { regionName, gymData, berryName: selectedBerry };
             openSeedModal();
         } else {
             // Si se desmarca plantar, borramos todo el ciclo
@@ -406,7 +484,25 @@ function createGymItem(regionName, gym) {
     // Determinar qué mostrar en la info (Líder o Cantidad de semillas)
     let infoText = `<p>Líder: ${gym.leader}</p>`;
     if (gym.type === 'seed-plant') {
-        infoText = (isCompleted && progressData.count) ? `<p>Semillas: ${progressData.count}</p>` : '';
+        if (isCompleted) {
+            // If planted, show the berry name and count
+            const berryName = progressData.berryName || "Semilla";
+            infoText = `<p><strong>${berryName}</strong></p><p>Semillas: ${progressData.count}</p>`;
+        } else {
+            // If not planted, show dropdown
+            // Sort berries alphabetically
+            const sortedBerries = [...berriesData].sort((a, b) => a.name.localeCompare(b.name));
+            let options = `<option value="">-- Elegir Baya --</option>`;
+            sortedBerries.forEach(b => {
+                options += `<option value="${b.name}">${b.name}</option>`;
+            });
+            
+            infoText = `
+                <select class="gym-berry-select" onclick="event.stopPropagation()">
+                    ${options}
+                </select>
+            `;
+        }
     } else if (gym.type === 'seed-water' || gym.type === 'seed-harvest') {
         infoText = ''; // Ocultar texto de líder para pasos intermedios
     }
@@ -559,6 +655,87 @@ function renderApp() {
 
     // Actualizar timers inmediatamente tras renderizar
     updateTimers();
+}
+
+// Renderizar la información de las bayas
+function renderBerryInfo() {
+    const container = document.getElementById('berry-info-container');
+    if (!container) return;
+
+    container.innerHTML = ''; // Limpiar contenido previo
+ 
+    const card = document.createElement('div');
+    card.className = 'region-card';
+ 
+    const header = document.createElement('div');
+    header.className = 'region-header';
+    header.textContent = 'Información sobre Bayas';
+    card.appendChild(header);
+ 
+    // Wrapper for select and result
+    const wrapper = document.createElement('div');
+    wrapper.className = 'berry-selector-wrapper';
+ 
+    // Create select dropdown
+    const select = document.createElement('select');
+    select.className = 'berry-select';
+    select.innerHTML = `<option value="">Seleccione una baya...</option>`;
+ 
+    // Sort berries alphabetically by name
+    const sortedBerries = [...berriesData].sort((a, b) => a.name.localeCompare(b.name));
+ 
+    sortedBerries.forEach(berry => {
+        select.innerHTML += `<option value="${berry.name}">${berry.name}</option>`;
+    });
+ 
+    // Create container for the selected berry's info
+    const infoContainer = document.createElement('div');
+    infoContainer.id = 'selected-berry-info';
+    infoContainer.className = 'berry-content-display';
+    // Ensure it has content initially to respect min-height
+    infoContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top: 100px;">Selecciona una baya para ver su información</p>';
+ 
+    const generateImageName = (name) => {
+        return name.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
+    };
+ 
+    // Event listener for the select
+    select.addEventListener('change', (event) => {
+        const selectedName = event.target.value;
+ 
+        if (selectedName) {
+            const berry = berriesData.find(b => b.name === selectedName);
+            if (berry) {
+                const finalImageName = generateImageName(berry.name);
+ 
+                let contentHTML = `
+                    <div class="selected-berry-header">
+                        <img src="../img/${finalImageName}" alt="${berry.name}" class="berry-image" onerror="this.src='../img/semilla_picante.png'; this.style.filter='grayscale(1)';">
+                        <span class="berry-name">${berry.name}</span>
+                    </div>
+                    <div class="selected-berry-details">
+                        <h4>Descripción</h4><p>${berry.description}</p>
+                `;
+                if (berry.usage) contentHTML += `<h4>Uso/Efecto directo</h4><p>${berry.usage}</p>`;
+                if (berry.combination) contentHTML += `<h4>Combinación</h4><p>${berry.combination}</p>`;
+                if (berry.times) contentHTML += `<h4>Tiempos</h4><p>${berry.times}</p>`;
+                if (berry.flavor) contentHTML += `<h4>Sabor</h4><p>${berry.flavor}</p>`;
+                if (berry.color) contentHTML += `<h4>Color</h4><p>${berry.color}</p>`;
+                contentHTML += `</div>`;
+                
+                infoContainer.innerHTML = contentHTML;
+                // infoContainer.style.display = 'block'; // Already block via CSS
+            }
+        } else {
+            // Reset to placeholder
+            infoContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top: 100px;">Selecciona una baya para ver su información</p>';
+        }
+    });
+ 
+    wrapper.appendChild(select);
+    wrapper.appendChild(infoContainer);
+    card.appendChild(wrapper);
+    container.appendChild(card);
 }
 
 // --- NAVEGACIÓN ---
@@ -746,13 +923,14 @@ function handleSeedSubmit() {
 
     // Si es válido, procedemos a guardar
     if (pendingSeedData) {
-        const { regionName, gymData } = pendingSeedData;
+        const { regionName, gymData, berryName } = pendingSeedData;
         const uniqueId = gymData.id || gymData.leader;
         const id = getGymId(regionName, uniqueId);
         
         userProgress[id] = {
             timestamp: new Date().toISOString(),
-            count: parseInt(input.value)
+            count: parseInt(input.value),
+            berryName: berryName // Save the berry name
         };
         
         saveProgress();
@@ -864,6 +1042,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadProgress();
     renderApp();
     
+    // Renderizar información de bayas si estamos en la página de semillas
+    if (path.includes('semillas')) {
+        renderBerryInfo();
+    }
+
     // Actualizar temporizadores cada segundo (1000 ms)
     setInterval(updateTimers, 1000);
     
