@@ -2,12 +2,12 @@
 :root {
     --poke-red: #FF3B30;
     --poke-dark-red: #CC0000;
-    --poke-white: #F2F2F2;
+    --poke-white: #E6E6E6;
     --poke-black: #212121;
     --poke-yellow: #FFCB05;
     --poke-blue: #3B4CCA;
     --bg-color: #E0E0E0;
-    --card-bg: #FDFDFD; /* Un blanco más suave, menos brillante */
+    --card-bg: #F2F2F2; /* Un blanco más suave, menos brillante */
     --success-green: #4CAF50;
     --success-bg: #E8F5E9;
     --shadow: 0 4px 6px rgba(0,0,0,0.1);
