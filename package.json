@@ -8,7 +8,7 @@
     "dist": "dotenv -e .env -- electron-builder",
     "clean": "timeout /t 2 > nul && rimraf dist",
     "publish": "npm run dist -- --publish always",
-    "release": "call npm run clean && git add . && git commit -m \"chore: update version\" && git push && npm run dist -- --publish always"
+    "release": "call npm run clean && git add . && (git commit -m \"chore: update version\" || echo No changes to commit) && git push && npm run dist -- --publish always"
   },
   "author": "Entrenador",
   "license": "ISC",
