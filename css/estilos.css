@@ -719,6 +719,12 @@ header::after {
     margin-bottom: 0;
 }
 
+/* Eliminar fondos de estado (verde/gris) en el apartado de semillas */
+.seeds-column .gym-item.completed,
+.seeds-column .gym-item.disabled {
+    background-color: var(--card-bg);
+}
+
 /* Controles en línea para plantar */
 .seed-plant-controls {
     display: flex;

@@ -578,6 +578,8 @@ function renderApp() {
         if (path.includes('rotacionlegendarios')) {
             list.classList.add('horizontal-layout');
             card.classList.add('wide-card');
+        } else if (path.includes('altomandotracker')) {
+            card.classList.add('elite-four-card');
         }
 
         region.gyms.forEach(gym => {
