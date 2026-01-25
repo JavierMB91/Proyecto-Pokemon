@@ -10,7 +10,8 @@ const datosGimnasios = [
             { ciudad: "Ciudad Azulona", lider: "Erika" },
             { ciudad: "Ciudad Fucsia", lider: "Koga" },
             { ciudad: "Ciudad Azafrán", lider: "Sabrina" },
-            { ciudad: "Isla Canela", lider: "Blaine" }
+            { ciudad: "Isla Canela", lider: "Blaine" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
         ]
     },
     {
@@ -24,7 +25,8 @@ const datosGimnasios = [
             { ciudad: "Ciudad Orquídea", lider: "Aníbal" },
             { ciudad: "Ciudad Olivo", lider: "Yasmina" },
             { ciudad: "Pueblo Caoba", lider: "Fredo" },
-            { ciudad: "Ciudad Endrino", lider: "Débora" }
+            { ciudad: "Ciudad Endrino", lider: "Débora" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
         ]
     },
     {
@@ -38,7 +40,8 @@ const datosGimnasios = [
             { ciudad: "Ciudad Petalia", lider: "Norman" },
             { ciudad: "Ciudad Arborada", lider: "Alana" },
             { ciudad: "Ciudad Algaria", lider: "Vito y Leti" },
-            { ciudad: "Ciudad Arrecípolis", lider: "Galano" }
+            { ciudad: "Ciudad Arrecípolis", lider: "Galano" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
         ]
     },
     {
@@ -52,7 +55,8 @@ const datosGimnasios = [
             { ciudad: "Ciudad Corazón", lider: "Fantina" },
             { ciudad: "Ciudad Canal", lider: "Acerón" },
             { ciudad: "Ciudad Puntaneva", lider: "Inverna" },
-            { ciudad: "Ciudad Marina", lider: "Lectro" }
+            { ciudad: "Ciudad Marina", lider: "Lectro" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
         ]
     },
     {
@@ -66,7 +70,8 @@ const datosGimnasios = [
             { ciudad: "Ciudad Fayenza", lider: "Yakón" },
             { ciudad: "Ciudad Loza", lider: "Gerania" },
             { ciudad: "Ciudad Teja", lider: "Junco" },
-            { ciudad: "Ciudad Caolín", lider: "Lirio" }
+            { ciudad: "Ciudad Caolín", lider: "Lirio" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
         ],
         entrenadoresEspeciales: [
             { ciudad: "Game Freak (Porcelana)", lider: "Morimoto" },
@@ -655,8 +660,7 @@ function renderizarAplicacion() {
 
         // Definir las dos secciones
         const seccionesBatalla = [
-            { titulo: 'Gym Tracker', datos: datosGimnasios, maxSlots: 8, claveReinicio: 'gyms' },
-            { titulo: 'Alto Mando Tracker', datos: datosAltoMando, maxSlots: 1, elite: true, claveReinicio: 'elite' }
+            { titulo: 'Gym Tracker', datos: datosGimnasios, maxSlots: 9, claveReinicio: 'gyms' }
         ];
 
         seccionesBatalla.forEach(seccion => {
