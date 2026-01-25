@@ -1066,8 +1066,26 @@ header::after {
 }
 
 .tracker-box .region-card {
-    flex: 1 1 300px;
-    max-width: 400px;
+    flex: 1 1 100%; /* Ocupar todo el ancho para permitir el crecimiento horizontal */
+    max-width: none;
+}
+
+.tracker-box .gym-list {
+    display: flex;
+    flex-direction: row; /* Elementos en fila horizontal */
+    flex-wrap: wrap;     /* Permitir que bajen si no caben más */
+    justify-content: center;
+}
+
+.tracker-box .gym-item {
+    flex: 1 1 auto;      /* Crecimiento flexible */
+    min-width: 200px;    /* Ancho mínimo para que no se aplasten */
+    border-bottom: none; /* Quitar borde inferior de lista vertical */
+    border-right: 1px solid rgba(255, 255, 255, 0.05); /* Añadir separador lateral */
+}
+
+.tracker-box .gym-item:last-child {
+    border-right: none;
 }
 
 .tracker-header {
