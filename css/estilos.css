@@ -1075,17 +1075,21 @@ header::after {
     flex-direction: row; /* Elementos en fila horizontal */
     flex-wrap: wrap;     /* Permitir que bajen si no caben más */
     justify-content: center;
+    gap: 15px;           /* Espacio entre recuadros */
+    padding: 15px;
 }
 
 .tracker-box .gym-item {
-    flex: 1 1 auto;      /* Crecimiento flexible */
-    min-width: 200px;    /* Ancho mínimo para que no se aplasten */
-    border-bottom: none; /* Quitar borde inferior de lista vertical */
-    border-right: 1px solid rgba(255, 255, 255, 0.05); /* Añadir separador lateral */
+    flex: 0 0 380px;     /* Tamaño fijo para asegurar espacio */
+    width: 380px;
+    border: 1px solid var(--dark-purple); /* Recuadro completo */
+    border-radius: 10px;
+    background-color: rgba(20, 20, 30, 0.4); /* Fondo de tarjeta */
+    margin: 0;
 }
 
 .tracker-box .gym-item:last-child {
-    border-right: none;
+    border: 1px solid var(--dark-purple); /* Asegurar borde en el último */
 }
 
 .tracker-header {
