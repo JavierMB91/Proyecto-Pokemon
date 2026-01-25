@@ -11,7 +11,7 @@ const datosGimnasios = [
             { ciudad: "Ciudad Fucsia", lider: "Koga" },
             { ciudad: "Ciudad Azafrán", lider: "Sabrina" },
             { ciudad: "Isla Canela", lider: "Blaine" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
         ]
     },
     {
@@ -26,7 +26,7 @@ const datosGimnasios = [
             { ciudad: "Ciudad Olivo", lider: "Yasmina" },
             { ciudad: "Pueblo Caoba", lider: "Fredo" },
             { ciudad: "Ciudad Endrino", lider: "Débora" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
         ]
     },
     {
@@ -41,7 +41,7 @@ const datosGimnasios = [
             { ciudad: "Ciudad Arborada", lider: "Alana" },
             { ciudad: "Ciudad Algaria", lider: "Vito y Leti" },
             { ciudad: "Ciudad Arrecípolis", lider: "Galano" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
         ]
     },
     {
@@ -56,7 +56,7 @@ const datosGimnasios = [
             { ciudad: "Ciudad Canal", lider: "Acerón" },
             { ciudad: "Ciudad Puntaneva", lider: "Inverna" },
             { ciudad: "Ciudad Marina", lider: "Lectro" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
         ]
     },
     {
@@ -71,10 +71,10 @@ const datosGimnasios = [
             { ciudad: "Ciudad Loza", lider: "Gerania" },
             { ciudad: "Ciudad Teja", lider: "Junco" },
             { ciudad: "Ciudad Caolín", lider: "Lirio" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4" }
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
         ],
         entrenadoresEspeciales: [
-            { ciudad: "Game Freak (Porcelana)", lider: "Morimoto" },
+            { ciudad: "Ciudad Porcelana", lider: "Morimoto" },
             { ciudad: "Pueblo Arenisca", lider: "Cintia" }
         ]
     }
@@ -676,15 +676,7 @@ function renderizarAplicacion() {
             titulo.style.margin = '0';
             titulo.style.textTransform = 'uppercase';
 
-            const botonReinicio = document.createElement('button');
-            botonReinicio.className = 'btn-reset';
-            botonReinicio.textContent = 'Reiniciar';
-            botonReinicio.style.fontSize = '0.85rem';
-            botonReinicio.style.padding = '5px 15px';
-            botonReinicio.onclick = () => mostrarModalReinicio(seccion.claveReinicio);
-
             cabecera.appendChild(titulo);
-            cabecera.appendChild(botonReinicio);
             caja.appendChild(cabecera);
 
             // Renderizar las regiones dentro de esta caja
@@ -778,13 +770,11 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
 
         // Renderizar Entrenadores Especiales (si existen)
         if (region.entrenadoresEspeciales && region.entrenadoresEspeciales.length > 0) {
-            contenedor.appendChild(tarjeta);
-
             const cajaEspecial = document.createElement('div');
-            cajaEspecial.className = 'special-trainers-box standalone';
+            cajaEspecial.className = 'special-trainers-box';
             
             const cabeceraEspecial = document.createElement('div');
-            cabeceraEspecial.className = 'region-header';
+            cabeceraEspecial.className = 'special-trainers-header';
             cabeceraEspecial.innerHTML = `Combates Especiales`;
             cajaEspecial.appendChild(cabeceraEspecial);
             
@@ -796,10 +786,10 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
             });
             
             cajaEspecial.appendChild(listaEspecial);
-            contenedor.appendChild(cajaEspecial);
-        } else {
-            contenedor.appendChild(tarjeta);
+            tarjeta.appendChild(cajaEspecial);
         }
+
+        contenedor.appendChild(tarjeta);
     });
 }
 
