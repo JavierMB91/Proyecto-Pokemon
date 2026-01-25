@@ -120,7 +120,7 @@ const seedsData = [
         name: "Huerto",
         money: "-",
         gyms: [
-            { city: "Seleccionar Baya", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", image: "semilla_picante.png", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
+            { city: "Seleccionar Baya", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
             { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, timerPrefix: "Recogida en:", readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
             { city: "Recogida de Semillas", leader: "Recoger", id: "spicy-seeds-harvest", type: "seed-harvest", prevId: "spicy-seeds-water", rootId: "spicy-seeds-plant", waitHours: 16 }
         ]
@@ -485,7 +485,12 @@ function createGymItem(regionName, gym) {
 
     // Lógica de imagen (si existe la propiedad 'image' en los datos)
     let imageHtml = '';
-    if (gym.image) {
+    // Si es una semilla plantada, mostramos la imagen de la baya específica
+    if (gym.type === 'seed-plant' && isCompleted && progressData.berryName) {
+        const berryImgName = progressData.berryName.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
+        const fallback = gym.image ? `this.src='../img/${gym.image}'` : "this.style.display='none'";
+        imageHtml = `<img src="../img/bayas/${berryImgName}" alt="${progressData.berryName}" class="gym-image" onerror="${fallback}">`;
+    } else if (gym.image) {
         imageHtml = `<img src="../img/${gym.image}" alt="${gym.city}" class="gym-image">`;
     }
 
@@ -495,9 +500,12 @@ function createGymItem(regionName, gym) {
         puzzleBtn = ` <button onclick="event.stopPropagation(); showImageModal('../img/Sabrina_puzzle.jpg')" style="border: none; background: none; cursor: pointer; font-size: 1.1rem; vertical-align: middle;" title="Ver solución">🧩</button>`;
     }
 
+    // Ajuste para alinear el checkbox con el dropdown (--Elegir Baya--) cuando toca plantar
+    const checkboxStyle = (gym.type === 'seed-plant' && !isCompleted) ? 'style="align-self: flex-start; margin-top: 36px;"' : '';
+
     // HTML interno del item
     item.innerHTML = `
-        <div class="checkbox-wrapper">
+        <div class="checkbox-wrapper" ${checkboxStyle}>
             <div class="custom-checkbox"></div>
         </div>
         ${imageHtml}
@@ -703,7 +711,7 @@ function renderBerryInfo() {
  
                 let contentHTML = `
                     <div class="selected-berry-header">
-                        <img src="../img/${finalImageName}" alt="${berry.name}" class="berry-image" onerror="this.src='../img/semilla_picante.png'; this.style.filter='grayscale(1)';">
+                        <img src="../img/bayas/${finalImageName}" alt="${berry.name}" class="berry-image" onerror="this.src='../img/semilla_picante.png'; this.style.filter='grayscale(1)';">
                         <span class="berry-name">${berry.name}</span>
                     </div>
                     <div class="selected-berry-details">
