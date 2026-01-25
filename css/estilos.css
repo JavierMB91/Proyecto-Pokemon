@@ -777,3 +777,39 @@ header::after {
 .gym-item.no-pointer {
     cursor: default;
 }
+
+/* --- TABLA DE INFORMACIÓN DE BAYAS --- */
+.berry-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.berry-info-table th, .berry-info-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.berry-info-table th {
+    background-color: var(--poke-blue);
+    color: white;
+    font-weight: 600;
+    width: 35%;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.berry-info-table tr:last-child td, 
+.berry-info-table tr:last-child th {
+    border-bottom: none;
+}
+
+.berry-info-table td {
+    color: #555;
+    font-size: 0.95rem;
+}
