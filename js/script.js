@@ -340,9 +340,9 @@ function actualizarTemporizadores() {
         const tiempoRestante = tiempoReinicio - ahora;
 
         if (tiempoRestante > 0) {
-            const horas = Math.floor(tiempoRestante / (1000 * 60 * 60));
-            const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+            const horas = Math.floor(tiempoRestante / (1000 * 60 * 60)).toString().padStart(2, '0');
+            const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000).toString().padStart(2, '0');
             const prefijo = temporizador.getAttribute('data-prefix') || '⏳';
             temporizador.innerHTML = `${prefijo} ${horas}h ${minutos}m ${segundos}s`;
             temporizador.classList.remove('ready');
@@ -763,6 +763,8 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
             const botonReinicio = document.createElement('button');
             botonReinicio.className = 'btn-reset'; // Reutilizamos la clase para el estilo
             botonReinicio.textContent = 'Reiniciar Huerto';
+            botonReinicio.style.fontSize = '0.85rem';
+            botonReinicio.style.padding = '5px 15px';
             // La función mostrarModalReinicio ya sabe qué borrar según la página
             botonReinicio.addEventListener('click', mostrarModalReinicio);
             
