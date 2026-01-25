@@ -1103,6 +1103,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Actualizar datos de encuentros solo una vez al cargar
     const path = window.location.pathname.toLowerCase();
+    if (path.includes('semillas')) {
+        document.body.classList.add('page-semillas');
+    }
     if (path.includes('rotacionlegendarios')) {
         updateEncountersData();
     }

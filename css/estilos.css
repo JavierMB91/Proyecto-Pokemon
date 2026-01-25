@@ -745,6 +745,11 @@ header::after {
     background-color: var(--card-bg);
 }
 
+/* Eliminar efecto hover en items no clicables del huerto (Seleccionar Baya) */
+.seeds-column .gym-item.no-pointer:hover {
+    background-color: transparent;
+}
+
 /* Controles en línea para plantar */
 .seed-plant-controls {
     display: flex;
