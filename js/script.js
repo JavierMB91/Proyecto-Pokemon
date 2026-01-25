@@ -501,17 +501,13 @@ function createGymItem(regionName, gym) {
                 <div class="gym-status-right">
                     <p class="gym-timer" data-timestamp="${timestampToUse}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
                        data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
-                    <p class="gym-end-time large-date">🏁 ${endTimeStrFull}</p>
+                    <p class="gym-end-time large-date">${endTimeStrFull}</p>
                 </div>`;
         } else {
             // Formato estándar para gimnasios
-            const dateStr = date.toLocaleString('es-ES', {
+            const endTimeStrFull = endTime.toLocaleString('es-ES', {
                 timeZone: 'Europe/Madrid',
                 day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
-            const endTimeStr = endTime.toLocaleString('es-ES', {
-                timeZone: 'Europe/Madrid',
                 hour: '2-digit', minute: '2-digit'
             });
 
@@ -519,8 +515,7 @@ function createGymItem(regionName, gym) {
                 <div class="gym-status-right">
                     <p class="gym-timer" data-timestamp="${timestampToUse}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
                        data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
-                    <p class="gym-date">📅 ${dateStr}</p>
-                    <p class="gym-end-time">🏁 Fin: ${endTimeStr}</p>
+                    <p class="gym-end-time large-date">${endTimeStrFull}</p>
                 </div>`;
         }
     }
