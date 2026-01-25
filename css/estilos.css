@@ -86,6 +86,7 @@ header {
     transition: background 0.3s;
     margin: 5px; /* Separación más visible entre apartados */
     border-radius: 25px; /* Bordes redondeados para el efecto hover */
+    border: 2px solid var(--poke-red);
 }
 
 .main-nav a:hover {
