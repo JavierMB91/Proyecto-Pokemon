@@ -84,6 +84,8 @@ header {
     font-weight: bold;
     text-transform: uppercase;
     transition: background 0.3s;
+    margin: 5px; /* Separación más visible entre apartados */
+    border-radius: 25px; /* Bordes redondeados para el efecto hover */
 }
 
 .main-nav a:hover {
