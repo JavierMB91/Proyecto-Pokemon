@@ -737,7 +737,7 @@ function renderBerryInfo() {
     infoContainer.id = 'selected-berry-info';
     infoContainer.className = 'berry-content-display';
     // Ensure it has content initially to respect min-height
-    infoContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top: 100px;">Selecciona una baya para ver su información</p>';
+    infoContainer.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
  
     const generateImageName = (name) => {
         return name.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
@@ -775,7 +775,7 @@ function renderBerryInfo() {
             }
         } else {
             // Reset to placeholder
-            infoContainer.innerHTML = '<p style="text-align:center; color:#999; margin-top: 100px;">Selecciona una baya para ver su información</p>';
+            infoContainer.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
         }
     });
  

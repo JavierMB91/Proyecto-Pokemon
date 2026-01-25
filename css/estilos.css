@@ -602,6 +602,7 @@ header::after {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    flex-grow: 1; /* Permitir que el contenedor interno ocupe todo el alto de la tarjeta */
 }
 
 .berry-select {
@@ -621,7 +622,10 @@ header::after {
     padding: 20px;
     /* display: none;  <-- REMOVED */
     display: block; /* Always take up space */
-    min-height: 550px; /* Altura fija aumentada para coincidir con el contenido de una baya seleccionada */
+    min-height: auto; /* Altura automática para ajustarse al contenido real */
+    display: flex; /* Usar Flexbox para manejar el contenido interno */
+    flex-direction: column;
+    flex-grow: 1; /* Expandirse para llenar el espacio vacío */
 }
 
 /* Style for the dropdown inside the gym list */
@@ -705,7 +709,20 @@ header::after {
 
 /* Información de Bayas: Altura mínima fija grande */
 #berry-info-container.seeds-column .region-card {
-    min-height: 680px; /* Altura ajustada para la baya más larga sin que sobre mucho espacio */
+    min-height: 0; /* Eliminar restricciones de altura mínima */
+    min-height: 400px; /* Coincidir con la altura mínima del Huerto (400px) */
+    height: auto; /* La altura será exactamente la del contenido */
+    flex: 0 0 auto; /* IMPORTANTE: Evita que Flexbox estire la tarjeta verticalmente */
+}
+
+/* Estilo profesional para el mensaje de espera */
+.berry-placeholder {
+    text-align: center;
+    color: #999;
+    padding: 60px 20px; /* Espacio interno cómodo, sin forzar altura fija */
+    margin: 0;
+    padding: 20px;
+    margin: auto; /* Esto centrará verticalmente el texto cuando no haya baya seleccionada */
 }
 
 /* --- ESTILOS ESPECÍFICOS PARA HUERTO (SEMILLAS) --- */
