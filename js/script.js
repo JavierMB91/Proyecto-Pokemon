@@ -380,6 +380,10 @@ function createGymItem(regionName, gym) {
     const isCompleted = !!progressData;
     
     let cooldown = gym.duration || gym.cooldown || 18;
+    // Si el usuario definió una duración personalizada (horas de riego), usarla
+    if (isCompleted && progressData.customDuration) {
+        cooldown = progressData.customDuration;
+    }
     let prefix = gym.timerPrefix || '⏳';
     let readyLabel = gym.readyLabel || 'Disponible';
     let isDisabled = false;
@@ -395,8 +399,10 @@ function createGymItem(regionName, gym) {
             // Verificar si ha pasado el tiempo necesario desde el paso anterior
             const prevDate = new Date(prevProgress.timestamp);
             const now = new Date();
+            // Usar duración personalizada si existe en el paso anterior, sino la por defecto
+            const requiredWait = prevProgress.customDuration || gym.waitHours;
             const elapsedHours = (now - prevDate) / (1000 * 60 * 60);
-            if (elapsedHours < gym.waitHours) {
+            if (elapsedHours < requiredWait) {
                 isDisabled = true;
             }
         }
@@ -430,29 +436,47 @@ function createGymItem(regionName, gym) {
     let dateHtml = '';
     if (isCompleted && progressData.timestamp) {
         const date = new Date(progressData.timestamp);
-        const dateStr = date.toLocaleString('es-ES', {
-            timeZone: 'Europe/Madrid',
-            day: '2-digit', month: '2-digit', year: 'numeric',
-            hour: '2-digit', minute: '2-digit'
-        });
-
+        
         // Calcular hora final
         const endTime = new Date(date.getTime() + (cooldown * 60 * 60 * 1000));
-        const endTimeStr = endTime.toLocaleString('es-ES', {
-            timeZone: 'Europe/Madrid',
-            hour: '2-digit', minute: '2-digit'
-        });
-
+        
         // Determinar si debe reiniciarse automáticamente (Gimnasios y Alto Mando no tienen 'type')
         const shouldAutoReset = !gym.type;
 
-        dateHtml = `
-            <div class="gym-status-right">
-                <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
-                   data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
-                <p class="gym-date">📅 ${dateStr}</p>
-                <p class="gym-end-time">🏁 Fin: ${endTimeStr}</p>
-            </div>`;
+        if (gym.type === 'seed-plant') {
+            // Formato específico para semillas: Solo fecha de fin completa y más grande
+            const endTimeStrFull = endTime.toLocaleString('es-ES', {
+                timeZone: 'Europe/Madrid',
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            dateHtml = `
+                <div class="gym-status-right">
+                    <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
+                       data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
+                    <p class="gym-end-time large-date">🏁 ${endTimeStrFull}</p>
+                </div>`;
+        } else {
+            // Formato estándar para gimnasios
+            const dateStr = date.toLocaleString('es-ES', {
+                timeZone: 'Europe/Madrid',
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+            const endTimeStr = endTime.toLocaleString('es-ES', {
+                timeZone: 'Europe/Madrid',
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            dateHtml = `
+                <div class="gym-status-right">
+                    <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
+                       data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
+                    <p class="gym-date">📅 ${dateStr}</p>
+                    <p class="gym-end-time">🏁 Fin: ${endTimeStr}</p>
+                </div>`;
+        }
     }
 
     // Determinar qué mostrar en la info (Líder o Cantidad de semillas)
@@ -461,7 +485,7 @@ function createGymItem(regionName, gym) {
         if (isCompleted) {
             // If planted, show the berry name and count
             const berryName = progressData.berryName || "Semilla";
-            infoText = `<p><strong>${berryName}</strong></p><p>Semillas: ${progressData.count}</p>`;
+            infoText = `<p class="planted-berry-title">${berryName}</p><p>Semillas: ${progressData.count}</p>`;
         } else {
             // If not planted, show dropdown
             // Sort berries alphabetically
@@ -473,8 +497,18 @@ function createGymItem(regionName, gym) {
             
             infoText = `
                 <div class="seed-plant-controls" onclick="event.stopPropagation()">
-                    <select class="gym-berry-select">${options}</select>
-                    <input type="number" class="seed-count-input" placeholder="#" min="1">
+                    <div class="control-group">
+                        <label class="input-label">Seleccionar Baya</label>
+                        <select class="gym-berry-select">${options}</select>
+                    </div>
+                    <div class="control-group">
+                        <label class="input-label">Tiempo de Riego</label>
+                        <input type="number" class="seed-hours-input" placeholder="Horas" min="1" title="Horas hasta riego">
+                    </div>
+                    <div class="control-group">
+                        <label class="input-label">Nº Semillas</label>
+                        <input type="number" class="seed-count-input" placeholder="Cantidad" min="1">
+                    </div>
                     <button class="btn-plant-confirm" onclick="handleInlinePlant('${regionName}', '${uniqueId}', this)">✔</button>
                 </div>
             `;
@@ -500,8 +534,17 @@ function createGymItem(regionName, gym) {
         puzzleBtn = ` <button onclick="event.stopPropagation(); showImageModal('../img/Sabrina_puzzle.jpg')" style="border: none; background: none; cursor: pointer; font-size: 1.1rem; vertical-align: middle;" title="Ver solución">🧩</button>`;
     }
 
+    // Lógica para mostrar u ocultar el título (h3)
+    let titleHtml = `<h3>${gym.city}${puzzleBtn}</h3>`;
+
     // Ajuste para alinear el checkbox con el dropdown (--Elegir Baya--) cuando toca plantar
-    const checkboxStyle = (gym.type === 'seed-plant' && !isCompleted) ? 'style="align-self: flex-start; margin-top: 36px;"' : '';
+    let checkboxStyle = '';
+    if (gym.type === 'seed-plant') {
+        titleHtml = ''; // Siempre ocultar título (h3) para semillas
+        if (!isCompleted) {
+            checkboxStyle = 'style="align-self: flex-start; margin-top: 38px;"';
+        }
+    }
 
     // HTML interno del item
     item.innerHTML = `
@@ -510,7 +553,7 @@ function createGymItem(regionName, gym) {
         </div>
         ${imageHtml}
         <div class="gym-info">
-            <h3>${gym.city}${puzzleBtn}</h3>
+            ${titleHtml}
             ${infoText}
         </div>
         ${dateHtml}
@@ -886,10 +929,12 @@ window.showImageModal = function(src) {
 window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
     const container = btnElement.parentElement;
     const select = container.querySelector('.gym-berry-select');
-    const input = container.querySelector('.seed-count-input');
+    const inputCount = container.querySelector('.seed-count-input');
+    const inputHours = container.querySelector('.seed-hours-input');
 
     const berryName = select.value;
-    const count = parseInt(input.value);
+    const count = parseInt(inputCount.value);
+    const hours = parseInt(inputHours.value);
 
     if (!berryName) {
         alert("Por favor, selecciona una baya.");
@@ -899,12 +944,17 @@ window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
         alert("Por favor, introduce una cantidad válida.");
         return;
     }
+    if (!hours || hours <= 0) {
+        alert("Por favor, introduce las horas para el riego.");
+        return;
+    }
 
     const id = getGymId(regionName, uniqueId);
     userProgress[id] = {
         timestamp: new Date().toISOString(),
         count: count,
-        berryName: berryName
+        berryName: berryName,
+        customDuration: hours
     };
 
     saveProgress();
