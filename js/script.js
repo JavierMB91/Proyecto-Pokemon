@@ -138,70 +138,70 @@ const encountersData = [
 
 // --- DATOS DE BAYAS ---
 const berriesData = [
-    { name: "Baya Acardo", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo tierra.", combination: "Sem. Muy picante x1 + Sem. Muy Dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Alcho", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo roca.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Algama", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque.", combination: "Sem. Muy seca x1 + Sem. Ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Andano", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Ango", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Dulce.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Dulce\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Dulce! [Vease: Capitulo 3])", combination: "Sem. Muy dulce x2", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Anjiro", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo dragón.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Aostan", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Arabol", usage: "Al estar equipada, sube 2 niveles una carácterística al azar al llegar al 25% de los PS máximos.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1. + Sem. Muy amarga x1", harvestTime: "67 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Aranja", usage: "Al estar equipada, recuperará 10 PS automáticamente al llegar al 25% de los PS.\nSe puede usar en un Pokemon para que recupere 10 PS dentro o fuera de combate.", combination: "Sem. Seca x1 + Sem. Amarga x1 + Sem. Ácida x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "-", color: "- (Crea un PokeCubo gris)" },
-    { name: "Baya Aricoc", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa Especial al llegar al 25% de los PS", combination: "Sem. Picante x1 + Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Aslac", usage: "Al estar equipada, sube automáticamente 2 niveles la Velocidad al llegar al 25% de los PS", combination: "Sem. Muy dulce x1 + Sem. Amarga x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Atania", usage: "Al estar equipada, despierta automáticamente al pokemon apenas se duerma.\nSe puede usar sobre un Pokemon para que despierte dentro o fuera de combate", combination: "Sem. Seca x3\nSem. Muy seca x1 + Sem. Seca x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Baribá", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo acero.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Caoca", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fuego.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Caquic", usage: "Al estar equipada, cura automáticamente la confusión al pokemon apenas se lo confunda.\nSe puede usar sobre un Pokemon para que se cure de la confusión dentro de combate", combination: "Sem. Picante x1 + Sem. Seca x1 + Sem. Dulce x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Chilan", usage: "Al estar equipada, baja a la mitad el daño de un ataque de tipo normal.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Chiri", usage: "Al estar equipada, sube automáticamente a +8 la prioridad al efectuar un movimiento teniendo 25% o menos de los PS máximos, pero se va al acabar el turno.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Dillo", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo siniestro.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Drasi", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fantasma.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Enigma", usage: "Al estar equipada, restaura un 25% de los PS al recibir un ataque muy efectivo.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Frambu", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy seca x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Gonlan", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Seca x1 + Sem. Muy amarga x1", harvestTime: "67 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Grana", usage: "Baja 10 EVs (Puntos de Esfuerzo) de PS.", combination: "Sem. Muy picante x1 + Sem. Amarga", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Gualot", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Eléctrico.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Guaya", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Amargo.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Amargo.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Amargo! [Vease: Capitulo 3])", combination: "Sem. Muy amarga x2", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Higog", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Picante.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Picante.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Picante! [Vease: Capitulo 3])", combination: "Sem. Muy picante x2", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Ispero", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa.", combination: "Sem. Picante x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Jaboca", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque físico (No necesariamente de contacto)", combination: "Sem. Muy amarga x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Kebia", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Veneno.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Kouba", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Volador.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Lagro", usage: "Al estar equipada, sube automáticamente 2 niveles la Precisión al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Latano", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy Dulce x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Lichi", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Seca x1 + Sem. Muy dulce x1", harvestTime: "67 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Magua", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque especial.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Mais", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Meloc", usage: "Al estar equipada, cura automáticamente el envenenamiento al pokemon apenas se envenene.\nSe puede usar sobre un Pokemon para curar el envenenamiento dentro o fuera de combate", combination: "Sem. Muy dulce x1 + Sem. Dulce x1\nSem. Dulce x3", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Meluce", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque Especial.", combination: "Sem. Seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Monli", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Oram", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Seca x1 + Sem. Muy dulce x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Pabaya", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Ácido.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Ácido.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Ácido! [Vease: Capitulo 3])", combination: "Sem. Muy ácida x2", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Pasio", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Agua.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Payapa", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Psiquico.", combination: "Sem. Muy dulce x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Peragu", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy ácida x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Perasi", usage: "Al estar equipada, descongela automáticamente al pokemon apenas se congele.\nSe puede usar sobre un Pokemon para que se descongele dentro o fuera de combate", combination: "Sem. Muy ácida x1 + Sem. Ácida x1\nSem. Ácida x3", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Pinia", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Plama", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Pomaro", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Lucha.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Rautan", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Rimoya", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Hielo.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Rudion", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Safre", usage: "Al estar equipada, cura de las quemaduras automáticamente al pokemon apenas se queme.\nSe puede usar sobre un Pokemon para curar las quemaduras dentro o fuera de combate", combination: "Sem. Muy amarga x1 + Sem. Amarga x1\nSem. Amarga x3", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Sambia", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Tamar", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Planta.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Tamate", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Velocidad.", combination: "Sem. Muy picante x1 + Sem. Seca x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Uvav", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa Especial.", combination: "Sem. Dulce x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Wikano", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy picante x1 + Sem. Seca x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Wiki", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Seco.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Seco.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Seco! [Vease: Capitulo 3])", combination: "Sem. Muy seca x2", harvestTime: "20 horas", waterTime: "8 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Yapati", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque Especial al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "67 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Yecana", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Bicho.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Zanama", usage: "Al estar equipada, si los PP de un movimiento llegan a 0, restaurará 10 PP de dicho movimiento (o los máximos, en caso de no llegar a 10)\nSe puede usar sobre un movimiento de un Pokemon para restaurar 10 PP de dicho movimiento (O hasta el límite, en caso de no haberse consumido mas de 10 PP o tener un límite inferior a 10PP) dentro o fuera de combate.", combination: "Sem. Muy picante x1 + Sem. Dulce x1 + Sem. Amarga x1", harvestTime: "20 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Zidra", usage: "Al estar equipada, restaura 25% de los PS máximos al llegar a los 50% PS o menos de vida.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Ziuela", usage: "Al estar equipada, cura automáticamente de cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) al pokemon apenas se le aplique uno.\nSe puede usar sobre un Pokemon para curar cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "8 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Zonlan", usage: "Al estar equipada, sube automáticamente dos niveles la probabilidad de golpe crítico por un turno, al bajar su vida a 25% o menos de los PS máximos, pero vuelve a la normalidad al acabar el turno.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "3 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Zreza", usage: "Al estar equipada, cura de la parálisis automáticamente al pokemon apenas se paralice.\nSe puede usar sobre un Pokemon para curar la parálisis dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Picante x1\nSem. Picante x3", harvestTime: "16 horas", waterTime: "8 horas", flavor: "Picante", color: "Rojo" }
+    { name: "Baya Acardo", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo tierra.", combination: "Sem. Muy picante x1 + Sem. Muy Dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Alcho", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo roca.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Algama", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque.", combination: "Sem. Muy seca x1 + Sem. Ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Andano", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Ango", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Dulce.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Dulce\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Dulce! [Vease: Capitulo 3])", combination: "Sem. Muy dulce x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Anjiro", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo dragón.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Aostan", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Arabol", usage: "Al estar equipada, sube 2 niveles una carácterística al azar al llegar al 25% de los PS máximos.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1. + Sem. Muy amarga x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Aranja", usage: "Al estar equipada, recuperará 10 PS automáticamente al llegar al 25% de los PS.\nSe puede usar en un Pokemon para que recupere 10 PS dentro o fuera de combate.", combination: "Sem. Seca x1 + Sem. Amarga x1 + Sem. Ácida x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "-", color: "- (Crea un PokeCubo gris)" },
+    { name: "Baya Aricoc", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa Especial al llegar al 25% de los PS", combination: "Sem. Picante x1 + Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Aslac", usage: "Al estar equipada, sube automáticamente 2 niveles la Velocidad al llegar al 25% de los PS", combination: "Sem. Muy dulce x1 + Sem. Amarga x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Atania", usage: "Al estar equipada, despierta automáticamente al pokemon apenas se duerma.\nSe puede usar sobre un Pokemon para que despierte dentro o fuera de combate", combination: "Sem. Seca x3\nSem. Muy seca x1 + Sem. Seca x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Baribá", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo acero.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Caoca", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fuego.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Caquic", usage: "Al estar equipada, cura automáticamente la confusión al pokemon apenas se lo confunda.\nSe puede usar sobre un Pokemon para que se cure de la confusión dentro de combate", combination: "Sem. Picante x1 + Sem. Seca x1 + Sem. Dulce x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Chilan", usage: "Al estar equipada, baja a la mitad el daño de un ataque de tipo normal.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Chiri", usage: "Al estar equipada, sube automáticamente a +8 la prioridad al efectuar un movimiento teniendo 25% o menos de los PS máximos, pero se va al acabar el turno.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Dillo", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo siniestro.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Drasi", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fantasma.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Enigma", usage: "Al estar equipada, restaura un 25% de los PS al recibir un ataque muy efectivo.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Frambu", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy seca x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Gonlan", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Seca x1 + Sem. Muy amarga x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Grana", usage: "Baja 10 EVs (Puntos de Esfuerzo) de PS.", combination: "Sem. Muy picante x1 + Sem. Amarga", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Gualot", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Eléctrico.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Guaya", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Amargo.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Amargo.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Amargo! [Vease: Capitulo 3])", combination: "Sem. Muy amarga x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Higog", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Picante.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Picante.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Picante! [Vease: Capitulo 3])", combination: "Sem. Muy picante x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Ispero", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa.", combination: "Sem. Picante x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Jaboca", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque físico (No necesariamente de contacto)", combination: "Sem. Muy amarga x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Kebia", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Veneno.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Kouba", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Volador.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Lagro", usage: "Al estar equipada, sube automáticamente 2 niveles la Precisión al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Latano", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy Dulce x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Lichi", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Seca x1 + Sem. Muy dulce x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Magua", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque especial.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Mais", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Meloc", usage: "Al estar equipada, cura automáticamente el envenenamiento al pokemon apenas se envenene.\nSe puede usar sobre un Pokemon para curar el envenenamiento dentro o fuera de combate", combination: "Sem. Muy dulce x1 + Sem. Dulce x1\nSem. Dulce x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Meluce", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque Especial.", combination: "Sem. Seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Monli", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Oram", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Seca x1 + Sem. Muy dulce x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Pabaya", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Ácido.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Ácido.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Ácido! [Vease: Capitulo 3])", combination: "Sem. Muy ácida x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Pasio", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Agua.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Payapa", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Psiquico.", combination: "Sem. Muy dulce x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Peragu", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy ácida x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Perasi", usage: "Al estar equipada, descongela automáticamente al pokemon apenas se congele.\nSe puede usar sobre un Pokemon para que se descongele dentro o fuera de combate", combination: "Sem. Muy ácida x1 + Sem. Ácida x1\nSem. Ácida x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Pinia", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Plama", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Pomaro", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Lucha.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Rautan", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Rimoya", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Hielo.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Rudion", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Safre", usage: "Al estar equipada, cura de las quemaduras automáticamente al pokemon apenas se queme.\nSe puede usar sobre un Pokemon para curar las quemaduras dentro o fuera de combate", combination: "Sem. Muy amarga x1 + Sem. Amarga x1\nSem. Amarga x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Sambia", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
+    { name: "Baya Tamar", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Planta.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
+    { name: "Baya Tamate", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Velocidad.", combination: "Sem. Muy picante x1 + Sem. Seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Uvav", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa Especial.", combination: "Sem. Dulce x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
+    { name: "Baya Wikano", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy picante x1 + Sem. Seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Wiki", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Seco.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Seco.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Seco! [Vease: Capitulo 3])", combination: "Sem. Muy seca x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
+    { name: "Baya Yapati", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque Especial al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Yecana", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Bicho.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
+    { name: "Baya Zanama", usage: "Al estar equipada, si los PP de un movimiento llegan a 0, restaurará 10 PP de dicho movimiento (o los máximos, en caso de no llegar a 10)\nSe puede usar sobre un movimiento de un Pokemon para restaurar 10 PP de dicho movimiento (O hasta el límite, en caso de no haberse consumido mas de 10 PP o tener un límite inferior a 10PP) dentro o fuera de combate.", combination: "Sem. Muy picante x1 + Sem. Dulce x1 + Sem. Amarga x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Zidra", usage: "Al estar equipada, restaura 25% de los PS máximos al llegar a los 50% PS o menos de vida.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Ziuela", usage: "Al estar equipada, cura automáticamente de cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) al pokemon apenas se le aplique uno.\nSe puede usar sobre un Pokemon para curar cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Zonlan", usage: "Al estar equipada, sube automáticamente dos niveles la probabilidad de golpe crítico por un turno, al bajar su vida a 25% o menos de los PS máximos, pero vuelve a la normalidad al acabar el turno.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "2 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
+    { name: "Baya Zreza", usage: "Al estar equipada, cura de la parálisis automáticamente al pokemon apenas se paralice.\nSe puede usar sobre un Pokemon para curar la parálisis dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Picante x1\nSem. Picante x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" }
 ];
 
 // --- LÓGICA DE LA APLICACIÓN ---
@@ -226,6 +226,12 @@ async function saveProgress() {
 // Generar ID único para cada gimnasio
 function getGymId(regionName, leaderName) {
     return `${regionName}-${leaderName}`.replace(/\s+/g, '-').toLowerCase();
+}
+
+// Helper para extraer horas de los strings de bayas (ej: "44 horas" -> 44)
+function parseBerryHours(timeStr) {
+    const match = timeStr && timeStr.match(/(\d+)/);
+    return match ? parseInt(match[1]) : 0;
 }
 
 // Función para calcular qué legendario errante toca según el mes (1-12)
@@ -284,17 +290,24 @@ function toggleGym(regionName, gymData, element) {
         return;
     } else if (gymData.type === 'seed-water') {
         // Si ya está regado, no permitir desmarcar
-        if (userProgress[id]) {
-            return;
-        }
+        // CAMBIO: Permitir regar múltiples veces (actualizar timestamp) si está listo
+        // Solo si el elemento tiene la clase 'ready' (manejado visualmente, pero aquí forzamos la lógica)
+        // Para simplificar, siempre actualizamos el timestamp al regar, reiniciando el contador
         userProgress[id] = { timestamp: new Date().toISOString() };
     } else if (gymData.type === 'seed-harvest') {
-        // Si ya está recogido, no permitir desmarcar
-        if (userProgress[id]) {
-            return;
-        }
-        // Marcar como recogido (sin reiniciar el ciclo automáticamente)
-        userProgress[id] = { timestamp: new Date().toISOString() };
+        // Al recoger, reiniciamos todo el ciclo del huerto
+        const rootId = getGymId(regionName, gymData.rootId); // ID de Plantar
+        const waterId = getGymId(regionName, gymData.prevId); // ID de Regar
+        
+        // Borramos todos los progresos relacionados
+        if (userProgress[id]) delete userProgress[id];
+        if (userProgress[rootId]) delete userProgress[rootId];
+        if (userProgress[waterId]) delete userProgress[waterId];
+        
+        // Guardamos y renderizamos inmediatamente para mostrar el estado inicial
+        saveProgress();
+        renderApp();
+        return;
     } else {
         // Lógica normal de gimnasios
         if (userProgress[id]) {
@@ -380,8 +393,31 @@ function createGymItem(regionName, gym) {
     const isCompleted = !!progressData;
     
     let cooldown = gym.duration || gym.cooldown || 18;
-    // Si el usuario definió una duración personalizada (horas de riego), usarla
-    if (isCompleted && progressData.customDuration) {
+    let timestampToUse = progressData ? progressData.timestamp : null;
+
+    // Lógica dinámica para Semillas
+    if (gym.type === 'seed-water') {
+        // El tiempo de riego depende de la baya plantada
+        const plantId = getGymId(regionName, gym.prevId);
+        const plantProgress = userProgress[plantId];
+        if (plantProgress && plantProgress.waterInterval) {
+            cooldown = plantProgress.waterInterval;
+            // Si nunca se ha regado, usamos la fecha de plantado como base
+            if (!timestampToUse) {
+                timestampToUse = plantProgress.timestamp;
+            }
+        }
+    } else if (gym.type === 'seed-harvest') {
+        // El tiempo de cosecha depende de la baya plantada
+        const plantId = getGymId(regionName, gym.rootId);
+        const plantProgress = userProgress[plantId];
+        if (plantProgress && plantProgress.harvestInterval) {
+            cooldown = plantProgress.harvestInterval;
+            // La cosecha siempre cuenta desde que se plantó
+            timestampToUse = plantProgress.timestamp;
+        }
+    } else if (isCompleted && progressData.customDuration) {
+        // Fallback para gimnasios normales con duración custom
         cooldown = progressData.customDuration;
     }
     let prefix = gym.timerPrefix || '⏳';
@@ -400,7 +436,12 @@ function createGymItem(regionName, gym) {
             const prevDate = new Date(prevProgress.timestamp);
             const now = new Date();
             // Usar duración personalizada si existe en el paso anterior, sino la por defecto
-            const requiredWait = prevProgress.customDuration || gym.waitHours;
+            let requiredWait = prevProgress.customDuration || gym.waitHours;
+            
+            // Si es cosecha, no esperamos al "waitHours" del riego, sino que dependemos del tiempo total
+            // Pero visualmente, si ya plantamos, queremos ver el timer de cosecha activo.
+            if (gym.type === 'seed-harvest') requiredWait = 0; 
+
             const elapsedHours = (now - prevDate) / (1000 * 60 * 60);
             if (elapsedHours < requiredWait) {
                 isDisabled = true;
@@ -434,8 +475,10 @@ function createGymItem(regionName, gym) {
 
     // Formatear fecha si existe (Hora Española)
     let dateHtml = '';
-    if (isCompleted && progressData.timestamp) {
-        const date = new Date(progressData.timestamp);
+    // Para semillas, mostramos timer incluso si no está "completado" (ej. esperando riego)
+    // siempre que tengamos un timestamp base válido (definido arriba)
+    if ((isCompleted && progressData.timestamp) || (timestampToUse && (gym.type === 'seed-water' || gym.type === 'seed-harvest'))) {
+        const date = new Date(timestampToUse);
         
         // Calcular hora final
         const endTime = new Date(date.getTime() + (cooldown * 60 * 60 * 1000));
@@ -453,7 +496,7 @@ function createGymItem(regionName, gym) {
 
             dateHtml = `
                 <div class="gym-status-right">
-                    <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
+                    <p class="gym-timer" data-timestamp="${timestampToUse}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
                        data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
                     <p class="gym-end-time large-date">🏁 ${endTimeStrFull}</p>
                 </div>`;
@@ -471,7 +514,7 @@ function createGymItem(regionName, gym) {
 
             dateHtml = `
                 <div class="gym-status-right">
-                    <p class="gym-timer" data-timestamp="${progressData.timestamp}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
+                    <p class="gym-timer" data-timestamp="${timestampToUse}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
                        data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
                     <p class="gym-date">📅 ${dateStr}</p>
                     <p class="gym-end-time">🏁 Fin: ${endTimeStr}</p>
@@ -500,13 +543,6 @@ function createGymItem(regionName, gym) {
                     <div class="control-group">
                         <label class="input-label">Seleccionar Baya</label>
                         <select class="gym-berry-select">${options}</select>
-                    </div>
-                    <div class="control-group">
-                        <label class="input-label">Tiempo Riego</label>
-                        <div style="display: flex; gap: 5px;">
-                            <input type="number" class="seed-hours-input" placeholder="H" min="0" title="Horas">
-                            <input type="number" class="seed-minutes-input" placeholder="M" min="0" max="59" title="Minutos">
-                        </div>
                     </div>
                     <div class="control-group">
                         <label class="input-label">Nº Semillas</label>
@@ -933,13 +969,9 @@ window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
     const container = btnElement.parentElement;
     const select = container.querySelector('.gym-berry-select');
     const inputCount = container.querySelector('.seed-count-input');
-    const inputHours = container.querySelector('.seed-hours-input');
-    const inputMinutes = container.querySelector('.seed-minutes-input');
 
     const berryName = select.value;
     const count = parseInt(inputCount.value);
-    const hours = parseInt(inputHours.value) || 0;
-    const minutes = parseInt(inputMinutes.value) || 0;
 
     if (!berryName) {
         alert("Por favor, selecciona una baya.");
@@ -949,20 +981,19 @@ window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
         alert("Por favor, introduce una cantidad válida.");
         return;
     }
-    if (hours === 0 && minutes === 0) {
-        alert("Por favor, introduce el tiempo para el riego (Horas o Minutos).");
-        return;
-    }
 
-    // Calcular duración total en horas (con decimales para los minutos)
-    const totalDuration = hours + (minutes / 60);
+    // Obtener datos de la baya seleccionada
+    const berry = berriesData.find(b => b.name === berryName);
+    const harvestHours = parseBerryHours(berry.harvestTime);
+    const waterHours = parseBerryHours(berry.waterTime);
 
     const id = getGymId(regionName, uniqueId);
     userProgress[id] = {
         timestamp: new Date().toISOString(),
         count: count,
         berryName: berryName,
-        customDuration: totalDuration
+        harvestInterval: harvestHours,
+        waterInterval: waterHours
     };
 
     saveProgress();

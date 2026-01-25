@@ -783,16 +783,6 @@ header::after {
     text-align: center;
 }
 
-.seed-hours-input,
-.seed-minutes-input {
-    width: 65px; /* Ajustado para dos inputs (H y M) */
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
 .btn-plant-confirm {
     background-color: var(--success-green);
     color: white;
