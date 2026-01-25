@@ -318,7 +318,7 @@ function updateTimers() {
 
     timers.forEach(timer => {
         const timestamp = timer.getAttribute('data-timestamp');
-        const cooldown = parseInt(timer.getAttribute('data-cooldown') || 18);
+        const cooldown = parseFloat(timer.getAttribute('data-cooldown') || 18);
         if (!timestamp) return;
 
         const date = new Date(timestamp);
@@ -502,8 +502,11 @@ function createGymItem(regionName, gym) {
                         <select class="gym-berry-select">${options}</select>
                     </div>
                     <div class="control-group">
-                        <label class="input-label">Tiempo de Riego</label>
-                        <input type="number" class="seed-hours-input" placeholder="Horas" min="1" title="Horas hasta riego">
+                        <label class="input-label">Tiempo Riego</label>
+                        <div style="display: flex; gap: 5px;">
+                            <input type="number" class="seed-hours-input" placeholder="H" min="0" title="Horas">
+                            <input type="number" class="seed-minutes-input" placeholder="M" min="0" max="59" title="Minutos">
+                        </div>
                     </div>
                     <div class="control-group">
                         <label class="input-label">Nº Semillas</label>
@@ -931,10 +934,12 @@ window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
     const select = container.querySelector('.gym-berry-select');
     const inputCount = container.querySelector('.seed-count-input');
     const inputHours = container.querySelector('.seed-hours-input');
+    const inputMinutes = container.querySelector('.seed-minutes-input');
 
     const berryName = select.value;
     const count = parseInt(inputCount.value);
-    const hours = parseInt(inputHours.value);
+    const hours = parseInt(inputHours.value) || 0;
+    const minutes = parseInt(inputMinutes.value) || 0;
 
     if (!berryName) {
         alert("Por favor, selecciona una baya.");
@@ -944,17 +949,20 @@ window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
         alert("Por favor, introduce una cantidad válida.");
         return;
     }
-    if (!hours || hours <= 0) {
-        alert("Por favor, introduce las horas para el riego.");
+    if (hours === 0 && minutes === 0) {
+        alert("Por favor, introduce el tiempo para el riego (Horas o Minutos).");
         return;
     }
+
+    // Calcular duración total en horas (con decimales para los minutos)
+    const totalDuration = hours + (minutes / 60);
 
     const id = getGymId(regionName, uniqueId);
     userProgress[id] = {
         timestamp: new Date().toISOString(),
         count: count,
         berryName: berryName,
-        customDuration: hours
+        customDuration: totalDuration
     };
 
     saveProgress();
