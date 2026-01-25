@@ -121,7 +121,7 @@ const seedsData = [
         money: "-",
         gyms: [
             { city: "Seleccionar Baya", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
-            { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, timerPrefix: "Recogida en:", readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
+            { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
             { city: "Recogida de Semillas", leader: "Recoger", id: "spicy-seeds-harvest", type: "seed-harvest", prevId: "spicy-seeds-water", rootId: "spicy-seeds-plant", waitHours: 16 }
         ]
     }
@@ -487,7 +487,10 @@ function createGymItem(regionName, gym) {
         const shouldAutoReset = !gym.type;
 
         if (gym.type === 'seed-plant') {
-            // Formato específico para semillas: Solo fecha de fin completa y más grande
+            // CAMBIO: Quitar timer y fecha del apartado donde sale el nombre de la baya
+            dateHtml = '';
+        } else if (gym.type === 'seed-water' || gym.type === 'seed-harvest') {
+            // CAMBIO: Mostrar fecha de fin del timer en lugar de fecha de inicio
             const endTimeStrFull = endTime.toLocaleString('es-ES', {
                 timeZone: 'Europe/Madrid',
                 day: '2-digit', month: '2-digit', year: 'numeric',
@@ -585,11 +588,18 @@ function createGymItem(regionName, gym) {
         }
     }
 
-    // HTML interno del item
-    item.innerHTML = `
+    // CAMBIO: Quitar el checkbox del apartado huerto
+    let checkboxHtml = '';
+    if (regionName !== 'Huerto') {
+        checkboxHtml = `
         <div class="checkbox-wrapper" ${checkboxStyle}>
             <div class="custom-checkbox"></div>
-        </div>
+        </div>`;
+    }
+
+    // HTML interno del item
+    item.innerHTML = `
+        ${checkboxHtml}
         ${imageHtml}
         <div class="gym-info">
             ${titleHtml}
