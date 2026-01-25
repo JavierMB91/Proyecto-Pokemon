@@ -365,6 +365,7 @@ header::after {
 /* --- TEXTOS --- */
 .gym-info {
     flex-grow: 1;
+    min-width: 0;
 }
 
 .gym-info h3 {
@@ -373,6 +374,9 @@ header::after {
     color: var(--text-main);
     font-weight: 600;
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .gym-info p {
