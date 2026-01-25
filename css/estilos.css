@@ -139,8 +139,6 @@ header::after {
     border: 1px solid #ddd;
     flex: 1 1 300px;
     max-width: 400px;
-    /* Add min-height to maintain size */
-    min-height: 300px;
     display: flex;
     flex-direction: column;
 }
@@ -154,8 +152,8 @@ header::after {
 .region-card.elite-four-card {
     flex: 0 0 250px;
     width: 250px;
-    height: 200px;
-    min-height: 200px;
+    height: auto;
+    min-height: auto;
 }
 
 .region-header {
@@ -177,11 +175,12 @@ header::after {
 .gym-item {
     display: flex;
     align-items: center;
-    padding: 15px 20px; /* Aumentado para hacer el recuadro más grande */
+    padding: 10px 15px; /* Reducido para hacer las cards más compactas */
     border-bottom: 1px solid #eee;
     cursor: pointer;
     transition: background-color 0.2s;
     position: relative;
+    min-height: 70px;
 }
 
 .gym-item:last-child {
@@ -308,11 +307,13 @@ header::after {
     font-size: 1rem;
     margin-bottom: 2px;
     color: #333;
+    line-height: 1.3;
 }
 
 .gym-info p {
     font-size: 0.9rem;
     color: #666;
+    line-height: 1.3;
 }
 
 .gym-date {
@@ -342,7 +343,8 @@ header::after {
     font-size: 0.9rem;
     font-weight: bold;
     color: #ef6c00; /* Naranja */
-    margin-bottom: 2px;
+    margin-bottom: 0;
+    line-height: 1.3;
 }
 
 .gym-timer.ready {
@@ -527,7 +529,6 @@ header::after {
 }
 
 .gym-list.horizontal-layout .gym-item:hover {
-    transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
@@ -855,5 +856,46 @@ header::after {
 
 .gym-end-time.large-date {
     font-size: 0.9rem;
-    margin-top: 4px;
+    margin-top: 2px;
+    line-height: 1.3;
+}
+
+/* --- BATTLE TRACKER LAYOUT --- */
+.battle-dashboard {
+    display: flex;
+    flex-direction: column; /* Apila las cajas de los trackers verticalmente */
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    align-items: center; /* Centra las cajas horizontalmente */
+}
+
+.tracker-box {
+    background-color: var(--card-bg);
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 100%; /* Asegura que la caja ocupe el ancho para distribuir las regiones */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.tracker-box .region-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.tracker-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
 }

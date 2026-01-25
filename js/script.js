@@ -210,6 +210,7 @@ const berriesData = [
 
 const STORAGE_KEY = 'pokemmo_gym_progress';
 let userProgress = {};
+let resetContext = null; // Variable para saber qué sección reiniciar
 
 // Cargar progreso desde LocalStorage
 async function loadProgress() {
@@ -637,24 +638,78 @@ function renderApp() {
     appContainer.innerHTML = ''; // Limpiar
 
     // Determinar qué datos mostrar según la URL
-    let currentData = [];
-    let maxSlots = 8; // Por defecto para gimnasios
     const path = window.location.pathname.toLowerCase();
+    let sections = [];
 
     if (path.includes('rotacionlegendarios')) {
-        currentData = encountersData;
-        maxSlots = 2; // Igualar altura (2 slots para legendarios, 1+1 para shiny)
+        sections.push({ data: encountersData, maxSlots: 2, wide: true });
     } else if (path.includes('altomandotracker')) {
-        currentData = eliteFourData;
-        maxSlots = 1; // El Alto Mando es 1 combate (run completa)
+        sections.push({ data: eliteFourData, maxSlots: 1, elite: true });
     } else if (path.includes('semillas')) {
-        currentData = seedsData;
-        maxSlots = 1; 
+        sections.push({ data: seedsData, maxSlots: 1 });
+    } else if (path.includes('battletracker')) {
+        // --- LÓGICA BATTLE TRACKER (CAJAS SEPARADAS) ---
+        const dashboard = document.createElement('div');
+        dashboard.className = 'battle-dashboard';
+
+        // Definir las dos secciones
+        const battleSections = [
+            { title: 'Gym Tracker', data: gymsData, maxSlots: 8, resetKey: 'gyms' },
+            { title: 'Alto Mando Tracker', data: eliteFourData, maxSlots: 1, elite: true, resetKey: 'elite' }
+        ];
+
+        battleSections.forEach(sect => {
+            const box = document.createElement('div');
+            box.className = 'tracker-box';
+
+            // Header de la caja (Título + Botón Reset)
+            const header = document.createElement('div');
+            header.className = 'tracker-header';
+            
+            const title = document.createElement('h2');
+            title.textContent = sect.title;
+            title.style.margin = '0';
+            title.style.textTransform = 'uppercase';
+            title.style.color = '#333';
+
+            const btnReset = document.createElement('button');
+            btnReset.className = 'btn-reset';
+            btnReset.textContent = 'Reiniciar';
+            btnReset.style.fontSize = '0.85rem';
+            btnReset.style.padding = '5px 15px';
+            btnReset.onclick = () => showResetModal(sect.resetKey);
+
+            header.appendChild(title);
+            header.appendChild(btnReset);
+            box.appendChild(header);
+
+            // Renderizar las regiones dentro de esta caja
+            renderRegionSet(sect.data, box, sect.maxSlots, false, sect.elite);
+            
+            dashboard.appendChild(box);
+        });
+
+        appContainer.appendChild(dashboard);
+        updateTimers();
+        return; // Salimos aquí porque ya hemos renderizado todo para Battle Tracker
     } else {
-        currentData = gymsData;
+        // Por defecto (si estamos en gymTracker.html antiguo o similar)
+        sections.push({ data: gymsData, maxSlots: 8 });
     }
 
-    currentData.forEach(region => {
+    sections.forEach(section => {
+        renderRegionSet(section.data, appContainer, section.maxSlots, section.wide, section.elite);
+    });
+
+    // Actualizar timers inmediatamente tras renderizar
+    updateTimers();
+}
+
+// Función auxiliar para renderizar un conjunto de regiones
+function renderRegionSet(data, container, maxSlots, isWide, isElite) {
+    const path = window.location.pathname.toLowerCase();
+
+    data.forEach(region => {
         // Crear tarjeta de región
         const card = document.createElement('div');
         card.className = 'region-card';
@@ -670,10 +725,10 @@ function renderApp() {
         const list = document.createElement('ul');
         list.className = 'gym-list';
         
-        if (path.includes('rotacionlegendarios')) {
+        if (isWide) {
             list.classList.add('horizontal-layout');
             card.classList.add('wide-card');
-        } else if (path.includes('altomandotracker')) {
+        } else if (isElite) {
             card.classList.add('elite-four-card');
         }
 
@@ -717,7 +772,7 @@ function renderApp() {
 
         // Renderizar Entrenadores Especiales (si existen)
         if (region.specialTrainers && region.specialTrainers.length > 0) {
-            appContainer.appendChild(card);
+            container.appendChild(card);
 
             const specialBox = document.createElement('div');
             specialBox.className = 'special-trainers-box standalone';
@@ -735,14 +790,11 @@ function renderApp() {
             });
             
             specialBox.appendChild(specialList);
-            appContainer.appendChild(specialBox);
+            container.appendChild(specialBox);
         } else {
-            appContainer.appendChild(card);
+            container.appendChild(card);
         }
     });
-
-    // Actualizar timers inmediatamente tras renderizar
-    updateTimers();
 }
 
 // Renderizar la información de las bayas
@@ -849,7 +901,14 @@ async function loadNav() {
 }
 
 // Funciones del Modal
-function showResetModal() {
+function showResetModal(context) {
+    // Si context es un string (ej: 'gyms'), lo guardamos. Si es un evento, lo ignoramos (null).
+    if (typeof context === 'string') {
+        resetContext = context;
+    } else {
+        resetContext = null;
+    }
+
     document.getElementById('modal-overlay').classList.add('active');
     const modal = document.getElementById('modal-overlay');
     
@@ -906,33 +965,41 @@ function resetSpecificRegion(regionName) {
 
 function confirmReset() {
     // Determinar qué datos corresponden a la página actual para borrar solo esos
-    let currentData = [];
+    let datasetsToReset = [];
     const path = window.location.pathname.toLowerCase();
-    if (path.includes('altomandotracker')) {
-        currentData = eliteFourData;
+    
+    // Verificar si venimos de un botón específico del Battle Tracker
+    if (resetContext === 'gyms') {
+        datasetsToReset = [gymsData];
+    } else if (resetContext === 'elite') {
+        datasetsToReset = [eliteFourData];
+    } else if (path.includes('altomandotracker')) {
+        datasetsToReset = [eliteFourData];
     } else if (path.includes('semillas')) {
-        currentData = seedsData;
+        datasetsToReset = [seedsData];
     } else if (path.includes('rotacionlegendarios')) {
-        currentData = encountersData;
+        datasetsToReset = [encountersData];
     } else {
-        currentData = gymsData;
+        datasetsToReset = [gymsData];
     }
 
     // Borrar solo las claves asociadas a los datos de la página actual
-    currentData.forEach(region => {
-        region.gyms.forEach(item => {
-            const uniqueId = item.id || item.leader;
-            const id = getGymId(region.name, uniqueId);
-            delete userProgress[id];
-        });
-
-        if (region.specialTrainers) {
-            region.specialTrainers.forEach(trainer => {
-                const uniqueId = trainer.id || trainer.leader;
+    datasetsToReset.forEach(dataset => {
+        dataset.forEach(region => {
+            region.gyms.forEach(item => {
+                const uniqueId = item.id || item.leader;
                 const id = getGymId(region.name, uniqueId);
                 delete userProgress[id];
             });
-        }
+
+            if (region.specialTrainers) {
+                region.specialTrainers.forEach(trainer => {
+                    const uniqueId = trainer.id || trainer.leader;
+                    const id = getGymId(region.name, uniqueId);
+                    delete userProgress[id];
+                });
+            }
+        });
     });
 
     saveProgress();
