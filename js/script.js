@@ -1,368 +1,368 @@
 // --- DATOS DE LOS GIMNASIOS (PokeMMO) ---
-const gymsData = [
+const datosGimnasios = [
     {
-        name: "Kanto",
-        money: "63.700",
-        gyms: [
-            { city: "Ciudad Plateada", leader: "Brock" },
-            { city: "Ciudad Celeste", leader: "Misty" },
-            { city: "Ciudad Carmín", leader: "Lt. Surge" },
-            { city: "Ciudad Azulona", leader: "Erika" },
-            { city: "Ciudad Fucsia", leader: "Koga" },
-            { city: "Ciudad Azafrán", leader: "Sabrina" },
-            { city: "Isla Canela", leader: "Blaine" }
+        nombre: "Kanto",
+        dinero: "63.700",
+        gimnasios: [
+            { ciudad: "Ciudad Plateada", lider: "Brock" },
+            { ciudad: "Ciudad Celeste", lider: "Misty" },
+            { ciudad: "Ciudad Carmín", lider: "Lt. Surge" },
+            { ciudad: "Ciudad Azulona", lider: "Erika" },
+            { ciudad: "Ciudad Fucsia", lider: "Koga" },
+            { ciudad: "Ciudad Azafrán", lider: "Sabrina" },
+            { ciudad: "Isla Canela", lider: "Blaine" }
         ]
     },
     {
-        name: "Johto",
-        money: "72.800",
-        gyms: [
-            { city: "Ciudad Malva", leader: "Pegaso" },
-            { city: "Pueblo Azalea", leader: "Antón" },
-            { city: "Ciudad Trigal", leader: "Blanca" },
-            { city: "Ciudad Iris", leader: "Morti" },
-            { city: "Ciudad Orquídea", leader: "Aníbal" },
-            { city: "Ciudad Olivo", leader: "Yasmina" },
-            { city: "Pueblo Caoba", leader: "Fredo" },
-            { city: "Ciudad Endrino", leader: "Débora" }
+        nombre: "Johto",
+        dinero: "72.800",
+        gimnasios: [
+            { ciudad: "Ciudad Malva", lider: "Pegaso" },
+            { ciudad: "Pueblo Azalea", lider: "Antón" },
+            { ciudad: "Ciudad Trigal", lider: "Blanca" },
+            { ciudad: "Ciudad Iris", lider: "Morti" },
+            { ciudad: "Ciudad Orquídea", lider: "Aníbal" },
+            { ciudad: "Ciudad Olivo", lider: "Yasmina" },
+            { ciudad: "Pueblo Caoba", lider: "Fredo" },
+            { ciudad: "Ciudad Endrino", lider: "Débora" }
         ]
     },
     {
-        name: "Hoenn",
-        money: "72.800",
-        gyms: [
-            { city: "Ciudad Férrica", leader: "Petra" },
-            { city: "Pueblo Azuliza", leader: "Marcial" },
-            { city: "Ciudad Malvalona", leader: "Erico" },
-            { city: "Pueblo Lavacalda", leader: "Candela" },
-            { city: "Ciudad Petalia", leader: "Norman" },
-            { city: "Ciudad Arborada", leader: "Alana" },
-            { city: "Ciudad Algaria", leader: "Vito y Leti" },
-            { city: "Ciudad Arrecípolis", leader: "Galano" }
+        nombre: "Hoenn",
+        dinero: "72.800",
+        gimnasios: [
+            { ciudad: "Ciudad Férrica", lider: "Petra" },
+            { ciudad: "Pueblo Azuliza", lider: "Marcial" },
+            { ciudad: "Ciudad Malvalona", lider: "Erico" },
+            { ciudad: "Pueblo Lavacalda", lider: "Candela" },
+            { ciudad: "Ciudad Petalia", lider: "Norman" },
+            { ciudad: "Ciudad Arborada", lider: "Alana" },
+            { ciudad: "Ciudad Algaria", lider: "Vito y Leti" },
+            { ciudad: "Ciudad Arrecípolis", lider: "Galano" }
         ]
     },
     {
-        name: "Sinnoh",
-        money: "72.800",
-        gyms: [
-            { city: "Ciudad Pirita", leader: "Roco" },
-            { city: "Ciudad Vetusta", leader: "Gardenia" },
-            { city: "Ciudad Rocavelo", leader: "Brega" },
-            { city: "Ciudad Pradera", leader: "Mananti" },
-            { city: "Ciudad Corazón", leader: "Fantina" },
-            { city: "Ciudad Canal", leader: "Acerón" },
-            { city: "Ciudad Puntaneva", leader: "Inverna" },
-            { city: "Ciudad Marina", leader: "Lectro" }
+        nombre: "Sinnoh",
+        dinero: "72.800",
+        gimnasios: [
+            { ciudad: "Ciudad Pirita", lider: "Roco" },
+            { ciudad: "Ciudad Vetusta", lider: "Gardenia" },
+            { ciudad: "Ciudad Rocavelo", lider: "Brega" },
+            { ciudad: "Ciudad Pradera", lider: "Mananti" },
+            { ciudad: "Ciudad Corazón", lider: "Fantina" },
+            { ciudad: "Ciudad Canal", lider: "Acerón" },
+            { ciudad: "Ciudad Puntaneva", lider: "Inverna" },
+            { ciudad: "Ciudad Marina", lider: "Lectro" }
         ]
     },
     {
-        name: "Teselia",
-        money: "72.800",
-        gyms: [
-            { city: "Ciudad Gres", leader: "Zeo, Maíz y Millo" },
-            { city: "Ciudad Esmalte", leader: "Aloe" },
-            { city: "Ciudad Porcelana", leader: "Camus" },
-            { city: "Ciudad Mayólica", leader: "Camila" },
-            { city: "Ciudad Fayenza", leader: "Yakón" },
-            { city: "Ciudad Loza", leader: "Gerania" },
-            { city: "Ciudad Teja", leader: "Junco" },
-            { city: "Ciudad Caolín", leader: "Lirio" }
+        nombre: "Teselia",
+        dinero: "72.800",
+        gimnasios: [
+            { ciudad: "Ciudad Gres", lider: "Zeo, Maíz y Millo" },
+            { ciudad: "Ciudad Esmalte", lider: "Aloe" },
+            { ciudad: "Ciudad Porcelana", lider: "Camus" },
+            { ciudad: "Ciudad Mayólica", lider: "Camila" },
+            { ciudad: "Ciudad Fayenza", lider: "Yakón" },
+            { ciudad: "Ciudad Loza", lider: "Gerania" },
+            { ciudad: "Ciudad Teja", lider: "Junco" },
+            { ciudad: "Ciudad Caolín", lider: "Lirio" }
         ],
-        specialTrainers: [
-            { city: "Game Freak (Porcelana)", leader: "Morimoto" },
-            { city: "Pueblo Arenisca", leader: "Cintia" }
+        entrenadoresEspeciales: [
+            { ciudad: "Game Freak (Porcelana)", lider: "Morimoto" },
+            { ciudad: "Pueblo Arenisca", lider: "Cintia" }
         ]
     }
 ];
 
 // --- DATOS DEL ALTO MANDO ---
-const eliteFourData = [
+const datosAltoMando = [
     {
-        name: "Kanto",
-        money: "60.000", // Estimado
-        gyms: [
-            { city: "Liga Pokémon", leader: "Alto Mando", id: "kanto-elite4", cooldown: 24 }
+        nombre: "Kanto",
+        dinero: "60.000", // Estimado
+        gimnasios: [
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "kanto-elite4", enfriamiento: 24 }
         ]
     },
     {
-        name: "Johto",
-        money: "60.000",
-        gyms: [
-            { city: "Liga Pokémon", leader: "Alto Mando", id: "johto-elite4", cooldown: 24 }
+        nombre: "Johto",
+        dinero: "60.000",
+        gimnasios: [
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "johto-elite4", enfriamiento: 24 }
         ]
     },
     {
-        name: "Hoenn",
-        money: "60.000",
-        gyms: [
-            { city: "Liga Pokémon", leader: "Alto Mando", id: "hoenn-elite4", cooldown: 24 }
+        nombre: "Hoenn",
+        dinero: "60.000",
+        gimnasios: [
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "hoenn-elite4", enfriamiento: 24 }
         ]
     },
     {
-        name: "Sinnoh",
-        money: "60.000",
-        gyms: [
-            { city: "Liga Pokémon", leader: "Alto Mando", id: "sinnoh-elite4", cooldown: 24 }
+        nombre: "Sinnoh",
+        dinero: "60.000",
+        gimnasios: [
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "sinnoh-elite4", enfriamiento: 24 }
         ]
     },
     {
-        name: "Teselia",
-        money: "60.000",
-        gyms: [
-            { city: "Liga Pokémon", leader: "Alto Mando", id: "teselia-elite4", cooldown: 24 }
+        nombre: "Teselia",
+        dinero: "60.000",
+        gimnasios: [
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "teselia-elite4", enfriamiento: 24 }
         ]
     }
 ];
 
 // --- DATOS DE SEMILLAS ---
-const seedsData = [
+const datosSemillas = [
     {
-        name: "Huerto",
-        money: "-",
-        gyms: [
-            { city: "Seleccionar Baya", leader: "Plantar", id: "spicy-seeds-plant", type: "seed-plant", duration: 5, timerPrefix: "Riego en:", readyLabel: "Regar", nextId: "spicy-seeds-water" },
-            { city: "Riego de Semillas", leader: "Regar", id: "spicy-seeds-water", type: "seed-water", prevId: "spicy-seeds-plant", waitHours: 5, duration: 16, readyLabel: "Recoger", nextId: "spicy-seeds-harvest" },
-            { city: "Recogida de Semillas", leader: "Recoger", id: "spicy-seeds-harvest", type: "seed-harvest", prevId: "spicy-seeds-water", rootId: "spicy-seeds-plant", waitHours: 16 }
+        nombre: "Huerto",
+        dinero: "-",
+        gimnasios: [
+            { ciudad: "Seleccionar Baya", lider: "Plantar", id: "spicy-seeds-plant", tipo: "seed-plant", duracion: 5, prefijoTemporizador: "Riego en:", etiquetaListo: "Regar", siguienteId: "spicy-seeds-water" },
+            { ciudad: "Riego de Semillas", lider: "Regar", id: "spicy-seeds-water", tipo: "seed-water", idAnterior: "spicy-seeds-plant", horasEspera: 5, duracion: 16, etiquetaListo: "Recoger", siguienteId: "spicy-seeds-harvest" },
+            { ciudad: "Recogida de Semillas", lider: "Recoger", id: "spicy-seeds-harvest", tipo: "seed-harvest", idAnterior: "spicy-seeds-water", idRaiz: "spicy-seeds-plant", horasEspera: 16 }
         ]
     }
 ];
 
 // --- DATOS DE ENCUENTROS ---
-const encountersData = [
+const datosEncuentros = [
     {
-        name: "Mes Actual",
-        money: "-",
-        gyms: [] // Se actualizará dinámicamente
+        nombre: "Mes Actual",
+        dinero: "-",
+        gimnasios: [] // Se actualizará dinámicamente
     }
 ];
 
 // --- DATOS DE BAYAS ---
-const berriesData = [
-    { name: "Baya Acardo", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo tierra.", combination: "Sem. Muy picante x1 + Sem. Muy Dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Alcho", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo roca.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Algama", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque.", combination: "Sem. Muy seca x1 + Sem. Ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Andano", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Ango", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Dulce.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Dulce\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Dulce! [Vease: Capitulo 3])", combination: "Sem. Muy dulce x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Anjiro", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo dragón.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Aostan", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Arabol", usage: "Al estar equipada, sube 2 niveles una carácterística al azar al llegar al 25% de los PS máximos.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1. + Sem. Muy amarga x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Aranja", usage: "Al estar equipada, recuperará 10 PS automáticamente al llegar al 25% de los PS.\nSe puede usar en un Pokemon para que recupere 10 PS dentro o fuera de combate.", combination: "Sem. Seca x1 + Sem. Amarga x1 + Sem. Ácida x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "-", color: "- (Crea un PokeCubo gris)" },
-    { name: "Baya Aricoc", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa Especial al llegar al 25% de los PS", combination: "Sem. Picante x1 + Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Aslac", usage: "Al estar equipada, sube automáticamente 2 niveles la Velocidad al llegar al 25% de los PS", combination: "Sem. Muy dulce x1 + Sem. Amarga x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Atania", usage: "Al estar equipada, despierta automáticamente al pokemon apenas se duerma.\nSe puede usar sobre un Pokemon para que despierte dentro o fuera de combate", combination: "Sem. Seca x3\nSem. Muy seca x1 + Sem. Seca x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Baribá", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo acero.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Caoca", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fuego.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Caquic", usage: "Al estar equipada, cura automáticamente la confusión al pokemon apenas se lo confunda.\nSe puede usar sobre un Pokemon para que se cure de la confusión dentro de combate", combination: "Sem. Picante x1 + Sem. Seca x1 + Sem. Dulce x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Chilan", usage: "Al estar equipada, baja a la mitad el daño de un ataque de tipo normal.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Chiri", usage: "Al estar equipada, sube automáticamente a +8 la prioridad al efectuar un movimiento teniendo 25% o menos de los PS máximos, pero se va al acabar el turno.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Dillo", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo siniestro.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Drasi", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fantasma.", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Enigma", usage: "Al estar equipada, restaura un 25% de los PS al recibir un ataque muy efectivo.", combination: "Sem. Muy picante x1 + Sem. Muy seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Frambu", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy seca x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Gonlan", usage: "Al estar equipada, sube automáticamente 2 niveles la Defensa al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Seca x1 + Sem. Muy amarga x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Grana", usage: "Baja 10 EVs (Puntos de Esfuerzo) de PS.", combination: "Sem. Muy picante x1 + Sem. Amarga", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Gualot", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Eléctrico.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Guaya", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Amargo.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Amargo.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Amargo! [Vease: Capitulo 3])", combination: "Sem. Muy amarga x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Higog", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Picante.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Picante.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Picante! [Vease: Capitulo 3])", combination: "Sem. Muy picante x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Ispero", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa.", combination: "Sem. Picante x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Jaboca", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque físico (No necesariamente de contacto)", combination: "Sem. Muy amarga x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Kebia", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Veneno.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Kouba", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Volador.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Lagro", usage: "Al estar equipada, sube automáticamente 2 niveles la Precisión al llegar al 25% de los PS", combination: "Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Latano", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy Dulce x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Lichi", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Seca x1 + Sem. Muy dulce x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Magua", usage: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque especial.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Mais", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Meloc", usage: "Al estar equipada, cura automáticamente el envenenamiento al pokemon apenas se envenene.\nSe puede usar sobre un Pokemon para curar el envenenamiento dentro o fuera de combate", combination: "Sem. Muy dulce x1 + Sem. Dulce x1\nSem. Dulce x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Meluce", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque Especial.", combination: "Sem. Seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Monli", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Oram", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Seca x1 + Sem. Muy dulce x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Pabaya", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Ácido.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Ácido.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Ácido! [Vease: Capitulo 3])", combination: "Sem. Muy ácida x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Pasio", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Agua.", combination: "Sem. Muy seca x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Payapa", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Psiquico.", combination: "Sem. Muy dulce x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Peragu", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Amarga x1 + Sem. Muy ácida x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Perasi", usage: "Al estar equipada, descongela automáticamente al pokemon apenas se congele.\nSe puede usar sobre un Pokemon para que se descongele dentro o fuera de combate", combination: "Sem. Muy ácida x1 + Sem. Ácida x1\nSem. Ácida x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Pinia", usage: "Solo sirve para hacer Pokecubos.", combination: "Sem. Picante x1 + Sem. Muy ácida x1", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Plama", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy seca x1 + Sem. Dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Pomaro", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Lucha.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Rautan", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Rimoya", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Hielo.", combination: "Sem. Muy seca x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Rudion", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Safre", usage: "Al estar equipada, cura de las quemaduras automáticamente al pokemon apenas se queme.\nSe puede usar sobre un Pokemon para curar las quemaduras dentro o fuera de combate", combination: "Sem. Muy amarga x1 + Sem. Amarga x1\nSem. Amarga x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Sambia", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy dulce x1 + Sem. Amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Dulce", color: "Rosa" },
-    { name: "Baya Tamar", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Planta.", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Amargo", color: "Verde" },
-    { name: "Baya Tamate", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Velocidad.", combination: "Sem. Muy picante x1 + Sem. Seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Uvav", usage: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa Especial.", combination: "Sem. Dulce x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Ácido", color: "Amarillo" },
-    { name: "Baya Wikano", usage: "Solo sirven para hacer PokeCubos", combination: "Sem. Muy picante x1 + Sem. Seca x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Wiki", usage: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Seco.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Seco.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Seco! [Vease: Capitulo 3])", combination: "Sem. Muy seca x2", harvestTime: "20 horas", waterTime: "5 horas", flavor: "Seco", color: "Azul" },
-    { name: "Baya Yapati", usage: "Al estar equipada, sube automáticamente 2 niveles el Ataque Especial al llegar al 25% de los PS", combination: "Sem. Muy picante x1 + Sem. Muy amarga x1 + Sem. Ácida x1", harvestTime: "67 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Yecana", usage: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Bicho.", combination: "Sem. Muy picante x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" },
-    { name: "Baya Zanama", usage: "Al estar equipada, si los PP de un movimiento llegan a 0, restaurará 10 PP de dicho movimiento (o los máximos, en caso de no llegar a 10)\nSe puede usar sobre un movimiento de un Pokemon para restaurar 10 PP de dicho movimiento (O hasta el límite, en caso de no haberse consumido mas de 10 PP o tener un límite inferior a 10PP) dentro o fuera de combate.", combination: "Sem. Muy picante x1 + Sem. Dulce x1 + Sem. Amarga x1", harvestTime: "20 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Zidra", usage: "Al estar equipada, restaura 25% de los PS máximos al llegar a los 50% PS o menos de vida.", combination: "Sem. Muy dulce x1 + Sem. Muy amarga x1 + Sem. Muy ácida x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Ziuela", usage: "Al estar equipada, cura automáticamente de cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) al pokemon apenas se le aplique uno.\nSe puede usar sobre un Pokemon para curar cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Muy seca x1 + Sem. Muy dulce x1", harvestTime: "44 horas", waterTime: "5 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Zonlan", usage: "Al estar equipada, sube automáticamente dos niveles la probabilidad de golpe crítico por un turno, al bajar su vida a 25% o menos de los PS máximos, pero vuelve a la normalidad al acabar el turno.", combination: "Sem. Muy picante x1 + Sem. Muy dulce x1 + Sem. Muy ácida x1", harvestTime: "67 horas", waterTime: "2 horas", flavor: "-", color: "- (Creará un PokeCubo gris)" },
-    { name: "Baya Zreza", usage: "Al estar equipada, cura de la parálisis automáticamente al pokemon apenas se paralice.\nSe puede usar sobre un Pokemon para curar la parálisis dentro o fuera de combate", combination: "Sem. Muy picante x1 + Sem. Picante x1\nSem. Picante x3", harvestTime: "16 horas", waterTime: "5 horas", flavor: "Picante", color: "Rojo" }
+const datosBayas = [
+    { nombre: "Baya Acardo", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo tierra.", combinacion: "Sem. Muy picante x1 + Sem. Muy Dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Alcho", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo roca.", combinacion: "Sem. Muy picante x1 + Sem. Muy seca x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Algama", uso: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque.", combinacion: "Sem. Muy seca x1 + Sem. Ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Andano", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Picante x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Ango", uso: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Dulce.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Dulce\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Dulce! [Vease: Capitulo 3])", combinacion: "Sem. Muy dulce x2", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Anjiro", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo dragón.", combinacion: "Sem. Muy dulce x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Aostan", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy dulce x1 + Sem. Amarga x1", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Arabol", uso: "Al estar equipada, sube 2 niveles una carácterística al azar al llegar al 25% de los PS máximos.", combinacion: "Sem. Muy seca x1 + Sem. Muy dulce x1. + Sem. Muy amarga x1", tiempoCosecha: "67 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Aranja", uso: "Al estar equipada, recuperará 10 PS automáticamente al llegar al 25% de los PS.\nSe puede usar en un Pokemon para que recupere 10 PS dentro o fuera de combate.", combinacion: "Sem. Seca x1 + Sem. Amarga x1 + Sem. Ácida x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Crea un PokeCubo gris)" },
+    { nombre: "Baya Aricoc", uso: "Al estar equipada, sube automáticamente 2 niveles la Defensa Especial al llegar al 25% de los PS", combinacion: "Sem. Picante x1 + Sem. Muy seca x1 + Sem. Muy ácida x1", tiempoCosecha: "67 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Aslac", uso: "Al estar equipada, sube automáticamente 2 niveles la Velocidad al llegar al 25% de los PS", combinacion: "Sem. Muy dulce x1 + Sem. Amarga x1 + Sem. Muy ácida x1", tiempoCosecha: "67 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Atania", uso: "Al estar equipada, despierta automáticamente al pokemon apenas se duerma.\nSe puede usar sobre un Pokemon para que despierte dentro o fuera de combate", combinacion: "Sem. Seca x3\nSem. Muy seca x1 + Sem. Seca x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Baribá", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo acero.", combinacion: "Sem. Muy picante x1 + Sem. Muy seca x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Caoca", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fuego.", combinacion: "Sem. Muy picante x1 + Sem. Muy dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Caquic", uso: "Al estar equipada, cura automáticamente la confusión al pokemon apenas se lo confunda.\nSe puede usar sobre un Pokemon para que se cure de la confusión dentro de combate", combinacion: "Sem. Picante x1 + Sem. Seca x1 + Sem. Dulce x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Chilan", uso: "Al estar equipada, baja a la mitad el daño de un ataque de tipo normal.", combinacion: "Sem. Muy seca x1 + Sem. Muy dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Chiri", uso: "Al estar equipada, sube automáticamente a +8 la prioridad al efectuar un movimiento teniendo 25% o menos de los PS máximos, pero se va al acabar el turno.", combinacion: "Sem. Muy dulce x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Dillo", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo siniestro.", combinacion: "Sem. Muy picante x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Drasi", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo fantasma.", combinacion: "Sem. Muy seca x1 + Sem. Muy dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Enigma", uso: "Al estar equipada, restaura un 25% de los PS al recibir un ataque muy efectivo.", combinacion: "Sem. Muy picante x1 + Sem. Muy seca x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Frambu", uso: "Solo sirve para hacer Pokecubos.", combinacion: "Sem. Picante x1 + Sem. Muy seca x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Gonlan", uso: "Al estar equipada, sube automáticamente 2 niveles la Defensa al llegar al 25% de los PS", combinacion: "Sem. Muy seca x1 + Sem. Seca x1 + Sem. Muy amarga x1", tiempoCosecha: "67 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Grana", uso: "Baja 10 EVs (Puntos de Esfuerzo) de PS.", combinacion: "Sem. Muy picante x1 + Sem. Amarga", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Gualot", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Eléctrico.", combinacion: "Sem. Muy dulce x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Guaya", uso: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Amargo.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Amargo.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Amargo! [Vease: Capitulo 3])", combinacion: "Sem. Muy amarga x2", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Higog", uso: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Picante.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Picante.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Picante! [Vease: Capitulo 3])", combinacion: "Sem. Muy picante x2", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Ispero", uso: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa.", combinacion: "Sem. Picante x1 + Sem. Muy dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Jaboca", uso: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque físico (No necesariamente de contacto)", combinacion: "Sem. Muy amarga x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Kebia", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Veneno.", combinacion: "Sem. Muy seca x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Kouba", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Volador.", combinacion: "Sem. Muy seca x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Lagro", uso: "Al estar equipada, sube automáticamente 2 niveles la Precisión al llegar al 25% de los PS", combinacion: "Sem. Muy seca x1 + Sem. Muy dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Latano", uso: "Solo sirve para hacer Pokecubos.", combinacion: "Sem. Amarga x1 + Sem. Muy Dulce x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Lichi", uso: "Al estar equipada, sube automáticamente 2 niveles el Ataque al llegar al 25% de los PS", combinacion: "Sem. Muy picante x1 + Sem. Seca x1 + Sem. Muy dulce x1", tiempoCosecha: "67 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Magua", uso: "Al estar equipada, pega un 12,5% de los PS máximos al agresor que le pegue al portador de la baya un ataque especial.", combinacion: "Sem. Muy picante x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Mais", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy seca x1 + Sem. Dulce x1", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Meloc", uso: "Al estar equipada, cura automáticamente el envenenamiento al pokemon apenas se envenene.\nSe puede usar sobre un Pokemon para curar el envenenamiento dentro o fuera de combate", combinacion: "Sem. Muy dulce x1 + Sem. Dulce x1\nSem. Dulce x3", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Meluce", uso: "Baja 10 EVs (Puntos de Esfuerzo) de Ataque Especial.", combinacion: "Sem. Seca x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Monli", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Picante x1 + Sem. Muy ácida x1", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Oram", uso: "Solo sirve para hacer Pokecubos.", combinacion: "Sem. Seca x1 + Sem. Muy dulce x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Pabaya", uso: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Ácido.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Ácido.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Ácido! [Vease: Capitulo 3])", combinacion: "Sem. Muy ácida x2", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Pasio", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Agua.", combinacion: "Sem. Muy seca x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Payapa", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Psiquico.", combinacion: "Sem. Muy dulce x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Peragu", uso: "Solo sirve para hacer Pokecubos.", combinacion: "Sem. Amarga x1 + Sem. Muy ácida x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Perasi", uso: "Al estar equipada, descongela automáticamente al pokemon apenas se congele.\nSe puede usar sobre un Pokemon para que se descongele dentro o fuera de combate", combinacion: "Sem. Muy ácida x1 + Sem. Ácida x1\nSem. Ácida x3", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Pinia", uso: "Solo sirve para hacer Pokecubos.", combinacion: "Sem. Picante x1 + Sem. Muy ácida x1", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Plama", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy seca x1 + Sem. Dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Pomaro", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Lucha.", combinacion: "Sem. Muy picante x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Rautan", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy amarga x1 + Sem. Ácida x1", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Rimoya", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Hielo.", combinacion: "Sem. Muy seca x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Rudion", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy amarga x1 + Sem. Ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Safre", uso: "Al estar equipada, cura de las quemaduras automáticamente al pokemon apenas se queme.\nSe puede usar sobre un Pokemon para curar las quemaduras dentro o fuera de combate", combinacion: "Sem. Muy amarga x1 + Sem. Amarga x1\nSem. Amarga x3", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Sambia", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy dulce x1 + Sem. Amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Dulce", color: "Rosa" },
+    { nombre: "Baya Tamar", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Planta.", combinacion: "Sem. Muy picante x1 + Sem. Muy amarga x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Amargo", color: "Verde" },
+    { nombre: "Baya Tamate", uso: "Baja 10 EVs (Puntos de Esfuerzo) de Velocidad.", combinacion: "Sem. Muy picante x1 + Sem. Seca x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Uvav", uso: "Baja 10 EVs (Puntos de Esfuerzo) de Defensa Especial.", combinacion: "Sem. Dulce x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Ácido", color: "Amarillo" },
+    { nombre: "Baya Wikano", uso: "Solo sirven para hacer PokeCubos", combinacion: "Sem. Muy picante x1 + Sem. Seca x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Wiki", uso: "Sirve para subir la felicidad un 9,8% a los pokemon que no les disguste el sabor Seco.\nSirve para restar la felicidad un 9,8% a los pokemon que les disguste el sabor Seco.\nSe puede equipar en un pokemon para que restaure un 50% de los PS automáticamente al llegar al 25% de los PS maximos. (Advertencia: Confundirá a los Pokemon que no les guste el sabor Seco! [Vease: Capitulo 3])", combinacion: "Sem. Muy seca x2", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "Seco", color: "Azul" },
+    { nombre: "Baya Yapati", uso: "Al estar equipada, sube automáticamente 2 niveles el Ataque Especial al llegar al 25% de los PS", combinacion: "Sem. Muy picante x1 + Sem. Muy amarga x1 + Sem. Ácida x1", tiempoCosecha: "67 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Yecana", uso: "Al estar equipada, baja a la mitad el daño de un ataque super efectivo de tipo Bicho.", combinacion: "Sem. Muy picante x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" },
+    { nombre: "Baya Zanama", uso: "Al estar equipada, si los PP de un movimiento llegan a 0, restaurará 10 PP de dicho movimiento (o los máximos, en caso de no llegar a 10)\nSe puede usar sobre un movimiento de un Pokemon para restaurar 10 PP de dicho movimiento (O hasta el límite, en caso de no haberse consumido mas de 10 PP o tener un límite inferior a 10PP) dentro o fuera de combate.", combinacion: "Sem. Muy picante x1 + Sem. Dulce x1 + Sem. Amarga x1", tiempoCosecha: "20 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Zidra", uso: "Al estar equipada, restaura 25% de los PS máximos al llegar a los 50% PS o menos de vida.", combinacion: "Sem. Muy dulce x1 + Sem. Muy amarga x1 + Sem. Muy ácida x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Ziuela", uso: "Al estar equipada, cura automáticamente de cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) al pokemon apenas se le aplique uno.\nSe puede usar sobre un Pokemon para curar cualquier problema de estado (Quemadura, Parálisis, Envenenamiento normal o grave, Sueño o Congelamiento) dentro o fuera de combate", combinacion: "Sem. Muy picante x1 + Sem. Muy seca x1 + Sem. Muy dulce x1", tiempoCosecha: "44 horas", tiempoRiego: "5 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Zonlan", uso: "Al estar equipada, sube automáticamente dos niveles la probabilidad de golpe crítico por un turno, al bajar su vida a 25% o menos de los PS máximos, pero vuelve a la normalidad al acabar el turno.", combinacion: "Sem. Muy picante x1 + Sem. Muy dulce x1 + Sem. Muy ácida x1", tiempoCosecha: "67 horas", tiempoRiego: "2 horas", sabor: "-", color: "- (Creará un PokeCubo gris)" },
+    { nombre: "Baya Zreza", uso: "Al estar equipada, cura de la parálisis automáticamente al pokemon apenas se paralice.\nSe puede usar sobre un Pokemon para curar la parálisis dentro o fuera de combate", combinacion: "Sem. Muy picante x1 + Sem. Picante x1\nSem. Picante x3", tiempoCosecha: "16 horas", tiempoRiego: "5 horas", sabor: "Picante", color: "Rojo" }
 ];
 
 // --- LÓGICA DE LA APLICACIÓN ---
 
 // --- CONFIGURACIÓN LOCAL (SIN SERVIDOR) ---
 
-const STORAGE_KEY = 'pokemmo_gym_progress';
-let userProgress = {};
-let resetContext = null; // Variable para saber qué sección reiniciar
+const CLAVE_ALMACENAMIENTO = 'pokemmo_gym_progress';
+let progresoUsuario = {};
+let contextoReinicio = null; // Variable para saber qué sección reiniciar
 
 // Cargar progreso desde LocalStorage
-async function loadProgress() {
-    userProgress = {};
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) userProgress = JSON.parse(stored);
+async function cargarProgreso() {
+    progresoUsuario = {};
+    const almacenado = localStorage.getItem(CLAVE_ALMACENAMIENTO);
+    if (almacenado) progresoUsuario = JSON.parse(almacenado);
 }
 
 // Guardar progreso en LocalStorage
-async function saveProgress() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(userProgress));
+async function guardarProgreso() {
+    localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(progresoUsuario));
 }
 
 // Generar ID único para cada gimnasio
-function getGymId(regionName, leaderName) {
-    return `${regionName}-${leaderName}`.replace(/\s+/g, '-').toLowerCase();
+function obtenerIdGimnasio(nombreRegion, nombreLider) {
+    return `${nombreRegion}-${nombreLider}`.replace(/\s+/g, '-').toLowerCase();
 }
 
 // Helper para extraer horas de los strings de bayas (ej: "44 horas" -> 44)
-function parseBerryHours(timeStr) {
-    const match = timeStr && timeStr.match(/(\d+)/);
+function analizarHorasBaya(cadenaTiempo) {
+    const match = cadenaTiempo && cadenaTiempo.match(/(\d+)/);
     return match ? parseInt(match[1]) : 0;
 }
 
 // Función para calcular qué legendario errante toca según el mes (1-12)
-function getRoamingLegendaries(month) {
+function obtenerLegendariosErrantes(mes) {
     // Rotación Kanto: Zapdos -> Moltres -> Articuno
-    const kantoRotation = ["Zapdos", "Moltres", "Articuno"];
+    const rotacionKanto = ["Zapdos", "Moltres", "Articuno"];
     
     // Rotación Johto: Entei -> Suicune -> Raikou
-    const johtoRotation = ["Entei", "Suicune", "Raikou"];
+    const rotacionJohto = ["Entei", "Suicune", "Raikou"];
 
     // Calculamos el índice (0, 1 o 2) basado en el mes
     // (Mes - 1) % 3 asegura que Enero (1) sea índice 0
-    const index = (month - 1) % 3;
+    const indice = (mes - 1) % 3;
 
     return {
-        kanto: kantoRotation[index],
-        johto: johtoRotation[index]
+        kanto: rotacionKanto[indice],
+        johto: rotacionJohto[indice]
     };
 }
 
 // Función para actualizar los datos de encuentros con los legendarios del mes actual
-function updateEncountersData() {
-    const date = new Date();
-    const currentMonth = date.getMonth() + 1; // Obtener mes actual (1-12)
-    const monthName = date.toLocaleString('es-ES', { month: 'long' });
-    const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+function actualizarDatosEncuentros() {
+    const fecha = new Date();
+    const mesActual = fecha.getMonth() + 1; // Obtener mes actual (1-12)
+    const nombreMes = fecha.toLocaleString('es-ES', { month: 'long' });
+    const mesCapitalizado = nombreMes.charAt(0).toUpperCase() + nombreMes.slice(1);
     
-    const legendaries = getRoamingLegendaries(currentMonth);
+    const legendarios = obtenerLegendariosErrantes(mesActual);
 
-    // Actualizar la tarjeta del mes (Índice 0 en encountersData)
-    encountersData[0].name = capitalizedMonth;
-    encountersData[0].gyms = [
+    // Actualizar la tarjeta del mes (Índice 0 en datosEncuentros)
+    datosEncuentros[0].nombre = mesCapitalizado;
+    datosEncuentros[0].gimnasios = [
         {
-            city: "Kanto",
-            leader: legendaries.kanto,
-            id: `${legendaries.kanto.toLowerCase()}-kanto`,
-            type: "encounter"
+            ciudad: "Kanto",
+            lider: legendarios.kanto,
+            id: `${legendarios.kanto.toLowerCase()}-kanto`,
+            tipo: "encounter"
         },
         {
-            city: "Johto",
-            leader: legendaries.johto,
-            id: `${legendaries.johto.toLowerCase()}-johto`,
-            type: "encounter"
+            ciudad: "Johto",
+            lider: legendarios.johto,
+            id: `${legendarios.johto.toLowerCase()}-johto`,
+            tipo: "encounter"
         }
     ];
 }
 
 // Alternar estado del gimnasio
-function toggleGym(regionName, gymData, element) {
-    const uniqueId = gymData.id || gymData.leader;
-    const id = getGymId(regionName, uniqueId);
+function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
+    const idUnico = datosGimnasio.id || datosGimnasio.lider;
+    const id = obtenerIdGimnasio(nombreRegion, idUnico);
     
-    if (gymData.type === 'seed-plant') {
+    if (datosGimnasio.tipo === 'seed-plant') {
         // Si ya está plantado, no permitir desmarcar (solo botón reiniciar)
         // Si no está plantado, se usa el botón inline
         return;
-    } else if (gymData.type === 'seed-water') {
+    } else if (datosGimnasio.tipo === 'seed-water') {
         // Si ya está regado, no permitir desmarcar
         // CAMBIO: Permitir regar múltiples veces (actualizar timestamp) si está listo
         // Solo si el elemento tiene la clase 'ready' (manejado visualmente, pero aquí forzamos la lógica)
         // Para simplificar, siempre actualizamos el timestamp al regar, reiniciando el contador
-        userProgress[id] = { timestamp: new Date().toISOString() };
-    } else if (gymData.type === 'seed-harvest') {
+        progresoUsuario[id] = { timestamp: new Date().toISOString() };
+    } else if (datosGimnasio.tipo === 'seed-harvest') {
         // Al recoger, reiniciamos todo el ciclo del huerto
-        const rootId = getGymId(regionName, gymData.rootId); // ID de Plantar
-        const waterId = getGymId(regionName, gymData.prevId); // ID de Regar
+        const idRaiz = obtenerIdGimnasio(nombreRegion, datosGimnasio.idRaiz); // ID de Plantar
+        const idRiego = obtenerIdGimnasio(nombreRegion, datosGimnasio.idAnterior); // ID de Regar
         
         // Borramos todos los progresos relacionados
-        if (userProgress[id]) delete userProgress[id];
-        if (userProgress[rootId]) delete userProgress[rootId];
-        if (userProgress[waterId]) delete userProgress[waterId];
+        if (progresoUsuario[id]) delete progresoUsuario[id];
+        if (progresoUsuario[idRaiz]) delete progresoUsuario[idRaiz];
+        if (progresoUsuario[idRiego]) delete progresoUsuario[idRiego];
         
         // Guardamos y renderizamos inmediatamente para mostrar el estado inicial
-        saveProgress();
-        renderApp();
+        guardarProgreso();
+        renderizarAplicacion();
         return;
     } else {
         // Lógica normal de gimnasios
-        if (userProgress[id]) {
-            delete userProgress[id];
+        if (progresoUsuario[id]) {
+            delete progresoUsuario[id];
         } else {
-            userProgress[id] = {
+            progresoUsuario[id] = {
                 timestamp: new Date().toISOString()
             };
         }
     }
     
-    saveProgress();
-    renderApp(); // Re-renderizamos para mostrar la fecha actualizada
+    guardarProgreso();
+    renderizarAplicacion(); // Re-renderizamos para mostrar la fecha actualizada
 }
 
 // Actualizar temporizadores
-function updateTimers() {
-    const timers = document.querySelectorAll('.gym-timer[data-timestamp]');
-    const now = new Date().getTime();
-    const idsToReset = [];
+function actualizarTemporizadores() {
+    const temporizadores = document.querySelectorAll('.gym-timer[data-timestamp]');
+    const ahora = new Date().getTime();
+    const idsParaReiniciar = [];
 
-    timers.forEach(timer => {
-        const timestamp = timer.getAttribute('data-timestamp');
-        const cooldown = parseFloat(timer.getAttribute('data-cooldown') || 18);
+    temporizadores.forEach(temporizador => {
+        const timestamp = temporizador.getAttribute('data-timestamp');
+        const enfriamiento = parseFloat(temporizador.getAttribute('data-cooldown') || 18);
         if (!timestamp) return;
 
-        const date = new Date(timestamp);
-        const resetTime = date.getTime() + (cooldown * 60 * 60 * 1000);
-        const timeLeft = resetTime - now;
+        const fecha = new Date(timestamp);
+        const tiempoReinicio = fecha.getTime() + (enfriamiento * 60 * 60 * 1000);
+        const tiempoRestante = tiempoReinicio - ahora;
 
-        if (timeLeft > 0) {
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            const prefix = timer.getAttribute('data-prefix') || '⏳';
-            timer.innerHTML = `${prefix} ${hours}h ${minutes}m ${seconds}s`;
-            timer.classList.remove('ready');
+        if (tiempoRestante > 0) {
+            const horas = Math.floor(tiempoRestante / (1000 * 60 * 60));
+            const minutos = Math.floor((tiempoRestante % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((tiempoRestante % (1000 * 60)) / 1000);
+            const prefijo = temporizador.getAttribute('data-prefix') || '⏳';
+            temporizador.innerHTML = `${prefijo} ${horas}h ${minutos}m ${segundos}s`;
+            temporizador.classList.remove('ready');
         } else {
             // Auto-reset para Gimnasios y Alto Mando
-            if (timer.getAttribute('data-auto-reset') === 'true') {
-                idsToReset.push(timer.getAttribute('data-gym-id'));
+            if (temporizador.getAttribute('data-auto-reset') === 'true') {
+                idsParaReiniciar.push(temporizador.getAttribute('data-gym-id'));
             } else {
                 // Solo actuar si el temporizador acaba de terminar (para semillas u otros sin auto-reset)
-                if (!timer.classList.contains('ready')) {
-                    const readyLabel = timer.getAttribute('data-ready-label') || 'Disponible';
-                    timer.innerHTML = `✅ ${readyLabel}`;
-                    timer.classList.add('ready');
+                if (!temporizador.classList.contains('ready')) {
+                    const etiquetaListo = temporizador.getAttribute('data-ready-label') || 'Disponible';
+                    temporizador.innerHTML = `✅ ${etiquetaListo}`;
+                    temporizador.classList.add('ready');
                     
                     // Habilitar el siguiente paso visualmente si existe
-                    const currentGymId = timer.getAttribute('data-gym-id');
-                    if (currentGymId) {
-                        const nextStageItem = document.querySelector(`.gym-item[data-prev-id="${currentGymId}"]`);
-                        if (nextStageItem) {
-                            nextStageItem.classList.remove('disabled');
+                    const idGimnasioActual = temporizador.getAttribute('data-gym-id');
+                    if (idGimnasioActual) {
+                        const itemSiguienteEtapa = document.querySelector(`.gym-item[data-prev-id="${idGimnasioActual}"]`);
+                        if (itemSiguienteEtapa) {
+                            itemSiguienteEtapa.classList.remove('disabled');
                         }
                     }
                 }
@@ -371,645 +371,646 @@ function updateTimers() {
     });
 
     // Procesar resets automáticos
-    if (idsToReset.length > 0) {
-        let changed = false;
-        idsToReset.forEach(id => {
-            if (userProgress[id]) {
-                delete userProgress[id];
-                changed = true;
+    if (idsParaReiniciar.length > 0) {
+        let cambiado = false;
+        idsParaReiniciar.forEach(id => {
+            if (progresoUsuario[id]) {
+                delete progresoUsuario[id];
+                cambiado = true;
             }
         });
-        if (changed) {
-            saveProgress();
-            renderApp();
+        if (cambiado) {
+            guardarProgreso();
+            renderizarAplicacion();
         }
     }
 }
 
+// Helper para formatear fecha
+function formatearFecha(fecha) {
+    return fecha.toLocaleString('es-ES', {
+        timeZone: 'Europe/Madrid',
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+    });
+}
+
 // Helper para crear el elemento HTML de un gimnasio/entrenador
-function createGymItem(regionName, gym) {
-    const uniqueId = gym.id || gym.leader;
-    const gymId = getGymId(regionName, uniqueId);
-    const progressData = userProgress[gymId];
-    const isCompleted = !!progressData;
+function crearElementoGimnasio(nombreRegion, gimnasio) {
+    const idUnico = gimnasio.id || gimnasio.lider;
+    const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
+    const datosProgreso = progresoUsuario[idGimnasio];
+    const estaCompletado = !!datosProgreso;
     
-    let cooldown = gym.duration || gym.cooldown || 18;
-    let timestampToUse = progressData ? progressData.timestamp : null;
+    let enfriamiento = gimnasio.duracion || gimnasio.enfriamiento || 18;
+    let timestampAUsar = datosProgreso ? datosProgreso.timestamp : null;
 
     // Lógica dinámica para Semillas
-    if (gym.type === 'seed-water') {
+    if (gimnasio.tipo === 'seed-water') {
         // El tiempo de riego depende de la baya plantada
-        const plantId = getGymId(regionName, gym.prevId);
-        const plantProgress = userProgress[plantId];
-        if (plantProgress && plantProgress.waterInterval) {
-            cooldown = plantProgress.waterInterval;
+        const idPlantado = obtenerIdGimnasio(nombreRegion, gimnasio.idAnterior);
+        const progresoPlantado = progresoUsuario[idPlantado];
+        if (progresoPlantado && progresoPlantado.intervaloRiego) {
+            enfriamiento = progresoPlantado.intervaloRiego;
             // Si nunca se ha regado, usamos la fecha de plantado como base
-            if (!timestampToUse) {
-                timestampToUse = plantProgress.timestamp;
+            if (!timestampAUsar) {
+                timestampAUsar = progresoPlantado.timestamp;
             }
         }
-    } else if (gym.type === 'seed-harvest') {
+    } else if (gimnasio.tipo === 'seed-harvest') {
         // El tiempo de cosecha depende de la baya plantada
-        const plantId = getGymId(regionName, gym.rootId);
-        const plantProgress = userProgress[plantId];
-        if (plantProgress && plantProgress.harvestInterval) {
-            cooldown = plantProgress.harvestInterval;
+        const idPlantado = obtenerIdGimnasio(nombreRegion, gimnasio.idRaiz);
+        const progresoPlantado = progresoUsuario[idPlantado];
+        if (progresoPlantado && progresoPlantado.intervaloCosecha) {
+            enfriamiento = progresoPlantado.intervaloCosecha;
             // La cosecha siempre cuenta desde que se plantó
-            timestampToUse = plantProgress.timestamp;
+            timestampAUsar = progresoPlantado.timestamp;
         }
-    } else if (isCompleted && progressData.customDuration) {
+    } else if (estaCompletado && datosProgreso.duracionPersonalizada) {
         // Fallback para gimnasios normales con duración custom
-        cooldown = progressData.customDuration;
+        enfriamiento = datosProgreso.duracionPersonalizada;
     }
-    let prefix = gym.timerPrefix || '⏳';
-    let readyLabel = gym.readyLabel || 'Disponible';
-    let isDisabled = false;
+    let prefijo = gimnasio.prefijoTemporizador || '⏳';
+    let etiquetaListo = gimnasio.etiquetaListo || 'Disponible';
+    let estaDeshabilitado = false;
 
     // Lógica de dependencias para semillas (Deshabilitar si no es el momento)
-    if (gym.prevId) {
-        const prevGymId = getGymId(regionName, gym.prevId);
-        const prevProgress = userProgress[prevGymId];
+    if (gimnasio.idAnterior) {
+        const idGimnasioAnterior = obtenerIdGimnasio(nombreRegion, gimnasio.idAnterior);
+        const progresoAnterior = progresoUsuario[idGimnasioAnterior];
         
-        if (!prevProgress) {
-            isDisabled = true;
-        } else if (gym.waitHours) {
+        if (!progresoAnterior) {
+            estaDeshabilitado = true;
+        } else if (gimnasio.horasEspera) {
             // Verificar si ha pasado el tiempo necesario desde el paso anterior
-            const prevDate = new Date(prevProgress.timestamp);
-            const now = new Date();
+            const fechaAnterior = new Date(progresoAnterior.timestamp);
+            const ahora = new Date();
             // Usar duración personalizada si existe en el paso anterior, sino la por defecto
-            let requiredWait = prevProgress.customDuration || gym.waitHours;
+            let esperaRequerida = progresoAnterior.duracionPersonalizada || gimnasio.horasEspera;
             
             // Si es cosecha, no esperamos al "waitHours" del riego, sino que dependemos del tiempo total
             // Pero visualmente, si ya plantamos, queremos ver el timer de cosecha activo.
-            if (gym.type === 'seed-harvest') requiredWait = 0; 
+            if (gimnasio.tipo === 'seed-harvest') esperaRequerida = 0; 
 
-            const elapsedHours = (now - prevDate) / (1000 * 60 * 60);
-            if (elapsedHours < requiredWait) {
-                isDisabled = true;
+            const horasTranscurridas = (ahora - fechaAnterior) / (1000 * 60 * 60);
+            if (horasTranscurridas < esperaRequerida) {
+                estaDeshabilitado = true;
             }
         }
     }
 
-    const item = document.createElement('li');
+    const elementoLista = document.createElement('li');
     
     // Determinar si la fila debe tener cursor de mano (solo si es clicable a nivel de fila)
-    let isRowClickable = true;
-    if (gym.type === 'seed-plant') {
-        isRowClickable = false; // Plantar usa controles inline o está bloqueado
-    } else if ((gym.type === 'seed-water' || gym.type === 'seed-harvest') && isCompleted) {
-        isRowClickable = false; // Pasos completados no se pueden desmarcar con clic
+    let esFilaClicable = true;
+    if (gimnasio.tipo === 'seed-plant') {
+        esFilaClicable = false; // Plantar usa controles inline o está bloqueado
+    } else if ((gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest') && estaCompletado) {
+        esFilaClicable = false; // Pasos completados no se pueden desmarcar con clic
     }
-    item.className = `gym-item ${isCompleted ? 'completed' : ''} ${isDisabled ? 'disabled' : ''} ${!isRowClickable ? 'no-pointer' : ''}`;
+    elementoLista.className = `gym-item ${estaCompletado ? 'completed' : ''} ${estaDeshabilitado ? 'disabled' : ''} ${!esFilaClicable ? 'no-pointer' : ''}`;
     
     // Evento Click
-    item.onclick = (e) => {
-        toggleGym(regionName, gym, item);
+    elementoLista.onclick = (e) => {
+        alternarGimnasio(nombreRegion, gimnasio, elementoLista);
     };
     
     // Atributos para encadenamiento
-    const fullId = getGymId(regionName, uniqueId);
-    item.setAttribute('data-gym-id', fullId);
-    if (gym.prevId) {
-        const prevFullId = getGymId(regionName, gym.prevId);
-        item.setAttribute('data-prev-id', prevFullId);
+    const idCompleto = obtenerIdGimnasio(nombreRegion, idUnico);
+    elementoLista.setAttribute('data-gym-id', idCompleto);
+    if (gimnasio.idAnterior) {
+        const idAnteriorCompleto = obtenerIdGimnasio(nombreRegion, gimnasio.idAnterior);
+        elementoLista.setAttribute('data-prev-id', idAnteriorCompleto);
     }
 
     // Formatear fecha si existe (Hora Española)
-    let dateHtml = '';
+    let htmlFecha = '';
     // Para semillas, mostramos timer incluso si no está "completado" (ej. esperando riego)
     // siempre que tengamos un timestamp base válido (definido arriba)
-    if ((isCompleted && progressData.timestamp) || (timestampToUse && (gym.type === 'seed-water' || gym.type === 'seed-harvest'))) {
-        const date = new Date(timestampToUse);
+    if ((estaCompletado && datosProgreso.timestamp) || (timestampAUsar && (gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest'))) {
+        const fecha = new Date(timestampAUsar);
         
         // Calcular hora final
-        const endTime = new Date(date.getTime() + (cooldown * 60 * 60 * 1000));
+        const horaFin = new Date(fecha.getTime() + (enfriamiento * 60 * 60 * 1000));
         
         // Determinar si debe reiniciarse automáticamente (Gimnasios y Alto Mando no tienen 'type')
-        const shouldAutoReset = !gym.type;
+        const debeReiniciarseAuto = !gimnasio.tipo;
 
-        if (gym.type === 'seed-plant') {
+        if (gimnasio.tipo === 'seed-plant') {
             // CAMBIO: Quitar timer y fecha del apartado donde sale el nombre de la baya
-            dateHtml = '';
-        } else if (gym.type === 'seed-water' || gym.type === 'seed-harvest') {
+            htmlFecha = '';
+        } else if (gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest') {
             // CAMBIO: Mostrar fecha de fin del timer en lugar de fecha de inicio
-            const endTimeStrFull = endTime.toLocaleString('es-ES', {
-                timeZone: 'Europe/Madrid',
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
+            const cadenaHoraFin = formatearFecha(horaFin);
 
-            dateHtml = `
+            htmlFecha = `
                 <div class="gym-status-right">
-                    <p class="gym-timer" data-timestamp="${timestampToUse}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
-                       data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
-                    <p class="gym-end-time large-date">${endTimeStrFull}</p>
+                    <p class="gym-timer" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
+                       data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}></p>
+                    <p class="gym-end-time large-date">${cadenaHoraFin}</p>
                 </div>`;
         } else {
             // Formato estándar para gimnasios
-            const endTimeStrFull = endTime.toLocaleString('es-ES', {
-                timeZone: 'Europe/Madrid',
-                day: '2-digit', month: '2-digit', year: 'numeric',
-                hour: '2-digit', minute: '2-digit'
-            });
+            const cadenaHoraFin = formatearFecha(horaFin);
 
-            dateHtml = `
+            htmlFecha = `
                 <div class="gym-status-right">
-                    <p class="gym-timer" data-timestamp="${timestampToUse}" data-cooldown="${cooldown}" data-gym-id="${gymId}"
-                       data-prefix="${prefix}" data-ready-label="${readyLabel}" ${shouldAutoReset ? 'data-auto-reset="true"' : ''}></p>
-                    <p class="gym-end-time large-date">${endTimeStrFull}</p>
+                    <p class="gym-timer" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
+                       data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}></p>
+                    <p class="gym-end-time large-date">${cadenaHoraFin}</p>
                 </div>`;
         }
     }
 
     // Determinar qué mostrar en la info (Líder o Cantidad de semillas)
-    let infoText = `<p>Líder: ${gym.leader}</p>`;
-    if (gym.type === 'seed-plant') {
-        if (isCompleted) {
+    let textoInfo = `<p>Líder: ${gimnasio.lider}</p>`;
+    if (gimnasio.tipo === 'seed-plant') {
+        if (estaCompletado) {
             // If planted, show the berry name and count
-            const berryName = progressData.berryName || "Semilla";
-            infoText = `<p class="planted-berry-title">${berryName}</p><p>Semillas: ${progressData.count}</p>`;
+            const nombreBaya = datosProgreso.nombreBaya || "Semilla";
+            textoInfo = `<p class="planted-berry-title">${nombreBaya}</p><p>Semillas: ${datosProgreso.cantidad}</p>`;
         } else {
             // If not planted, show dropdown
             // Sort berries alphabetically
-            const sortedBerries = [...berriesData].sort((a, b) => a.name.localeCompare(b.name));
-            let options = `<option value="">-- Elegir Baya --</option>`;
-            sortedBerries.forEach(b => {
-                options += `<option value="${b.name}">${b.name}</option>`;
+            const bayasOrdenadas = [...datosBayas].sort((a, b) => a.nombre.localeCompare(b.nombre));
+            let opciones = `<option value="">-- Elegir Baya --</option>`;
+            bayasOrdenadas.forEach(b => {
+                opciones += `<option value="${b.nombre}">${b.nombre}</option>`;
             });
             
-            infoText = `
+            textoInfo = `
                 <div class="seed-plant-controls" onclick="event.stopPropagation()">
                     <div class="control-group">
                         <label class="input-label">Seleccionar Baya</label>
-                        <select class="gym-berry-select">${options}</select>
+                        <select class="gym-berry-select">${opciones}</select>
                     </div>
                     <div class="control-group">
                         <label class="input-label">Nº Semillas</label>
                         <input type="number" class="seed-count-input" placeholder="Cantidad" min="1">
                     </div>
-                    <button class="btn-plant-confirm" onclick="handleInlinePlant('${regionName}', '${uniqueId}', this)">✔</button>
+                    <button class="btn-plant-confirm" onclick="window.manejarPlantadoEnLinea('${nombreRegion}', '${idUnico}', this)">✔</button>
                 </div>
             `;
         }
-    } else if (gym.type === 'seed-water' || gym.type === 'seed-harvest') {
-        infoText = ''; // Ocultar texto de líder para pasos intermedios
+    } else if (gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest') {
+        textoInfo = ''; // Ocultar texto de líder para pasos intermedios
     }
 
     // Lógica de imagen (si existe la propiedad 'image' en los datos)
-    let imageHtml = '';
+    let htmlImagen = '';
     // Si es una semilla plantada, mostramos la imagen de la baya específica
-    if (gym.type === 'seed-plant' && isCompleted && progressData.berryName) {
-        const berryImgName = progressData.berryName.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
-        const fallback = gym.image ? `this.src='../img/${gym.image}'` : "this.style.display='none'";
-        imageHtml = `<img src="../img/bayas/${berryImgName}" alt="${progressData.berryName}" class="gym-image" onerror="${fallback}">`;
-    } else if (gym.image) {
-        imageHtml = `<img src="../img/${gym.image}" alt="${gym.city}" class="gym-image">`;
+    if (gimnasio.tipo === 'seed-plant' && estaCompletado && datosProgreso.nombreBaya) {
+        const nombreImgBaya = datosProgreso.nombreBaya.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
+        const fallback = gimnasio.imagen ? `this.src='../img/${gimnasio.imagen}'` : "this.style.display='none'";
+        htmlImagen = `<img src="../img/bayas/${nombreImgBaya}" alt="${datosProgreso.nombreBaya}" class="gym-image" onerror="${fallback}">`;
+    } else if (gimnasio.imagen) {
+        htmlImagen = `<img src="../img/${gimnasio.imagen}" alt="${gimnasio.ciudad}" class="gym-image">`;
     }
 
     // Botón Puzzle para Sabrina
-    let puzzleBtn = '';
-    if (gym.leader === 'Sabrina') {
-        puzzleBtn = ` <button onclick="event.stopPropagation(); showImageModal('../img/Sabrina_puzzle.jpg')" style="border: none; background: none; cursor: pointer; font-size: 1.1rem; vertical-align: middle;" title="Ver solución">🧩</button>`;
+    let botonPuzzle = '';
+    if (gimnasio.lider === 'Sabrina') {
+        botonPuzzle = ` <button onclick="event.stopPropagation(); mostrarModalImagen('../img/Sabrina_puzzle.jpg')" style="border: none; background: none; cursor: pointer; font-size: 1.1rem; vertical-align: middle;" title="Ver solución">🧩</button>`;
     }
 
     // Lógica para mostrar u ocultar el título (h3)
-    let titleHtml = `<h3>${gym.city}${puzzleBtn}</h3>`;
+    let htmlTitulo = `<h3>${gimnasio.ciudad}${botonPuzzle}</h3>`;
 
     // Ajuste para alinear el checkbox con el dropdown (--Elegir Baya--) cuando toca plantar
-    let checkboxStyle = '';
-    if (gym.type === 'seed-plant') {
-        titleHtml = ''; // Siempre ocultar título (h3) para semillas
-        if (!isCompleted) {
-            checkboxStyle = 'style="align-self: flex-start; margin-top: 38px;"';
+    let estiloCheckbox = '';
+    if (gimnasio.tipo === 'seed-plant') {
+        htmlTitulo = ''; // Siempre ocultar título (h3) para semillas
+        if (!estaCompletado) {
+            estiloCheckbox = 'style="align-self: flex-start; margin-top: 38px;"';
         }
     }
 
     // CAMBIO: Quitar el checkbox del apartado huerto
-    let checkboxHtml = '';
-    if (regionName !== 'Huerto') {
-        checkboxHtml = `
-        <div class="checkbox-wrapper" ${checkboxStyle}>
+    let htmlCheckbox = '';
+    if (nombreRegion !== 'Huerto') {
+        htmlCheckbox = `
+        <div class="checkbox-wrapper" ${estiloCheckbox}>
             <div class="custom-checkbox"></div>
         </div>`;
     }
 
     // HTML interno del item
-    item.innerHTML = `
-        ${checkboxHtml}
-        ${imageHtml}
+    elementoLista.innerHTML = `
+        ${htmlCheckbox}
+        ${htmlImagen}
         <div class="gym-info">
-            ${titleHtml}
-            ${infoText}
+            ${htmlTitulo}
+            ${textoInfo}
         </div>
-        ${dateHtml}
+        ${htmlFecha}
     `;
     
-    return item;
+    return elementoLista;
 }
 
 // Helper para crear el elemento de Encuentros
-function createEncounterItem(regionName, gym) {
-    const item = document.createElement('li');
-    item.className = 'gym-item';
+function crearElementoEncuentro(nombreRegion, gimnasio) {
+    const elementoLista = document.createElement('li');
+    elementoLista.className = 'gym-item';
     
     // Imagen personalizada para Legendarios
-    let pokemonGif = '';
-    const legendaries = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
-    if (legendaries.includes(gym.leader)) {
-        pokemonGif = `<div style="margin-top: 5px;"><img src="../img/${gym.leader.toLowerCase()}.gif" alt="${gym.leader}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
+    let gifPokemon = '';
+    const legendarios = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
+    if (legendarios.includes(gimnasio.lider)) {
+        gifPokemon = `<div style="margin-top: 5px;"><img src="../img/${gimnasio.lider.toLowerCase()}.gif" alt="${gimnasio.lider}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
     }
 
-    item.innerHTML = `
+    elementoLista.innerHTML = `
         <div class="gym-info">
-            <h3>${gym.leader}</h3>
-            ${pokemonGif}
-            <p>Región: ${gym.city}</p>
+            <h3>${gimnasio.lider}</h3>
+            ${gifPokemon}
+            <p>Región: ${gimnasio.ciudad}</p>
         </div>
     `;
     
-    return item;
+    return elementoLista;
 }
 
 // Renderizar la interfaz
-function renderApp() {
-    const appContainer = document.getElementById('app');
-    if (!appContainer) return; // Evitar error en index.html
+function renderizarAplicacion() {
+    const contenedorApp = document.getElementById('app');
+    if (!contenedorApp) return; // Evitar error en index.html
 
-    appContainer.innerHTML = ''; // Limpiar
+    contenedorApp.innerHTML = ''; // Limpiar
 
     // Determinar qué datos mostrar según la URL
-    const path = window.location.pathname.toLowerCase();
-    let sections = [];
+    const ruta = window.location.pathname.toLowerCase();
+    let secciones = [];
 
-    if (path.includes('rotacionlegendarios')) {
-        sections.push({ data: encountersData, maxSlots: 2, wide: true });
-    } else if (path.includes('altomandotracker')) {
-        sections.push({ data: eliteFourData, maxSlots: 1, elite: true });
-    } else if (path.includes('semillas')) {
-        sections.push({ data: seedsData, maxSlots: 1 });
-    } else if (path.includes('battletracker')) {
+    if (ruta.includes('rotacionlegendarios')) {
+        secciones.push({ datos: datosEncuentros, maxSlots: 2, ancho: true });
+    } else if (ruta.includes('altomandotracker')) {
+        secciones.push({ datos: datosAltoMando, maxSlots: 1, elite: true });
+    } else if (ruta.includes('semillas')) {
+        secciones.push({ datos: datosSemillas, maxSlots: 1 });
+    } else if (ruta.includes('battletracker')) {
         // --- LÓGICA BATTLE TRACKER (CAJAS SEPARADAS) ---
-        const dashboard = document.createElement('div');
-        dashboard.className = 'battle-dashboard';
+        const tablero = document.createElement('div');
+        tablero.className = 'battle-dashboard';
 
         // Definir las dos secciones
-        const battleSections = [
-            { title: 'Gym Tracker', data: gymsData, maxSlots: 8, resetKey: 'gyms' },
-            { title: 'Alto Mando Tracker', data: eliteFourData, maxSlots: 1, elite: true, resetKey: 'elite' }
+        const seccionesBatalla = [
+            { titulo: 'Gym Tracker', datos: datosGimnasios, maxSlots: 8, claveReinicio: 'gyms' },
+            { titulo: 'Alto Mando Tracker', datos: datosAltoMando, maxSlots: 1, elite: true, claveReinicio: 'elite' }
         ];
 
-        battleSections.forEach(sect => {
-            const box = document.createElement('div');
-            box.className = 'tracker-box';
+        seccionesBatalla.forEach(seccion => {
+            const caja = document.createElement('div');
+            caja.className = 'tracker-box';
 
             // Header de la caja (Título + Botón Reset)
-            const header = document.createElement('div');
-            header.className = 'tracker-header';
+            const cabecera = document.createElement('div');
+            cabecera.className = 'tracker-header';
             
-            const title = document.createElement('h2');
-            title.textContent = sect.title;
-            title.style.margin = '0';
-            title.style.textTransform = 'uppercase';
-            title.style.color = '#333';
+            const titulo = document.createElement('h2');
+            titulo.textContent = seccion.titulo;
+            titulo.style.margin = '0';
+            titulo.style.textTransform = 'uppercase';
+            titulo.style.color = '#333';
 
-            const btnReset = document.createElement('button');
-            btnReset.className = 'btn-reset';
-            btnReset.textContent = 'Reiniciar';
-            btnReset.style.fontSize = '0.85rem';
-            btnReset.style.padding = '5px 15px';
-            btnReset.onclick = () => showResetModal(sect.resetKey);
+            const botonReinicio = document.createElement('button');
+            botonReinicio.className = 'btn-reset';
+            botonReinicio.textContent = 'Reiniciar';
+            botonReinicio.style.fontSize = '0.85rem';
+            botonReinicio.style.padding = '5px 15px';
+            botonReinicio.onclick = () => mostrarModalReinicio(seccion.claveReinicio);
 
-            header.appendChild(title);
-            header.appendChild(btnReset);
-            box.appendChild(header);
+            cabecera.appendChild(titulo);
+            cabecera.appendChild(botonReinicio);
+            caja.appendChild(cabecera);
 
             // Renderizar las regiones dentro de esta caja
-            renderRegionSet(sect.data, box, sect.maxSlots, false, sect.elite);
+            renderizarConjuntoRegiones(seccion.datos, caja, seccion.maxSlots, false, seccion.elite);
             
-            dashboard.appendChild(box);
+            tablero.appendChild(caja);
         });
 
-        appContainer.appendChild(dashboard);
-        updateTimers();
+        contenedorApp.appendChild(tablero);
+        actualizarTemporizadores();
         return; // Salimos aquí porque ya hemos renderizado todo para Battle Tracker
     } else {
         // Por defecto (si estamos en gymTracker.html antiguo o similar)
-        sections.push({ data: gymsData, maxSlots: 8 });
+        secciones.push({ datos: datosGimnasios, maxSlots: 8 });
     }
 
-    sections.forEach(section => {
-        renderRegionSet(section.data, appContainer, section.maxSlots, section.wide, section.elite);
+    secciones.forEach(seccion => {
+        renderizarConjuntoRegiones(seccion.datos, contenedorApp, seccion.maxSlots, seccion.ancho, seccion.elite);
     });
 
     // Actualizar timers inmediatamente tras renderizar
-    updateTimers();
+    actualizarTemporizadores();
 }
 
 // Función auxiliar para renderizar un conjunto de regiones
-function renderRegionSet(data, container, maxSlots, isWide, isElite) {
-    const path = window.location.pathname.toLowerCase();
+function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElite) {
+    const ruta = window.location.pathname.toLowerCase();
 
-    data.forEach(region => {
+    datos.forEach(region => {
         // Crear tarjeta de región
-        const card = document.createElement('div');
-        card.className = 'region-card';
+        const tarjeta = document.createElement('div');
+        tarjeta.className = 'region-card';
 
         // Header de la región
-        const header = document.createElement('div');
-        header.className = 'region-header';
+        const cabecera = document.createElement('div');
+        cabecera.className = 'region-header';
         
-        header.innerHTML = `${region.name}`;
-        card.appendChild(header);
+        cabecera.innerHTML = `${region.nombre}`;
+        tarjeta.appendChild(cabecera);
 
         // Lista de gimnasios
-        const list = document.createElement('ul');
-        list.className = 'gym-list';
+        const lista = document.createElement('ul');
+        lista.className = 'gym-list';
         
-        if (isWide) {
-            list.classList.add('horizontal-layout');
-            card.classList.add('wide-card');
-        } else if (isElite) {
-            card.classList.add('elite-four-card');
+        if (esAncho) {
+            lista.classList.add('horizontal-layout');
+            tarjeta.classList.add('wide-card');
+        } else if (esElite) {
+            tarjeta.classList.add('elite-four-card');
         }
 
-        region.gyms.forEach(gym => {
-            if (gym.type === 'encounter') {
-                list.appendChild(createEncounterItem(region.name, gym));
+        region.gimnasios.forEach(gimnasio => {
+            if (gimnasio.tipo === 'encounter') {
+                lista.appendChild(crearElementoEncuentro(region.nombre, gimnasio));
             } else {
-                list.appendChild(createGymItem(region.name, gym));
+                lista.appendChild(crearElementoGimnasio(region.nombre, gimnasio));
             }
         });
 
         // Rellenar huecos visuales para mantener la altura homogénea
-        if (region.gyms.length < maxSlots) {
-            for (let i = region.gyms.length; i < maxSlots; i++) {
-                const placeholder = document.createElement('li');
-                placeholder.className = 'gym-item placeholder';
-                placeholder.innerHTML = `
+        if (region.gimnasios.length < maxSlots) {
+            for (let i = region.gimnasios.length; i < maxSlots; i++) {
+                const marcadorPosicion = document.createElement('li');
+                marcadorPosicion.className = 'gym-item placeholder';
+                marcadorPosicion.innerHTML = `
                     <div class="checkbox-wrapper" style="visibility: hidden;"></div>
                     <div class="gym-info"><h3 style="color: #ddd;">---</h3></div>
                 `;
-                list.appendChild(placeholder);
+                lista.appendChild(marcadorPosicion);
             }
         }
 
-        card.appendChild(list);
+        tarjeta.appendChild(lista);
 
         // Añadir el botón de reinicio dentro de la tarjeta del Huerto en la página de semillas
-        if (path.includes('semillas') && region.name === "Huerto") {
-            const footer = document.createElement('div');
-            footer.className = 'region-card-footer';
+        if (ruta.includes('semillas') && region.nombre === "Huerto") {
+            const pie = document.createElement('div');
+            pie.className = 'region-card-footer';
             
-            const resetButton = document.createElement('button');
-            resetButton.className = 'btn-reset'; // Reutilizamos la clase para el estilo
-            resetButton.textContent = 'Reiniciar Huerto';
-            // La función showResetModal ya sabe qué borrar según la página
-            resetButton.addEventListener('click', showResetModal);
+            const botonReinicio = document.createElement('button');
+            botonReinicio.className = 'btn-reset'; // Reutilizamos la clase para el estilo
+            botonReinicio.textContent = 'Reiniciar Huerto';
+            // La función mostrarModalReinicio ya sabe qué borrar según la página
+            botonReinicio.addEventListener('click', mostrarModalReinicio);
             
-            footer.appendChild(resetButton);
-            card.appendChild(footer);
+            pie.appendChild(botonReinicio);
+            tarjeta.appendChild(pie);
         }
 
         // Renderizar Entrenadores Especiales (si existen)
-        if (region.specialTrainers && region.specialTrainers.length > 0) {
-            container.appendChild(card);
+        if (region.entrenadoresEspeciales && region.entrenadoresEspeciales.length > 0) {
+            contenedor.appendChild(tarjeta);
 
-            const specialBox = document.createElement('div');
-            specialBox.className = 'special-trainers-box standalone';
+            const cajaEspecial = document.createElement('div');
+            cajaEspecial.className = 'special-trainers-box standalone';
             
-            const specialHeader = document.createElement('div');
-            specialHeader.className = 'region-header';
-            specialHeader.innerHTML = `Combates Especiales`;
-            specialBox.appendChild(specialHeader);
+            const cabeceraEspecial = document.createElement('div');
+            cabeceraEspecial.className = 'region-header';
+            cabeceraEspecial.innerHTML = `Combates Especiales`;
+            cajaEspecial.appendChild(cabeceraEspecial);
             
-            const specialList = document.createElement('ul');
-            specialList.className = 'gym-list';
+            const listaEspecial = document.createElement('ul');
+            listaEspecial.className = 'gym-list';
             
-            region.specialTrainers.forEach(trainer => {
-                specialList.appendChild(createGymItem(region.name, trainer));
+            region.entrenadoresEspeciales.forEach(entrenador => {
+                listaEspecial.appendChild(crearElementoGimnasio(region.nombre, entrenador));
             });
             
-            specialBox.appendChild(specialList);
-            container.appendChild(specialBox);
+            cajaEspecial.appendChild(listaEspecial);
+            contenedor.appendChild(cajaEspecial);
         } else {
-            container.appendChild(card);
+            contenedor.appendChild(tarjeta);
         }
     });
 }
 
 // Renderizar la información de las bayas
-function renderBerryInfo() {
-    const container = document.getElementById('berry-info-container');
-    if (!container) return;
+function renderizarInfoBayas() {
+    const contenedor = document.getElementById('berry-info-container');
+    if (!contenedor) return;
 
-    container.innerHTML = ''; // Limpiar contenido previo
+    contenedor.innerHTML = ''; // Limpiar contenido previo
  
-    const card = document.createElement('div');
-    card.className = 'region-card';
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'region-card';
  
-    const header = document.createElement('div');
-    header.className = 'region-header';
-    header.textContent = 'Información sobre Bayas';
-    card.appendChild(header);
+    const cabecera = document.createElement('div');
+    cabecera.className = 'region-header';
+    cabecera.textContent = 'Información sobre Bayas';
+    tarjeta.appendChild(cabecera);
  
     // Wrapper for select and result
-    const wrapper = document.createElement('div');
-    wrapper.className = 'berry-selector-wrapper';
+    const envoltorio = document.createElement('div');
+    envoltorio.className = 'berry-selector-wrapper';
  
     // Create select dropdown
-    const select = document.createElement('select');
-    select.className = 'berry-select';
-    select.innerHTML = `<option value="">Seleccione una baya...</option>`;
+    const selector = document.createElement('select');
+    selector.className = 'berry-select';
+    selector.innerHTML = `<option value="">Seleccione una baya...</option>`;
  
     // Sort berries alphabetically by name
-    const sortedBerries = [...berriesData].sort((a, b) => a.name.localeCompare(b.name));
+    const bayasOrdenadas = [...datosBayas].sort((a, b) => a.nombre.localeCompare(b.nombre));
  
-    sortedBerries.forEach(berry => {
-        select.innerHTML += `<option value="${berry.name}">${berry.name}</option>`;
+    bayasOrdenadas.forEach(baya => {
+        selector.innerHTML += `<option value="${baya.nombre}">${baya.nombre}</option>`;
     });
  
     // Create container for the selected berry's info
-    const infoContainer = document.createElement('div');
-    infoContainer.id = 'selected-berry-info';
-    infoContainer.className = 'berry-content-display';
+    const contenedorInfo = document.createElement('div');
+    contenedorInfo.id = 'selected-berry-info';
+    contenedorInfo.className = 'berry-content-display';
     // Ensure it has content initially to respect min-height
-    infoContainer.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
+    contenedorInfo.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
  
-    const generateImageName = (name) => {
-        return name.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
+    const generarNombreImagen = (nombre) => {
+        return nombre.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
     };
  
     // Event listener for the select
-    select.addEventListener('change', (event) => {
-        const selectedName = event.target.value;
+    selector.addEventListener('change', (evento) => {
+        const nombreSeleccionado = evento.target.value;
  
-        if (selectedName) {
-            const berry = berriesData.find(b => b.name === selectedName);
-            if (berry) {
-                const finalImageName = generateImageName(berry.name);
+        if (nombreSeleccionado) {
+            const baya = datosBayas.find(b => b.nombre === nombreSeleccionado);
+            if (baya) {
+                const nombreImagenFinal = generarNombreImagen(baya.nombre);
  
-                let contentHTML = `
+                let htmlContenido = `
                     <div class="selected-berry-header">
-                        <img src="../img/bayas/${finalImageName}" alt="${berry.name}" class="berry-image" onerror="this.src='../img/semilla_picante.png'; this.style.filter='grayscale(1)';">
-                        <span class="berry-name">${berry.name}</span>
+                        <img src="../img/bayas/${nombreImagenFinal}" alt="${baya.nombre}" class="berry-image" onerror="this.src='../img/semilla_picante.png'; this.style.filter='grayscale(1)';">
+                        <span class="berry-name">${baya.nombre}</span>
                     </div>
                     <div class="selected-berry-details">
                         <table class="berry-info-table">
                             <tbody>
-                                <tr><th>Uso</th><td>${berry.usage}</td></tr>
-                                <tr><th>Combinación</th><td>${berry.combination}</td></tr>
-                                <tr><th>Riego</th><td>Cada ${berry.waterTime}</td></tr>
-                                <tr><th>Cosecha</th><td>${berry.harvestTime}</td></tr>
-                                <tr><th>Sabor</th><td>${berry.flavor}</td></tr>
-                                <tr><th>Color</th><td>${berry.color}</td></tr>
+                                <tr><th>Uso</th><td>${baya.uso}</td></tr>
+                                <tr><th>Combinación</th><td>${baya.combinacion}</td></tr>
+                                <tr><th>Riego</th><td>Cada ${baya.tiempoRiego}</td></tr>
+                                <tr><th>Cosecha</th><td>${baya.tiempoCosecha}</td></tr>
+                                <tr><th>Sabor</th><td>${baya.sabor}</td></tr>
+                                <tr><th>Color</th><td>${baya.color}</td></tr>
                             </tbody>
                         </table>
                     </div>`;
                 
-                infoContainer.innerHTML = contentHTML;
+                contenedorInfo.innerHTML = htmlContenido;
                 // infoContainer.style.display = 'block'; // Already block via CSS
             }
         } else {
             // Reset to placeholder
-            infoContainer.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
+            contenedorInfo.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
         }
     });
  
-    wrapper.appendChild(select);
-    wrapper.appendChild(infoContainer);
-    card.appendChild(wrapper);
-    container.appendChild(card);
+    envoltorio.appendChild(selector);
+    envoltorio.appendChild(contenedorInfo);
+    tarjeta.appendChild(envoltorio);
+    contenedor.appendChild(tarjeta);
 }
 
 // --- NAVEGACIÓN ---
-async function loadNav() {
-    const placeholder = document.getElementById('nav-placeholder');
-    if (!placeholder) return;
+async function cargarNavegacion() {
+    const marcadorPosicion = document.getElementById('nav-placeholder');
+    if (!marcadorPosicion) return;
 
     try {
-        const response = await fetch('nav.html');
-        if (response.ok) {
-            placeholder.innerHTML = await response.text();
+        const respuesta = await fetch('nav.html');
+        if (respuesta.ok) {
+            marcadorPosicion.innerHTML = await respuesta.text();
         } else {
-            console.error(`Error cargando nav.html: ${response.status}. Verifica si el archivo en Git se llama 'Nav.html' (mayúscula) en lugar de 'nav.html'.`);
+            console.error(`Error cargando nav.html: ${respuesta.status}. Verifica si el archivo en Git se llama 'Nav.html' (mayúscula) en lugar de 'nav.html'.`);
         }
     } catch (error) {
         console.error("Error cargando navegación (posiblemente por protocolo file://):", error);
         // Fallback visual si falla la carga local
-        placeholder.innerHTML = '<div style="text-align:center; padding:10px; background:#eee;">Menú no cargado (requiere servidor local)</div>';
+        marcadorPosicion.innerHTML = '<div style="text-align:center; padding:10px; background:#eee;">Menú no cargado (requiere servidor local)</div>';
     }
 }
 
 // Funciones del Modal
-function showResetModal(context) {
+function mostrarModalReinicio(contexto) {
     // Si context es un string (ej: 'gyms'), lo guardamos. Si es un evento, lo ignoramos (null).
-    if (typeof context === 'string') {
-        resetContext = context;
+    if (typeof contexto === 'string') {
+        contextoReinicio = contexto;
     } else {
-        resetContext = null;
+        contextoReinicio = null;
     }
 
     document.getElementById('modal-overlay').classList.add('active');
     const modal = document.getElementById('modal-overlay');
     
-    const path = window.location.pathname.toLowerCase();
+    const ruta = window.location.pathname.toLowerCase();
     // Lógica específica para la página de encuentros
-    if (path.includes('rotacionlegendarios')) {
-        const content = modal.querySelector('.modal-content');
+    if (ruta.includes('rotacionlegendarios')) {
+        const contenido = modal.querySelector('.modal-content');
         
-        // Generar botones dinámicamente según las regiones disponibles en encountersData
-        let buttonsHtml = '';
-        encountersData.forEach(region => {
-            const safeId = region.name.replace(/\s+/g, '-').toLowerCase();
-            buttonsHtml += `<button class="btn-modal btn-confirm" id="reset-${safeId}">${region.name}</button>`;
+        // Generar botones dinámicamente según las regiones disponibles en datosEncuentros
+        let htmlBotones = '';
+        datosEncuentros.forEach(region => {
+            const idSeguro = region.nombre.replace(/\s+/g, '-').toLowerCase();
+            htmlBotones += `<button class="btn-modal btn-confirm" id="reset-${idSeguro}">${region.nombre}</button>`;
         });
 
-        content.innerHTML = `
+        contenido.innerHTML = `
             <h3>Reiniciar Encuentros</h3>
             <p>Selecciona la región a reiniciar:</p>
             <div class="modal-actions" style="flex-wrap: wrap; gap: 10px;">
                 <button class="btn-modal btn-cancel" id="modal-cancel-dynamic">Cancelar</button>
-                ${buttonsHtml}
+                ${htmlBotones}
             </div>
         `;
         
         // Asignar eventos a los nuevos botones
-        document.getElementById('modal-cancel-dynamic').onclick = hideResetModal;
-        encountersData.forEach(region => {
-            const safeId = region.name.replace(/\s+/g, '-').toLowerCase();
-            const btn = document.getElementById(`reset-${safeId}`);
-            if (btn) btn.onclick = () => resetSpecificRegion(region.name);
+        document.getElementById('modal-cancel-dynamic').onclick = ocultarModalReinicio;
+        datosEncuentros.forEach(region => {
+            const idSeguro = region.nombre.replace(/\s+/g, '-').toLowerCase();
+            const boton = document.getElementById(`reset-${idSeguro}`);
+            if (boton) boton.onclick = () => reiniciarRegionEspecifica(region.nombre);
         });
     }
     
     modal.classList.add('active');
 }
 
-function hideResetModal() {
+function ocultarModalReinicio() {
     document.getElementById('modal-overlay').classList.remove('active');
 }
 
-function resetSpecificRegion(regionName) {
-    const region = encountersData.find(r => r.name === regionName);
+function reiniciarRegionEspecifica(nombreRegion) {
+    const region = datosEncuentros.find(r => r.nombre === nombreRegion);
     if (region) {
-        region.gyms.forEach(item => {
-            const uniqueId = item.id || item.leader;
-            const id = getGymId(region.name, uniqueId);
-            delete userProgress[id];
+        region.gimnasios.forEach(item => {
+            const idUnico = item.id || item.lider;
+            const id = obtenerIdGimnasio(region.nombre, idUnico);
+            delete progresoUsuario[id];
         });
-        saveProgress();
-        renderApp();
+        guardarProgreso();
+        renderizarAplicacion();
     }
-    hideResetModal();
+    ocultarModalReinicio();
 }
 
-function confirmReset() {
+function confirmarReinicio() {
     // Determinar qué datos corresponden a la página actual para borrar solo esos
-    let datasetsToReset = [];
-    const path = window.location.pathname.toLowerCase();
+    let conjuntosDatosAReiniciar = [];
+    const ruta = window.location.pathname.toLowerCase();
     
     // Verificar si venimos de un botón específico del Battle Tracker
-    if (resetContext === 'gyms') {
-        datasetsToReset = [gymsData];
-    } else if (resetContext === 'elite') {
-        datasetsToReset = [eliteFourData];
-    } else if (path.includes('altomandotracker')) {
-        datasetsToReset = [eliteFourData];
-    } else if (path.includes('semillas')) {
-        datasetsToReset = [seedsData];
-    } else if (path.includes('rotacionlegendarios')) {
-        datasetsToReset = [encountersData];
+    if (contextoReinicio === 'gyms') {
+        conjuntosDatosAReiniciar = [datosGimnasios];
+    } else if (contextoReinicio === 'elite') {
+        conjuntosDatosAReiniciar = [datosAltoMando];
+    } else if (ruta.includes('altomandotracker')) {
+        conjuntosDatosAReiniciar = [datosAltoMando];
+    } else if (ruta.includes('semillas')) {
+        conjuntosDatosAReiniciar = [datosSemillas];
+    } else if (ruta.includes('rotacionlegendarios')) {
+        conjuntosDatosAReiniciar = [datosEncuentros];
     } else {
-        datasetsToReset = [gymsData];
+        conjuntosDatosAReiniciar = [datosGimnasios];
     }
 
     // Borrar solo las claves asociadas a los datos de la página actual
-    datasetsToReset.forEach(dataset => {
-        dataset.forEach(region => {
-            region.gyms.forEach(item => {
-                const uniqueId = item.id || item.leader;
-                const id = getGymId(region.name, uniqueId);
-                delete userProgress[id];
+    conjuntosDatosAReiniciar.forEach(conjuntoDatos => {
+        conjuntoDatos.forEach(region => {
+            region.gimnasios.forEach(item => {
+                const idUnico = item.id || item.lider;
+                const id = obtenerIdGimnasio(region.nombre, idUnico);
+                delete progresoUsuario[id];
             });
 
-            if (region.specialTrainers) {
-                region.specialTrainers.forEach(trainer => {
-                    const uniqueId = trainer.id || trainer.leader;
-                    const id = getGymId(region.name, uniqueId);
-                    delete userProgress[id];
+            if (region.entrenadoresEspeciales) {
+                region.entrenadoresEspeciales.forEach(entrenador => {
+                    const idUnico = entrenador.id || entrenador.lider;
+                    const id = obtenerIdGimnasio(region.nombre, idUnico);
+                    delete progresoUsuario[id];
                 });
             }
         });
     });
 
-    saveProgress();
-    renderApp();
-    hideResetModal();
+    guardarProgreso();
+    renderizarAplicacion();
+    ocultarModalReinicio();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // --- MODAL DE IMAGEN ---
-function setupImageModal() {
+function configurarModalImagen() {
     if (!document.getElementById('img-modal-overlay')) {
         const modal = document.createElement('div');
         modal.id = 'img-modal-overlay';
@@ -1027,7 +1028,7 @@ function setupImageModal() {
     }
 }
 
-window.showImageModal = function(src) {
+window.mostrarModalImagen = function(src) {
     const modal = document.getElementById('img-modal-overlay');
     const img = document.getElementById('img-modal-target');
     if (modal && img) {
@@ -1037,95 +1038,95 @@ window.showImageModal = function(src) {
 };
 
 // --- FUNCIÓN PLANTAR EN LÍNEA ---
-window.handleInlinePlant = function(regionName, uniqueId, btnElement) {
-    const container = btnElement.parentElement;
-    const select = container.querySelector('.gym-berry-select');
-    const inputCount = container.querySelector('.seed-count-input');
+window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
+    const contenedor = elementoBoton.parentElement;
+    const selector = contenedor.querySelector('.gym-berry-select');
+    const inputCantidad = contenedor.querySelector('.seed-count-input');
 
-    const berryName = select.value;
-    const count = parseInt(inputCount.value);
+    const nombreBaya = selector.value;
+    const cantidad = parseInt(inputCantidad.value);
 
-    if (!berryName) {
+    if (!nombreBaya) {
         alert("Por favor, selecciona una baya.");
         return;
     }
-    if (!count || count <= 0) {
+    if (!cantidad || cantidad <= 0) {
         alert("Por favor, introduce una cantidad válida.");
         return;
     }
 
     // Obtener datos de la baya seleccionada
-    const berry = berriesData.find(b => b.name === berryName);
-    const harvestHours = parseBerryHours(berry.harvestTime);
-    const waterHours = parseBerryHours(berry.waterTime);
+    const baya = datosBayas.find(b => b.nombre === nombreBaya);
+    const horasCosecha = analizarHorasBaya(baya.tiempoCosecha);
+    const horasRiego = analizarHorasBaya(baya.tiempoRiego);
 
-    const id = getGymId(regionName, uniqueId);
-    userProgress[id] = {
+    const id = obtenerIdGimnasio(nombreRegion, idUnico);
+    progresoUsuario[id] = {
         timestamp: new Date().toISOString(),
-        count: count,
-        berryName: berryName,
-        harvestInterval: harvestHours,
-        waterInterval: waterHours
+        cantidad: cantidad,
+        nombreBaya: nombreBaya,
+        intervaloCosecha: horasCosecha,
+        intervaloRiego: horasRiego
     };
 
-    saveProgress();
-    renderApp();
+    guardarProgreso();
+    renderizarAplicacion();
 };
 
 // --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
-function setupAuthUI() {
-    const header = document.querySelector('header');
-    if (!header) return;
+function configurarInterfazAuth() {
+    const cabecera = document.querySelector('header');
+    if (!cabecera) return;
 
-    let userContainer = document.getElementById('user-auth-container');
-    if (!userContainer) {
-        userContainer = document.createElement('div');
-        userContainer.id = 'user-auth-container';
-        userContainer.style.position = 'absolute';
-        userContainer.style.top = '50%';
-        userContainer.style.right = '20px';
-        userContainer.style.transform = 'translateY(-50%)';
-        userContainer.style.display = 'flex';
-        userContainer.style.gap = '10px';
-        header.appendChild(userContainer);
-        header.style.position = 'relative';
+    let contenedorUsuario = document.getElementById('user-auth-container');
+    if (!contenedorUsuario) {
+        contenedorUsuario = document.createElement('div');
+        contenedorUsuario.id = 'user-auth-container';
+        contenedorUsuario.style.position = 'absolute';
+        contenedorUsuario.style.top = '50%';
+        contenedorUsuario.style.right = '20px';
+        contenedorUsuario.style.transform = 'translateY(-50%)';
+        contenedorUsuario.style.display = 'flex';
+        contenedorUsuario.style.gap = '10px';
+        cabecera.appendChild(contenedorUsuario);
+        cabecera.style.position = 'relative';
     }
 
-    userContainer.innerHTML = '';
+    contenedorUsuario.innerHTML = '';
 
     // Botón Exportar
-    const btnExport = document.createElement('button');
-    btnExport.textContent = '💾 Guardar Archivo';
-    btnExport.className = 'btn-data';
-    btnExport.style.padding = '5px 10px';
-    btnExport.style.fontSize = '0.8rem';
-    btnExport.onclick = exportData;
+    const botonExportar = document.createElement('button');
+    botonExportar.textContent = '💾 Guardar Archivo';
+    botonExportar.className = 'btn-data';
+    botonExportar.style.padding = '5px 10px';
+    botonExportar.style.fontSize = '0.8rem';
+    botonExportar.onclick = exportarDatos;
 
     // Botón Importar
-    const btnImport = document.createElement('button');
-    btnImport.textContent = '📂 Cargar Archivo';
-    btnImport.className = 'btn-data';
-    btnImport.style.padding = '5px 10px';
-    btnImport.style.fontSize = '0.8rem';
-    btnImport.style.backgroundColor = '#4CAF50';
-    btnImport.onclick = () => document.getElementById('import-file').click();
+    const botonImportar = document.createElement('button');
+    botonImportar.textContent = '📂 Cargar Archivo';
+    botonImportar.className = 'btn-data';
+    botonImportar.style.padding = '5px 10px';
+    botonImportar.style.fontSize = '0.8rem';
+    botonImportar.style.backgroundColor = '#4CAF50';
+    botonImportar.onclick = () => document.getElementById('import-file').click();
 
     // Input oculto para importar
-    const inputFile = document.createElement('input');
-    inputFile.type = 'file';
-    inputFile.id = 'import-file';
-    inputFile.accept = '.json';
-    inputFile.style.display = 'none';
-    inputFile.onchange = importData;
+    const inputArchivo = document.createElement('input');
+    inputArchivo.type = 'file';
+    inputArchivo.id = 'import-file';
+    inputArchivo.accept = '.json';
+    inputArchivo.style.display = 'none';
+    inputArchivo.onchange = importarDatos;
 
-    userContainer.appendChild(btnExport);
-    userContainer.appendChild(btnImport);
-    userContainer.appendChild(inputFile);
+    contenedorUsuario.appendChild(botonExportar);
+    contenedorUsuario.appendChild(botonImportar);
+    contenedorUsuario.appendChild(inputArchivo);
 }
 
-function exportData() {
-    const dataStr = JSON.stringify(userProgress, null, 2);
-    const blob = new Blob([dataStr], { type: "application/json" });
+function exportarDatos() {
+    const cadenaDatos = JSON.stringify(progresoUsuario, null, 2);
+    const blob = new Blob([cadenaDatos], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     
     const a = document.createElement('a');
@@ -1137,67 +1138,67 @@ function exportData() {
     URL.revokeObjectURL(url);
 }
 
-function importData(event) {
-    const file = event.target.files[0];
-    if (!file) return;
+function importarDatos(evento) {
+    const archivo = evento.target.files[0];
+    if (!archivo) return;
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
+    const lector = new FileReader();
+    lector.onload = function(e) {
         try {
-            const data = JSON.parse(e.target.result);
-            userProgress = data;
-            saveProgress();
-            renderApp();
+            const datos = JSON.parse(e.target.result);
+            progresoUsuario = datos;
+            guardarProgreso();
+            renderizarAplicacion();
             alert('Datos cargados correctamente.');
         } catch (error) {
             console.error("Error al leer el archivo:", error);
             alert('Error al leer el archivo. Asegúrate de que es un JSON válido.');
         }
     };
-    reader.readAsText(file);
-    event.target.value = '';
+    lector.readAsText(archivo);
+    evento.target.value = '';
 }
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
-    loadNav();
-    setupImageModal();
+    cargarNavegacion();
+    configurarModalImagen();
     
     // Actualizar datos de encuentros solo una vez al cargar
-    const path = window.location.pathname.toLowerCase();
-    if (path.includes('semillas')) {
+    const ruta = window.location.pathname.toLowerCase();
+    if (ruta.includes('semillas')) {
         document.body.classList.add('page-semillas');
     }
-    if (path.includes('rotacionlegendarios')) {
-        updateEncountersData();
+    if (ruta.includes('rotacionlegendarios')) {
+        actualizarDatosEncuentros();
     }
 
     // Iniciar aplicación local
-    setupAuthUI();
-    await loadProgress();
-    renderApp();
+    configurarInterfazAuth();
+    await cargarProgreso();
+    renderizarAplicacion();
     
     // Renderizar información de bayas si estamos en la página de semillas
-    if (path.includes('semillas')) {
-        renderBerryInfo();
+    if (ruta.includes('semillas')) {
+        renderizarInfoBayas();
     }
 
     // Actualizar temporizadores cada segundo (1000 ms)
-    setInterval(updateTimers, 1000);
+    setInterval(actualizarTemporizadores, 1000);
     
     // Asignar evento al botón de reset
-    const resetBtn = document.getElementById('btn-reset');
-    if(resetBtn) {
-        resetBtn.addEventListener('click', showResetModal);
+    const botonReinicio = document.getElementById('btn-reset');
+    if(botonReinicio) {
+        botonReinicio.addEventListener('click', mostrarModalReinicio);
     }
 
     // Eventos del modal
-    const modalCancel = document.getElementById('modal-cancel');
-    if (modalCancel) {
-        modalCancel.addEventListener('click', hideResetModal);
+    const cancelarModal = document.getElementById('modal-cancel');
+    if (cancelarModal) {
+        cancelarModal.addEventListener('click', ocultarModalReinicio);
     }
-    const modalConfirm = document.getElementById('modal-confirm');
-    if (modalConfirm) {
-        modalConfirm.addEventListener('click', confirmReset);
+    const confirmarModal = document.getElementById('modal-confirm');
+    if (confirmarModal) {
+        confirmarModal.addEventListener('click', confirmarReinicio);
     }
 });
