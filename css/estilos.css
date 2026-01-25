@@ -148,7 +148,7 @@ header::after {
 
 /* --- CONTENEDOR PRINCIPAL --- */
 .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 20px auto 40px;
     padding: 0 20px;
     display: flex;
@@ -163,7 +163,7 @@ header::after {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
     border: var(--border-subtle);
     flex: 1 1 320px;
     max-width: 450px;
@@ -173,7 +173,6 @@ header::after {
 }
 
 .region-card:hover {
-    transform: translateY(-5px);
     box-shadow: 0 12px 30px rgba(103, 58, 183, 0.2);
     border-color: var(--light-purple);
 }
@@ -213,9 +212,9 @@ header::after {
     padding: 15px 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: background-color 0.2s;
     position: relative;
-    min-height: 80px;
+    height: 110px;
 }
 
 .gym-item:last-child {
@@ -654,8 +653,9 @@ header::after {
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    transition: box-shadow 0.3s, border-color 0.3s;
     padding: 30px;
+    height: auto;
 }
 
 .gym-list.horizontal-layout .gym-info {
@@ -664,7 +664,6 @@ header::after {
 }
 
 .gym-list.horizontal-layout .gym-item:hover {
-    transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.5);
     border-color: var(--light-purple);
 }
