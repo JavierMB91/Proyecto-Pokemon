@@ -671,7 +671,6 @@ function renderizarAplicacion() {
             titulo.textContent = seccion.titulo;
             titulo.style.margin = '0';
             titulo.style.textTransform = 'uppercase';
-            titulo.style.color = '#333';
 
             const botonReinicio = document.createElement('button');
             botonReinicio.className = 'btn-reset';
@@ -1108,7 +1107,6 @@ function configurarInterfazAuth() {
     botonImportar.className = 'btn-data';
     botonImportar.style.padding = '5px 10px';
     botonImportar.style.fontSize = '0.8rem';
-    botonImportar.style.backgroundColor = '#4CAF50';
     botonImportar.onclick = () => document.getElementById('import-file').click();
 
     // Input oculto para importar
