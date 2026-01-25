@@ -620,9 +620,6 @@ header::after {
     border: 1px solid #eee;
     border-radius: var(--radius);
     padding: 20px;
-    /* display: none;  <-- REMOVED */
-    display: block; /* Always take up space */
-    min-height: auto; /* Altura automática para ajustarse al contenido real */
     display: flex; /* Usar Flexbox para manejar el contenido interno */
     flex-direction: column;
     flex-grow: 1; /* Expandirse para llenar el espacio vacío */
@@ -709,7 +706,6 @@ header::after {
 
 /* Información de Bayas: Altura mínima fija grande */
 #berry-info-container.seeds-column .region-card {
-    min-height: 0; /* Eliminar restricciones de altura mínima */
     min-height: 400px; /* Coincidir con la altura mínima del Huerto (400px) */
     height: auto; /* La altura será exactamente la del contenido */
     flex: 0 0 auto; /* IMPORTANTE: Evita que Flexbox estire la tarjeta verticalmente */
@@ -719,8 +715,6 @@ header::after {
 .berry-placeholder {
     text-align: center;
     color: #999;
-    padding: 60px 20px; /* Espacio interno cómodo, sin forzar altura fija */
-    margin: 0;
     padding: 20px;
     margin: auto; /* Esto centrará verticalmente el texto cuando no haya baya seleccionada */
 }
