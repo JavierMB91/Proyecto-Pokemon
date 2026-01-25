@@ -714,7 +714,10 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
         const cabecera = document.createElement('div');
         cabecera.className = 'region-header';
         
-        cabecera.innerHTML = `${region.nombre}`;
+        cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">${region.nombre}</span><span class="toggle-icon" style="transition: transform 0.3s;">▼</span>`;
+        cabecera.onclick = () => {
+            tarjeta.classList.toggle('collapsed');
+        };
         tarjeta.appendChild(cabecera);
 
         // Lista de gimnasios
@@ -805,7 +808,10 @@ function renderizarInfoBayas() {
  
     const cabecera = document.createElement('div');
     cabecera.className = 'region-header';
-    cabecera.textContent = 'Información sobre Bayas';
+    cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">Información sobre Bayas</span><span class="toggle-icon" style="transition: transform 0.3s;">▼</span>`;
+    cabecera.onclick = () => {
+        tarjeta.classList.toggle('collapsed');
+    };
     tarjeta.appendChild(cabecera);
  
     // Wrapper for select and result

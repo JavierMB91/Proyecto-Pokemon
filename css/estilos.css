@@ -192,12 +192,29 @@ header::after {
     background: linear-gradient(to right, var(--bg-input), var(--bg-panel));
     color: var(--light-purple);
     padding: 15px;
-    text-align: center;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-bottom: 1px solid var(--dark-purple);
     font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.region-card.collapsed > *:not(.region-header) {
+    display: none !important;
+}
+
+.region-card.collapsed {
+    min-height: 0 !important;
+    height: auto !important;
+}
+
+.region-card.collapsed .toggle-icon {
+    transform: rotate(-90deg);
 }
 
 /* --- LISTA DE GIMNASIOS --- */
