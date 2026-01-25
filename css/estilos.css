@@ -336,7 +336,7 @@ header::after {
 }
 
 .gym-timer {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #ef6c00; /* Naranja */
     margin-bottom: 2px;
@@ -836,8 +836,8 @@ header::after {
     font-size: 0.95rem;
 }
 
-.planted-berry-title {
-    font-size: 1.2rem;
+.gym-info .planted-berry-title {
+    font-size: 1.5rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 2px;
@@ -846,5 +846,4 @@ header::after {
 .gym-end-time.large-date {
     font-size: 0.9rem;
     margin-top: 4px;
-}
 }
