@@ -235,10 +235,6 @@ header::after {
     height: 110px;
 }
 
-.gym-item:last-child {
-    border-bottom: none;
-}
-
 .gym-item:hover {
     background-color: rgba(103, 58, 183, 0.1); /* Tinte morado suave */
 }
