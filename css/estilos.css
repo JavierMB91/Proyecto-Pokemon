@@ -1065,7 +1065,6 @@ header::after {
     /* ANCHO FIJO Y AMOLDADO A LOS GIMNASIOS (4 columnas aprox) */
     width: 1050px; 
     max-width: 95vw; /* Para pantallas pequeñas */
-    transition: height 0.3s ease, border-color 0.3s;
     display: flex;
     flex-direction: column;
 }
@@ -1135,12 +1134,11 @@ header::after {
     height: auto; /* Altura automática según contenido */
     min-height: 160px;
     justify-content: center;
-    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    transition: box-shadow 0.2s, background-color 0.2s;
     position: relative;
 }
 
 .battle-gym-item:hover {
-    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     background-color: rgba(103, 58, 183, 0.15);
     border-color: var(--light-purple);
