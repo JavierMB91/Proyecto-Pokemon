@@ -42,6 +42,8 @@
 html {
     background-color: var(--bg-color);
     font-size: 16px; /* Legibilidad mejorada */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 body {
@@ -60,6 +62,17 @@ body {
     min-height: 100vh;
     opacity: 0;
     transition: opacity 0.6s ease-out;
+
+    /* Forzar la aparición del área de scroll para evitar saltos de layout */
+    overflow-y: scroll;
+    /* Ocultar la barra de scroll pero mantener la funcionalidad */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Ocultar la barra de scroll para Webkit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    display: none;
 }
 
 body.page-loaded {
