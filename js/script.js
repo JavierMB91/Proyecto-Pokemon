@@ -533,7 +533,12 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         if (estaCompletado) {
             // If planted, show the berry name and count
             const nombreBaya = datosProgreso.nombreBaya || "Semilla";
-            textoInfo = `<p class="planted-berry-title">${nombreBaya}</p><p>Semillas: ${datosProgreso.cantidad}</p>`;
+            textoInfo = `
+                <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                    <p class="planted-berry-title" style="margin-bottom: 0;">${nombreBaya}</p>
+                    <button class="btn-reset" onclick="window.mostrarModalReinicio()" style="font-size: 0.85rem; padding: 6px 12px; margin-left: 10px; text-transform: none; line-height: 1;">Reiniciar Huerto</button>
+                </div>
+                <p>Semillas: ${datosProgreso.cantidad}</p>`;
         } else {
             // If not planted, show dropdown
             // Sort berries alphabetically
@@ -759,23 +764,6 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
 
         tarjeta.appendChild(lista);
 
-        // Añadir el botón de reinicio dentro de la tarjeta del Huerto en la página de semillas
-        if (ruta.includes('semillas') && region.nombre === "Huerto") {
-            const pie = document.createElement('div');
-            pie.className = 'region-card-footer';
-            
-            const botonReinicio = document.createElement('button');
-            botonReinicio.className = 'btn-reset'; // Reutilizamos la clase para el estilo
-            botonReinicio.textContent = 'Reiniciar Huerto';
-            botonReinicio.style.fontSize = '0.85rem';
-            botonReinicio.style.padding = '5px 15px';
-            // La función mostrarModalReinicio ya sabe qué borrar según la página
-            botonReinicio.addEventListener('click', mostrarModalReinicio);
-            
-            pie.appendChild(botonReinicio);
-            tarjeta.appendChild(pie);
-        }
-
         // Renderizar Entrenadores Especiales (si existen)
         if (region.entrenadoresEspeciales && region.entrenadoresEspeciales.length > 0) {
             const cajaEspecial = document.createElement('div');
@@ -949,6 +937,7 @@ function mostrarModalReinicio(contexto) {
     
     modal.classList.add('active');
 }
+window.mostrarModalReinicio = mostrarModalReinicio;
 
 function ocultarModalReinicio() {
     document.getElementById('modal-overlay').classList.remove('active');
