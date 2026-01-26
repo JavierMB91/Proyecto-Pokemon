@@ -714,10 +714,15 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
         const cabecera = document.createElement('div');
         cabecera.className = 'region-header';
         
-        cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">${region.nombre}</span><span class="toggle-icon" style="transition: transform 0.3s;">▼</span>`;
-        cabecera.onclick = () => {
-            tarjeta.classList.toggle('collapsed');
-        };
+        if (region.nombre === "Huerto") {
+            cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">${region.nombre}</span>`;
+            cabecera.style.cursor = 'default';
+        } else {
+            cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">${region.nombre}</span><span class="toggle-icon" style="transition: transform 0.3s;">▼</span>`;
+            cabecera.onclick = () => {
+                tarjeta.classList.toggle('collapsed');
+            };
+        }
         tarjeta.appendChild(cabecera);
 
         // Lista de gimnasios
@@ -808,10 +813,8 @@ function renderizarInfoBayas() {
  
     const cabecera = document.createElement('div');
     cabecera.className = 'region-header';
-    cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">Información sobre Bayas</span><span class="toggle-icon" style="transition: transform 0.3s;">▼</span>`;
-    cabecera.onclick = () => {
-        tarjeta.classList.toggle('collapsed');
-    };
+    cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">Información sobre Bayas</span>`;
+    cabecera.style.cursor = 'default';
     tarjeta.appendChild(cabecera);
  
     // Wrapper for select and result
