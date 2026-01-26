@@ -1049,82 +1049,209 @@ header::after {
     color: var(--poke-white);
 }
 
-/* --- BATTLE TRACKER LAYOUT --- */
+/* --- BATTLE TRACKER LAYOUT (NUEVO) --- */
 .battle-dashboard {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    justify-content: center;
-    width: 100%;
+    gap: 30px;
     align-items: center;
+    width: 100%;
+    padding-bottom: 40px;
 }
 
-.tracker-box {
+/* Tarjeta de Región para Battle Tracker */
+.battle-region-card {
     background-color: var(--bg-panel);
     border: 1px solid var(--dark-purple);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    overflow: hidden;
+    /* ANCHO FIJO Y AMOLDADO A LOS GIMNASIOS (4 columnas aprox) */
+    width: 1050px; 
+    max-width: 95vw; /* Para pantallas pequeñas */
+    transition: height 0.3s ease, border-color 0.3s;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+}
+
+.battle-region-card:hover {
+    border-color: var(--light-purple);
+    box-shadow: 0 12px 35px rgba(103, 58, 183, 0.25);
+}
+
+/* Header de la tarjeta */
+.battle-region-header {
+    background: linear-gradient(to right, rgba(30, 26, 46, 0.9), rgba(21, 18, 33, 0.9));
+    padding: 15px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--dark-purple);
+    user-select: none;
+}
+
+.battle-region-header span:first-child {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--light-purple);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(149, 117, 205, 0.2);
+}
+
+.battle-region-header .toggle-icon {
+    color: var(--text-muted);
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+}
+
+/* Estado colapsado */
+.battle-region-card.collapsed .battle-gym-list {
+    display: none;
+}
+
+.battle-region-card.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+/* Lista de gimnasios en GRID */
+.battle-gym-list {
+    display: grid;
+    /* 4 columnas que se amoldan al espacio */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 20px;
+    list-style: none;
+    background-color: rgba(20, 20, 30, 0.3);
+}
+
+/* Items individuales dentro del Battle Tracker */
+.battle-gym-item {
+    background-color: var(--card-bg);
+    border: 1px solid rgba(149, 117, 205, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; /* Disposición vertical interna para ahorrar espacio horizontal */
+    align-items: center;
+    text-align: center;
+    height: auto; /* Altura automática según contenido */
+    min-height: 160px;
     justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
     position: relative;
 }
 
-/* Efecto de brillo sutil en las cajas */
-.tracker-box::after {
-    content: '';
+.battle-gym-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background-color: rgba(103, 58, 183, 0.15);
+    border-color: var(--light-purple);
+}
+
+/* Ajustes internos de los elementos del gimnasio para el modo Grid */
+.battle-gym-item .checkbox-wrapper {
+    margin-right: 0;
+    margin-bottom: 10px;
     position: absolute;
-    top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--primary-purple), transparent);
-    opacity: 0.5;
+    top: 10px;
+    right: 10px;
 }
 
-.tracker-box .region-card {
-    flex: 1 1 100%; /* Ocupar todo el ancho para permitir el crecimiento horizontal */
-    max-width: none;
+.battle-gym-item .gym-image {
+    width: 60px;
+    height: 60px;
+    margin-right: 0;
+    margin-bottom: 10px;
 }
 
-.tracker-box .gym-list {
-    display: flex;
-    flex-direction: row; /* Elementos en fila horizontal */
-    flex-wrap: wrap;     /* Permitir que bajen si no caben más */
-    justify-content: center;
-    gap: 15px;           /* Espacio entre recuadros */
-    padding: 15px;
-}
-
-.tracker-box .gym-item {
-    flex: 0 0 380px;     /* Tamaño fijo para asegurar espacio */
-    width: 380px;
-    border: 1px solid var(--dark-purple); /* Recuadro completo */
-    border-radius: 10px;
-    background-color: rgba(20, 20, 30, 0.4); /* Fondo de tarjeta */
-    margin: 0;
-}
-
-.tracker-box .gym-item:last-child {
-    border: 1px solid var(--dark-purple); /* Asegurar borde en el último */
-}
-
-.tracker-header {
+.battle-gym-item .gym-info {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 20px;
 }
 
-.tracker-header h2 {
-    color: var(--light-purple);
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+.battle-gym-item .gym-info h3 {
+    font-size: 1rem;
+    white-space: normal; /* Permitir salto de línea si el nombre es largo */
+    margin-bottom: 5px;
+}
+
+.battle-gym-item .gym-status-right {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.battle-gym-item .gym-timer {
+    font-size: 0.9rem;
+}
+
+.battle-gym-item .gym-end-time {
+    text-align: center;
+}
+
+/* Estilo especial para entrenadores extra (Morimoto, Cintia) */
+.battle-gym-item.special-trainer {
+    border-color: var(--poke-yellow);
+    background-color: rgba(255, 202, 40, 0.05);
+}
+
+/* Estado completado en Battle Tracker */
+.battle-gym-item.completed {
+    background-color: rgba(0, 230, 118, 0.08);
+    border-color: var(--success-green);
+}
+
+.battle-gym-item.completed::before {
+    display: none; /* Quitar la barra lateral del estilo original */
+}
+
+/* Responsive para el Battle Tracker */
+@media (max-width: 1100px) {
+    .battle-region-card {
+        width: 95%;
+    }
+    .battle-gym-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 800px) {
+    .battle-gym-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .battle-gym-list {
+        grid-template-columns: 1fr;
+    }
+    .battle-gym-item {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+        min-height: auto;
+    }
+    .battle-gym-item .checkbox-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-right: 15px;
+        margin-bottom: 0;
+    }
+    .battle-gym-item .gym-image {
+        margin-right: 15px;
+        margin-bottom: 0;
+        width: 40px;
+        height: 40px;
+    }
+    .battle-gym-item .gym-status-right {
+        width: auto;
+        align-items: flex-end;
+        margin-left: auto;
+    }
 }

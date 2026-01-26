@@ -659,35 +659,54 @@ function renderizarAplicacion() {
     } else if (ruta.includes('semillas')) {
         secciones.push({ datos: datosSemillas, maxSlots: 1 });
     } else if (ruta.includes('battletracker')) {
-        // --- LÓGICA BATTLE TRACKER (CAJAS SEPARADAS) ---
+        // --- LÓGICA BATTLE TRACKER (NUEVA IMPLEMENTACIÓN) ---
         const tablero = document.createElement('div');
         tablero.className = 'battle-dashboard';
 
-        // Definir las dos secciones
-        const seccionesBatalla = [
-            { titulo: 'Gym Tracker', datos: datosGimnasios, maxSlots: 9, claveReinicio: 'gyms' }
-        ];
+        // Renderizar cada región de datosGimnasios como una tarjeta independiente
+        datosGimnasios.forEach(region => {
+            const tarjeta = document.createElement('div');
+            tarjeta.className = 'battle-region-card'; // Clase específica para Battle Tracker
 
-        seccionesBatalla.forEach(seccion => {
-            const caja = document.createElement('div');
-            caja.className = 'tracker-box';
-
-            // Header de la caja (Título + Botón Reset)
+            // Header de la región (Título + Toggle)
             const cabecera = document.createElement('div');
-            cabecera.className = 'tracker-header';
+            cabecera.className = 'battle-region-header';
+            cabecera.innerHTML = `
+                <span>${region.nombre}</span>
+                <span class="toggle-icon">▼</span>
+            `;
             
-            const titulo = document.createElement('h2');
-            titulo.textContent = seccion.titulo;
-            titulo.style.margin = '0';
-            titulo.style.textTransform = 'uppercase';
+            // Evento para colapsar/expandir
+            cabecera.onclick = () => {
+                tarjeta.classList.toggle('collapsed');
+            };
 
-            cabecera.appendChild(titulo);
-            caja.appendChild(cabecera);
+            tarjeta.appendChild(cabecera);
 
-            // Renderizar las regiones dentro de esta caja
-            renderizarConjuntoRegiones(seccion.datos, caja, seccion.maxSlots, false, seccion.elite);
-            
-            tablero.appendChild(caja);
+            // Contenedor de la lista (Grid)
+            const lista = document.createElement('ul');
+            lista.className = 'battle-gym-list';
+
+            // Generar los gimnasios
+            region.gimnasios.forEach(gimnasio => {
+                const itemGimnasio = crearElementoGimnasio(region.nombre, gimnasio);
+                // Añadir clase específica para items dentro del battle tracker si es necesario
+                itemGimnasio.classList.add('battle-gym-item');
+                lista.appendChild(itemGimnasio);
+            });
+
+            // Si hay entrenadores especiales (como en Teselia), añadirlos también
+            if (region.entrenadoresEspeciales) {
+                region.entrenadoresEspeciales.forEach(entrenador => {
+                    const itemEntrenador = crearElementoGimnasio(region.nombre, entrenador);
+                    itemEntrenador.classList.add('battle-gym-item');
+                    itemEntrenador.classList.add('special-trainer'); // Para diferenciar visualmente si se desea
+                    lista.appendChild(itemEntrenador);
+                });
+            }
+
+            tarjeta.appendChild(lista);
+            tablero.appendChild(tarjeta);
         });
 
         contenedorApp.appendChild(tablero);
