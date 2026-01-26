@@ -165,7 +165,8 @@ header::after {
     overflow: hidden;
     transition: box-shadow 0.3s ease;
     border: var(--border-subtle);
-    flex: 1 1 320px;
+    min-width: 380px; /* ¡Solución! Forza un ancho mínimo constante. */
+    flex: 1 1 380px;   /* Permite que crezca si hay espacio, pero no encogerá menos de 380px. */
     max-width: 450px;
     display: flex;
     flex-direction: column;
