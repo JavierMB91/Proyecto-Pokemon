@@ -216,6 +216,7 @@ const datosBayas = [
 const CLAVE_ALMACENAMIENTO = 'pokemmo_gym_progress';
 let progresoUsuario = {};
 let contextoReinicio = null; // Variable para saber qué sección reiniciar
+let estadoRegiones = {}; // Estado de colapso de las regiones
 
 // Cargar progreso desde LocalStorage
 async function cargarProgreso() {
@@ -668,6 +669,11 @@ function renderizarAplicacion() {
             const tarjeta = document.createElement('div');
             tarjeta.className = 'battle-region-card'; // Clase específica para Battle Tracker
 
+            // Restaurar estado colapsado
+            if (estadoRegiones[region.nombre]) {
+                tarjeta.classList.add('collapsed');
+            }
+
             // Header de la región (Título + Toggle)
             const cabecera = document.createElement('div');
             cabecera.className = 'battle-region-header';
@@ -679,6 +685,7 @@ function renderizarAplicacion() {
             // Evento para colapsar/expandir
             cabecera.onclick = () => {
                 tarjeta.classList.toggle('collapsed');
+                estadoRegiones[region.nombre] = tarjeta.classList.contains('collapsed');
             };
 
             tarjeta.appendChild(cabecera);
@@ -734,6 +741,11 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
         const tarjeta = document.createElement('div');
         tarjeta.className = 'region-card';
 
+        // Restaurar estado colapsado
+        if (estadoRegiones[region.nombre]) {
+            tarjeta.classList.add('collapsed');
+        }
+
         // Header de la región
         const cabecera = document.createElement('div');
         cabecera.className = 'region-header';
@@ -745,6 +757,7 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
             cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">${region.nombre}</span><span class="toggle-icon" style="transition: transform 0.3s;">▼</span>`;
             cabecera.onclick = () => {
                 tarjeta.classList.toggle('collapsed');
+                estadoRegiones[region.nombre] = tarjeta.classList.contains('collapsed');
             };
         }
         tarjeta.appendChild(cabecera);
