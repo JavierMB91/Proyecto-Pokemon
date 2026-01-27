@@ -720,12 +720,22 @@ function renderizarAplicacion() {
             };
 
             if (inicialesPorRegion[region.nombre]) {
-                const imgs = inicialesPorRegion[region.nombre].map(poke => {
+                const imgs = inicialesPorRegion[region.nombre].map((poke, index) => {
                     const nombre = poke.charAt(0).toUpperCase() + poke.slice(1);
-                    return `<img src="../img/${poke}.png" alt="${nombre}" style="height: 50px; width: auto;">`;
+                    // Estilo para superponer imágenes ("uno encima del otro") y unificar tamaño
+                    const estilo = `
+                        height: 50px; 
+                        width: 50px; 
+                        object-fit: contain; 
+                        margin-left: ${index > 0 ? '-25px' : '0'}; 
+                        position: relative; 
+                        z-index: ${index};
+                        filter: drop-shadow(2px 0 2px rgba(0,0,0,0.5));
+                    `;
+                    return `<img src="../img/${poke}.png" alt="${nombre}" style="${estilo}">`;
                 }).join('');
                 htmlIniciales = `
-                    <div style="display: flex; gap: 10px; margin-left: auto; margin-right: 15px; align-items: center;">
+                    <div style="display: flex; margin-left: auto; margin-right: 15px; align-items: center;">
                         ${imgs}
                     </div>`;
             }
