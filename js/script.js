@@ -125,7 +125,7 @@ const datosSemillas = [
         nombre: "Huerto",
         dinero: "-",
         gimnasios: [
-            { ciudad: "Seleccionar Baya", lider: "Plantar", id: "spicy-seeds-plant", tipo: "seed-plant", duracion: 5, prefijoTemporizador: "Riego en:", etiquetaListo: "Regar", siguienteId: "spicy-seeds-water" },
+            { ciudad: "Seleccionar Baya", lider: "Plantar", id: "spicy-seeds-plant", tipo: "seed-plant", duracion: 5, prefijoTemporizador: "Riego en:", etiquetaListo: "Regar", siguienteId: "spicy-seeds-water", imagen: "bayas/tierra_fertil.png" },
             { ciudad: "Riego de Semillas", lider: "Regar", id: "spicy-seeds-water", tipo: "seed-water", idAnterior: "spicy-seeds-plant", horasEspera: 5, duracion: 16, etiquetaListo: "Regar", siguienteId: "spicy-seeds-harvest", imagen: "bayas/regadera.png" },
             { ciudad: "Recogida de Semillas", lider: "Recoger", id: "spicy-seeds-harvest", tipo: "seed-harvest", idAnterior: "spicy-seeds-water", idRaiz: "spicy-seeds-plant", horasEspera: 16, imagen: "bayas/herramienta_extraccion.png" }
         ]
@@ -599,7 +599,8 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         const fallback = gimnasio.imagen ? `this.src='../img/${gimnasio.imagen}'` : "this.style.display='none'";
         htmlImagen = `<img src="../img/bayas/${nombreImgBaya}" alt="${datosProgreso.nombreBaya}" class="gym-image" onerror="${fallback}">`;
     } else if (gimnasio.imagen) {
-        htmlImagen = `<img src="../img/${gimnasio.imagen}" alt="${gimnasio.ciudad}" class="gym-image">`;
+        const claseExtra = gimnasio.tipo === 'seed-plant' ? ' seed-plant-image' : '';
+        htmlImagen = `<img src="../img/${gimnasio.imagen}" alt="${gimnasio.ciudad}" class="gym-image${claseExtra}">`;
     }
 
     // Botón Puzzle para Sabrina
