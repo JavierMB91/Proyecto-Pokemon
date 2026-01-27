@@ -904,17 +904,28 @@ function renderizarInfoBayas() {
             const baya = datosBayas.find(b => b.nombre === nombreSeleccionado);
             if (baya) {
                 const nombreImagenFinal = generarNombreImagen(baya.nombre);
+                
+                // Procesar texto de combinación para añadir imágenes de semillas
+                const procesarCombinacion = (texto) => {
+                    return texto.replace(/Sem\.\s+([^x\+\n]+)/gi, (match, sabor) => {
+                        let nombreLimpio = sabor.trim().toLowerCase()
+                            .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u').replace(/ñ/g, 'n')
+                            .replace(/\s+/g, '_');
+                        const nombreImagen = `sem_${nombreLimpio}.png`;
+                        return `<img src="../img/bayas/${nombreImagen}" alt="${sabor.trim()}" title="${sabor.trim()}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" onerror="this.style.display='none';">${match}`;
+                    });
+                };
  
                 let htmlContenido = `
                     <div class="selected-berry-header">
-                        <img src="../img/bayas/${nombreImagenFinal}" alt="${baya.nombre}" class="berry-image" onerror="this.src='../img/semilla_picante.png'; this.style.filter='grayscale(1)';">
+                        <img src="../img/bayas/${nombreImagenFinal}" alt="${baya.nombre}" class="berry-image" onerror="this.src='../img/bayas/sem_picante.png'; this.style.filter='grayscale(1)';">
                         <span class="berry-name">${baya.nombre}</span>
                     </div>
                     <div class="selected-berry-details">
                         <table class="berry-info-table">
                             <tbody>
                                 <tr><th>Uso</th><td>${baya.uso}</td></tr>
-                                <tr><th>Combinación</th><td>${baya.combinacion}</td></tr>
+                                <tr><th>Combinación</th><td>${procesarCombinacion(baya.combinacion)}</td></tr>
                                 <tr><th>Riego</th><td>Cada ${baya.tiempoRiego}</td></tr>
                                 <tr><th>Cosecha</th><td>${baya.tiempoCosecha}</td></tr>
                                 <tr><th>Sabor</th><td>${baya.sabor}</td></tr>
