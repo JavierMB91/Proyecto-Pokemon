@@ -750,6 +750,12 @@ function renderizarAplicacion() {
             cabecera.onclick = () => {
                 tarjeta.classList.toggle('collapsed');
                 estadoRegiones[region.nombre] = tarjeta.classList.contains('collapsed');
+                
+                if (!estadoRegiones[region.nombre]) {
+                    setTimeout(() => {
+                        tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
             };
 
             tarjeta.appendChild(cabecera);
@@ -822,6 +828,12 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
             cabecera.onclick = () => {
                 tarjeta.classList.toggle('collapsed');
                 estadoRegiones[region.nombre] = tarjeta.classList.contains('collapsed');
+                
+                if (!estadoRegiones[region.nombre]) {
+                    setTimeout(() => {
+                        tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
             };
         }
         tarjeta.appendChild(cabecera);
