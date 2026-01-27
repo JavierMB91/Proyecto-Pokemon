@@ -670,7 +670,14 @@ function renderizarAplicacion() {
             tarjeta.className = 'battle-region-card'; // Clase específica para Battle Tracker
 
             // Restaurar estado colapsado
-            if (estadoRegiones[region.nombre]) {
+            let estaColapsado = true; // Por defecto cerrado en Battle Tracker
+            if (estadoRegiones.hasOwnProperty(region.nombre)) {
+                estaColapsado = estadoRegiones[region.nombre];
+            } else {
+                estadoRegiones[region.nombre] = true;
+            }
+
+            if (estaColapsado) {
                 tarjeta.classList.add('collapsed');
             }
 
