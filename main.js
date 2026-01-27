@@ -24,7 +24,7 @@ function createWindow() {
         width: 1200,
         height: 800,
         title: `PokeMMO Tracker v${app.getVersion()}`, // Muestra la versión en la barra de título
-        icon: path.join(__dirname, 'img/favicon.png'), // Icono de la ventana
+        icon: path.join(__dirname, 'img/icono.ico'), // Icono de la ventana
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
