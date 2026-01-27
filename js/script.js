@@ -907,13 +907,18 @@ function renderizarInfoBayas() {
                 
                 // Procesar texto de combinación para añadir imágenes de semillas
                 const procesarCombinacion = (texto) => {
-                    return texto.replace(/Sem\.\s+([^x\+\n]+)/gi, (match, sabor) => {
-                        let nombreLimpio = sabor.trim().toLowerCase()
-                            .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u').replace(/ñ/g, 'n')
-                            .replace(/\s+/g, '_');
-                        const nombreImagen = `sem_${nombreLimpio}.png`;
-                        return `<img src="../img/bayas/${nombreImagen}" alt="${sabor.trim()}" title="${sabor.trim()}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" onerror="this.style.display='none';">${match}`;
-                    });
+                    const procesarLinea = (linea) => {
+                        return linea.replace(/Sem\.\s+([^x\+\n]+)/gi, (match, sabor) => {
+                            let nombreLimpio = sabor.trim().toLowerCase()
+                                .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u').replace(/ñ/g, 'n')
+                                .replace(/\s+/g, '_');
+                            const nombreImagen = `sem_${nombreLimpio}.png`;
+                            return `<img src="../img/bayas/${nombreImagen}" alt="${sabor.trim()}" title="${sabor.trim()}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" onerror="this.style.display='none';">${match}`;
+                        });
+                    };
+
+                    const lineas = texto.split('\n');
+                    return `<ul style="margin: 0; padding-left: 0; list-style-type: none;">${lineas.map(l => `<li style="margin-bottom: 4px;">${procesarLinea(l)}</li>`).join('')}</ul>`;
                 };
  
                 let htmlContenido = `
