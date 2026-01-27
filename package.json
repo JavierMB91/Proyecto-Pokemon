@@ -1,6 +1,6 @@
 {
   "name": "pokemmo-tracker",
-  "version": "0.0.58",
+  "version": "0.0.59",
   "private": true,
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
@@ -32,10 +32,7 @@
       {
         "provider": "github",
         "owner": "JavierMB91",
-        "repo": "Proyecto-Pokemon",
-        "private": false,
-        "releaseType": "release",
-        "vPrefixedTagName": true
+        "repo": "Proyecto-Pokemon"
       }
     ],
     "win": {
