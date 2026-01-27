@@ -711,12 +711,22 @@ function renderizarAplicacion() {
             cabecera.className = 'battle-region-header';
             
             let htmlIniciales = '';
-            if (region.nombre === "Kanto") {
+            const inicialesPorRegion = {
+                "Kanto": ["bulbasaur", "charmander", "squirtle"],
+                "Johto": ["chikorita", "cyndaquil", "totodile"],
+                "Hoenn": ["treecko", "torchic", "mudkip"],
+                "Sinnoh": ["turtwig", "chimchar", "piplup"],
+                "Teselia": ["snivy", "tepig", "oshawott"]
+            };
+
+            if (inicialesPorRegion[region.nombre]) {
+                const imgs = inicialesPorRegion[region.nombre].map(poke => {
+                    const nombre = poke.charAt(0).toUpperCase() + poke.slice(1);
+                    return `<img src="../img/${poke}.png" alt="${nombre}" style="height: 50px; width: auto;">`;
+                }).join('');
                 htmlIniciales = `
                     <div style="display: flex; gap: 10px; margin-left: auto; margin-right: 15px; align-items: center;">
-                        <img src="../img/bulbasaur.png" alt="Bulbasaur">
-                        <img src="../img/charmander.png" alt="Charmander">
-                        <img src="../img/squirtle.png" alt="Squirtle">
+                        ${imgs}
                     </div>`;
             }
 
