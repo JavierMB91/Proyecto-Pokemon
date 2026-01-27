@@ -330,6 +330,23 @@ function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
     renderizarAplicacion(); // Re-renderizamos para mostrar la fecha actualizada
 }
 
+// Función para reproducir sonidos de notificación
+function reproducirSonido(tipo) {
+    let audioPath = '';
+    // Se asume que los archivos de audio están en una carpeta 'audio' al mismo nivel que 'img'
+    if (tipo === 'water') {
+        audioPath = '../audio/water.mp3';
+    } else if (tipo === 'harvest') {
+        audioPath = '../audio/harvest.mp3';
+    }
+
+    if (audioPath) {
+        const audio = new Audio(audioPath);
+        audio.volume = 0.5;
+        audio.play().catch(e => console.log("Error reproduciendo audio (verifica que el archivo exista en la carpeta audio):", e));
+    }
+}
+
 // Actualizar temporizadores
 function actualizarTemporizadores() {
     const temporizadores = document.querySelectorAll('.gym-timer[data-timestamp]');
@@ -369,6 +386,13 @@ function actualizarTemporizadores() {
                         const itemSiguienteEtapa = document.querySelector(`.gym-item[data-prev-id="${idGimnasioActual}"]`);
                         if (itemSiguienteEtapa) {
                             itemSiguienteEtapa.classList.remove('disabled');
+                        }
+
+                        // Reproducir sonido de aviso
+                        if (idGimnasioActual.includes('spicy-seeds-plant')) {
+                            reproducirSonido('water');
+                        } else if (idGimnasioActual.includes('spicy-seeds-water')) {
+                            reproducirSonido('harvest');
                         }
                     }
                 }
