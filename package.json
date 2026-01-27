@@ -1,6 +1,6 @@
 {
   "name": "pokemmo-tracker",
-  "version": "0.0.53",
+  "version": "0.0.54",
   "private": true,
   "description": "Tracker personal para PokeMMO",
   "main": "main.js",
@@ -9,7 +9,7 @@
     "dist": "dotenv -e .env -- electron-builder",
     "clean": "timeout /t 2 > nul && rimraf dist",
     "publish": "npm run dist -- --publish always",
-    "release": "call npm run clean && git add . && (git commit -m \"chore: save changes\" || echo No changes) && npm version patch && git push --follow-tags && npm run dist -- --publish always && call npm run clean"
+    "release": "call npm run clean && git add . && (git commit -m \"chore: save changes\" || echo No changes) && npm version patch && git push --follow-tags && npm run dist -- --publish always"
   },
   "author": "Entrenador",
   "license": "ISC",
