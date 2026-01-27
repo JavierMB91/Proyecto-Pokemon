@@ -709,8 +709,20 @@ function renderizarAplicacion() {
             // Header de la región (Título + Toggle)
             const cabecera = document.createElement('div');
             cabecera.className = 'battle-region-header';
+            
+            let htmlIniciales = '';
+            if (region.nombre === "Kanto") {
+                htmlIniciales = `
+                    <div style="display: flex; gap: 10px; margin-left: auto; margin-right: 15px; align-items: center;">
+                        <img src="../img/bulbasaur.png" alt="Bulbasaur">
+                        <img src="../img/charmander.png" alt="Charmander">
+                        <img src="../img/squirtle.png" alt="Squirtle">
+                    </div>`;
+            }
+
             cabecera.innerHTML = `
                 <span>${region.nombre}</span>
+                ${htmlIniciales}
                 <span class="toggle-icon">▼</span>
             `;
             
