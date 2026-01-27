@@ -257,8 +257,6 @@ header::after {
     background-color: rgba(0, 0, 0, 0.2);
     color: var(--text-muted);
     pointer-events: none;
-    opacity: 0.5;
-    filter: grayscale(0.8);
 }
 
 .gym-item.disabled .gym-info h3,

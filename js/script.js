@@ -1192,6 +1192,13 @@ function importarDatos(evento) {
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
+    // Añadir favicon dinámicamente para todas las páginas
+    const faviconLink = document.createElement('link');
+    faviconLink.rel = 'icon';
+    faviconLink.type = 'image/png';
+    faviconLink.href = '../img/favicon.png'; // Ruta al favicon
+    document.head.appendChild(faviconLink);
+
     cargarNavegacion();
     configurarModalImagen();
     
