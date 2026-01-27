@@ -126,8 +126,8 @@ const datosSemillas = [
         dinero: "-",
         gimnasios: [
             { ciudad: "Seleccionar Baya", lider: "Plantar", id: "spicy-seeds-plant", tipo: "seed-plant", duracion: 5, prefijoTemporizador: "Riego en:", etiquetaListo: "Regar", siguienteId: "spicy-seeds-water" },
-            { ciudad: "Riego de Semillas", lider: "Regar", id: "spicy-seeds-water", tipo: "seed-water", idAnterior: "spicy-seeds-plant", horasEspera: 5, duracion: 16, etiquetaListo: "Regar", siguienteId: "spicy-seeds-harvest" },
-            { ciudad: "Recogida de Semillas", lider: "Recoger", id: "spicy-seeds-harvest", tipo: "seed-harvest", idAnterior: "spicy-seeds-water", idRaiz: "spicy-seeds-plant", horasEspera: 16 }
+            { ciudad: "Riego de Semillas", lider: "Regar", id: "spicy-seeds-water", tipo: "seed-water", idAnterior: "spicy-seeds-plant", horasEspera: 5, duracion: 16, etiquetaListo: "Regar", siguienteId: "spicy-seeds-harvest", imagen: "bayas/regadera.png" },
+            { ciudad: "Recogida de Semillas", lider: "Recoger", id: "spicy-seeds-harvest", tipo: "seed-harvest", idAnterior: "spicy-seeds-water", idRaiz: "spicy-seeds-plant", horasEspera: 16, imagen: "bayas/herramienta_extraccion.png" }
         ]
     }
 ];
@@ -389,9 +389,9 @@ function actualizarTemporizadores() {
                         }
 
                         // Reproducir sonido de aviso
-                        if (idGimnasioActual.includes('spicy-seeds-plant')) {
+                        if (idGimnasioActual.includes('spicy-seeds-water')) {
                             reproducirSonido('water');
-                        } else if (idGimnasioActual.includes('spicy-seeds-water')) {
+                        } else if (idGimnasioActual.includes('spicy-seeds-harvest')) {
                             reproducirSonido('harvest');
                         }
                     }
