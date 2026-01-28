@@ -1153,6 +1153,7 @@ header::after {
     justify-content: center;
     transition: box-shadow 0.2s, background-color 0.2s;
     position: relative;
+    background-origin: border-box;
 }
 
 .battle-gym-item:hover {
