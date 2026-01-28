@@ -379,6 +379,10 @@ header::after {
     margin-top: 20px;
 }
 
+.gym-item:hover .gym-image.seed-plant-image {
+    transform: none;
+}
+
 .gym-item.completed .custom-checkbox {
     background-color: var(--success-green);
     border-color: var(--success-green);
