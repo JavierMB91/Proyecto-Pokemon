@@ -790,8 +790,9 @@ function renderizarAplicacion() {
                 
                 if (!estadoRegiones[region.nombre]) {
                     setTimeout(() => {
-                        tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
+                        // Reducido el timeout para que el centrado se sienta más rápido
+                        tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                    }, 20);
                 }
             };
 
@@ -812,17 +813,17 @@ function renderizarAplicacion() {
                 
                 if (gimnasio.lider === 'Zeo, Maíz y Millo') {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/Zeo.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Maiz.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Millo.png')`;
-                    itemGimnasio.style.backgroundSize = 'cover, auto 90%, auto 90%, auto 90%';
+                    itemGimnasio.style.backgroundSize = '100% 100%, auto 90%, auto 90%, auto 90%';
                     itemGimnasio.style.backgroundPosition = 'center, 10% center, 50% center, 90% center';
                     itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat, no-repeat';
                 } else if (gimnasio.lider === 'Alto Mando') {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/alto_mando.png')`;
-                    itemGimnasio.style.backgroundSize = 'cover';
+                    itemGimnasio.style.backgroundSize = '100% 100%, 100% 100%';
                     itemGimnasio.style.backgroundRepeat = 'no-repeat';
                     itemGimnasio.style.backgroundPosition = 'center';
                 } else {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
-                    itemGimnasio.style.backgroundSize = 'cover';
+                    itemGimnasio.style.backgroundSize = '100% 100%, cover';
                     itemGimnasio.style.backgroundPosition = 'center';
                     itemGimnasio.style.backgroundRepeat = 'no-repeat';
                 }
@@ -840,7 +841,7 @@ function renderizarAplicacion() {
                     const nombreArchivo = entrenador.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                     itemEntrenador.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
                     
-                    itemEntrenador.style.backgroundSize = 'cover';
+                    itemEntrenador.style.backgroundSize = '100% 100%, cover';
                     itemEntrenador.style.backgroundRepeat = 'no-repeat';
                     itemEntrenador.style.backgroundPosition = 'center';
                     lista.appendChild(itemEntrenador);
@@ -896,8 +897,9 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
                 
                 if (!estadoRegiones[region.nombre]) {
                     setTimeout(() => {
-                        tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
+                        // Reducido el timeout para que el centrado se sienta más rápido
+                        tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+                    }, 20);
                 }
             };
         }

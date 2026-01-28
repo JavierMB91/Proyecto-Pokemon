@@ -218,6 +218,11 @@ header::after {
     user-select: none;
 }
 
+/* Oculta la flecha de despliegue pero mantiene la funcionalidad de click en la cabecera */
+.toggle-icon {
+    display: none;
+}
+
 .region-card.collapsed > *:not(.region-header) {
     display: none !important;
 }
