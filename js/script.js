@@ -813,9 +813,14 @@ function renderizarAplicacion() {
                 
                 if (gimnasio.lider === 'Zeo, Maíz y Millo') {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/Zeo.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Maiz.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Millo.png')`;
-                    itemGimnasio.style.backgroundSize = '100% 100%, auto 90%, auto 90%, auto 90%';
-                    itemGimnasio.style.backgroundPosition = 'center, 10% center, 50% center, 90% center';
+                    itemGimnasio.style.backgroundSize = '100% 100%, auto 85%, auto 85%, auto 85%';
+                    itemGimnasio.style.backgroundPosition = 'center, 80% center, 50% center, 20% center';
                     itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat, no-repeat';
+                } else if (gimnasio.lider === 'Vito y Leti') {
+                    itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/Vito.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Leti.png')`;
+                    itemGimnasio.style.backgroundSize = '100% 100%, auto 85%, auto 85%';
+                    itemGimnasio.style.backgroundPosition = 'center, 25% center, 75% center';
+                    itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat';
                 } else if (gimnasio.lider === 'Alto Mando') {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/alto_mando.png')`;
                     itemGimnasio.style.backgroundSize = '100% 100%, 100% 100%';
