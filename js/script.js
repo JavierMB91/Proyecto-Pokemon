@@ -823,7 +823,7 @@ function renderizarAplicacion() {
                     itemGimnasio.style.backgroundPosition = 'center';
                 } else {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
-                    itemGimnasio.style.backgroundSize = '100% 100%, cover';
+                    itemGimnasio.style.backgroundSize = '100% 100%, 100% 100%';
                     itemGimnasio.style.backgroundPosition = 'center';
                     itemGimnasio.style.backgroundRepeat = 'no-repeat';
                 }
@@ -841,7 +841,7 @@ function renderizarAplicacion() {
                     const nombreArchivo = entrenador.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                     itemEntrenador.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
                     
-                    itemEntrenador.style.backgroundSize = '100% 100%, cover';
+                    itemEntrenador.style.backgroundSize = '100% 100%, 100% 100%';
                     itemEntrenador.style.backgroundRepeat = 'no-repeat';
                     itemEntrenador.style.backgroundPosition = 'center';
                     lista.appendChild(itemEntrenador);
