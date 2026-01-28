@@ -711,6 +711,7 @@ function renderizarAplicacion() {
             cabecera.className = 'battle-region-header';
             
             let htmlIniciales = '';
+            const medallasKanto = ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica", "tierra"];
             const inicialesPorRegion = {
                 "Kanto": ["bulbasaur", "charmander", "squirtle"],
                 "Johto": ["chikorita", "cyndaquil", "totodile"],
@@ -719,24 +720,51 @@ function renderizarAplicacion() {
                 "Teselia": ["snivy", "tepig", "oshawott"]
             };
 
+            let imagesHtml = [];
+
+            // Medallas para Kanto
+            if (region.nombre === "Kanto") {
+                const badgeImgs = medallasKanto.map((item, index) => {
+                    const nombre = `Medalla ${item.charAt(0).toUpperCase() + item.slice(1)}`;
+                    const src = `../img/gimnasios_kanto/medalla_${item}.png`;
+                    const estilo = `
+                        height: 40px; 
+                        width: 40px; 
+                        object-fit: contain; 
+                        margin-left: ${index > 0 ? '-20px' : '0'}; 
+                        position: relative; 
+                        z-index: ${index};
+                        filter: drop-shadow(2px 0 2px rgba(0,0,0,0.5));
+                    `;
+                    return `<img src="${src}" alt="${nombre}" style="${estilo}">`;
+                }).join('');
+                imagesHtml.push(`<div style="display: flex; align-items: center;">${badgeImgs}</div>`);
+            }
+
+            // Pokémon Iniciales
             if (inicialesPorRegion[region.nombre]) {
-                const imgs = inicialesPorRegion[region.nombre].map((poke, index) => {
-                    const nombre = poke.charAt(0).toUpperCase() + poke.slice(1);
-                    // Estilo para superponer imágenes ("uno encima del otro") y unificar tamaño
+                const pokeImgs = inicialesPorRegion[region.nombre].map((item, index) => {
+                    const nombre = item.charAt(0).toUpperCase() + item.slice(1);
+                    const src = `../img/${item}.png`;
+                    const zIndexBase = region.nombre === "Kanto" ? medallasKanto.length : 0;
                     const estilo = `
                         height: 50px; 
                         width: 50px; 
                         object-fit: contain; 
                         margin-left: ${index > 0 ? '-25px' : '0'}; 
                         position: relative; 
-                        z-index: ${index};
+                        z-index: ${zIndexBase + index};
                         filter: drop-shadow(2px 0 2px rgba(0,0,0,0.5));
                     `;
-                    return `<img src="../img/${poke}.png" alt="${nombre}" style="${estilo}">`;
+                    return `<img src="${src}" alt="${nombre}" style="${estilo}">`;
                 }).join('');
+                imagesHtml.push(`<div style="display: flex; align-items: center;">${pokeImgs}</div>`);
+            }
+
+            if (imagesHtml.length > 0) {
                 htmlIniciales = `
-                    <div style="display: flex; margin-left: auto; margin-right: 15px; align-items: center;">
-                        ${imgs}
+                    <div style="display: flex; margin-left: auto; margin-right: 15px; align-items: center; gap: 30px;">
+                        ${imagesHtml.join('')}
                     </div>`;
             }
 
