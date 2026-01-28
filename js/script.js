@@ -778,6 +778,11 @@ function renderizarAplicacion() {
                     itemGimnasio.style.backgroundSize = 'cover, auto 90%, auto 90%, auto 90%';
                     itemGimnasio.style.backgroundPosition = 'center, 10% center, 50% center, 90% center';
                     itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat, no-repeat';
+                } else if (gimnasio.lider === 'Alto Mando') {
+                    itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/alto_mando.png')`;
+                    itemGimnasio.style.backgroundSize = 'cover, contain';
+                    itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat';
+                    itemGimnasio.style.backgroundPosition = 'center';
                 } else {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
                     itemGimnasio.style.backgroundSize = 'cover';
