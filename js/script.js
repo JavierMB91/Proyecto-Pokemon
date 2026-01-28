@@ -710,8 +710,13 @@ function renderizarAplicacion() {
             const cabecera = document.createElement('div');
             cabecera.className = 'battle-region-header';
             
-            let htmlIniciales = '';
-            const medallasKanto = ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica", "tierra"];
+            const medallasPorRegion = {
+                "Kanto": ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica", "tierra"],
+                "Johto": ["cefiro", "colmena", "planicie", "niebla", "tormenta", "mineral", "glaciar", "dragon"],
+                "Hoenn": ["piedra", "puño", "dinamo", "calor", "equilibrio", "pluma", "mente", "lluvia"],
+                "Sinnoh": ["lignito", "bosque", "adoquin", "cienaga", "reliquia", "mina", "carambano", "faro"],
+                "Teselia": ["trio", "base", "elitro", "voltio", "temblor", "jet", "candelizo", "leyenda"]
+            };
             const inicialesPorRegion = {
                 "Kanto": ["bulbasaur", "charmander", "squirtle"],
                 "Johto": ["chikorita", "cyndaquil", "totodile"],
@@ -720,13 +725,16 @@ function renderizarAplicacion() {
                 "Teselia": ["snivy", "tepig", "oshawott"]
             };
 
+            let htmlIniciales = '';
             let imagesHtml = [];
 
-            // Medallas para Kanto
-            if (region.nombre === "Kanto") {
-                const badgeImgs = medallasKanto.map((item, index) => {
+            // Medallas
+            if (medallasPorRegion[region.nombre]) {
+                const medallas = medallasPorRegion[region.nombre];
+                const regionFolder = `gimnasios_${region.nombre.toLowerCase()}`;
+                const badgeImgs = medallas.map((item, index) => {
                     const nombre = `Medalla ${item.charAt(0).toUpperCase() + item.slice(1)}`;
-                    const src = `../img/gimnasios_kanto/medalla_${item}.png`;
+                    const src = `../img/${regionFolder}/medalla_${item}.png`;
                     const estilo = `
                         height: 40px; 
                         width: 40px; 
@@ -743,10 +751,11 @@ function renderizarAplicacion() {
 
             // Pokémon Iniciales
             if (inicialesPorRegion[region.nombre]) {
+                const medallasActuales = medallasPorRegion[region.nombre] || [];
                 const pokeImgs = inicialesPorRegion[region.nombre].map((item, index) => {
                     const nombre = item.charAt(0).toUpperCase() + item.slice(1);
                     const src = `../img/${item}.png`;
-                    const zIndexBase = region.nombre === "Kanto" ? medallasKanto.length : 0;
+                    const zIndexBase = medallasActuales.length;
                     const estilo = `
                         height: 50px; 
                         width: 50px; 
