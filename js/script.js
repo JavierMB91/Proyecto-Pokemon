@@ -772,9 +772,17 @@ function renderizarAplicacion() {
                 
                 // Configurar imagen de fondo del líder
                 const nombreArchivo = gimnasio.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
-                itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
-                itemGimnasio.style.backgroundSize = 'cover';
-                itemGimnasio.style.backgroundPosition = 'center';
+                
+                if (gimnasio.lider === 'Zeo, Maíz y Millo') {
+                    itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/Zeo.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Maiz.png'), url('../img/gimnasios_${region.nombre.toLowerCase()}/Millo.png')`;
+                    itemGimnasio.style.backgroundSize = 'cover, auto 90%, auto 90%, auto 90%';
+                    itemGimnasio.style.backgroundPosition = 'center, 10% center, 50% center, 90% center';
+                    itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat, no-repeat';
+                } else {
+                    itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
+                    itemGimnasio.style.backgroundSize = 'cover';
+                    itemGimnasio.style.backgroundPosition = 'center';
+                }
                 lista.appendChild(itemGimnasio);
             });
 
