@@ -16,7 +16,7 @@ autoUpdater.on('download-progress', (progressObj) => {
 });
 autoUpdater.on('error', (err) => {
     console.error('Error en actualización:', err);
-    dialog.showErrorBox('Error de Actualización', 'Hubo un problema buscando actualizaciones: ' + (err.message || err));
+    // dialog.showErrorBox('Error de Actualización', 'Hubo un problema buscando actualizaciones: ' + (err.message || err));
 });
 
 function createWindow() {
@@ -68,7 +68,7 @@ app.on('window-all-closed', () => {
 
 // --- EVENTOS DEL AUTO-UPDATER ---
 
-autoUpdater.on('update-downloaded', (info) => {
-    // Instalar y reiniciar automáticamente sin preguntar al usuario
-    autoUpdater.quitAndInstall();
-});
+// autoUpdater.on('update-downloaded', (info) => {
+//     // Instalar y reiniciar automáticamente sin preguntar al usuario
+//     autoUpdater.quitAndInstall();
+// });
