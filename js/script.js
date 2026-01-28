@@ -808,13 +808,14 @@ function renderizarAplicacion() {
                     itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat, no-repeat';
                 } else if (gimnasio.lider === 'Alto Mando') {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/alto_mando.png')`;
-                    itemGimnasio.style.backgroundSize = 'cover, contain';
-                    itemGimnasio.style.backgroundRepeat = 'no-repeat, no-repeat';
+                    itemGimnasio.style.backgroundSize = 'cover';
+                    itemGimnasio.style.backgroundRepeat = 'no-repeat';
                     itemGimnasio.style.backgroundPosition = 'center';
                 } else {
                     itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
                     itemGimnasio.style.backgroundSize = 'cover';
                     itemGimnasio.style.backgroundPosition = 'center';
+                    itemGimnasio.style.backgroundRepeat = 'no-repeat';
                 }
                 lista.appendChild(itemGimnasio);
             });
@@ -830,12 +831,8 @@ function renderizarAplicacion() {
                     const nombreArchivo = entrenador.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                     itemEntrenador.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
                     
-                    if (entrenador.lider === 'Morimoto') {
-                        itemEntrenador.style.backgroundSize = 'cover, contain';
-                        itemEntrenador.style.backgroundRepeat = 'no-repeat, no-repeat';
-                    } else {
-                        itemEntrenador.style.backgroundSize = 'cover';
-                    }
+                    itemEntrenador.style.backgroundSize = 'cover';
+                    itemEntrenador.style.backgroundRepeat = 'no-repeat';
                     itemEntrenador.style.backgroundPosition = 'center';
                     lista.appendChild(itemEntrenador);
                 });
