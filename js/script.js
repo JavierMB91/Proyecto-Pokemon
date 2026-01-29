@@ -218,6 +218,80 @@ let progresoUsuario = {};
 let contextoReinicio = null; // Variable para saber qué sección reiniciar
 let estadoRegiones = {}; // Estado de colapso de las regiones
 
+// Coordenadas porcentuales para el mapa de Kanto
+const coordenadasKanto = {
+    "Ciudad Plateada": { top: "36%", left: "25%" },
+    "Ciudad Celeste": { top: "30.5%", left: "63.5%" },
+    "Ciudad Carmín": { top: "65%", left: "65%" },
+    "Ciudad Azulona": { top: "42%", left: "50%" },
+    "Ciudad Fucsia": { top: "82%", left: "55%" },
+    "Ciudad Azafrán": { top: "42%", left: "65%" },
+    "Isla Canela": { top: "90%", left: "25%" },
+    "Liga Pokémon": { top: "26%", left: "8%" }
+};
+
+let ciudadSeleccionadaKanto = null; // Estado para recordar la selección tras re-renderizar
+
+// Coordenadas porcentuales para el mapa de Johto
+const coordenadasJohto = {
+    "Ciudad Malva": { top: "36%", left: "58%" },
+    "Pueblo Azalea": { top: "86%", left: "50%" },
+    "Ciudad Trigal": { top: "66%", left: "28%" },
+    "Ciudad Iris": { top: "30%", left: "42%" },
+    "Ciudad Orquídea": { top: "62%", left: "8%" },
+    "Ciudad Olivo": { top: "38%", left: "18%" },
+    "Pueblo Caoba": { top: "24%", left: "72%" },
+    "Ciudad Endrino": { top: "36%", left: "85%" },
+    "Liga Pokémon": { top: "42%", left: "96%" }
+};
+
+let ciudadSeleccionadaJohto = null;
+
+// Coordenadas porcentuales para el mapa de Hoenn
+const coordenadasHoenn = {
+    "Ciudad Férrica": { top: "45%", left: "18%" },
+    "Pueblo Azuliza": { top: "82%", left: "15%" },
+    "Ciudad Malvalona": { top: "55%", left: "45%" },
+    "Pueblo Lavacalda": { top: "35%", left: "35%" },
+    "Ciudad Petalia": { top: "55%", left: "12%" },
+    "Ciudad Arborada": { top: "25%", left: "60%" },
+    "Ciudad Algaria": { top: "45%", left: "85%" },
+    "Ciudad Arrecípolis": { top: "55%", left: "75%" },
+    "Liga Pokémon": { top: "65%", left: "92%" }
+};
+
+let ciudadSeleccionadaHoenn = null;
+
+// Coordenadas porcentuales para el mapa de Sinnoh
+const coordenadasSinnoh = {
+    "Ciudad Pirita": { top: "65%", left: "40%" },
+    "Ciudad Vetusta": { top: "35%", left: "30%" },
+    "Ciudad Rocavelo": { top: "40%", left: "75%" },
+    "Ciudad Pradera": { top: "75%", left: "65%" },
+    "Ciudad Corazón": { top: "55%", left: "50%" },
+    "Ciudad Canal": { top: "55%", left: "15%" },
+    "Ciudad Puntaneva": { top: "10%", left: "50%" },
+    "Ciudad Marina": { top: "55%", left: "85%" },
+    "Liga Pokémon": { top: "35%", left: "90%" }
+};
+
+let ciudadSeleccionadaSinnoh = null;
+
+// Coordenadas porcentuales para el mapa de Teselia
+const coordenadasTeselia = {
+    "Ciudad Gres": { top: "75%", left: "80%" },
+    "Ciudad Esmalte": { top: "80%", left: "65%" },
+    "Ciudad Porcelana": { top: "85%", left: "50%" },
+    "Ciudad Mayólica": { top: "55%", left: "50%" },
+    "Ciudad Fayenza": { top: "55%", left: "25%" },
+    "Ciudad Loza": { top: "45%", left: "15%" },
+    "Ciudad Teja": { top: "25%", left: "25%" },
+    "Ciudad Caolín": { top: "25%", left: "75%" },
+    "Liga Pokémon": { top: "10%", left: "50%" }
+};
+
+let ciudadSeleccionadaTeselia = null;
+
 // Cargar progreso desde LocalStorage
 async function cargarProgreso() {
     progresoUsuario = {};
@@ -327,7 +401,14 @@ function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
     }
     
     guardarProgreso();
-    renderizarAplicacion(); // Re-renderizamos para mostrar la fecha actualizada
+    
+    const ruta = window.location.pathname.toLowerCase();
+    const regionesConMapa = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Teselia'];
+    if (ruta.includes('battletracker') && regionesConMapa.includes(nombreRegion)) {
+        actualizarInterfazMapa(nombreRegion);
+    } else {
+        renderizarAplicacion(); 
+    }
 }
 
 // Función para reproducir sonidos de notificación
@@ -667,6 +748,97 @@ function crearElementoEncuentro(nombreRegion, gimnasio) {
     return elementoLista;
 }
 
+// Función para actualizar solo la interfaz del mapa (sin re-renderizar todo)
+function actualizarInterfazMapa(nombreRegion) {
+    const regionLower = nombreRegion.toLowerCase();
+    const container = document.querySelector(`.${regionLower}-map-container`);
+    if (!container) return;
+
+    const regionData = datosGimnasios.find(r => r.nombre === nombreRegion);
+    let ciudadSeleccionada = null;
+    
+    switch (nombreRegion) {
+        case 'Kanto': ciudadSeleccionada = ciudadSeleccionadaKanto; break;
+        case 'Johto': ciudadSeleccionada = ciudadSeleccionadaJohto; break;
+        case 'Hoenn': ciudadSeleccionada = ciudadSeleccionadaHoenn; break;
+        case 'Sinnoh': ciudadSeleccionada = ciudadSeleccionadaSinnoh; break;
+        case 'Teselia': ciudadSeleccionada = ciudadSeleccionadaTeselia; break;
+    }
+
+    // 1. Actualizar Puntos (Dots)
+    const dots = container.querySelectorAll('.map-city-dot');
+    dots.forEach(dot => {
+        const ciudad = dot.title;
+        const gimnasio = regionData.gimnasios.find(g => g.ciudad === ciudad);
+        
+        // Active
+        if (ciudad === ciudadSeleccionada) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+
+        // Completed
+        const idUnico = gimnasio.id || gimnasio.lider;
+        const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
+        if (progresoUsuario[idGimnasio]) {
+            dot.classList.add('completed');
+        } else {
+            dot.classList.remove('completed');
+        }
+    });
+
+    // 2. Actualizar Panel Detalles
+    const panelDetalles = container.querySelector(`.${regionLower}-details-panel`);
+    if (!panelDetalles) return;
+    
+    // Verificar si ya estamos mostrando el líder correcto para evitar parpadeo de imagen
+    const currentImg = panelDetalles.querySelector('.leader-model');
+    const currentAlt = currentImg ? currentImg.alt : null;
+    
+    let gymSeleccionado = null;
+    if (ciudadSeleccionada) {
+        gymSeleccionado = regionData.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
+    }
+
+    // Si el líder mostrado es el mismo, solo actualizamos la lista (info del gimnasio)
+    if (gymSeleccionado && currentAlt === gymSeleccionado.lider) {
+        const listaDetalle = panelDetalles.querySelector('.gym-list');
+        if (listaDetalle) {
+            listaDetalle.innerHTML = '';
+            listaDetalle.appendChild(crearElementoGimnasio(nombreRegion, gymSeleccionado));
+        }
+    } else {
+        // Si cambia el líder o no hay selección, reconstruimos todo el panel
+        panelDetalles.innerHTML = '';
+
+        if (gymSeleccionado) {
+            // Imagen
+            const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+            const imgLider = document.createElement('img');
+            imgLider.className = 'leader-model';
+            if (gymSeleccionado.lider === 'Alto Mando') {
+                imgLider.src = '../img/alto_mando.png';
+            } else {
+                imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
+            }
+            imgLider.alt = gymSeleccionado.lider;
+            panelDetalles.appendChild(imgLider);
+
+            const listaDetalle = document.createElement('ul');
+            listaDetalle.className = 'gym-list detail-view';
+            listaDetalle.style.width = '100%';
+            listaDetalle.style.background = 'transparent';
+            listaDetalle.appendChild(crearElementoGimnasio(nombreRegion, gymSeleccionado));
+            panelDetalles.appendChild(listaDetalle);
+        } else {
+            panelDetalles.innerHTML = `<p style="color: var(--text-muted); text-align: center;">Selecciona una ciudad en el mapa para ver al Líder de Gimnasio.</p>`;
+        }
+    }
+    
+    actualizarTemporizadores();
+}
+
 // Renderizar la interfaz
 function renderizarAplicacion() {
     const contenedorApp = document.getElementById('app');
@@ -798,6 +970,281 @@ function renderizarAplicacion() {
 
             tarjeta.appendChild(cabecera);
 
+            // --- LÓGICA ESPECÍFICA PARA MAPA DE KANTO ---
+            if (region.nombre === "Kanto") {
+                const contenedorMapa = document.createElement('div');
+                contenedorMapa.className = 'kanto-map-container';
+
+                // 1. Wrapper del Mapa (Izquierda)
+                const wrapperMapa = document.createElement('div');
+                wrapperMapa.className = 'kanto-map-wrapper';
+                
+                // Contenedor interno para escalar mapa y puntos juntos
+                const innerMapa = document.createElement('div');
+                innerMapa.className = 'kanto-map-inner';
+                wrapperMapa.appendChild(innerMapa);
+
+                const imgMapa = document.createElement('img');
+                imgMapa.src = '../img/mapas/kanto_mapa.png';
+                imgMapa.className = 'kanto-map-image';
+                imgMapa.alt = 'Mapa de Kanto';
+                innerMapa.appendChild(imgMapa);
+
+                // Crear puntos interactivos
+                region.gimnasios.forEach(gimnasio => {
+                    const coords = coordenadasKanto[gimnasio.ciudad];
+                    if (coords) {
+                        const dot = document.createElement('div');
+                        dot.className = 'map-city-dot';
+                        dot.style.top = coords.top;
+                        dot.style.left = coords.left;
+                        dot.title = gimnasio.ciudad;
+
+                        // Verificar si está completado para cambiar estilo del punto
+                        const idUnico = gimnasio.id || gimnasio.lider;
+                        const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
+                        if (progresoUsuario[idGimnasio]) {
+                            dot.classList.add('completed');
+                        }
+
+                        // Evento click en el punto
+                        dot.onclick = (e) => {
+                            e.stopPropagation();
+                            ciudadSeleccionadaKanto = gimnasio.ciudad;
+                            actualizarInterfazMapa("Kanto");
+                        };
+
+                        if (ciudadSeleccionadaKanto === gimnasio.ciudad) {
+                            dot.classList.add('active');
+                        }
+
+                        innerMapa.appendChild(dot);
+                    }
+                });
+
+                // 2. Panel de Detalles (Derecha)
+                const panelDetalles = document.createElement('div');
+                panelDetalles.className = 'kanto-details-panel';
+
+                if (ciudadSeleccionadaKanto) {
+                    const gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadSeleccionadaKanto);
+                    if (gymSeleccionado) {
+                        // Mostrar imagen del líder
+                        const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                        const imgLider = document.createElement('img');
+                        imgLider.className = 'leader-model';
+                        if (gymSeleccionado.lider === 'Alto Mando') {
+                            imgLider.src = '../img/alto_mando.png';
+                        } else {
+                            imgLider.src = `../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png`;
+                        }
+                        imgLider.alt = gymSeleccionado.lider;
+                        panelDetalles.appendChild(imgLider);
+
+                        const listaDetalle = document.createElement('ul');
+                        listaDetalle.className = 'gym-list detail-view';
+                        listaDetalle.style.width = '100%';
+                        listaDetalle.style.background = 'transparent';
+                        listaDetalle.appendChild(crearElementoGimnasio(region.nombre, gymSeleccionado));
+                        panelDetalles.appendChild(listaDetalle);
+                    }
+                } else {
+                    panelDetalles.innerHTML = `<p style="color: var(--text-muted); text-align: center;">Selecciona una ciudad en el mapa para ver al Líder de Gimnasio.</p>`;
+                }
+
+                contenedorMapa.appendChild(wrapperMapa);
+                contenedorMapa.appendChild(panelDetalles);
+                tarjeta.appendChild(contenedorMapa);
+            } else if (region.nombre === "Johto") {
+                const contenedorMapa = document.createElement('div');
+                contenedorMapa.className = 'johto-map-container';
+
+                // 1. Wrapper del Mapa (Izquierda)
+                const wrapperMapa = document.createElement('div');
+                wrapperMapa.className = 'johto-map-wrapper';
+                
+                // Contenedor interno para escalar mapa y puntos juntos
+                const innerMapa = document.createElement('div');
+                innerMapa.className = 'johto-map-inner';
+                wrapperMapa.appendChild(innerMapa);
+
+                const imgMapa = document.createElement('img');
+                imgMapa.src = '../img/mapas/johto_mapa.png';
+                imgMapa.className = 'johto-map-image';
+                imgMapa.alt = 'Mapa de Johto';
+                innerMapa.appendChild(imgMapa);
+
+                // Crear puntos interactivos
+                region.gimnasios.forEach(gimnasio => {
+                    const coords = coordenadasJohto[gimnasio.ciudad];
+                    if (coords) {
+                        const dot = document.createElement('div');
+                        dot.className = 'map-city-dot';
+                        dot.style.top = coords.top;
+                        dot.style.left = coords.left;
+                        dot.title = gimnasio.ciudad;
+
+                        // Verificar si está completado para cambiar estilo del punto
+                        const idUnico = gimnasio.id || gimnasio.lider;
+                        const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
+                        if (progresoUsuario[idGimnasio]) {
+                            dot.classList.add('completed');
+                        }
+
+                        // Evento click en el punto
+                        dot.onclick = (e) => {
+                            e.stopPropagation();
+                            ciudadSeleccionadaJohto = gimnasio.ciudad;
+                            actualizarInterfazMapa("Johto");
+                        };
+
+                        if (ciudadSeleccionadaJohto === gimnasio.ciudad) {
+                            dot.classList.add('active');
+                        }
+
+                        innerMapa.appendChild(dot);
+                    }
+                });
+
+                // 2. Panel de Detalles (Derecha)
+                const panelDetalles = document.createElement('div');
+                panelDetalles.className = 'johto-details-panel';
+
+                if (ciudadSeleccionadaJohto) {
+                    const gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadSeleccionadaJohto);
+                    if (gymSeleccionado) {
+                        // Mostrar imagen del líder
+                        const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                        const imgLider = document.createElement('img');
+                        imgLider.className = 'leader-model';
+                        if (gymSeleccionado.lider === 'Alto Mando') {
+                            imgLider.src = '../img/alto_mando.png';
+                        } else {
+                            imgLider.src = `../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png`;
+                        }
+                        imgLider.alt = gymSeleccionado.lider;
+                        panelDetalles.appendChild(imgLider);
+
+                        const listaDetalle = document.createElement('ul');
+                        listaDetalle.className = 'gym-list detail-view';
+                        listaDetalle.style.width = '100%';
+                        listaDetalle.style.background = 'transparent';
+                        listaDetalle.appendChild(crearElementoGimnasio(region.nombre, gymSeleccionado));
+                        panelDetalles.appendChild(listaDetalle);
+                    }
+                } else {
+                    panelDetalles.innerHTML = `<p style="color: var(--text-muted); text-align: center;">Selecciona una ciudad en el mapa para ver al Líder de Gimnasio.</p>`;
+                }
+
+                contenedorMapa.appendChild(wrapperMapa);
+                contenedorMapa.appendChild(panelDetalles);
+                tarjeta.appendChild(contenedorMapa);
+            } else if (["Hoenn", "Sinnoh", "Teselia"].includes(region.nombre)) {
+                // Lógica genérica para las nuevas regiones
+                const regionLower = region.nombre.toLowerCase();
+                let coordsMap = {};
+                let ciudadSeleccionada = null;
+                let setCiudadSeleccionada = null;
+                let imgMapaSrc = `../img/mapas/${regionLower}_mapa.png`;
+
+                if (region.nombre === "Hoenn") {
+                    coordsMap = coordenadasHoenn;
+                    ciudadSeleccionada = ciudadSeleccionadaHoenn;
+                    setCiudadSeleccionada = (c) => ciudadSeleccionadaHoenn = c;
+                } else if (region.nombre === "Sinnoh") {
+                    coordsMap = coordenadasSinnoh;
+                    ciudadSeleccionada = ciudadSeleccionadaSinnoh;
+                    setCiudadSeleccionada = (c) => ciudadSeleccionadaSinnoh = c;
+                } else if (region.nombre === "Teselia") {
+                    coordsMap = coordenadasTeselia;
+                    ciudadSeleccionada = ciudadSeleccionadaTeselia;
+                    setCiudadSeleccionada = (c) => ciudadSeleccionadaTeselia = c;
+                }
+
+                const contenedorMapa = document.createElement('div');
+                contenedorMapa.className = `${regionLower}-map-container`;
+
+                // 1. Wrapper del Mapa (Izquierda)
+                const wrapperMapa = document.createElement('div');
+                wrapperMapa.className = `${regionLower}-map-wrapper`;
+                
+                // Contenedor interno para escalar mapa y puntos juntos
+                const innerMapa = document.createElement('div');
+                innerMapa.className = `${regionLower}-map-inner`;
+                wrapperMapa.appendChild(innerMapa);
+
+                const imgMapa = document.createElement('img');
+                imgMapa.src = imgMapaSrc;
+                imgMapa.className = `${regionLower}-map-image`;
+                imgMapa.alt = `Mapa de ${region.nombre}`;
+                innerMapa.appendChild(imgMapa);
+
+                // Crear puntos interactivos
+                region.gimnasios.forEach(gimnasio => {
+                    const coords = coordsMap[gimnasio.ciudad];
+                    if (coords) {
+                        const dot = document.createElement('div');
+                        dot.className = 'map-city-dot';
+                        dot.style.top = coords.top;
+                        dot.style.left = coords.left;
+                        dot.title = gimnasio.ciudad;
+
+                        // Verificar si está completado para cambiar estilo del punto
+                        const idUnico = gimnasio.id || gimnasio.lider;
+                        const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
+                        if (progresoUsuario[idGimnasio]) {
+                            dot.classList.add('completed');
+                        }
+
+                        // Evento click en el punto
+                        dot.onclick = (e) => {
+                            e.stopPropagation();
+                            setCiudadSeleccionada(gimnasio.ciudad);
+                            actualizarInterfazMapa(region.nombre);
+                        };
+
+                        if (ciudadSeleccionada === gimnasio.ciudad) {
+                            dot.classList.add('active');
+                        }
+
+                        innerMapa.appendChild(dot);
+                    }
+                });
+
+                // 2. Panel de Detalles (Derecha)
+                const panelDetalles = document.createElement('div');
+                panelDetalles.className = `${regionLower}-details-panel`;
+
+                if (ciudadSeleccionada) {
+                    const gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
+                    if (gymSeleccionado) {
+                        // Mostrar imagen del líder
+                        const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                        const imgLider = document.createElement('img');
+                        imgLider.className = 'leader-model';
+                        if (gymSeleccionado.lider === 'Alto Mando') {
+                            imgLider.src = '../img/alto_mando.png';
+                        } else {
+                            imgLider.src = `../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png`;
+                        }
+                        imgLider.alt = gymSeleccionado.lider;
+                        panelDetalles.appendChild(imgLider);
+
+                        const listaDetalle = document.createElement('ul');
+                        listaDetalle.className = 'gym-list detail-view';
+                        listaDetalle.style.width = '100%';
+                        listaDetalle.style.background = 'transparent';
+                        listaDetalle.appendChild(crearElementoGimnasio(region.nombre, gymSeleccionado));
+                        panelDetalles.appendChild(listaDetalle);
+                    }
+                } else {
+                    panelDetalles.innerHTML = `<p style="color: var(--text-muted); text-align: center;">Selecciona una ciudad en el mapa para ver al Líder de Gimnasio.</p>`;
+                }
+
+                contenedorMapa.appendChild(wrapperMapa);
+                contenedorMapa.appendChild(panelDetalles);
+                tarjeta.appendChild(contenedorMapa);
+            } else {
             // Contenedor de la lista (Grid)
             const lista = document.createElement('ul');
             lista.className = 'battle-gym-list';
@@ -854,6 +1301,7 @@ function renderizarAplicacion() {
             }
 
             tarjeta.appendChild(lista);
+            } // Fin else (no Kanto)
             tablero.appendChild(tarjeta);
         });
 

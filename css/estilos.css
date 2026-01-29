@@ -251,6 +251,7 @@ header::after {
     transition: background-color 0.2s;
     position: relative;
     height: 110px;
+    user-select: none;
 }
 
 .gym-item:hover {
@@ -1128,7 +1129,12 @@ header::after {
 }
 
 /* Estado colapsado */
-.battle-region-card.collapsed .battle-gym-list {
+.battle-region-card.collapsed .battle-gym-list,
+.battle-region-card.collapsed .kanto-map-container,
+.battle-region-card.collapsed .johto-map-container,
+.battle-region-card.collapsed .hoenn-map-container,
+.battle-region-card.collapsed .sinnoh-map-container,
+.battle-region-card.collapsed .teselia-map-container {
     display: none;
 }
 
@@ -1163,6 +1169,7 @@ header::after {
     transition: box-shadow 0.2s, background-color 0.2s;
     position: relative;
     background-origin: border-box;
+    user-select: none;
 }
 
 .battle-gym-item:hover {
@@ -1229,6 +1236,164 @@ header::after {
     display: none; /* Quitar la barra lateral del estilo original */
 }
 
+/* --- MAPA INTERACTIVO KANTO --- */
+.kanto-map-container, .johto-map-container,
+.hoenn-map-container, .sinnoh-map-container,
+.teselia-map-container {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--bg-panel);
+    border-top: 1px solid var(--dark-purple);
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.kanto-map-wrapper, .johto-map-wrapper,
+.hoenn-map-wrapper, .sinnoh-map-wrapper,
+.teselia-map-wrapper {
+    position: relative;
+    width: 65%;
+    background-color: #3a5fcd; /* Color océano fallback */
+    overflow: hidden;
+}
+
+.kanto-map-inner, .johto-map-inner,
+.hoenn-map-inner, .sinnoh-map-inner,
+.teselia-map-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+}
+
+.kanto-map-inner {
+    transform: scale(1); /* Zoom ajustado para ver mapa completo */
+}
+
+.johto-map-inner, .hoenn-map-inner, .sinnoh-map-inner, .teselia-map-inner {
+    transform: scale(1); /* Zoom ajustado para Johto */
+}
+
+.johto-map-image, .hoenn-map-image, .sinnoh-map-image, .teselia-map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.kanto-map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    display: block;
+}
+
+.map-city-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: var(--poke-yellow);
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.map-city-dot:hover, .map-city-dot.active {
+    transform: translate(-50%, -50%) scale(1.3);
+    background-color: var(--poke-red);
+    box-shadow: 0 0 15px var(--poke-yellow);
+    z-index: 11;
+}
+
+.map-city-dot.completed {
+    background-color: var(--success-green);
+    border-color: #151221;
+}
+
+.kanto-details-panel, .johto-details-panel,
+.hoenn-details-panel, .sinnoh-details-panel,
+.teselia-details-panel {
+    width: 35%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(21, 18, 33, 0.5);
+    border-left: 1px solid var(--dark-purple);
+    backdrop-filter: blur(5px);
+}
+
+.kanto-details-panel .gym-item, .johto-details-panel .gym-item,
+.hoenn-details-panel .gym-item, .sinnoh-details-panel .gym-item,
+.teselia-details-panel .gym-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.kanto-details-panel .gym-item.completed::before, .johto-details-panel .gym-item.completed::before,
+.hoenn-details-panel .gym-item.completed::before, .sinnoh-details-panel .gym-item.completed::before,
+.teselia-details-panel .gym-item.completed::before {
+    display: none;
+}
+
+.kanto-details-panel .gym-item .gym-info, .johto-details-panel .gym-item .gym-info,
+.hoenn-details-panel .gym-item .gym-info, .sinnoh-details-panel .gym-item .gym-info,
+.teselia-details-panel .gym-item .gym-info {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.kanto-details-panel .gym-item .gym-status-right, .johto-details-panel .gym-item .gym-status-right,
+.hoenn-details-panel .gym-item .gym-status-right, .sinnoh-details-panel .gym-item .gym-status-right,
+.teselia-details-panel .gym-item .gym-status-right {
+    width: 100%;
+    margin-left: 0;
+    align-items: center;
+}
+
+.kanto-details-panel .gym-item .gym-end-time, .johto-details-panel .gym-item .gym-end-time,
+.hoenn-details-panel .gym-item .gym-end-time, .sinnoh-details-panel .gym-item .gym-end-time,
+.teselia-details-panel .gym-item .gym-end-time {
+    text-align: center;
+}
+
+.kanto-details-panel .gym-item .checkbox-wrapper, .johto-details-panel .gym-item .checkbox-wrapper,
+.hoenn-details-panel .gym-item .checkbox-wrapper, .sinnoh-details-panel .gym-item .checkbox-wrapper,
+.teselia-details-panel .gym-item .checkbox-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    margin-right: 0;
+}
+
+.leader-model {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* Responsive para el Battle Tracker */
 @media (max-width: 1100px) {
     .battle-region-card {
@@ -1274,5 +1439,16 @@ header::after {
         width: auto;
         align-items: flex-end;
         margin-left: auto;
+    }
+    
+    /* Responsive Mapa */
+    .kanto-map-container, .johto-map-container,
+    .hoenn-map-container, .sinnoh-map-container,
+    .teselia-map-container {
+        flex-direction: column;
+    }
+    .kanto-map-wrapper, .johto-map-wrapper, .hoenn-map-wrapper, .sinnoh-map-wrapper, .teselia-map-wrapper,
+    .kanto-details-panel, .johto-details-panel, .hoenn-details-panel, .sinnoh-details-panel, .teselia-details-panel {
+        width: 100%;
     }
 }
