@@ -220,7 +220,7 @@ let estadoRegiones = {}; // Estado de colapso de las regiones
 
 // Coordenadas porcentuales para el mapa de Kanto
 const coordenadasKanto = {
-    "Ciudad Plateada": { top: "36%", left: "25%" },
+    "Ciudad Plateada": { top: "36%", left: "24%" },
     "Ciudad Celeste": { top: "30.5%", left: "63.5%" },
     "Ciudad Carmín": { top: "65%", left: "65%" },
     "Ciudad Azulona": { top: "42%", left: "50%" },
