@@ -2,76 +2,71 @@
 const datosGimnasios = [
     {
         nombre: "Kanto",
-        dinero: "63.700",
         gimnasios: [
-            { ciudad: "Ciudad Plateada", lider: "Brock" },
-            { ciudad: "Ciudad Celeste", lider: "Misty" },
-            { ciudad: "Ciudad Carmín", lider: "Lt. Surge" },
-            { ciudad: "Ciudad Azulona", lider: "Erika" },
-            { ciudad: "Ciudad Fucsia", lider: "Koga" },
-            { ciudad: "Ciudad Azafrán", lider: "Sabrina" },
-            { ciudad: "Isla Canela", lider: "Blaine" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
+            { ciudad: "Ciudad Plateada", lider: "Brock", shape: "circle" },
+            { ciudad: "Ciudad Celeste", lider: "Misty", shape: "circle" },
+            { ciudad: "Ciudad Carmín", lider: "Lt. Surge", shape: "circle" },
+            { ciudad: "Ciudad Azulona", lider: "Erika", shape: "circle" },
+            { ciudad: "Ciudad Fucsia", lider: "Koga", shape: "circle" },
+            { ciudad: "Ciudad Azafrán", lider: "Sabrina", shape: "circle" },
+            { ciudad: "Isla Canela", lider: "Blaine", shape: "circle" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
         ]
     },
     {
         nombre: "Johto",
-        dinero: "72.800",
         gimnasios: [
-            { ciudad: "Ciudad Malva", lider: "Pegaso" },
-            { ciudad: "Pueblo Azalea", lider: "Antón" },
-            { ciudad: "Ciudad Trigal", lider: "Blanca" },
-            { ciudad: "Ciudad Iris", lider: "Morti" },
-            { ciudad: "Ciudad Orquídea", lider: "Aníbal" },
-            { ciudad: "Ciudad Olivo", lider: "Yasmina" },
-            { ciudad: "Pueblo Caoba", lider: "Fredo" },
-            { ciudad: "Ciudad Endrino", lider: "Débora" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
+            { ciudad: "Ciudad Malva", lider: "Pegaso", shape: "square" },
+            { ciudad: "Pueblo Azalea", lider: "Antón", shape: "rectangle-h" },
+            { ciudad: "Ciudad Trigal", lider: "Blanca", shape: "square-lg" },
+            { ciudad: "Ciudad Iris", lider: "Morti", shape: "l-shape" },
+            { ciudad: "Ciudad Orquídea", lider: "Aníbal", shape: "square-sm" },
+            { ciudad: "Ciudad Olivo", lider: "Yasmina", shape: "rectangle-v" },
+            { ciudad: "Pueblo Caoba", lider: "Fredo", shape: "l-shape-flip" },
+            { ciudad: "Ciudad Endrino", lider: "Débora", shape: "square" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
         ]
     },
     {
         nombre: "Hoenn",
-        dinero: "72.800",
         gimnasios: [
-            { ciudad: "Ciudad Férrica", lider: "Petra" },
-            { ciudad: "Pueblo Azuliza", lider: "Marcial" },
-            { ciudad: "Ciudad Malvalona", lider: "Erico" },
-            { ciudad: "Pueblo Lavacalda", lider: "Candela" },
-            { ciudad: "Ciudad Petalia", lider: "Norman" },
-            { ciudad: "Ciudad Arborada", lider: "Alana" },
-            { ciudad: "Ciudad Algaria", lider: "Vito y Leti" },
-            { ciudad: "Ciudad Arrecípolis", lider: "Galano" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
+            { ciudad: "Ciudad Férrica", lider: "Petra", shape: "rectangle-v" },
+            { ciudad: "Pueblo Azuliza", lider: "Marcial", shape: "square-sm" },
+            { ciudad: "Ciudad Malvalona", lider: "Erico", shape: "square-lg" },
+            { ciudad: "Pueblo Lavacalda", lider: "Candela", shape: "square" },
+            { ciudad: "Ciudad Petalia", lider: "Norman", shape: "rectangle-h" },
+            { ciudad: "Ciudad Arborada", lider: "Alana", shape: "l-shape" },
+            { ciudad: "Ciudad Algaria", lider: "Vito y Leti", shape: "square" },
+            { ciudad: "Ciudad Arrecípolis", lider: "Galano", shape: "circle" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
         ]
     },
     {
         nombre: "Sinnoh",
-        dinero: "72.800",
         gimnasios: [
-            { ciudad: "Ciudad Pirita", lider: "Roco" },
-            { ciudad: "Ciudad Vetusta", lider: "Gardenia" },
-            { ciudad: "Ciudad Rocavelo", lider: "Brega" },
-            { ciudad: "Ciudad Pradera", lider: "Mananti" },
-            { ciudad: "Ciudad Corazón", lider: "Fantina" },
-            { ciudad: "Ciudad Canal", lider: "Acerón" },
-            { ciudad: "Ciudad Puntaneva", lider: "Inverna" },
-            { ciudad: "Ciudad Marina", lider: "Lectro" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
+            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "square" },
+            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h" },
+            { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape" },
+            { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h" },
+            { ciudad: "Ciudad Corazón", lider: "Fantina", shape: "square-lg" },
+            { ciudad: "Ciudad Canal", lider: "Acerón", shape: "l-shape-flip" },
+            { ciudad: "Ciudad Puntaneva", lider: "Inverna", shape: "square-sm" },
+            { ciudad: "Ciudad Marina", lider: "Lectro", shape: "rectangle-v" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
         ]
     },
     {
         nombre: "Teselia",
-        dinero: "72.800",
         gimnasios: [
-            { ciudad: "Ciudad Gres", lider: "Zeo, Maíz y Millo" },
-            { ciudad: "Ciudad Esmalte", lider: "Aloe" },
-            { ciudad: "Ciudad Porcelana", lider: "Camus" },
-            { ciudad: "Ciudad Mayólica", lider: "Camila" },
-            { ciudad: "Ciudad Fayenza", lider: "Yakón" },
-            { ciudad: "Ciudad Loza", lider: "Gerania" },
-            { ciudad: "Ciudad Teja", lider: "Junco" },
-            { ciudad: "Ciudad Caolín", lider: "Lirio" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6 }
+            { ciudad: "Ciudad Gres", lider: "Zeo, Maíz y Millo", shape: "circle" },
+            { ciudad: "Ciudad Esmalte", lider: "Aloe", shape: "circle" },
+            { ciudad: "Ciudad Porcelana", lider: "Camus", shape: "circle" },
+            { ciudad: "Ciudad Mayólica", lider: "Camila", shape: "circle" },
+            { ciudad: "Ciudad Fayenza", lider: "Yakón", shape: "circle" },
+            { ciudad: "Ciudad Loza", lider: "Gerania", shape: "circle" },
+            { ciudad: "Ciudad Teja", lider: "Junco", shape: "circle" },
+            { ciudad: "Ciudad Caolín", lider: "Lirio", shape: "circle" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
         ],
         entrenadoresEspeciales: [
             { ciudad: "Ciudad Porcelana", lider: "Morimoto" },
@@ -220,14 +215,14 @@ let estadoRegiones = {}; // Estado de colapso de las regiones
 
 // Coordenadas porcentuales para el mapa de Kanto
 const coordenadasKanto = {
-    "Ciudad Plateada": { top: "36%", left: "24%" },
-    "Ciudad Celeste": { top: "30.5%", left: "63.5%" },
-    "Ciudad Carmín": { top: "65%", left: "65%" },
-    "Ciudad Azulona": { top: "42%", left: "50%" },
-    "Ciudad Fucsia": { top: "82%", left: "55%" },
-    "Ciudad Azafrán": { top: "42%", left: "65%" },
-    "Isla Canela": { top: "90%", left: "25%" },
-    "Liga Pokémon": { top: "26%", left: "8%" }
+    "Ciudad Plateada": { top: "36%", left: "23%" },
+    "Ciudad Celeste": { top: "30.5%", left: "64.8%" },
+    "Ciudad Carmín": { top: "64.2%", left: "64.9%" },
+    "Ciudad Azulona": { top: "47%", left: "52.33%" },
+    "Ciudad Fucsia": { top: "81%", left: "56.4%" },
+    "Ciudad Azafrán": { top: "47%", left: "64.7%" },
+    "Isla Canela": { top: "92%", left: "23%" },
+    "Liga Pokémon": { top: "30.5%", left: "14.9%" }
 };
 
 let ciudadSeleccionadaKanto = null; // Estado para recordar la selección tras re-renderizar
@@ -999,6 +994,7 @@ function renderizarAplicacion() {
                         dot.style.top = coords.top;
                         dot.style.left = coords.left;
                         dot.title = gimnasio.ciudad;
+                        if (gimnasio.shape) { dot.classList.add('shape-' + gimnasio.shape); }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
@@ -1010,7 +1006,11 @@ function renderizarAplicacion() {
                         // Evento click en el punto
                         dot.onclick = (e) => {
                             e.stopPropagation();
-                            ciudadSeleccionadaKanto = gimnasio.ciudad;
+                            if (ciudadSeleccionadaKanto === gimnasio.ciudad) {
+                                ciudadSeleccionadaKanto = null;
+                            } else {
+                                ciudadSeleccionadaKanto = gimnasio.ciudad;
+                            }
                             actualizarInterfazMapa("Kanto");
                         };
 
@@ -1083,6 +1083,7 @@ function renderizarAplicacion() {
                         dot.style.top = coords.top;
                         dot.style.left = coords.left;
                         dot.title = gimnasio.ciudad;
+                        if (gimnasio.shape) { dot.classList.add('shape-' + gimnasio.shape); }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
@@ -1094,7 +1095,11 @@ function renderizarAplicacion() {
                         // Evento click en el punto
                         dot.onclick = (e) => {
                             e.stopPropagation();
-                            ciudadSeleccionadaJohto = gimnasio.ciudad;
+                            if (ciudadSeleccionadaJohto === gimnasio.ciudad) {
+                                ciudadSeleccionadaJohto = null;
+                            } else {
+                                ciudadSeleccionadaJohto = gimnasio.ciudad;
+                            }
                             actualizarInterfazMapa("Johto");
                         };
 
@@ -1188,6 +1193,7 @@ function renderizarAplicacion() {
                         dot.style.top = coords.top;
                         dot.style.left = coords.left;
                         dot.title = gimnasio.ciudad;
+                        if (gimnasio.shape) { dot.classList.add('shape-' + gimnasio.shape); }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
@@ -1199,7 +1205,11 @@ function renderizarAplicacion() {
                         // Evento click en el punto
                         dot.onclick = (e) => {
                             e.stopPropagation();
-                            setCiudadSeleccionada(gimnasio.ciudad);
+                            if (ciudadSeleccionada === gimnasio.ciudad) {
+                                setCiudadSeleccionada(null);
+                            } else {
+                                setCiudadSeleccionada(gimnasio.ciudad);
+                            }
                             actualizarInterfazMapa(region.nombre);
                         };
 
