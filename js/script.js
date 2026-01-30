@@ -845,7 +845,7 @@ function actualizarInterfazMapa(nombreRegion) {
                     img.style.height = '100%';
                     img.style.width = 'auto';
                     img.style.objectFit = 'contain';
-                    if (index > 0) img.style.marginLeft = '-80px';
+                    if (index > 0) img.style.marginLeft = '-130px';
                     img.style.position = 'relative';
                     img.style.zIndex = index;
                     img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
@@ -1314,7 +1314,7 @@ function renderizarAplicacion() {
                                 img.style.height = '100%';
                                 img.style.width = 'auto';
                                 img.style.objectFit = 'contain';
-                                if (index > 0) img.style.marginLeft = '-80px';
+                                if (index > 0) img.style.marginLeft = '-130px';
                                 img.style.position = 'relative';
                                 img.style.zIndex = index;
                                 img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
