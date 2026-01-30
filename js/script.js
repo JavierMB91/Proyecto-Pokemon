@@ -70,7 +70,7 @@ const datosGimnasios = [
         ],
         entrenadoresEspeciales: [
             { ciudad: "Ciudad Porcelana", lider: "Morimoto" },
-            { ciudad: "Pueblo Arenisca", lider: "Cintia", shape: "circle", imagen: "gimnasios_teselia/cintia.png" }
+            { ciudad: "Pueblo Arenisca", lider: "Cintia", shape: "circle" }
         ]
     }
 ];
@@ -795,6 +795,9 @@ function actualizarInterfazMapa(nombreRegion) {
     let gymSeleccionado = null;
     if (ciudadSeleccionada) {
         gymSeleccionado = regionData.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
+        if (!gymSeleccionado && regionData.entrenadoresEspeciales) {
+            gymSeleccionado = regionData.entrenadoresEspeciales.find(g => g.ciudad === ciudadSeleccionada);
+        }
     }
 
     // Si el líder mostrado es el mismo, solo actualizamos la lista (info del gimnasio)
@@ -1137,7 +1140,7 @@ function renderizarAplicacion() {
                         if (gymSeleccionado.lider === 'Alto Mando') {
                             imgLider.src = '../img/alto_mando.png';
                         } else {
-                            imgLider.src = `../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png`;
+                            imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
                         }
                         imgLider.alt = gymSeleccionado.lider;
                         panelDetalles.appendChild(imgLider);
@@ -1260,7 +1263,7 @@ function renderizarAplicacion() {
                         if (gymSeleccionado.lider === 'Alto Mando') {
                             imgLider.src = '../img/alto_mando.png';
                         } else {
-                            imgLider.src = `../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png`;
+                            imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
                         }
                         imgLider.alt = gymSeleccionado.lider;
                         panelDetalles.appendChild(imgLider);
