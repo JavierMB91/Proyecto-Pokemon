@@ -670,6 +670,22 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         const nombreImgBaya = datosProgreso.nombreBaya.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
         const fallback = gimnasio.imagen ? `this.src='../img/${gimnasio.imagen}'` : "this.style.display='none'";
         htmlImagen = `<img src="../img/bayas/${nombreImgBaya}" alt="${datosProgreso.nombreBaya}" class="gym-image" onerror="${fallback}">`;
+    } else if (gimnasio.lider === 'Zeo, Maíz y Millo') {
+        const lideres = ['Zeo', 'Maiz', 'Millo'];
+        const imgsHtml = lideres.map((lider, index) => {
+             const src = `../img/gimnasios_teselia/${lider}.png`;
+             const estilo = `
+                height: 50px; 
+                width: 50px; 
+                object-fit: contain; 
+                margin-left: ${index > 0 ? '-25px' : '0'}; 
+                position: relative; 
+                z-index: ${index};
+                filter: drop-shadow(2px 0 2px rgba(0,0,0,0.5));
+            `;
+            return `<img src="${src}" alt="${lider}" style="${estilo}">`;
+        }).join('');
+        htmlImagen = `<div class="gym-image" style="display: flex; align-items: center; width: auto; justify-content: center;">${imgsHtml}</div>`;
     } else if (gimnasio.imagen) {
         const claseExtra = gimnasio.tipo === 'seed-plant' ? ' seed-plant-image' : '';
         htmlImagen = `<img src="../img/${gimnasio.imagen}" alt="${gimnasio.ciudad}" class="gym-image${claseExtra}">`;
@@ -790,7 +806,7 @@ function actualizarInterfazMapa(nombreRegion) {
     
     // Verificar si ya estamos mostrando el líder correcto para evitar parpadeo de imagen
     const currentImg = panelDetalles.querySelector('.leader-model');
-    const currentAlt = currentImg ? currentImg.alt : null;
+    const currentAlt = currentImg ? (currentImg.alt || currentImg.getAttribute('alt')) : null;
     
     let gymSeleccionado = null;
     if (ciudadSeleccionada) {
@@ -813,27 +829,52 @@ function actualizarInterfazMapa(nombreRegion) {
 
         if (gymSeleccionado) {
             // Imagen
-            const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
-            const imgLider = document.createElement('img');
-            imgLider.className = 'leader-model';
-                        
-                        if (gymSeleccionado.imagen) {
-                            imgLider.src = `../img/${gymSeleccionado.imagen}`;
-                        } else if (gymSeleccionado.lider === 'Alto Mando') {
-                            imgLider.src = '../img/alto_mando.png';
-                        } else {
-                            imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
-                        }
+            if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
+                const divLider = document.createElement('div');
+                divLider.className = 'leader-model';
+                divLider.style.display = 'flex';
+                divLider.style.justifyContent = 'center';
+                divLider.style.alignItems = 'center';
+                divLider.setAttribute('alt', gymSeleccionado.lider);
 
-                        // Fallback para Cintia (si no está en Teselia, probar Sinnoh)
-                        if (gymSeleccionado.lider === 'Cintia') {
-                            imgLider.onerror = function() {
-                                this.onerror = null;
-                                this.src = `../img/gimnasios_sinnoh/${nombreArchivo}.png`;
-                            };
-                        }
-            imgLider.alt = gymSeleccionado.lider;
-            panelDetalles.appendChild(imgLider);
+                const lideres = ['Zeo', 'Maiz', 'Millo'];
+                lideres.forEach((lider, index) => {
+                    const img = document.createElement('img');
+                    img.src = `../img/gimnasios_teselia/${lider}.png`;
+                    img.alt = lider;
+                    img.style.height = '100%';
+                    img.style.width = 'auto';
+                    img.style.objectFit = 'contain';
+                    if (index > 0) img.style.marginLeft = '-80px';
+                    img.style.position = 'relative';
+                    img.style.zIndex = index;
+                    img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
+                    divLider.appendChild(img);
+                });
+                panelDetalles.appendChild(divLider);
+            } else {
+                const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                const imgLider = document.createElement('img');
+                imgLider.className = 'leader-model';
+                            
+                if (gymSeleccionado.imagen) {
+                    imgLider.src = `../img/${gymSeleccionado.imagen}`;
+                } else if (gymSeleccionado.lider === 'Alto Mando') {
+                    imgLider.src = '../img/alto_mando.png';
+                } else {
+                    imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
+                }
+
+                // Fallback para Cintia (si no está en Teselia, probar Sinnoh)
+                if (gymSeleccionado.lider === 'Cintia') {
+                    imgLider.onerror = function() {
+                        this.onerror = null;
+                        this.src = `../img/gimnasios_sinnoh/${nombreArchivo}.png`;
+                    };
+                }
+                imgLider.alt = gymSeleccionado.lider;
+                panelDetalles.appendChild(imgLider);
+            }
 
             const listaDetalle = document.createElement('ul');
             listaDetalle.className = 'gym-list detail-view';
@@ -1257,16 +1298,41 @@ function renderizarAplicacion() {
 
                     if (gymSeleccionado) {
                         // Mostrar imagen del líder
-                        const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
-                        const imgLider = document.createElement('img');
-                        imgLider.className = 'leader-model';
-                        if (gymSeleccionado.lider === 'Alto Mando') {
-                            imgLider.src = '../img/alto_mando.png';
+                        if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
+                            const divLider = document.createElement('div');
+                            divLider.className = 'leader-model';
+                            divLider.style.display = 'flex';
+                            divLider.style.justifyContent = 'center';
+                            divLider.style.alignItems = 'center';
+                            divLider.setAttribute('alt', gymSeleccionado.lider);
+
+                            const lideres = ['Zeo', 'Maiz', 'Millo'];
+                            lideres.forEach((lider, index) => {
+                                const img = document.createElement('img');
+                                img.src = `../img/gimnasios_teselia/${lider}.png`;
+                                img.alt = lider;
+                                img.style.height = '100%';
+                                img.style.width = 'auto';
+                                img.style.objectFit = 'contain';
+                                if (index > 0) img.style.marginLeft = '-80px';
+                                img.style.position = 'relative';
+                                img.style.zIndex = index;
+                                img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
+                                divLider.appendChild(img);
+                            });
+                            panelDetalles.appendChild(divLider);
                         } else {
-                            imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
+                            const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                            const imgLider = document.createElement('img');
+                            imgLider.className = 'leader-model';
+                            if (gymSeleccionado.lider === 'Alto Mando') {
+                                imgLider.src = '../img/alto_mando.png';
+                            } else {
+                                imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
+                            }
+                            imgLider.alt = gymSeleccionado.lider;
+                            panelDetalles.appendChild(imgLider);
                         }
-                        imgLider.alt = gymSeleccionado.lider;
-                        panelDetalles.appendChild(imgLider);
 
                         const listaDetalle = document.createElement('ul');
                         listaDetalle.className = 'gym-list detail-view';
