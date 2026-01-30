@@ -670,22 +670,6 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         const nombreImgBaya = datosProgreso.nombreBaya.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
         const fallback = gimnasio.imagen ? `this.src='../img/${gimnasio.imagen}'` : "this.style.display='none'";
         htmlImagen = `<img src="../img/bayas/${nombreImgBaya}" alt="${datosProgreso.nombreBaya}" class="gym-image" onerror="${fallback}">`;
-    } else if (gimnasio.lider === 'Zeo, Maíz y Millo') {
-        const lideres = ['Zeo', 'Maiz', 'Millo'];
-        const imgsHtml = lideres.map((lider, index) => {
-             const src = `../img/gimnasios_teselia/${lider}.png`;
-             const estilo = `
-                height: 50px; 
-                width: 50px; 
-                object-fit: contain; 
-                margin-left: ${index > 0 ? '-25px' : '0'}; 
-                position: relative; 
-                z-index: ${index};
-                filter: drop-shadow(2px 0 2px rgba(0,0,0,0.5));
-            `;
-            return `<img src="${src}" alt="${lider}" style="${estilo}">`;
-        }).join('');
-        htmlImagen = `<div class="gym-image" style="display: flex; align-items: center; width: auto; justify-content: center;">${imgsHtml}</div>`;
     } else if (gimnasio.imagen) {
         const claseExtra = gimnasio.tipo === 'seed-plant' ? ' seed-plant-image' : '';
         htmlImagen = `<img src="../img/${gimnasio.imagen}" alt="${gimnasio.ciudad}" class="gym-image${claseExtra}">`;
@@ -845,7 +829,8 @@ function actualizarInterfazMapa(nombreRegion) {
                     img.style.height = '100%';
                     img.style.width = 'auto';
                     img.style.objectFit = 'contain';
-                    if (index > 0) img.style.marginLeft = '-130px';
+                    if (index === 1) img.style.marginLeft = '-115px';
+                    if (index === 2) img.style.marginLeft = '-130px';
                     img.style.position = 'relative';
                     img.style.zIndex = index;
                     img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
@@ -1314,7 +1299,8 @@ function renderizarAplicacion() {
                                 img.style.height = '100%';
                                 img.style.width = 'auto';
                                 img.style.objectFit = 'contain';
-                                if (index > 0) img.style.marginLeft = '-130px';
+                                if (index === 1) img.style.marginLeft = '-115px';
+                                if (index === 2) img.style.marginLeft = '-130px';
                                 img.style.position = 'relative';
                                 img.style.zIndex = index;
                                 img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
