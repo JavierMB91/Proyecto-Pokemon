@@ -1191,20 +1191,24 @@ function renderizarAplicacion() {
                 let coordsMap = {};
                 let ciudadSeleccionada = null;
                 let setCiudadSeleccionada = null;
+                let getCiudadSeleccionada = null;
                 let imgMapaSrc = `../img/mapas/${regionLower}_mapa.png`;
 
                 if (region.nombre === "Hoenn") {
                     coordsMap = coordenadasHoenn;
                     ciudadSeleccionada = ciudadSeleccionadaHoenn;
                     setCiudadSeleccionada = (c) => ciudadSeleccionadaHoenn = c;
+                    getCiudadSeleccionada = () => ciudadSeleccionadaHoenn;
                 } else if (region.nombre === "Sinnoh") {
                     coordsMap = coordenadasSinnoh;
                     ciudadSeleccionada = ciudadSeleccionadaSinnoh;
                     setCiudadSeleccionada = (c) => ciudadSeleccionadaSinnoh = c;
+                    getCiudadSeleccionada = () => ciudadSeleccionadaSinnoh;
                 } else if (region.nombre === "Teselia") {
                     coordsMap = coordenadasTeselia;
                     ciudadSeleccionada = ciudadSeleccionadaTeselia;
                     setCiudadSeleccionada = (c) => ciudadSeleccionadaTeselia = c;
+                    getCiudadSeleccionada = () => ciudadSeleccionadaTeselia;
                 }
 
                 const contenedorMapa = document.createElement('div');
@@ -1255,7 +1259,7 @@ function renderizarAplicacion() {
                         // Evento click en el punto
                         dot.onclick = (e) => {
                             e.stopPropagation();
-                            if (ciudadSeleccionada === gimnasio.ciudad) {
+                            if (getCiudadSeleccionada() === gimnasio.ciudad) {
                                 setCiudadSeleccionada(null);
                             } else {
                                 setCiudadSeleccionada(gimnasio.ciudad);
