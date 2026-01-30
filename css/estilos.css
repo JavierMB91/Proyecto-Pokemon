@@ -1282,14 +1282,14 @@ header::after {
     transform: scale(1); /* Zoom ajustado para Johto */
 }
 
-.johto-map-image, .hoenn-map-image, .sinnoh-map-image, .teselia-map-image {
+.johto-map-image, .hoenn-map-image, .sinnoh-map-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.kanto-map-image {
+.kanto-map-image, .teselia-map-image {
     width: 100%;
     height: 100%;
     object-fit: fill;

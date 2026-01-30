@@ -70,7 +70,7 @@ const datosGimnasios = [
         ],
         entrenadoresEspeciales: [
             { ciudad: "Ciudad Porcelana", lider: "Morimoto" },
-            { ciudad: "Pueblo Arenisca", lider: "Cintia" }
+            { ciudad: "Pueblo Arenisca", lider: "Cintia", shape: "circle", imagen: "gimnasios_teselia/cintia.png" }
         ]
     }
 ];
@@ -79,35 +79,30 @@ const datosGimnasios = [
 const datosAltoMando = [
     {
         nombre: "Kanto",
-        dinero: "60.000", // Estimado
         gimnasios: [
             { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "kanto-elite4", enfriamiento: 24 }
         ]
     },
     {
         nombre: "Johto",
-        dinero: "60.000",
         gimnasios: [
             { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "johto-elite4", enfriamiento: 24 }
         ]
     },
     {
         nombre: "Hoenn",
-        dinero: "60.000",
         gimnasios: [
             { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "hoenn-elite4", enfriamiento: 24 }
         ]
     },
     {
         nombre: "Sinnoh",
-        dinero: "60.000",
         gimnasios: [
             { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "sinnoh-elite4", enfriamiento: 24 }
         ]
     },
     {
         nombre: "Teselia",
-        dinero: "60.000",
         gimnasios: [
             { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "teselia-elite4", enfriamiento: 24 }
         ]
@@ -274,15 +269,16 @@ let ciudadSeleccionadaSinnoh = null;
 
 // Coordenadas porcentuales para el mapa de Teselia
 const coordenadasTeselia = {
-    "Ciudad Gres": { top: "75%", left: "80%" },
-    "Ciudad Esmalte": { top: "80%", left: "65%" },
-    "Ciudad Porcelana": { top: "85%", left: "50%" },
-    "Ciudad Mayólica": { top: "55%", left: "50%" },
-    "Ciudad Fayenza": { top: "55%", left: "25%" },
-    "Ciudad Loza": { top: "45%", left: "15%" },
-    "Ciudad Teja": { top: "25%", left: "25%" },
-    "Ciudad Caolín": { top: "25%", left: "75%" },
-    "Liga Pokémon": { top: "10%", left: "50%" }
+    "Ciudad Gres": { top: "70.3%", left: "89%" },
+    "Ciudad Esmalte": { top: "70.3%", left: "79.3%" },
+    "Ciudad Porcelana": { top: "77.5%", left: "51.5%" },
+    "Ciudad Mayólica": { top: "54.2%", left: "51.5%" },
+    "Ciudad Fayenza": { top: "54.4%", left: "28.88%" },
+    "Ciudad Loza": { top: "39.9%", left: "15.6%" },
+    "Ciudad Teja": { top: "25.5%", left: "28.9%" },
+    "Ciudad Caolín": { top: "25.5%", left: "51.6%" },
+    "Liga Pokémon": { top: "8.9%", left: "66.4%" },
+    "Pueblo Arenisca": { top: "39.8%", left: "87.5%" }
 };
 
 let ciudadSeleccionadaTeselia = null;
@@ -764,7 +760,10 @@ function actualizarInterfazMapa(nombreRegion) {
     const dots = container.querySelectorAll('.map-city-dot');
     dots.forEach(dot => {
         const ciudad = dot.title;
-        const gimnasio = regionData.gimnasios.find(g => g.ciudad === ciudad);
+        let gimnasio = regionData.gimnasios.find(g => g.ciudad === ciudad);
+        if (!gimnasio && regionData.entrenadoresEspeciales) {
+            gimnasio = regionData.entrenadoresEspeciales.find(g => g.ciudad === ciudad);
+        }
         
         // Active
         if (ciudad === ciudadSeleccionada) {
@@ -774,12 +773,14 @@ function actualizarInterfazMapa(nombreRegion) {
         }
 
         // Completed
-        const idUnico = gimnasio.id || gimnasio.lider;
-        const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
-        if (progresoUsuario[idGimnasio]) {
-            dot.classList.add('completed');
-        } else {
-            dot.classList.remove('completed');
+        if (gimnasio) {
+            const idUnico = gimnasio.id || gimnasio.lider;
+            const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
+            if (progresoUsuario[idGimnasio]) {
+                dot.classList.add('completed');
+            } else {
+                dot.classList.remove('completed');
+            }
         }
     });
 
@@ -812,11 +813,22 @@ function actualizarInterfazMapa(nombreRegion) {
             const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
             const imgLider = document.createElement('img');
             imgLider.className = 'leader-model';
-            if (gymSeleccionado.lider === 'Alto Mando') {
-                imgLider.src = '../img/alto_mando.png';
-            } else {
-                imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
-            }
+                        
+                        if (gymSeleccionado.imagen) {
+                            imgLider.src = `../img/${gymSeleccionado.imagen}`;
+                        } else if (gymSeleccionado.lider === 'Alto Mando') {
+                            imgLider.src = '../img/alto_mando.png';
+                        } else {
+                            imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
+                        }
+
+                        // Fallback para Cintia (si no está en Teselia, probar Sinnoh)
+                        if (gymSeleccionado.lider === 'Cintia') {
+                            imgLider.onerror = function() {
+                                this.onerror = null;
+                                this.src = `../img/gimnasios_sinnoh/${nombreArchivo}.png`;
+                            };
+                        }
             imgLider.alt = gymSeleccionado.lider;
             panelDetalles.appendChild(imgLider);
 
@@ -1185,9 +1197,18 @@ function renderizarAplicacion() {
                 innerMapa.appendChild(imgMapa);
 
                 // Crear puntos interactivos
-                region.gimnasios.forEach(gimnasio => {
+                const todosLosPuntos = [...region.gimnasios];
+                if (region.entrenadoresEspeciales) {
+                    todosLosPuntos.push(...region.entrenadoresEspeciales);
+                }
+                const ciudadesProcesadas = new Set();
+
+                todosLosPuntos.forEach(gimnasio => {
+                    if (ciudadesProcesadas.has(gimnasio.ciudad)) return;
+
                     const coords = coordsMap[gimnasio.ciudad];
                     if (coords) {
+                        ciudadesProcesadas.add(gimnasio.ciudad);
                         const dot = document.createElement('div');
                         dot.className = 'map-city-dot';
                         dot.style.top = coords.top;
@@ -1226,7 +1247,11 @@ function renderizarAplicacion() {
                 panelDetalles.className = `${regionLower}-details-panel`;
 
                 if (ciudadSeleccionada) {
-                    const gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
+                    let gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
+                    if (!gymSeleccionado && region.entrenadoresEspeciales) {
+                        gymSeleccionado = region.entrenadoresEspeciales.find(g => g.ciudad === ciudadSeleccionada);
+                    }
+
                     if (gymSeleccionado) {
                         // Mostrar imagen del líder
                         const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
@@ -1302,6 +1327,16 @@ function renderizarAplicacion() {
                     // Configurar imagen de fondo del entrenador especial
                     const nombreArchivo = entrenador.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                     itemEntrenador.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
+                    
+                    let bgUrl = `url('../img/gimnasios_${region.nombre.toLowerCase()}/${nombreArchivo}.png')`;
+                    if (entrenador.imagen) {
+                        bgUrl = `url('../img/${entrenador.imagen}')`;
+                    } else if (entrenador.lider === 'Cintia') {
+                        // Intento de fallback en CSS (primero Teselia, luego Sinnoh)
+                        bgUrl = `url('../img/gimnasios_teselia/${nombreArchivo}.png'), url('../img/gimnasios_sinnoh/${nombreArchivo}.png')`;
+                    }
+
+                    itemEntrenador.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), ${bgUrl}`;
                     
                     itemEntrenador.style.backgroundSize = '100% 100%, 100% 100%';
                     itemEntrenador.style.backgroundRepeat = 'no-repeat';
