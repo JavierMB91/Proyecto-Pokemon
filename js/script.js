@@ -779,7 +779,30 @@ function actualizarInterfazMapa(nombreRegion) {
 
         if (gymSeleccionado) {
             // Imagen
-            if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
+            if (gymSeleccionado.lider === 'Vito y Leti') {
+                const divLider = document.createElement('div');
+                divLider.className = 'leader-model';
+                divLider.style.display = 'flex';
+                divLider.style.justifyContent = 'center';
+                divLider.style.alignItems = 'center';
+                divLider.setAttribute('alt', gymSeleccionado.lider);
+
+                const lideres = ['Vito', 'Leti'];
+                lideres.forEach((lider, index) => {
+                    const img = document.createElement('img');
+                    img.src = `../img/gimnasios_hoenn/${lider}.png`;
+                    img.alt = lider;
+                    img.style.height = '100%';
+                    img.style.width = 'auto';
+                    img.style.objectFit = 'contain';
+                    if (index === 1) img.style.marginLeft = '-90px'; // Superposición
+                    img.style.position = 'relative';
+                    img.style.zIndex = index;
+                    img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
+                    divLider.appendChild(img);
+                });
+                panelDetalles.appendChild(divLider);
+            } else if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
                 const divLider = document.createElement('div');
                 divLider.className = 'leader-model';
                 divLider.style.display = 'flex';
@@ -1275,7 +1298,30 @@ function renderizarAplicacion() {
 
                     if (gymSeleccionado) {
                         // Mostrar imagen del líder
-                        if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
+                        if (gymSeleccionado.lider === 'Vito y Leti') {
+                            const divLider = document.createElement('div');
+                            divLider.className = 'leader-model';
+                            divLider.style.display = 'flex';
+                            divLider.style.justifyContent = 'center';
+                            divLider.style.alignItems = 'center';
+                            divLider.setAttribute('alt', gymSeleccionado.lider);
+
+                            const lideres = ['Vito', 'Leti'];
+                            lideres.forEach((lider, index) => {
+                                const img = document.createElement('img');
+                                img.src = `../img/gimnasios_hoenn/${lider}.png`;
+                                img.alt = lider;
+                                img.style.height = '100%';
+                                img.style.width = 'auto';
+                                img.style.objectFit = 'contain';
+                                if (index === 1) img.style.marginLeft = '-90px'; // Superposición
+                                img.style.position = 'relative';
+                                img.style.zIndex = index;
+                                img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
+                                divLider.appendChild(img);
+                            });
+                            panelDetalles.appendChild(divLider);
+                        } else if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
                             const divLider = document.createElement('div');
                             divLider.className = 'leader-model';
                             divLider.style.display = 'flex';
