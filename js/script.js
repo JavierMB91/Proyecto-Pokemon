@@ -178,11 +178,11 @@ let estadoRegiones = {}; // Estado de colapso de las regiones
 const coordenadasKanto = {
     "Ciudad Plateada": { top: "36%", left: "23.2%" },
     "Ciudad Celeste": { top: "30.5%", left: "64.8%" },
-    "Ciudad Carmín": { top: "64.2%", left: "64.9%" },
+    "Ciudad Carmín": { top: "64.2%", left: "64.8%" },
     "Ciudad Azulona": { top: "47%", left: "52.33%" },
     "Ciudad Fucsia": { top: "81%", left: "56.4%" },
     "Ciudad Azafrán": { top: "47%", left: "64.85%" },
-    "Isla Canela": { top: "92%", left: "23.3%" },
+    "Isla Canela": { top: "92%", left: "23.1%" },
     "Liga Pokémon": { top: "30.5%", left: "14.9%" }
 };
 
