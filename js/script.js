@@ -759,7 +759,25 @@ function generarHTMLMedallas(nombreRegion) {
         return `<img src="${src}" alt="${nombre}" style="${estilo}" title="${isObtained ? 'Obtenida' : 'No obtenida'}">`;
     }).join('');
 
-    return `<div class="region-badges" style="display: flex; align-items: center;">${badgeImgs}</div>`;
+    // --- LÓGICA MASTER BALL (LIGA POKÉMON) ---
+    let htmlMasterBall = '';
+    const elite4Gym = regionData.gimnasios.find(g => g.lider === 'Alto Mando' || g.id === 'elite4');
+    
+    if (elite4Gym) {
+        const idUnico = elite4Gym.id || elite4Gym.lider;
+        const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
+        const isElite4Completed = !!progresoUsuario[idGimnasio];
+        
+        const filterStyleMB = isElite4Completed 
+            ? 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))' 
+            : 'grayscale(100%) brightness(30%) opacity(0.7)';
+
+        htmlMasterBall = `<img src="../img/master_ball.png" alt="Liga Pokémon" style="
+            height: 40px; width: 40px; object-fit: contain; margin-left: 10px; position: relative; z-index: ${medallas.length};
+            filter: ${filterStyleMB}; transition: filter 0.3s ease;" title="${isElite4Completed ? 'Liga Pokémon Completada' : 'Liga Pokémon No Completada'}">`;
+    }
+
+    return `<div class="region-badges" style="display: flex; align-items: center;">${badgeImgs}${htmlMasterBall}</div>`;
 }
 
 // Función para actualizar solo la interfaz del mapa (sin re-renderizar todo)
@@ -964,6 +982,16 @@ function renderizarAplicacion() {
         // --- LÓGICA BATTLE TRACKER (Por defecto / index.html) ---
         const tablero = document.createElement('div');
         tablero.className = 'battle-dashboard';
+
+        // Caja de información sobre el funcionamiento
+        const infoBox = document.createElement('div');
+        infoBox.className = 'info-box';
+        infoBox.innerHTML = `
+            <p><strong>Funcionamiento:</strong> Si completas un gimnasio, se rellenará su medalla correspondiente.</p>
+            <p>Si completas la Liga Pokémon, se rellenará la Master Ball.</p>
+            <p>Selecciona los puntos en el mapa para ver la información del Líder de Gimnasio.</p>
+        `;
+        tablero.appendChild(infoBox);
 
         // Renderizar cada región de datosGimnasios como una tarjeta independiente
         datosGimnasios.forEach(region => {
