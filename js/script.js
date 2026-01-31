@@ -705,6 +705,63 @@ function crearElementoEncuentro(nombreRegion, gimnasio) {
     return elementoLista;
 }
 
+// --- MEDALLAS ---
+const medallasPorRegion = {
+    "Kanto": ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica", "tierra"],
+    "Johto": ["cefiro", "colmena", "planicie", "niebla", "tormenta", "mineral", "glaciar", "dragon"],
+    "Hoenn": ["piedra", "puño", "dinamo", "calor", "equilibrio", "pluma", "mente", "lluvia"],
+    "Sinnoh": ["lignito", "bosque", "adoquin", "cienaga", "reliquia", "mina", "carambano", "faro"],
+    "Teselia": ["trio", "base", "elitro", "voltio", "temblor", "jet", "candelizo", "leyenda"]
+};
+
+function generarHTMLMedallas(nombreRegion) {
+    if (!medallasPorRegion[nombreRegion]) return '';
+
+    const regionData = datosGimnasios.find(r => r.nombre === nombreRegion);
+    if (!regionData) return '';
+
+    const medallas = medallasPorRegion[nombreRegion];
+    const regionFolder = `gimnasios_${nombreRegion.toLowerCase()}`;
+    
+    // Filtrar Alto Mando para mapear medallas 1:1 con los gimnasios
+    const gimnasiosBadge = regionData.gimnasios.filter(g => g.lider !== 'Alto Mando' && g.id !== 'elite4');
+
+    const badgeImgs = medallas.map((item, index) => {
+        let isObtained = false;
+        // Verificar si el gimnasio correspondiente está completado
+        if (index < gimnasiosBadge.length) {
+            const gym = gimnasiosBadge[index];
+            const idUnico = gym.id || gym.lider;
+            const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
+            if (progresoUsuario[idGimnasio]) {
+                isObtained = true;
+            }
+        }
+
+        const nombre = `Medalla ${item.charAt(0).toUpperCase() + item.slice(1)}`;
+        const src = `../img/${regionFolder}/medalla_${item}.png`;
+        
+        // Estilo visual: Color si obtenida, Gris/Oscura si no
+        const filterStyle = isObtained 
+            ? 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))' 
+            : 'grayscale(100%) brightness(30%) opacity(0.7)';
+
+        const estilo = `
+            height: 40px; 
+            width: 40px; 
+            object-fit: contain; 
+            margin-left: ${index > 0 ? '-20px' : '0'}; 
+            position: relative; 
+            z-index: ${index};
+            filter: ${filterStyle};
+            transition: filter 0.3s ease;
+        `;
+        return `<img src="${src}" alt="${nombre}" style="${estilo}" title="${isObtained ? 'Obtenida' : 'No obtenida'}">`;
+    }).join('');
+
+    return `<div class="region-badges" style="display: flex; align-items: center;">${badgeImgs}</div>`;
+}
+
 // Función para actualizar solo la interfaz del mapa (sin re-renderizar todo)
 function actualizarInterfazMapa(nombreRegion) {
     const regionLower = nombreRegion.toLowerCase();
@@ -727,6 +784,12 @@ function actualizarInterfazMapa(nombreRegion) {
             tarjeta.classList.add('region-completed');
         } else {
             tarjeta.classList.remove('region-completed');
+        }
+
+        // Actualizar estado visual de las medallas en la cabecera
+        const badgesContainer = tarjeta.querySelector('.region-badges');
+        if (badgesContainer) {
+            badgesContainer.outerHTML = generarHTMLMedallas(nombreRegion);
         }
     }
 
@@ -935,13 +998,6 @@ function renderizarAplicacion() {
             const cabecera = document.createElement('div');
             cabecera.className = 'battle-region-header';
             
-            const medallasPorRegion = {
-                "Kanto": ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica", "tierra"],
-                "Johto": ["cefiro", "colmena", "planicie", "niebla", "tormenta", "mineral", "glaciar", "dragon"],
-                "Hoenn": ["piedra", "puño", "dinamo", "calor", "equilibrio", "pluma", "mente", "lluvia"],
-                "Sinnoh": ["lignito", "bosque", "adoquin", "cienaga", "reliquia", "mina", "carambano", "faro"],
-                "Teselia": ["trio", "base", "elitro", "voltio", "temblor", "jet", "candelizo", "leyenda"]
-            };
             const inicialesPorRegion = {
                 "Kanto": ["bulbasaur", "charmander", "squirtle"],
                 "Johto": ["chikorita", "cyndaquil", "totodile"],
@@ -954,24 +1010,9 @@ function renderizarAplicacion() {
             let imagesHtml = [];
 
             // Medallas
-            if (medallasPorRegion[region.nombre]) {
-                const medallas = medallasPorRegion[region.nombre];
-                const regionFolder = `gimnasios_${region.nombre.toLowerCase()}`;
-                const badgeImgs = medallas.map((item, index) => {
-                    const nombre = `Medalla ${item.charAt(0).toUpperCase() + item.slice(1)}`;
-                    const src = `../img/${regionFolder}/medalla_${item}.png`;
-                    const estilo = `
-                        height: 40px; 
-                        width: 40px; 
-                        object-fit: contain; 
-                        margin-left: ${index > 0 ? '-20px' : '0'}; 
-                        position: relative; 
-                        z-index: ${index};
-                        filter: drop-shadow(2px 0 2px rgba(0,0,0,0.5));
-                    `;
-                    return `<img src="${src}" alt="${nombre}" style="${estilo}">`;
-                }).join('');
-                imagesHtml.push(`<div style="display: flex; align-items: center;">${badgeImgs}</div>`);
+            const htmlMedallas = generarHTMLMedallas(region.nombre);
+            if (htmlMedallas) {
+                imagesHtml.push(htmlMedallas);
             }
 
             // Pokémon Iniciales
