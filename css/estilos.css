@@ -1279,7 +1279,9 @@ header::after {
     border: none;
     /* El fondo del elemento principal actúa como el borde */
     background-color: var(--dot-border) !important;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 35% 35%, 35% 100%, 0 100%);
+    --cut-x: 35%;
+    --cut-y: 35%;
+    clip-path: polygon(0 0, 100% 0, 100% var(--cut-y), var(--cut-x) var(--cut-y), var(--cut-x) 100%, 0 100%);
     filter: none;
 }
 
@@ -1290,7 +1292,7 @@ header::after {
     top: 0; left: 0; width: 100%; height: 100%;
     background-color: var(--poke-red);
     /* Recorte interior calculado para dejar exactamente 3px de borde */
-    clip-path: polygon(3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(35% - 3px), calc(35% - 3px) calc(35% - 3px), calc(35% - 3px) calc(100% - 3px), 3px calc(100% - 3px));
+    clip-path: polygon(3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(var(--cut-y) - 3px), calc(var(--cut-x) - 3px) calc(var(--cut-y) - 3px), calc(var(--cut-x) - 3px) calc(100% - 3px), 3px calc(100% - 3px));
     transition: background-color 0.2s;
 }
 
@@ -1302,7 +1304,9 @@ header::after {
     border-radius: 0;
     border: none;
     background-color: var(--dot-border) !important;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 65% 100%, 65% 35%, 0 35%);
+    --cut-x: 65%;
+    --cut-y: 35%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, var(--cut-x) 100%, var(--cut-x) var(--cut-y), 0 var(--cut-y));
     filter: none;
 }
 
@@ -1311,7 +1315,7 @@ header::after {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-color: var(--poke-red);
-    clip-path: polygon(3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), calc(65% + 3px) calc(100% - 3px), calc(65% + 3px) calc(35% - 3px), 3px calc(35% - 3px));
+    clip-path: polygon(3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), calc(var(--cut-x) + 3px) calc(100% - 3px), calc(var(--cut-x) + 3px) calc(var(--cut-y) - 3px), 3px calc(var(--cut-y) - 3px));
     transition: background-color 0.2s;
 }
 

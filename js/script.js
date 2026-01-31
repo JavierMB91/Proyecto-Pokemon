@@ -44,7 +44,7 @@ const datosGimnasios = [
     {
         nombre: "Sinnoh",
         gimnasios: [
-            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "l-shape-flip", width: "35px", height: "27px" },
+            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "l-shape-flip", width: "35px", height: "27px", cutX: "19px", cutY: "16px" },
             { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h", width: 28, height: 18 },
             { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape", width: 22, height: 22 },
             { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h", width: 28, height: 18 },
@@ -220,7 +220,7 @@ let ciudadSeleccionadaHoenn = null;
 
 // Coordenadas porcentuales para el mapa de Sinnoh
 const coordenadasSinnoh = {
-    "Ciudad Pirita": { top: "73%", left: "39.5%" },
+    "Ciudad Pirita": { top: "72.5%", left: "39.5%" },
     "Ciudad Vetusta": { top: "35%", left: "30%" },
     "Ciudad Rocavelo": { top: "40%", left: "75%" },
     "Ciudad Pradera": { top: "75%", left: "65%" },
@@ -1005,6 +1005,10 @@ function renderizarAplicacion() {
                         if (gimnasio.width) { dot.style.width = typeof gimnasio.width === 'number' ? `${gimnasio.width}px` : gimnasio.width; }
                         if (gimnasio.height) { dot.style.height = typeof gimnasio.height === 'number' ? `${gimnasio.height}px` : gimnasio.height; }
 
+                        // Ajuste manual de recorte (L-shapes)
+                        if (gimnasio.cutX) { dot.style.setProperty('--cut-x', typeof gimnasio.cutX === 'number' ? `${gimnasio.cutX}px` : gimnasio.cutX); }
+                        if (gimnasio.cutY) { dot.style.setProperty('--cut-y', typeof gimnasio.cutY === 'number' ? `${gimnasio.cutY}px` : gimnasio.cutY); }
+
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
                         const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
@@ -1097,6 +1101,10 @@ function renderizarAplicacion() {
                         // Ajuste manual de tamaño
                         if (gimnasio.width) { dot.style.width = typeof gimnasio.width === 'number' ? `${gimnasio.width}px` : gimnasio.width; }
                         if (gimnasio.height) { dot.style.height = typeof gimnasio.height === 'number' ? `${gimnasio.height}px` : gimnasio.height; }
+
+                        // Ajuste manual de recorte (L-shapes)
+                        if (gimnasio.cutX) { dot.style.setProperty('--cut-x', typeof gimnasio.cutX === 'number' ? `${gimnasio.cutX}px` : gimnasio.cutX); }
+                        if (gimnasio.cutY) { dot.style.setProperty('--cut-y', typeof gimnasio.cutY === 'number' ? `${gimnasio.cutY}px` : gimnasio.cutY); }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
@@ -1224,6 +1232,10 @@ function renderizarAplicacion() {
                         // Ajuste manual de tamaño
                         if (gimnasio.width) { dot.style.width = typeof gimnasio.width === 'number' ? `${gimnasio.width}px` : gimnasio.width; }
                         if (gimnasio.height) { dot.style.height = typeof gimnasio.height === 'number' ? `${gimnasio.height}px` : gimnasio.height; }
+
+                        // Ajuste manual de recorte (L-shapes)
+                        if (gimnasio.cutX) { dot.style.setProperty('--cut-x', typeof gimnasio.cutX === 'number' ? `${gimnasio.cutX}px` : gimnasio.cutX); }
+                        if (gimnasio.cutY) { dot.style.setProperty('--cut-y', typeof gimnasio.cutY === 'number' ? `${gimnasio.cutY}px` : gimnasio.cutY); }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
