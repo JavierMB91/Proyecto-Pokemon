@@ -1053,6 +1053,12 @@ header::after {
     text-shadow: 0 0 10px rgba(149, 117, 205, 0.2);
 }
 
+/* Estado completado de la región (nombre verde al estar colapsada) */
+.battle-region-card.region-completed.collapsed .battle-region-header span:first-child {
+    color: var(--success-green);
+    text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+}
+
 .battle-region-header .toggle-icon {
     color: var(--text-muted);
     transition: transform 0.3s ease;

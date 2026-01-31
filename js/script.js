@@ -712,6 +712,24 @@ function actualizarInterfazMapa(nombreRegion) {
     if (!container) return;
 
     const regionData = datosGimnasios.find(r => r.nombre === nombreRegion);
+    
+    // Actualizar estado de completado de la región en la tarjeta padre
+    const tarjeta = container.closest('.battle-region-card');
+    if (tarjeta) {
+        const gimnasiosRequeridos = regionData.gimnasios.filter(g => g.lider !== 'Alto Mando' && g.id !== 'elite4');
+        const regionCompletada = gimnasiosRequeridos.length > 0 && gimnasiosRequeridos.every(g => {
+            const idUnico = g.id || g.lider;
+            const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
+            return progresoUsuario[idGimnasio];
+        });
+
+        if (regionCompletada) {
+            tarjeta.classList.add('region-completed');
+        } else {
+            tarjeta.classList.remove('region-completed');
+        }
+    }
+
     let ciudadSeleccionada = null;
     
     switch (nombreRegion) {
@@ -888,6 +906,18 @@ function renderizarAplicacion() {
         datosGimnasios.forEach(region => {
             const tarjeta = document.createElement('div');
             tarjeta.className = 'battle-region-card'; // Clase específica para Battle Tracker
+
+            // Verificar si la región está completada (excluyendo Alto Mando)
+            const gimnasiosRequeridos = region.gimnasios.filter(g => g.lider !== 'Alto Mando' && g.id !== 'elite4');
+            const regionCompletada = gimnasiosRequeridos.length > 0 && gimnasiosRequeridos.every(g => {
+                const idUnico = g.id || g.lider;
+                const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
+                return progresoUsuario[idGimnasio];
+            });
+
+            if (regionCompletada) {
+                tarjeta.classList.add('region-completed');
+            }
 
             // Restaurar estado colapsado
             let estaColapsado = true; // Por defecto cerrado en Battle Tracker
