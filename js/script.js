@@ -69,7 +69,7 @@ const datosGimnasios = [
             { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
         ],
         entrenadoresEspeciales: [
-            { ciudad: "Ciudad Porcelana", lider: "Morimoto" },
+            { ciudad: "Ciudad Porcelana (Morimoto)", lider: "Morimoto", shape: "circle" },
             { ciudad: "Pueblo Arenisca", lider: "Cintia", shape: "circle" }
         ]
     }
@@ -238,6 +238,7 @@ const coordenadasTeselia = {
     "Ciudad Gres": { top: "70.3%", left: "89%" },
     "Ciudad Esmalte": { top: "70.3%", left: "79.3%" },
     "Ciudad Porcelana": { top: "77.5%", left: "51.5%" },
+    "Ciudad Porcelana (Morimoto)": { top: "84%", left: "54.5%" },
     "Ciudad Mayólica": { top: "54.2%", left: "51.5%" },
     "Ciudad Fayenza": { top: "54.4%", left: "28.88%" },
     "Ciudad Loza": { top: "39.9%", left: "15.6%" },
@@ -539,9 +540,7 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     elementoLista.className = `gym-item ${estaCompletado ? 'completed' : ''} ${estaDeshabilitado ? 'disabled' : ''} ${!esFilaClicable ? 'no-pointer' : ''}`;
     
     // Evento Click
-    elementoLista.onclick = (e) => {
-        alternarGimnasio(nombreRegion, gimnasio, elementoLista);
-    };
+    elementoLista.style.cursor = 'default'; // Por defecto no es clicable (solo la imagen)
     
     // Atributos para encadenamiento
     const idCompleto = obtenerIdGimnasio(nombreRegion, idUnico);
@@ -648,7 +647,8 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     }
 
     // Lógica para mostrar u ocultar el título (h3)
-    let htmlTitulo = `<h3>${gimnasio.ciudad}${botonPuzzle}</h3>`;
+    const nombreCiudadMostrar = gimnasio.ciudad.replace(" (Morimoto)", "");
+    let htmlTitulo = `<h3>${nombreCiudadMostrar}${botonPuzzle}</h3>`;
 
     // Ajuste para alinear el checkbox con el dropdown (--Elegir Baya--) cuando toca plantar
     let estiloCheckbox = '';
@@ -660,13 +660,8 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     }
 
     // CAMBIO: Quitar el checkbox del apartado huerto
+    // SE HA ELIMINADO EL CHECKBOX COMPLETAMENTE POR SOLICITUD
     let htmlCheckbox = '';
-    if (nombreRegion !== 'Huerto') {
-        htmlCheckbox = `
-        <div class="checkbox-wrapper" ${estiloCheckbox}>
-            <div class="custom-checkbox"></div>
-        </div>`;
-    }
 
     // HTML interno del item
     elementoLista.innerHTML = `
@@ -678,6 +673,16 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         </div>
         ${htmlFecha}
     `;
+
+    // Si hay una imagen interna (ej: semillas), hacemos que sea el disparador
+    const imgInterna = elementoLista.querySelector('.gym-image');
+    if (imgInterna) {
+        imgInterna.style.cursor = 'pointer';
+        imgInterna.onclick = (e) => {
+            e.stopPropagation();
+            alternarGimnasio(nombreRegion, gimnasio, elementoLista);
+        };
+    }
     
     return elementoLista;
 }
@@ -726,6 +731,32 @@ function generarHTMLMedallas(nombreRegion) {
     // Filtrar Alto Mando para mapear medallas 1:1 con los gimnasios
     const gimnasiosBadge = regionData.gimnasios.filter(g => g.lider !== 'Alto Mando' && g.id !== 'elite4');
 
+    // --- PEPITAS (TESELIA) ---
+    let htmlPepitas = '';
+    let zIndexOffset = 0;
+    if (nombreRegion === 'Teselia' && regionData.entrenadoresEspeciales) {
+        const specialTrainers = regionData.entrenadoresEspeciales;
+        zIndexOffset = specialTrainers.length; 
+
+        htmlPepitas = specialTrainers.map((trainer, idx) => {
+            const idUnico = trainer.id || trainer.lider;
+            const idTrainer = obtenerIdGimnasio(nombreRegion, idUnico);
+            const isCompleted = !!progresoUsuario[idTrainer];
+
+            const filterStyle = isCompleted 
+                ? 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))' 
+                : 'grayscale(100%) brightness(30%) opacity(0.7)';
+
+            const estiloPepita = `
+                height: 40px; width: 40px; object-fit: contain; 
+                margin-left: ${idx > 0 ? '-20px' : '0'}; 
+                position: relative; z-index: ${idx};
+                filter: ${filterStyle}; transition: filter 0.3s ease;
+            `;
+            return `<img src="../img/pepita.png" alt="${trainer.lider}" style="${estiloPepita}" title="${isCompleted ? 'Vencido: ' + trainer.lider : 'No vencido: ' + trainer.lider}">`;
+        }).join('');
+    }
+
     const badgeImgs = medallas.map((item, index) => {
         let isObtained = false;
         // Verificar si el gimnasio correspondiente está completado
@@ -750,9 +781,9 @@ function generarHTMLMedallas(nombreRegion) {
             height: 40px; 
             width: 40px; 
             object-fit: contain; 
-            margin-left: ${index > 0 ? '-20px' : '0'}; 
+            margin-left: ${index > 0 ? '-20px' : (nombreRegion === 'Teselia' ? '15px' : '0')}; 
             position: relative; 
-            z-index: ${index};
+            z-index: ${index + zIndexOffset};
             filter: ${filterStyle};
             transition: filter 0.3s ease;
         `;
@@ -773,11 +804,11 @@ function generarHTMLMedallas(nombreRegion) {
             : 'grayscale(100%) brightness(30%) opacity(0.7)';
 
         htmlMasterBall = `<img src="../img/master_ball.png" alt="Liga Pokémon" style="
-            height: 40px; width: 40px; object-fit: contain; margin-left: 10px; position: relative; z-index: ${medallas.length};
+            height: 40px; width: 40px; object-fit: contain; margin-left: 10px; position: relative; z-index: ${medallas.length + zIndexOffset};
             filter: ${filterStyleMB}; transition: filter 0.3s ease;" title="${isElite4Completed ? 'Liga Pokémon Completada' : 'Liga Pokémon No Completada'}">`;
     }
 
-    return `<div class="region-badges" style="display: flex; align-items: center;">${badgeImgs}${htmlMasterBall}</div>`;
+    return `<div class="region-badges" style="display: flex; align-items: center;">${htmlPepitas}${badgeImgs}${htmlMasterBall}</div>`;
 }
 
 // Función para actualizar solo la interfaz del mapa (sin re-renderizar todo)
@@ -885,6 +916,8 @@ function actualizarInterfazMapa(nombreRegion) {
                 divLider.style.justifyContent = 'center';
                 divLider.style.alignItems = 'center';
                 divLider.setAttribute('alt', gymSeleccionado.lider);
+                divLider.style.cursor = 'pointer';
+                divLider.onclick = () => alternarGimnasio(nombreRegion, gymSeleccionado, null);
 
                 const lideres = ['Vito', 'Leti'];
                 lideres.forEach((lider, index) => {
@@ -908,6 +941,8 @@ function actualizarInterfazMapa(nombreRegion) {
                 divLider.style.justifyContent = 'center';
                 divLider.style.alignItems = 'center';
                 divLider.setAttribute('alt', gymSeleccionado.lider);
+                divLider.style.cursor = 'pointer';
+                divLider.onclick = () => alternarGimnasio(nombreRegion, gymSeleccionado, null);
 
                 const lideres = ['Zeo', 'Maiz', 'Millo'];
                 lideres.forEach((lider, index) => {
@@ -929,6 +964,8 @@ function actualizarInterfazMapa(nombreRegion) {
                 const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                 const imgLider = document.createElement('img');
                 imgLider.className = 'leader-model';
+                imgLider.style.cursor = 'pointer';
+                imgLider.onclick = () => alternarGimnasio(nombreRegion, gymSeleccionado, null);
                             
                 if (gymSeleccionado.imagen) {
                     imgLider.src = `../img/${gymSeleccionado.imagen}`;
@@ -987,9 +1024,11 @@ function renderizarAplicacion() {
         const infoBox = document.createElement('div');
         infoBox.className = 'info-box';
         infoBox.innerHTML = `
-            <p><strong>Funcionamiento:</strong> Si completas un gimnasio, se rellenará su medalla correspondiente.</p>
+            <h3>Funcionamiento</h3>
+            <p>Si completas un gimnasio, se rellenará su medalla correspondiente.</p>
             <p>Si completas la Liga Pokémon, se rellenará la Master Ball.</p>
             <p>Selecciona los puntos en el mapa para ver la información del Líder de Gimnasio.</p>
+            <p>Haz clic en la imagen del Líder para marcar el gimnasio como completado.</p>
         `;
         tablero.appendChild(infoBox);
 
@@ -1175,6 +1214,8 @@ function renderizarAplicacion() {
                         const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                         const imgLider = document.createElement('img');
                         imgLider.className = 'leader-model';
+                        imgLider.style.cursor = 'pointer';
+                        imgLider.onclick = () => alternarGimnasio(region.nombre, gymSeleccionado, null);
                         if (gymSeleccionado.lider === 'Alto Mando') {
                             imgLider.src = '../img/alto_mando.png';
                         } else {
@@ -1272,6 +1313,8 @@ function renderizarAplicacion() {
                         const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                         const imgLider = document.createElement('img');
                         imgLider.className = 'leader-model';
+                        imgLider.style.cursor = 'pointer';
+                        imgLider.onclick = () => alternarGimnasio(region.nombre, gymSeleccionado, null);
                         if (gymSeleccionado.lider === 'Alto Mando') {
                             imgLider.src = '../img/alto_mando.png';
                         } else {
@@ -1411,6 +1454,8 @@ function renderizarAplicacion() {
                             divLider.style.justifyContent = 'center';
                             divLider.style.alignItems = 'center';
                             divLider.setAttribute('alt', gymSeleccionado.lider);
+                            divLider.style.cursor = 'pointer';
+                            divLider.onclick = () => alternarGimnasio(region.nombre, gymSeleccionado, null);
 
                             const lideres = ['Vito', 'Leti'];
                             lideres.forEach((lider, index) => {
@@ -1434,6 +1479,8 @@ function renderizarAplicacion() {
                             divLider.style.justifyContent = 'center';
                             divLider.style.alignItems = 'center';
                             divLider.setAttribute('alt', gymSeleccionado.lider);
+                            divLider.style.cursor = 'pointer';
+                            divLider.onclick = () => alternarGimnasio(region.nombre, gymSeleccionado, null);
 
                             const lideres = ['Zeo', 'Maiz', 'Millo'];
                             lideres.forEach((lider, index) => {
@@ -1455,6 +1502,8 @@ function renderizarAplicacion() {
                             const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
                             const imgLider = document.createElement('img');
                             imgLider.className = 'leader-model';
+                            imgLider.style.cursor = 'pointer';
+                            imgLider.onclick = () => alternarGimnasio(region.nombre, gymSeleccionado, null);
                             if (gymSeleccionado.lider === 'Alto Mando') {
                                 imgLider.src = '../img/alto_mando.png';
                             } else {
@@ -1488,6 +1537,8 @@ function renderizarAplicacion() {
                 const itemGimnasio = crearElementoGimnasio(region.nombre, gimnasio);
                 // Añadir clase específica para items dentro del battle tracker si es necesario
                 itemGimnasio.classList.add('battle-gym-item');
+                itemGimnasio.style.cursor = 'pointer';
+                itemGimnasio.onclick = () => alternarGimnasio(region.nombre, gimnasio, itemGimnasio);
                 
                 // Configurar imagen de fondo del líder
                 const nombreArchivo = gimnasio.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
@@ -1522,6 +1573,8 @@ function renderizarAplicacion() {
                     const itemEntrenador = crearElementoGimnasio(region.nombre, entrenador);
                     itemEntrenador.classList.add('battle-gym-item');
                     itemEntrenador.classList.add('special-trainer'); // Para diferenciar visualmente si se desea
+                    itemEntrenador.style.cursor = 'pointer';
+                    itemEntrenador.onclick = () => alternarGimnasio(region.nombre, entrenador, itemEntrenador);
                     
                     // Configurar imagen de fondo del entrenador especial
                     const nombreArchivo = entrenador.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
