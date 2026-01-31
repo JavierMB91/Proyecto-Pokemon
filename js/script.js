@@ -707,7 +707,7 @@ function crearElementoEncuentro(nombreRegion, gimnasio) {
 
 // --- MEDALLAS ---
 const medallasPorRegion = {
-    "Kanto": ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica", "tierra"],
+    "Kanto": ["roca", "cascada", "trueno", "arcoiris", "alma", "pantano", "volcanica"],
     "Johto": ["cefiro", "colmena", "planicie", "niebla", "tormenta", "mineral", "glaciar", "dragon"],
     "Hoenn": ["piedra", "puño", "dinamo", "calor", "equilibrio", "pluma", "mente", "lluvia"],
     "Sinnoh": ["lignito", "bosque", "adoquin", "cienaga", "reliquia", "mina", "carambano", "faro"],
