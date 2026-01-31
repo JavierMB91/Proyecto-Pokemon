@@ -44,15 +44,15 @@ const datosGimnasios = [
     {
         nombre: "Sinnoh",
         gimnasios: [
-            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "square" },
-            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h",},
-            { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape" },
-            { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h" },
-            { ciudad: "Ciudad Corazón", lider: "Fantina", shape: "square-lg" },
-            { ciudad: "Ciudad Canal", lider: "Acerón", shape: "l-shape-flip" },
-            { ciudad: "Ciudad Puntaneva", lider: "Inverna", shape: "square-sm" },
-            { ciudad: "Ciudad Marina", lider: "Lectro", shape: "rectangle-v" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
+            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "square", width: 22, height: 22 },
+            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h", width: 28, height: 18 },
+            { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape", width: 22, height: 22 },
+            { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h", width: 28, height: 18 },
+            { ciudad: "Ciudad Corazón", lider: "Fantina", shape: "square-lg", width: 26, height: 26 },
+            { ciudad: "Ciudad Canal", lider: "Acerón", shape: "l-shape-flip", width: 22, height: 22 },
+            { ciudad: "Ciudad Puntaneva", lider: "Inverna", shape: "square-sm", width: 16, height: 16 },
+            { ciudad: "Ciudad Marina", lider: "Lectro", shape: "rectangle-v", width: 18, height: 28 },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle", width: 20, height: 20 }
         ]
     },
     {
