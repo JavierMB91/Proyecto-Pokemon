@@ -1130,9 +1130,9 @@ function renderizarAplicacion() {
                 
                 if (!estadoRegiones[region.nombre]) {
                     setTimeout(() => {
-                        // Reducido el timeout para que el centrado se sienta más rápido
+                        // Timeout aumentado para suavizar el centrado tras la expansión
                         tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-                    }, 20);
+                    }, 300);
                 }
             };
 
@@ -1644,9 +1644,9 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
                 
                 if (!estadoRegiones[region.nombre]) {
                     setTimeout(() => {
-                        // Reducido el timeout para que el centrado se sienta más rápido
+                        // Timeout aumentado para suavizar el centrado tras la expansión
                         tarjeta.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
-                    }, 20);
+                    }, 300);
                 }
             };
         }
