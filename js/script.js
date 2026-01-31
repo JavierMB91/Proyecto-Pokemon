@@ -75,40 +75,6 @@ const datosGimnasios = [
     }
 ];
 
-// --- DATOS DEL ALTO MANDO ---
-const datosAltoMando = [
-    {
-        nombre: "Kanto",
-        gimnasios: [
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "kanto-elite4", enfriamiento: 24 }
-        ]
-    },
-    {
-        nombre: "Johto",
-        gimnasios: [
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "johto-elite4", enfriamiento: 24 }
-        ]
-    },
-    {
-        nombre: "Hoenn",
-        gimnasios: [
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "hoenn-elite4", enfriamiento: 24 }
-        ]
-    },
-    {
-        nombre: "Sinnoh",
-        gimnasios: [
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "sinnoh-elite4", enfriamiento: 24 }
-        ]
-    },
-    {
-        nombre: "Teselia",
-        gimnasios: [
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "teselia-elite4", enfriamiento: 24 }
-        ]
-    }
-];
-
 // --- DATOS DE SEMILLAS ---
 const datosSemillas = [
     {
@@ -888,12 +854,10 @@ function renderizarAplicacion() {
 
     if (ruta.includes('rotacionlegendarios')) {
         secciones.push({ datos: datosEncuentros, maxSlots: 2, ancho: true });
-    } else if (ruta.includes('altomandotracker')) {
-        secciones.push({ datos: datosAltoMando, maxSlots: 1, elite: true });
     } else if (ruta.includes('semillas')) {
         secciones.push({ datos: datosSemillas, maxSlots: 1 });
-    } else if (ruta.includes('battletracker')) {
-        // --- LÓGICA BATTLE TRACKER (NUEVA IMPLEMENTACIÓN) ---
+    } else {
+        // --- LÓGICA BATTLE TRACKER (Por defecto / index.html) ---
         const tablero = document.createElement('div');
         tablero.className = 'battle-dashboard';
 
@@ -1412,13 +1376,10 @@ function renderizarAplicacion() {
         contenedorApp.appendChild(tablero);
         actualizarTemporizadores();
         return; // Salimos aquí porque ya hemos renderizado todo para Battle Tracker
-    } else {
-        // Por defecto (si estamos en gymTracker.html antiguo o similar)
-        secciones.push({ datos: datosGimnasios, maxSlots: 8 });
     }
 
     secciones.forEach(seccion => {
-        renderizarConjuntoRegiones(seccion.datos, contenedorApp, seccion.maxSlots, seccion.ancho, seccion.elite);
+        renderizarConjuntoRegiones(seccion.datos, contenedorApp, seccion.maxSlots, seccion.ancho);
     });
 
     // Actualizar timers inmediatamente tras renderizar
@@ -1426,7 +1387,7 @@ function renderizarAplicacion() {
 }
 
 // Función auxiliar para renderizar un conjunto de regiones
-function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElite) {
+function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
     const ruta = window.location.pathname.toLowerCase();
 
     datos.forEach(region => {
@@ -1469,8 +1430,6 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho, esElit
         if (esAncho) {
             lista.classList.add('horizontal-layout');
             tarjeta.classList.add('wide-card');
-        } else if (esElite) {
-            tarjeta.classList.add('elite-four-card');
         }
 
         region.gimnasios.forEach(gimnasio => {
@@ -1713,10 +1672,6 @@ function confirmarReinicio() {
     // Verificar si venimos de un botón específico del Battle Tracker
     if (contextoReinicio === 'gyms') {
         conjuntosDatosAReiniciar = [datosGimnasios];
-    } else if (contextoReinicio === 'elite') {
-        conjuntosDatosAReiniciar = [datosAltoMando];
-    } else if (ruta.includes('altomandotracker')) {
-        conjuntosDatosAReiniciar = [datosAltoMando];
     } else if (ruta.includes('semillas')) {
         conjuntosDatosAReiniciar = [datosSemillas];
     } else if (ruta.includes('rotacionlegendarios')) {
@@ -1785,16 +1740,19 @@ window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     const inputCantidad = contenedor.querySelector('.seed-count-input');
 
     const nombreBaya = selector.value;
-    const cantidad = parseInt(inputCantidad.value);
 
     if (!nombreBaya) {
         alert("Por favor, selecciona una baya.");
         return;
     }
-    if (!cantidad || cantidad <= 0) {
-        alert("Por favor, introduce una cantidad válida.");
+
+    const validacion = validateSeedInput(inputCantidad.value);
+    if (!validacion.valid) {
+        alert(validacion.message);
         return;
     }
+
+    const cantidad = parseInt(inputCantidad.value);
 
     // Obtener datos de la baya seleccionada
     const baya = datosBayas.find(b => b.nombre === nombreBaya);
