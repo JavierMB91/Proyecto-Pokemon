@@ -44,15 +44,15 @@ const datosGimnasios = [
     {
         nombre: "Sinnoh",
         gimnasios: [
-            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "l-shape-flip", width: "35px", height: "27px", cutX: "19px", cutY: "16px" },
-            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h", width: 28, height: 18 },
-            { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape", width: 22, height: 22 },
-            { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h", width: 28, height: 18 },
-            { ciudad: "Ciudad Corazón", lider: "Fantina", shape: "square-lg", width: 26, height: 26 },
-            { ciudad: "Ciudad Canal", lider: "Acerón", shape: "l-shape-flip", width: 22, height: 22 },
-            { ciudad: "Ciudad Puntaneva", lider: "Inverna", shape: "square-sm", width: 16, height: 16 },
-            { ciudad: "Ciudad Marina", lider: "Lectro", shape: "rectangle-v", width: 18, height: 28 },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle", width: 20, height: 20 }
+            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "l-shape-flip", width: "38px", height: "27px", cutX: "19.5px", cutY: "13px" },
+            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "l-shape", width: "38px", height: "27px", cutX: "19.5px", cutY: "13px" },
+            { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "square-lg", width: "37px", height: "25px" },
+            { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "square-lg", width: "37px", height: "25px" },
+            { ciudad: "Ciudad Corazón", lider: "Fantina", shape: "square-lg", width: "37px", height: "25px" },
+            { ciudad: "Ciudad Canal", lider: "Acerón", shape: "rectangle-v", width: "20px", height: "28px" },
+            { ciudad: "Ciudad Puntaneva", lider: "Inverna", shape: "rectangle-v", width: "20px", height: "28px" },
+            { ciudad: "Ciudad Marina", lider: "Lectro", shape: "square-lg", width: "37px", height: "25px" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "square-lg", width: "18px", height: "12px" }
         ]
     },
     {
@@ -221,14 +221,14 @@ let ciudadSeleccionadaHoenn = null;
 // Coordenadas porcentuales para el mapa de Sinnoh
 const coordenadasSinnoh = {
     "Ciudad Pirita": { top: "72.5%", left: "39.5%" },
-    "Ciudad Vetusta": { top: "35%", left: "30%" },
-    "Ciudad Rocavelo": { top: "40%", left: "75%" },
-    "Ciudad Pradera": { top: "75%", left: "65%" },
-    "Ciudad Corazón": { top: "55%", left: "50%" },
-    "Ciudad Canal": { top: "55%", left: "15%" },
-    "Ciudad Puntaneva": { top: "10%", left: "50%" },
-    "Ciudad Marina": { top: "55%", left: "85%" },
-    "Liga Pokémon": { top: "35%", left: "90%" }
+    "Ciudad Vetusta": { top: "50.5%", left: "42.1%" },
+    "Ciudad Rocavelo": { top: "56.5%", left: "73.8%" },
+    "Ciudad Pradera": { top: "78.8%", left: "65.9%" },
+    "Ciudad Corazón": { top: "66.1%", left: "55.4%" },
+    "Ciudad Canal": { top: "69.2%", left: "19.8%" },
+    "Ciudad Puntaneva": { top: "18.2%", left: "46%" },
+    "Ciudad Marina": { top: "72.4%", left: "87%" },
+    "Liga Pokémon": { top: "52%", left: "85.8%" }
 };
 
 let ciudadSeleccionadaSinnoh = null;

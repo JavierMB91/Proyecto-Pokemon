@@ -1300,6 +1300,11 @@ header::after {
     background-color: var(--success-green);
 }
 
+.map-city-dot.shape-l-shape:hover::after,
+.map-city-dot.shape-l-shape.active::after {
+    background-color: #2979FF;
+}
+
 .map-city-dot.shape-l-shape-flip {
     border-radius: 0;
     border: none;
@@ -1327,6 +1332,11 @@ header::after {
 
 .map-city-dot.shape-l-shape-flip.completed::after {
     background-color: var(--success-green);
+}
+
+.map-city-dot.shape-l-shape-flip:hover::after,
+.map-city-dot.shape-l-shape-flip.active::after {
+    background-color: #2979FF;
 }
 
 .map-city-dot:hover, .map-city-dot.active {
