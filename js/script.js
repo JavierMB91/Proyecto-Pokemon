@@ -16,15 +16,15 @@ const datosGimnasios = [
     {
         nombre: "Johto",
         gimnasios: [
-            { ciudad: "Ciudad Malva", lider: "Pegaso", shape: "square" },
-            { ciudad: "Pueblo Azalea", lider: "Antón", shape: "rectangle-h" },
-            { ciudad: "Ciudad Trigal", lider: "Blanca", shape: "square-lg" },
-            { ciudad: "Ciudad Iris", lider: "Morti", shape: "l-shape" },
-            { ciudad: "Ciudad Orquídea", lider: "Aníbal", shape: "square-sm" },
-            { ciudad: "Ciudad Olivo", lider: "Yasmina", shape: "rectangle-v" },
-            { ciudad: "Pueblo Caoba", lider: "Fredo", shape: "l-shape-flip" },
-            { ciudad: "Ciudad Endrino", lider: "Débora", shape: "square" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
+            { ciudad: "Ciudad Malva", lider: "Pegaso", shape: "square-lg", width: "49.5px", height: "49.5px" },
+            { ciudad: "Pueblo Azalea", lider: "Antón", shape: "rectangle-h", width: "47px", height: "27px" },
+            { ciudad: "Ciudad Trigal", lider: "Blanca", shape: "square-lg", width: "70px", height: "50px" },
+            { ciudad: "Ciudad Iris", lider: "Morti", shape: "square-lg", width: "50px", height: "50px"},
+            { ciudad: "Ciudad Orquídea", lider: "Aníbal", shape: "rectangle-v", width: "25px", height: "45.5px" },
+            { ciudad: "Ciudad Olivo", lider: "Yasmina", shape: "square-lg", width: "47px", height: "47px"},
+            { ciudad: "Pueblo Caoba", lider: "Fredo", shape: "square-lg", width: "25px", height: "25px" },
+            { ciudad: "Ciudad Endrino", lider: "Débora", shape: "square-lg", width: "47px", height: "47px" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle", width: "20px", height: "20px"}
         ]
     },
     {
@@ -45,7 +45,7 @@ const datosGimnasios = [
         nombre: "Sinnoh",
         gimnasios: [
             { ciudad: "Ciudad Pirita", lider: "Roco", shape: "square" },
-            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h" },
+            { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h",},
             { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape" },
             { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h" },
             { ciudad: "Ciudad Corazón", lider: "Fantina", shape: "square-lg" },
@@ -190,15 +190,15 @@ let ciudadSeleccionadaKanto = null; // Estado para recordar la selección tras r
 
 // Coordenadas porcentuales para el mapa de Johto
 const coordenadasJohto = {
-    "Ciudad Malva": { top: "36%", left: "58%" },
-    "Pueblo Azalea": { top: "86%", left: "50%" },
-    "Ciudad Trigal": { top: "66%", left: "28%" },
-    "Ciudad Iris": { top: "30%", left: "42%" },
-    "Ciudad Orquídea": { top: "62%", left: "8%" },
-    "Ciudad Olivo": { top: "38%", left: "18%" },
-    "Pueblo Caoba": { top: "24%", left: "72%" },
-    "Ciudad Endrino": { top: "36%", left: "85%" },
-    "Liga Pokémon": { top: "42%", left: "96%" }
+    "Ciudad Malva": { top: "50.5%", left: "47%" },
+    "Pueblo Azalea": { top: "87.5%", left: "40.3%" },
+    "Ciudad Trigal": { top: "67.5%", left: "32%" },
+    "Ciudad Iris": { top: "33%", left: "37%" },
+    "Ciudad Orquídea": { top: "67.5%", left: "15.1%" },
+    "Ciudad Olivo": { top: "50.5%", left: "26.9%" },
+    "Pueblo Caoba": { top: "36%", left: "52.1%" },
+    "Ciudad Endrino": { top: "33%", left: "67.17%" },
+    "Liga Pokémon": { top: "42%", left: "92.5%" }
 };
 
 let ciudadSeleccionadaJohto = null;
@@ -1001,6 +1001,10 @@ function renderizarAplicacion() {
                         dot.title = gimnasio.ciudad;
                         if (gimnasio.shape) { dot.classList.add('shape-' + gimnasio.shape); }
 
+                        // Ajuste manual de tamaño
+                        if (gimnasio.width) { dot.style.width = typeof gimnasio.width === 'number' ? `${gimnasio.width}px` : gimnasio.width; }
+                        if (gimnasio.height) { dot.style.height = typeof gimnasio.height === 'number' ? `${gimnasio.height}px` : gimnasio.height; }
+
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
                         const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
@@ -1089,6 +1093,10 @@ function renderizarAplicacion() {
                         dot.style.left = coords.left;
                         dot.title = gimnasio.ciudad;
                         if (gimnasio.shape) { dot.classList.add('shape-' + gimnasio.shape); }
+
+                        // Ajuste manual de tamaño
+                        if (gimnasio.width) { dot.style.width = typeof gimnasio.width === 'number' ? `${gimnasio.width}px` : gimnasio.width; }
+                        if (gimnasio.height) { dot.style.height = typeof gimnasio.height === 'number' ? `${gimnasio.height}px` : gimnasio.height; }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
@@ -1212,6 +1220,10 @@ function renderizarAplicacion() {
                         dot.style.left = coords.left;
                         dot.title = gimnasio.ciudad;
                         if (gimnasio.shape) { dot.classList.add('shape-' + gimnasio.shape); }
+
+                        // Ajuste manual de tamaño
+                        if (gimnasio.width) { dot.style.width = typeof gimnasio.width === 'number' ? `${gimnasio.width}px` : gimnasio.width; }
+                        if (gimnasio.height) { dot.style.height = typeof gimnasio.height === 'number' ? `${gimnasio.height}px` : gimnasio.height; }
 
                         // Verificar si está completado para cambiar estilo del punto
                         const idUnico = gimnasio.id || gimnasio.lider;
