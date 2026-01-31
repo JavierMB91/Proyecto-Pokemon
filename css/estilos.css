@@ -215,11 +215,10 @@ header::after {
 
 /* Oculta la flecha de despliegue pero mantiene la funcionalidad de click en la cabecera */
 .toggle-icon {
-    display: none;
+    display: inline-block;
 }
 
 /* --- CAMBIO TEMPORAL: MANTENER TARJETAS ABIERTAS --- */
-/*
  .region-card.collapsed > *:not(.region-header) {
  display: none !important;
  }
@@ -232,7 +231,6 @@ header::after {
  .region-card.collapsed .toggle-icon {
  transform: rotate(-90deg);
  }
-*/
 
 /* --- LISTA DE GIMNASIOS --- */
 .gym-list {
@@ -1063,7 +1061,6 @@ header::after {
 
 /* Estado colapsado */
 /* --- CAMBIO TEMPORAL: MANTENER TARJETAS ABIERTAS --- */
-/*
 .battle-region-card.collapsed .battle-gym-list,
 .battle-region-card.collapsed .kanto-map-container,
 .battle-region-card.collapsed .johto-map-container,
@@ -1076,7 +1073,6 @@ header::after {
 .battle-region-card.collapsed .toggle-icon {
     transform: rotate(-90deg);
 }
-*/
 
 /* Lista de gimnasios en GRID */
 .battle-gym-list {
