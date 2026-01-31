@@ -30,15 +30,15 @@ const datosGimnasios = [
     {
         nombre: "Hoenn",
         gimnasios: [
-            { ciudad: "Ciudad Férrica", lider: "Petra", shape: "rectangle-v" },
-            { ciudad: "Pueblo Azuliza", lider: "Marcial", shape: "square-sm" },
-            { ciudad: "Ciudad Malvalona", lider: "Erico", shape: "square-lg" },
-            { ciudad: "Pueblo Lavacalda", lider: "Candela", shape: "square" },
-            { ciudad: "Ciudad Petalia", lider: "Norman", shape: "rectangle-h" },
-            { ciudad: "Ciudad Arborada", lider: "Alana", shape: "l-shape" },
-            { ciudad: "Ciudad Algaria", lider: "Vito y Leti", shape: "square" },
-            { ciudad: "Ciudad Arrecípolis", lider: "Galano", shape: "circle" },
-            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "circle" }
+            { ciudad: "Ciudad Férrica", lider: "Petra", shape: "rectangle-v", width: "18px", height: "40px" },
+            { ciudad: "Pueblo Azuliza", lider: "Marcial", shape: "circle", width: "20px", height: "20px" },
+            { ciudad: "Ciudad Malvalona", lider: "Erico", shape: "rectangle-h", width: "39px", height: "18px" },
+            { ciudad: "Pueblo Lavacalda", lider: "Candela", shape: "circle", width: "20px", height: "20px" },
+            { ciudad: "Ciudad Petalia", lider: "Norman", shape: "circle", width: "20px", height: "20px" },
+            { ciudad: "Ciudad Arborada", lider: "Alana", shape: "circle", width: "20px", height: "20px" },
+            { ciudad: "Ciudad Algaria", lider: "Vito y Leti", shape: "rectangle-h", width: "39px", height: "18px" },
+            { ciudad: "Ciudad Arrecípolis", lider: "Galano", shape: "circle", width: "20px", height: "20px" },
+            { ciudad: "Liga Pokémon", lider: "Alto Mando", id: "elite4", enfriamiento: 6, shape: "square-lg", width: "20px", height: "20px" }
         ]
     },
     {
@@ -205,15 +205,15 @@ let ciudadSeleccionadaJohto = null;
 
 // Coordenadas porcentuales para el mapa de Hoenn
 const coordenadasHoenn = {
-    "Ciudad Férrica": { top: "45%", left: "18%" },
-    "Pueblo Azuliza": { top: "82%", left: "15%" },
-    "Ciudad Malvalona": { top: "55%", left: "45%" },
-    "Pueblo Lavacalda": { top: "35%", left: "35%" },
-    "Ciudad Petalia": { top: "55%", left: "12%" },
-    "Ciudad Arborada": { top: "25%", left: "60%" },
-    "Ciudad Algaria": { top: "45%", left: "85%" },
-    "Ciudad Arrecípolis": { top: "55%", left: "75%" },
-    "Liga Pokémon": { top: "65%", left: "92%" }
+    "Ciudad Férrica": { top: "37.8%", left: "4.8%" },
+    "Pueblo Azuliza": { top: "86.6%", left: "11.5%" },
+    "Ciudad Malvalona": { top: "40.8%", left: "33.3%" },
+    "Pueblo Lavacalda": { top: "23.8%", left: "21.6%" },
+    "Ciudad Petalia": { top: "58%", left: "8.1%" },
+    "Ciudad Arborada": { top: "6.5%", left: "45%" },
+    "Ciudad Algaria": { top: "35%", left: "86.95%" },
+    "Ciudad Arrecípolis": { top: "46.7%", left: "75.3%" },
+    "Liga Pokémon": { top: "52.5%", left: "95.35%" }
 };
 
 let ciudadSeleccionadaHoenn = null;
