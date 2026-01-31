@@ -176,13 +176,13 @@ let estadoRegiones = {}; // Estado de colapso de las regiones
 
 // Coordenadas porcentuales para el mapa de Kanto
 const coordenadasKanto = {
-    "Ciudad Plateada": { top: "36%", left: "23%" },
+    "Ciudad Plateada": { top: "36%", left: "23.2%" },
     "Ciudad Celeste": { top: "30.5%", left: "64.8%" },
     "Ciudad Carmín": { top: "64.2%", left: "64.9%" },
     "Ciudad Azulona": { top: "47%", left: "52.33%" },
     "Ciudad Fucsia": { top: "81%", left: "56.4%" },
-    "Ciudad Azafrán": { top: "47%", left: "64.7%" },
-    "Isla Canela": { top: "92%", left: "23%" },
+    "Ciudad Azafrán": { top: "47%", left: "64.85%" },
+    "Isla Canela": { top: "92%", left: "23.3%" },
     "Liga Pokémon": { top: "30.5%", left: "14.9%" }
 };
 
@@ -973,7 +973,14 @@ function renderizarAplicacion() {
             }
 
             cabecera.innerHTML = `
-                <span>${region.nombre}</span>
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+                    <span>${region.nombre}</span>
+                    <div class="header-legend">
+                        <div class="legend-item"><div class="dot-legend red"></div> <span>No realizado</span></div>
+                        <div class="legend-item"><div class="dot-legend green"></div> <span>Realizado</span></div>
+                        <div class="legend-item"><div class="dot-legend blue"></div> <span>Seleccionado</span></div>
+                    </div>
+                </div>
                 ${htmlIniciales}
                 <span class="toggle-icon">▼</span>
             `;

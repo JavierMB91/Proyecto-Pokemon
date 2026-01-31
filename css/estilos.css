@@ -1180,6 +1180,48 @@ header::after {
     min-height: 400px;
 }
 
+/* --- LEYENDA EN CABECERA --- */
+.header-legend {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 4px 12px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(149, 117, 205, 0.2);
+}
+
+/* Ocultar la leyenda cuando la región está colapsada */
+.battle-region-card.collapsed .header-legend {
+    display: none;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.dot-legend {
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.dot-legend.red { background-color: var(--poke-red); border: 2px solid white; }
+.dot-legend.green { background-color: var(--success-green); border: 2px solid #151221; }
+.dot-legend.blue { background-color: #2979FF; border: 2px solid white; }
+
 .kanto-map-wrapper, .johto-map-wrapper,
 .hoenn-map-wrapper, .sinnoh-map-wrapper,
 .teselia-map-wrapper {
