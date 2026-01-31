@@ -1231,7 +1231,8 @@ header::after {
     width: 24px;
     height: 24px;
     background-color: var(--poke-red);
-    border: 3px solid white;
+    --dot-border: white;
+    border: 3px solid var(--dot-border);
     cursor: pointer;
     transform: translate(-50%, -50%);
     transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
@@ -1275,18 +1276,53 @@ header::after {
 
 .map-city-dot.shape-l-shape {
     border-radius: 0;
-    /* Nota: clip-path recorta el borde, pero es la forma más simple de lograr la forma. */
+    border: none;
+    /* El fondo del elemento principal actúa como el borde */
+    background-color: var(--dot-border) !important;
     clip-path: polygon(0 0, 100% 0, 100% 35%, 35% 35%, 35% 100%, 0 100%);
+    filter: none;
+}
+
+/* Pseudo-elemento para el color interior (Rojo/Verde) */
+.map-city-dot.shape-l-shape::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--poke-red);
+    /* Recorte interior calculado para dejar exactamente 3px de borde */
+    clip-path: polygon(3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(35% - 3px), calc(35% - 3px) calc(35% - 3px), calc(35% - 3px) calc(100% - 3px), 3px calc(100% - 3px));
+    transition: background-color 0.2s;
+}
+
+.map-city-dot.shape-l-shape.completed::after {
+    background-color: var(--success-green);
 }
 
 .map-city-dot.shape-l-shape-flip {
     border-radius: 0;
+    border: none;
+    background-color: var(--dot-border) !important;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 65% 100%, 65% 35%, 0 35%);
+    filter: none;
+}
+
+.map-city-dot.shape-l-shape-flip::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--poke-red);
+    clip-path: polygon(3px 3px, calc(100% - 3px) 3px, calc(100% - 3px) calc(100% - 3px), calc(65% + 3px) calc(100% - 3px), calc(65% + 3px) calc(35% - 3px), 3px calc(35% - 3px));
+    transition: background-color 0.2s;
 }
 
 .map-city-dot.completed {
     background-color: var(--success-green);
-    border-color: #151221;
+    --dot-border: #151221;
+    border-color: var(--dot-border);
+}
+
+.map-city-dot.shape-l-shape-flip.completed::after {
+    background-color: var(--success-green);
 }
 
 .map-city-dot:hover, .map-city-dot.active {

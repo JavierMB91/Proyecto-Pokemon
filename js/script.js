@@ -44,7 +44,7 @@ const datosGimnasios = [
     {
         nombre: "Sinnoh",
         gimnasios: [
-            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "square", width: 22, height: 22 },
+            { ciudad: "Ciudad Pirita", lider: "Roco", shape: "l-shape-flip", width: "35px", height: "27px" },
             { ciudad: "Ciudad Vetusta", lider: "Gardenia", shape: "rectangle-h", width: 28, height: 18 },
             { ciudad: "Ciudad Rocavelo", lider: "Brega", shape: "l-shape", width: 22, height: 22 },
             { ciudad: "Ciudad Pradera", lider: "Mananti", shape: "rectangle-h", width: 28, height: 18 },
@@ -220,7 +220,7 @@ let ciudadSeleccionadaHoenn = null;
 
 // Coordenadas porcentuales para el mapa de Sinnoh
 const coordenadasSinnoh = {
-    "Ciudad Pirita": { top: "65%", left: "40%" },
+    "Ciudad Pirita": { top: "73%", left: "39.5%" },
     "Ciudad Vetusta": { top: "35%", left: "30%" },
     "Ciudad Rocavelo": { top: "40%", left: "75%" },
     "Ciudad Pradera": { top: "75%", left: "65%" },
