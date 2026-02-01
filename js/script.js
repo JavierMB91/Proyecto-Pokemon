@@ -563,6 +563,17 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         // Determinar si debe reiniciarse automáticamente (Gimnasios y Alto Mando no tienen 'type')
         const debeReiniciarseAuto = !gimnasio.tipo;
 
+        // Comprobar si ya ha terminado para evitar sonido al cargar
+        const ahora = new Date();
+        const yaTerminado = ahora >= horaFin;
+        let claseTimer = "gym-timer";
+        let contenidoTimer = "";
+        
+        if (yaTerminado && !debeReiniciarseAuto) {
+            claseTimer += " ready";
+            contenidoTimer = `✅ ${etiquetaListo}`;
+        }
+
         if (gimnasio.tipo === 'seed-plant') {
             // CAMBIO: Quitar timer y fecha del apartado donde sale el nombre de la baya
             htmlFecha = '';
@@ -572,8 +583,8 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
 
             htmlFecha = `
                 <div class="gym-status-right">
-                    <p class="gym-timer" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
-                       data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}></p>
+                    <p class="${claseTimer}" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
+                       data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}>${contenidoTimer}</p>
                     <p class="gym-end-time large-date">${cadenaHoraFin}</p>
                 </div>`;
         } else {
@@ -582,8 +593,8 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
 
             htmlFecha = `
                 <div class="gym-status-right">
-                    <p class="gym-timer" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
-                       data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}></p>
+                    <p class="${claseTimer}" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
+                       data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}>${contenidoTimer}</p>
                     <p class="gym-end-time large-date">${cadenaHoraFin}</p>
                 </div>`;
         }
