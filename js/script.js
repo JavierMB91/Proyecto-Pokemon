@@ -330,6 +330,13 @@ function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
     } else if (datosGimnasio.tipo === 'seed-water') {
         // Si ya está regado, no permitir desmarcar
         // CAMBIO: Permitir regar múltiples veces (actualizar timestamp) si está listo
+        
+        // Verificar si el temporizador indica que está listo para regar
+        const timer = elemento.querySelector('.gym-timer');
+        if (timer && !timer.classList.contains('ready')) {
+            return; // No permitir regar si aún no es hora
+        }
+
         // Solo si el elemento tiene la clase 'ready' (manejado visualmente, pero aquí forzamos la lógica)
         // Para simplificar, siempre actualizamos el timestamp al regar, reiniciando el contador
         progresoUsuario[id] = { timestamp: new Date().toISOString() };
@@ -350,7 +357,7 @@ function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
     } else {
         // Lógica normal de gimnasios
         if (progresoUsuario[id]) {
-            delete progresoUsuario[id];
+            return;
         } else {
             progresoUsuario[id] = {
                 timestamp: new Date().toISOString()
@@ -552,6 +559,7 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
 
     // Formatear fecha si existe (Hora Española)
     let htmlFecha = '';
+    let yaTerminado = false;
     // Para semillas, mostramos timer incluso si no está "completado" (ej. esperando riego)
     // siempre que tengamos un timestamp base válido (definido arriba)
     if ((estaCompletado && datosProgreso.timestamp) || (timestampAUsar && (gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest'))) {
@@ -565,7 +573,7 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
 
         // Comprobar si ya ha terminado para evitar sonido al cargar
         const ahora = new Date();
-        const yaTerminado = ahora >= horaFin;
+        yaTerminado = ahora >= horaFin;
         let claseTimer = "gym-timer";
         let contenidoTimer = "";
         
@@ -688,7 +696,18 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     // Si hay una imagen interna (ej: semillas), hacemos que sea el disparador
     const imgInterna = elementoLista.querySelector('.gym-image');
     if (imgInterna) {
-        imgInterna.style.cursor = 'pointer';
+        if (gimnasio.tipo === 'seed-plant') {
+            imgInterna.style.cursor = 'default';
+        } else if (gimnasio.tipo === 'seed-water') {
+            // La regadera solo es clicable si la baya necesita riego (tiempo terminado)
+            if (yaTerminado) {
+                imgInterna.style.cursor = 'pointer';
+            } else {
+                imgInterna.style.cursor = 'default';
+            }
+        } else {
+            imgInterna.style.cursor = 'pointer';
+        }
         imgInterna.onclick = (e) => {
             e.stopPropagation();
             alternarGimnasio(nombreRegion, gimnasio, elementoLista);
@@ -829,6 +848,7 @@ function actualizarInterfazMapa(nombreRegion) {
     if (!container) return;
 
     const regionData = datosGimnasios.find(r => r.nombre === nombreRegion);
+    if (!regionData) return;
     
     // Actualizar estado de completado de la región en la tarjeta padre
     const tarjeta = container.closest('.battle-region-card');
@@ -1635,8 +1655,10 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
         const tarjeta = document.createElement('div');
         tarjeta.className = 'region-card';
 
+        const esEstatico = region.nombre === "Huerto" || ruta.includes('rotacionlegendarios');
+
         // Restaurar estado colapsado
-        if (estadoRegiones[region.nombre]) {
+        if (!esEstatico && estadoRegiones[region.nombre]) {
             tarjeta.classList.add('collapsed');
         }
 
@@ -1644,7 +1666,7 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
         const cabecera = document.createElement('div');
         cabecera.className = 'region-header';
         
-        if (region.nombre === "Huerto") {
+        if (esEstatico) {
             cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">${region.nombre}</span>`;
             cabecera.style.cursor = 'default';
         } else {
