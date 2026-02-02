@@ -63,58 +63,83 @@ function importarDatos(evento) {
     evento.target.value = '';
 }
 
-// --- CARGA DE DATOS EXTERNOS (Opción 1) ---
-async function cargarPokemonsExternos() {
-    const url = 'https://cdn.jsdelivr.net/gh/PokeMMO-Tools/pokemmo-data@main/data/monster.json';
-    const urlMoves = 'https://cdn.jsdelivr.net/gh/PokeMMO-Tools/pokemmo-data@main/data/moves.json';
-    const urlPokedex = 'https://cdn.jsdelivr.net/gh/PokeMMO-Tools/pokemmo-data@main/data/pokedex.json';
+// --- CARGA DE DATOS LOCALES ---
+async function cargarPokemonsLocales() {
+    // Rutas a los archivos JSON locales.
+    // Asegúrate de que estos archivos están en la carpeta `data` en la raíz de tu proyecto.
+    const url = '../data/monster.json';
+    const urlMoves = '../data/moves.json';
+    const urlPokedex = '../data/pokedex.json';
 
-    try {
-        // Cargamos los tres archivos en paralelo para mayor velocidad
-        const [resMonsters, resMoves, resPokedex] = await Promise.all([
-            fetch(url),
-            fetch(urlMoves),
-            fetch(urlPokedex)
-        ]);
+    // Usamos Promise.allSettled para que un fallo en un archivo no detenga la carga de los otros.
+    // Esto hace la carga de datos mucho más robusta.
+    const results = await Promise.allSettled([
+        fetch(url),
+        fetch(urlMoves),
+        fetch(urlPokedex)
+    ]);
 
-        if (!resMonsters.ok) throw new Error(`Error HTTP Monsters: ${resMonsters.status} en ${url}`);
-        
-        datosPokemons = await resMonsters.json();
-        
-        if (resMoves.ok) {
-            const movesRaw = await resMoves.json();
-            // Optimización CRÍTICA: Convertir array a objeto para búsquedas instantáneas O(1)
+    const [resMonstersResult, resMovesResult, resPokedexResult] = results;
+
+    // 1. Cargar Pokémon (esencial)
+    if (resMonstersResult.status === 'fulfilled' && resMonstersResult.value.ok) {
+        try {
+            datosPokemons = await resMonstersResult.value.json();
+            const cantidad = Array.isArray(datosPokemons) ? datosPokemons.length : Object.keys(datosPokemons).length;
+            console.log(`✅ Datos de Pokémon cargados: ${cantidad} entradas.`);
+        } catch (e) {
+            console.error("❌ Error al parsear monster.json:", e);
+            datosPokemons = []; // Asegurar que es un array vacío en caso de error
+        }
+    } else {
+        const reason = resMonstersResult.reason || `Error HTTP ${resMonstersResult.value?.status}`;
+        console.error(`❌ Fallo CRÍTICO al cargar monster.json: ${reason}. La Pokédex no funcionará.`);
+    }
+
+    // 2. Cargar Movimientos (opcional)
+    if (resMovesResult.status === 'fulfilled' && resMovesResult.value.ok) {
+        try {
+            const movesRaw = await resMovesResult.value.json();
+            // Convertir array a mapa por ID para búsqueda rápida
             if (Array.isArray(movesRaw)) {
-                datosMovimientos = {};
-                movesRaw.forEach(m => { datosMovimientos[m.id] = m; });
+                datosMovimientos = movesRaw.reduce((acc, m) => {
+                    acc[m.id] = m;
+                    return acc;
+                }, {});
             } else {
                 datosMovimientos = movesRaw;
             }
+            console.log(`✅ Datos de Movimientos cargados: ${Object.keys(datosMovimientos).length} entradas.`);
+        } catch (e) {
+            console.error("❌ Error al parsear moves.json:", e);
         }
-        
-        if (resPokedex.ok) {
-            const pokedexRaw = await resPokedex.json();
-            // Convertimos a mapa por ID para acceso rápido
+    } else {
+        const reason = resMovesResult.reason || `Error HTTP ${resMovesResult.value?.status}`;
+        console.warn(`⚠️ No se pudieron cargar los datos de movimientos (moves.json): ${reason}`);
+    }
+
+    // 3. Cargar Pokédex Extra (descripciones, opcional)
+    if (resPokedexResult.status === 'fulfilled' && resPokedexResult.value.ok) {
+        try {
+            const pokedexRaw = await resPokedexResult.value.json();
             if (Array.isArray(pokedexRaw)) {
-                datosPokedexExtra = {};
-                pokedexRaw.forEach(p => { datosPokedexExtra[p.id] = p; });
+                datosPokedexExtra = pokedexRaw.reduce((acc, p) => {
+                    acc[p.id] = p;
+                    return acc;
+                }, {});
             } else {
                 datosPokedexExtra = pokedexRaw;
             }
-            // Exponer globalmente para facilitar la depuración
             window.datosPokedexExtra = datosPokedexExtra;
-        } else {
-            console.warn("⚠️ No se pudo cargar el archivo de descripciones (pokedex.json).");
+            console.log(`✅ Datos extra de Pokédex cargados: ${Object.keys(datosPokedexExtra).length} entradas.`);
+        } catch (e) {
+            console.error("❌ Error al parsear pokedex.json:", e);
         }
-
-        const cantidad = Array.isArray(datosPokemons) ? datosPokemons.length : Object.keys(datosPokemons).length;
-        const cantidadMoves = Object.keys(datosMovimientos).length;
-        const cantidadPokedex = Object.keys(datosPokedexExtra).length;
-        console.log(`✅ Datos externos cargados: ${cantidad} Pokémons, ${cantidadMoves} Movimientos y ${cantidadPokedex} Entradas extra listos.`);
-    } catch (error) {
-        console.error("❌ Error al cargar pokemons externos:", error);
+    } else {
+        const reason = resPokedexResult.reason || `Error HTTP ${resPokedexResult.value?.status}`;
+        console.warn(`⚠️ No se pudieron cargar las descripciones (pokedex.json): ${reason}`);
     }
 }
 
-// Iniciamos la carga automáticamente al leer este script
-cargarPokemonsExternos();
+// Exponemos la promesa de carga para que otras partes de la UI puedan esperarla.
+window.promesaCargaDatos = cargarPokemonsLocales();
