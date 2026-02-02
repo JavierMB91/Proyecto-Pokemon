@@ -1,0 +1,1 @@
+// Archivo vacío, los datos se han movido a gimnasios.js, bayas.js y legendarios.js
