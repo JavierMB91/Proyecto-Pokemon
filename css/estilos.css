@@ -1798,3 +1798,101 @@ header::after {
     max-width: 500px;
     position: relative;
 }
+
+/* --- MODAL POKEDEX DETALLES (NUEVO) --- */
+.pokedex-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.pokedex-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pokedex-detail-content {
+    background: var(--bg-panel);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid var(--dark-purple);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.pokedex-modal-overlay.active .pokedex-detail-content {
+    transform: scale(1);
+}
+
+.pokedex-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.pokedex-close-btn:hover {
+    color: var(--poke-red);
+}
+
+.pokedex-modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.pokedex-modal-img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px var(--accent-glow));
+}
+
+.pokedex-modal-title {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    text-transform: capitalize;
+    color: var(--light-purple);
+}
+
+.pokedex-stats-container {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-subtle);
+}
+
+.pokedex-stat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.pokedex-abilities-list {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
