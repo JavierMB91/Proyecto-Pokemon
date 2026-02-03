@@ -1,8 +1,20 @@
+/**
+ * script.js
+ * 
+ * Punto de entrada principal (Entry Point) de la aplicación.
+ * Se encarga de la inicialización cuando el DOM está listo: carga la navegación,
+ * configura los eventos iniciales, determina el contexto de la página actual (semillas, legendarios, etc.),
+ * inicia la carga de datos de progreso y establece los intervalos de actualización para los temporizadores.
+ */
+
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
     cargarNavegacion();
     configurarModalImagen();
     
+    // Cargar datos estáticos antes de cualquier lógica
+    await cargarDatos();
+
     // Actualizar datos de encuentros solo una vez al cargar
     const ruta = window.location.pathname.toLowerCase();
     if (ruta.includes('semillas')) {

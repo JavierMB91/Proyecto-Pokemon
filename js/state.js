@@ -1,3 +1,15 @@
+// Variables globales de datos (antes en archivos JS separados)
+var datosGimnasios = [];
+var coordenadasKanto = {};
+var coordenadasJohto = {};
+var coordenadasHoenn = {};
+var coordenadasSinnoh = {};
+var coordenadasTeselia = {};
+var medallasPorRegion = {};
+var datosBayas = [];
+var datosHuerto = [];
+var datosRotacionLegendarios = [];
+
 // --- CONFIGURACIÓN LOCAL (SIN SERVIDOR) ---
 const CLAVE_ALMACENAMIENTO = 'pokemmo_gym_progress';
 let progresoUsuario = {};
@@ -58,4 +70,36 @@ function importarDatos(evento) {
     };
     lector.readAsText(archivo);
     evento.target.value = '';
+}
+
+// Función para cargar los datos estáticos desde JSON
+async function cargarDatos() {
+    try {
+        const [gymsRes, bayasRes, legendsRes] = await Promise.all([
+            fetch('../js/data/gimnasios.json'),
+            fetch('../js/data/bayas.json'),
+            fetch('../js/data/legendarios.json')
+        ]);
+
+        if (!gymsRes.ok || !bayasRes.ok || !legendsRes.ok) throw new Error("Error cargando archivos JSON");
+
+        const gymsData = await gymsRes.json();
+        datosGimnasios = gymsData.datosGimnasios;
+        coordenadasKanto = gymsData.coordenadasKanto;
+        coordenadasJohto = gymsData.coordenadasJohto;
+        coordenadasHoenn = gymsData.coordenadasHoenn;
+        coordenadasSinnoh = gymsData.coordenadasSinnoh;
+        coordenadasTeselia = gymsData.coordenadasTeselia;
+        medallasPorRegion = gymsData.medallasPorRegion;
+
+        const bayasData = await bayasRes.json();
+        datosBayas = bayasData.datosBayas;
+        datosHuerto = bayasData.datosHuerto;
+
+        datosRotacionLegendarios = await legendsRes.json();
+        
+    } catch (e) {
+        console.error("Error inicializando datos:", e);
+        alert("Error cargando los datos del juego. Revisa la consola.");
+    }
 }

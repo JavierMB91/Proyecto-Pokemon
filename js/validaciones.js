@@ -1,4 +1,12 @@
 /**
+ * validaciones.js
+ * 
+ * Módulo de validación de datos de entrada. Contiene funciones puras para verificar
+ * que los inputs del usuario (como cantidad de semillas a plantar o número de encuentros)
+ * cumplan con los requisitos de formato, tipo y rango antes de ser procesados por la lógica de negocio.
+ */
+
+/**
  * Valida el número de semillas introducido.
  * @param {string} value - El valor del input.
  * @returns {object} - Objeto con propiedad 'valid' (boolean) y 'message' (string).
