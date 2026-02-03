@@ -1,5 +1,5 @@
 /**
- * legendaries.js
+ * legendarios.js
  * 
  * Módulo encargado de la lógica específica para los Encuentros con Pokémon Legendarios.
  * Gestiona la rotación mensual de legendarios errantes (Kanto y Johto), actualiza

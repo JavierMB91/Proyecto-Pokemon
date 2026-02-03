@@ -1,5 +1,5 @@
 /**
- * seeds.js
+ * semillas.js
  * 
  * Módulo dedicado a la funcionalidad del Huerto de Bayas. Contiene toda la lógica
  * del ciclo de vida de las plantas: plantado, riego y cosecha. Gestiona los temporizadores
