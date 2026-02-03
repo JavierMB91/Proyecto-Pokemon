@@ -24,7 +24,7 @@ function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
         return;
     } else {
         if (progresoUsuario[id]) {
-            return;
+            delete progresoUsuario[id];
         } else {
             progresoUsuario[id] = {
                 timestamp: new Date().toISOString()
