@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Cargar datos estáticos antes de cualquier lógica
     await cargarDatos();
 
-    // Actualizar datos de encuentros solo una vez al cargar
+    // Actualizar rotación mensual solo una vez al cargar
     const ruta = window.location.pathname.toLowerCase();
     if (ruta.includes('semillas')) {
         document.body.classList.add('page-semillas');
     }
     if (ruta.includes('rotacionlegendarios')) {
-        actualizarDatosEncuentros();
+        actualizarRotacionMensual();
     }
 
     // Iniciar aplicación local

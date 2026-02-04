@@ -7,8 +7,8 @@
  * de herramientas base para la lógica de negocio.
  */
 
-// Generar ID único para un elemento (gimnasio, paso de huerto, encuentro, etc.)
-function obtenerIdGimnasio(nombreRegion, idONombre) {
+// Generar ID único para un elemento (gimnasio, paso de huerto, encuentro, etc.).
+function generarIdElemento(nombreRegion, idONombre) {
     return `${nombreRegion}-${idONombre}`.replace(/\s+/g, '-').toLowerCase();
 }
 

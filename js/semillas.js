@@ -12,7 +12,7 @@
 // Procesar el click en una etapa del huerto (plantar, regar, recoger)
 function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
     const idUnico = datosEtapaHuerto.id || datosEtapaHuerto.lider;
-    const id = obtenerIdGimnasio(nombreRegion, idUnico);
+    const id = generarIdElemento(nombreRegion, idUnico);
     
     if (datosEtapaHuerto.tipo === 'seed-plant') {
         return;
@@ -23,8 +23,8 @@ function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
         }
         progresoUsuario[id] = { timestamp: new Date().toISOString() };
     } else if (datosEtapaHuerto.tipo === 'seed-harvest') {
-        const idRaiz = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idRaiz); 
-        const idRiego = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idAnterior); 
+        const idRaiz = generarIdElemento(nombreRegion, datosEtapaHuerto.idRaiz); 
+        const idRiego = generarIdElemento(nombreRegion, datosEtapaHuerto.idAnterior); 
         
         if (progresoUsuario[id]) delete progresoUsuario[id];
         if (progresoUsuario[idRaiz]) delete progresoUsuario[idRaiz];
@@ -162,7 +162,7 @@ window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     const horasCosecha = analizarHorasBaya(baya.tiempoCosecha);
     const horasRiego = analizarHorasBaya(baya.tiempoRiego);
 
-    const id = obtenerIdGimnasio(nombreRegion, idUnico);
+    const id = generarIdElemento(nombreRegion, idUnico);
     progresoUsuario[id] = {
         timestamp: new Date().toISOString(),
         cantidad: cantidad,

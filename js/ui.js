@@ -671,7 +671,7 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
 
         region.gimnasios.forEach(gimnasio => {
             if (gimnasio.tipo === 'encounter') {
-                lista.appendChild(crearElementoEncuentro(region.nombre, gimnasio));
+                lista.appendChild(crearElementoEncuentro(gimnasio));
             } else {
                 lista.appendChild(crearElementoGimnasio(region.nombre, gimnasio));
             }

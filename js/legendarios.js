@@ -27,8 +27,8 @@ function obtenerLegendariosErrantes(mes) {
     };
 }
 
-// Función para actualizar los datos de encuentros con los legendarios del mes actual
-function actualizarDatosEncuentros() {
+// Función para actualizar la rotación de legendarios según el mes actual
+function actualizarRotacionMensual() {
     const fecha = new Date();
     const mesActual = fecha.getMonth() + 1; // Obtener mes actual (1-12)
     const nombreMes = fecha.toLocaleString('es-ES', { month: 'long' });
@@ -55,37 +55,23 @@ function actualizarDatosEncuentros() {
 }
 
 // Helper para crear el elemento de Encuentros
-function crearElementoEncuentro(nombreRegion, gimnasio) {
+function crearElementoEncuentro(encuentro) {
     const elementoLista = document.createElement('li');
     elementoLista.className = 'gym-item';
     
     let gifPokemon = '';
     const legendarios = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
-    if (legendarios.includes(gimnasio.lider)) {
-        gifPokemon = `<div style="margin-top: 5px;"><img src="../img/${gimnasio.lider.toLowerCase()}.gif" alt="${gimnasio.lider}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
+    if (legendarios.includes(encuentro.lider)) {
+        gifPokemon = `<div style="margin-top: 5px;"><img src="../img/${encuentro.lider.toLowerCase()}.gif" alt="${encuentro.lider}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
     }
 
     elementoLista.innerHTML = `
         <div class="gym-info">
-            <h3>${gimnasio.lider}</h3>
+            <h3>${encuentro.lider}</h3>
             ${gifPokemon}
-            <p>Región: ${gimnasio.ciudad}</p>
+            <p>Región: ${encuentro.ciudad}</p>
         </div>
     `;
     
     return elementoLista;
-}
-
-function reiniciarRegionEspecifica(nombreRegion) {
-    const region = datosRotacionLegendarios.find(r => r.nombre === nombreRegion);
-    if (region) {
-        region.gimnasios.forEach(item => {
-            const idUnico = item.id || item.lider;
-            const id = obtenerIdGimnasio(region.nombre, idUnico);
-            delete progresoUsuario[id];
-        });
-        guardarProgreso();
-        renderizarAplicacion();
-    }
-    ocultarModalReinicio();
 }
