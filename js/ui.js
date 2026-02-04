@@ -7,7 +7,10 @@
  * el manejo de modales (reinicio, imágenes), la navegación y las funciones de importación/exportación de datos.
  */
 
-// Alternar estado del gimnasio (Controlador)
+/**
+ * Controlador principal de clics en elementos de lista (Gimnasios o Huerto).
+ * Delega la acción a `procesarClickSemilla` o `procesarClickGimnasio` según el tipo.
+ */
 function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
     // Delegar a la lógica específica según el tipo
     if (datosGimnasio.tipo && datosGimnasio.tipo.startsWith('seed')) {
@@ -17,7 +20,11 @@ function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
     }
 }
 
-// Actualizar temporizadores en el DOM
+/**
+ * Recorre todos los temporizadores activos en el DOM y actualiza su tiempo restante.
+ * Gestiona la finalización de cuentas atrás, mostrando "Disponible" o reiniciando automáticamente.
+ * Se ejecuta periódicamente (cada segundo).
+ */
 function actualizarTemporizadores() {
     const temporizadores = document.querySelectorAll('.gym-timer[data-timestamp]');
     const ahora = new Date().getTime();
@@ -80,7 +87,13 @@ function actualizarTemporizadores() {
     }
 }
 
-// Helper para crear el elemento HTML de un gimnasio/entrenador
+/**
+ * Genera el componente visual (HTML) para un gimnasio, entrenador o parcela de huerto.
+ * Calcula estados como: completado, deshabilitado (por cooldown o requisitos previos) y construye la interfaz.
+ * @param {string} nombreRegion - Región a la que pertenece.
+ * @param {object} gimnasio - Datos del gimnasio/entrenador/parcela.
+ * @returns {HTMLElement} Elemento <li> completo con eventos y estilos.
+ */
 function crearElementoGimnasio(nombreRegion, gimnasio) {
     const idUnico = gimnasio.id || gimnasio.lider;
     const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
@@ -269,7 +282,11 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     return elementoLista;
 }
 
-// Renderizar la interfaz
+/**
+ * Función principal de renderizado. Limpia el contenedor principal y reconstruye la interfaz
+ * basándose en la ruta actual (URL) y los datos cargados.
+ * Maneja la vista de Battle Tracker, Huerto o Rotación de Legendarios.
+ */
 function renderizarAplicacion() {
     const contenedorApp = document.getElementById('app');
     if (!contenedorApp) return; 
@@ -626,7 +643,13 @@ function renderizarAplicacion() {
     actualizarTemporizadores();
 }
 
-// Función auxiliar para renderizar un conjunto de regiones
+/**
+ * Renderiza una lista de regiones (tarjetas) en el contenedor especificado.
+ * @param {Array} datos - Array de datos de regiones.
+ * @param {HTMLElement} contenedor - Elemento donde insertar las tarjetas.
+ * @param {number} maxSlots - Número máximo de slots a mostrar (rellena con placeholders).
+ * @param {boolean} esAncho - Si true, aplica estilos de tarjeta ancha (horizontal).
+ */
 function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
     const ruta = window.location.pathname.toLowerCase();
 
@@ -716,6 +739,9 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
 }
 
 // --- NAVEGACIÓN ---
+/**
+ * Carga asíncronamente el archivo `nav.html` e inyecta la barra de navegación en la página.
+ */
 async function cargarNavegacion() {
     const marcadorPosicion = document.getElementById('nav-placeholder');
     if (!marcadorPosicion) return;
@@ -734,6 +760,10 @@ async function cargarNavegacion() {
 }
 
 // Funciones del Modal
+/**
+ * Muestra el modal de confirmación para reiniciar el progreso.
+ * @param {string} contexto - Contexto opcional para reiniciar solo una sección ('gyms', etc.).
+ */
 function mostrarModalReinicio(contexto) {
     const ruta = window.location.pathname.toLowerCase();
     if (ruta.includes('rotacionlegendarios')) return;
@@ -751,10 +781,17 @@ function mostrarModalReinicio(contexto) {
 }
 window.mostrarModalReinicio = mostrarModalReinicio;
 
+/**
+ * Oculta el modal de reinicio.
+ */
 function ocultarModalReinicio() {
     document.getElementById('modal-overlay').classList.remove('active');
 }
 
+/**
+ * Ejecuta el reinicio de progreso confirmado por el usuario.
+ * Borra las entradas correspondientes en `progresoUsuario` y recarga la interfaz.
+ */
 function confirmarReinicio() {
     let conjuntosDatosAReiniciar = [];
     const ruta = window.location.pathname.toLowerCase();
@@ -794,6 +831,10 @@ function confirmarReinicio() {
 }
 
 // --- MODAL DE IMAGEN ---
+/**
+ * Crea e inserta en el DOM la estructura HTML para el modal de visualización de imágenes.
+ * Se ejecuta una sola vez al inicio.
+ */
 function configurarModalImagen() {
     if (!document.getElementById('img-modal-overlay')) {
         const modal = document.createElement('div');
@@ -812,6 +853,10 @@ function configurarModalImagen() {
     }
 }
 
+/**
+ * Abre el modal de imagen mostrando la imagen especificada.
+ * @param {string} src - Ruta de la imagen a mostrar.
+ */
 window.mostrarModalImagen = function(src) {
     const modal = document.getElementById('img-modal-overlay');
     const img = document.getElementById('img-modal-target');
@@ -822,6 +867,10 @@ window.mostrarModalImagen = function(src) {
 };
 
 // --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
+/**
+ * Configura los botones de Exportar e Importar datos en el encabezado.
+ * Crea los elementos del DOM y asigna sus eventos.
+ */
 function configurarInterfazDatos() {
     const cabecera = document.querySelector('header');
     if (!cabecera) return;

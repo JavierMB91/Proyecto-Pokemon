@@ -9,7 +9,14 @@
 
 // Lógica específica de Semillas y Huerto
 
-// Procesar el click en una etapa del huerto (plantar, regar, recoger)
+/**
+ * Gestiona la lógica principal del huerto cuando el usuario interactúa con una parcela.
+ * Controla el flujo: Plantar -> Regar (con espera) -> Cosechar (con espera).
+ * Actualiza el estado en `progresoUsuario` y guarda los cambios.
+ * @param {string} nombreRegion - Contexto de la región (generalmente "Huerto").
+ * @param {object} datosEtapaHuerto - Datos de configuración de la etapa actual.
+ * @param {HTMLElement} elemento - Elemento DOM clicado.
+ */
 function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
     const idUnico = datosEtapaHuerto.id || datosEtapaHuerto.lider;
     const id = generarIdElemento(nombreRegion, idUnico);
@@ -39,13 +46,20 @@ function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
     renderizarAplicacion(); 
 }
 
-// Helper para extraer horas de los strings de bayas (ej: "44 horas" -> 44)
+/**
+ * Extrae el valor numérico de horas de una cadena de texto.
+ * @param {string} cadenaTiempo - Cadena como "16 horas".
+ * @returns {number} Número de horas (ej: 16).
+ */
 function analizarHorasBaya(cadenaTiempo) {
     const match = cadenaTiempo && cadenaTiempo.match(/(\d+)/);
     return match ? parseInt(match[1]) : 0;
 }
 
-// Renderizar la información de las bayas
+/**
+ * Genera y renderiza el panel de información detallada de las bayas.
+ * Crea un selector desplegable y muestra datos (sabor, tiempo, combinación) de la baya seleccionada.
+ */
 function renderizarInfoBayas() {
     const contenedor = document.getElementById('berry-info-container');
     if (!contenedor) return;
@@ -137,7 +151,13 @@ function renderizarInfoBayas() {
     contenedor.appendChild(tarjeta);
 }
 
-// --- FUNCIÓN PLANTAR EN LÍNEA ---
+/**
+ * Maneja el evento de plantar semillas directamente desde la interfaz de la tarjeta.
+ * Valida la entrada, calcula tiempos de riego/cosecha y guarda el estado inicial del cultivo.
+ * @param {string} nombreRegion - Región del huerto.
+ * @param {string} idUnico - ID de la parcela.
+ * @param {HTMLElement} elementoBoton - Botón que disparó la acción.
+ */
 window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     const contenedor = elementoBoton.parentElement;
     const selectorBaya = contenedor.querySelector('.selector-baya');

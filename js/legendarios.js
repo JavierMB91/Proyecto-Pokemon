@@ -9,7 +9,12 @@
 
 // Lógica específica de Legendarios
 
-// Función para calcular qué legendario errante toca según el mes (1-12)
+/**
+ * Determina qué Pokémon legendarios errantes están activos basándose en el mes actual.
+ * Aplica la rotación de Kanto (Zapdos/Moltres/Articuno) y Johto (Entei/Suicune/Raikou).
+ * @param {number} mes - Número del mes (1-12).
+ * @returns {object} Objeto con los nombres de los legendarios para Kanto y Johto.
+ */
 function obtenerLegendariosErrantes(mes) {
     // Rotación Kanto: Zapdos -> Moltres -> Articuno
     const rotacionKanto = ["Zapdos", "Moltres", "Articuno"];
@@ -27,7 +32,10 @@ function obtenerLegendariosErrantes(mes) {
     };
 }
 
-// Función para actualizar la rotación de legendarios según el mes actual
+/**
+ * Actualiza los datos globales de rotación de legendarios con la información del mes actual.
+ * Modifica `datosRotacionLegendarios` para reflejar los encuentros activos.
+ */
 function actualizarRotacionMensual() {
     const fecha = new Date();
     const mesActual = fecha.getMonth() + 1; // Obtener mes actual (1-12)
@@ -54,7 +62,12 @@ function actualizarRotacionMensual() {
     ];
 }
 
-// Helper para crear el elemento de Encuentros
+/**
+ * Crea el elemento HTML (DOM) para mostrar una tarjeta de encuentro con un legendario.
+ * Incluye la imagen (gif) y la información de la región.
+ * @param {object} encuentro - Datos del encuentro (lider, ciudad, etc.).
+ * @returns {HTMLElement} Elemento de lista (li) listo para insertar en el DOM.
+ */
 function crearElementoEncuentro(encuentro) {
     const elementoLista = document.createElement('li');
     elementoLista.className = 'gym-item';

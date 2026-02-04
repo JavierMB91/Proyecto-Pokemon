@@ -23,19 +23,28 @@ let ciudadSeleccionadaHoenn = null;
 let ciudadSeleccionadaSinnoh = null;
 let ciudadSeleccionadaTeselia = null;
 
-// Cargar progreso desde LocalStorage
+/**
+ * Recupera el progreso del usuario almacenado en el navegador (LocalStorage).
+ * Parsea el JSON almacenado y lo carga en la variable global `progresoUsuario`.
+ */
 async function cargarProgreso() {
     progresoUsuario = {};
     const almacenado = localStorage.getItem(CLAVE_ALMACENAMIENTO);
     if (almacenado) progresoUsuario = JSON.parse(almacenado);
 }
 
-// Guardar progreso en LocalStorage
+/**
+ * Guarda el estado actual de `progresoUsuario` en el LocalStorage del navegador.
+ * Convierte el objeto a JSON string.
+ */
 async function guardarProgreso() {
     localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(progresoUsuario));
 }
 
-// Exportar datos a archivo JSON
+/**
+ * Genera un archivo .json descargable con el progreso actual del usuario.
+ * Permite hacer copias de seguridad de los datos.
+ */
 function exportarDatos() {
     const cadenaDatos = JSON.stringify(progresoUsuario, null, 2);
     const blob = new Blob([cadenaDatos], { type: "application/json" });
@@ -50,7 +59,11 @@ function exportarDatos() {
     URL.revokeObjectURL(url);
 }
 
-// Importar datos desde archivo JSON
+/**
+ * Lee un archivo JSON seleccionado por el usuario y restaura el progreso.
+ * Valida el JSON, actualiza `progresoUsuario`, guarda y recarga la interfaz.
+ * @param {Event} evento - Evento del input file.
+ */
 function importarDatos(evento) {
     const archivo = evento.target.files[0];
     if (!archivo) return;
@@ -72,7 +85,10 @@ function importarDatos(evento) {
     evento.target.value = '';
 }
 
-// Función para cargar los datos estáticos desde JSON
+/**
+ * Carga todos los datos estáticos de configuración (gimnasios, bayas, legendarios)
+ * desde los archivos JSON del servidor/local. Inicializa las variables globales de datos.
+ */
 async function cargarDatos() {
     try {
         const [gymsRes, bayasRes, legendsRes] = await Promise.all([

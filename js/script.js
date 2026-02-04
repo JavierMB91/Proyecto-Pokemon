@@ -9,7 +9,9 @@
 
 // --- INICIALIZACIÓN ---
 document.addEventListener('DOMContentLoaded', async () => {
+    // Carga la barra de navegación común desde nav.html
     cargarNavegacion();
+    // Configura el modal para visualizar imágenes ampliadas (mapas, puzzles)
     configurarModalImagen();
     
     // Cargar datos estáticos antes de cualquier lógica
@@ -25,8 +27,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Iniciar aplicación local
+    // Configura botones de exportar/importar y carga el progreso guardado
     configurarInterfazDatos();
     await cargarProgreso();
+    // Renderiza la vista principal según la URL actual
     renderizarAplicacion();
     
     // Renderizar información de bayas si estamos en la página de semillas

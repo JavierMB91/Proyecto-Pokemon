@@ -7,12 +7,22 @@
  * de herramientas base para la lógica de negocio.
  */
 
-// Generar ID único para un elemento (gimnasio, paso de huerto, encuentro, etc.).
+/**
+ * Genera un identificador único estandarizado para cualquier elemento del juego.
+ * Combina el nombre de la región y el ID/Nombre del elemento, eliminando espacios y mayúsculas.
+ * @param {string} nombreRegion - Nombre de la región (ej: "Kanto").
+ * @param {string} idONombre - Identificador específico o nombre (ej: "Brock").
+ * @returns {string} ID formateado (ej: "kanto-brock").
+ */
 function generarIdElemento(nombreRegion, idONombre) {
     return `${nombreRegion}-${idONombre}`.replace(/\s+/g, '-').toLowerCase();
 }
 
-// Helper para formatear fecha
+/**
+ * Formatea un objeto Date a una cadena legible en formato español (España).
+ * @param {Date} fecha - Objeto fecha a formatear.
+ * @returns {string} Fecha formateada (dd/mm/yyyy, hh:mm).
+ */
 function formatearFecha(fecha) {
     return fecha.toLocaleString('es-ES', {
         timeZone: 'Europe/Madrid',
@@ -21,7 +31,10 @@ function formatearFecha(fecha) {
     });
 }
 
-// Función para reproducir sonidos de notificación
+/**
+ * Reproduce un efecto de sonido específico según la acción realizada.
+ * @param {string} tipo - Tipo de sonido ('water' para regar, 'harvest' para recoger).
+ */
 function reproducirSonido(tipo) {
     let rutaAudio = '';
     // Se asume que los archivos de audio están en una carpeta 'audio' al mismo nivel que 'img'

@@ -9,7 +9,11 @@
 
 // Lógica específica de Gimnasios y Mapas
 
-// Procesar el click en un gimnasio estándar
+/**
+ * Maneja la lógica al hacer clic en un gimnasio o entrenador.
+ * Marca o desmarca el gimnasio como completado en `progresoUsuario` y guarda los datos.
+ * Si está en la vista de mapa, actualiza solo el mapa; si no, renderiza toda la app.
+ */
 function procesarClickGimnasio(nombreRegion, datosGimnasio, elemento) {
     const idUnico = datosGimnasio.id || datosGimnasio.lider;
     const id = obtenerIdGimnasio(nombreRegion, idUnico);
@@ -33,7 +37,12 @@ function procesarClickGimnasio(nombreRegion, datosGimnasio, elemento) {
     }
 }
 
-// Generar HTML de las medallas
+/**
+ * Genera el HTML de las medallas obtenidas para una región específica.
+ * Verifica el progreso del usuario y aplica filtros (color o escala de grises) a las imágenes.
+ * @param {string} nombreRegion - Nombre de la región.
+ * @returns {string} HTML string con las imágenes de las medallas.
+ */
 function generarHTMLMedallas(nombreRegion) {
     if (!medallasPorRegion[nombreRegion]) return '';
 
@@ -121,7 +130,12 @@ function generarHTMLMedallas(nombreRegion) {
     return `<div class="region-badges" style="display: flex; align-items: center;">${htmlPepitas}${badgeImgs}${htmlMasterBall}</div>`;
 }
 
-// Función para actualizar solo la interfaz del mapa (sin re-renderizar todo)
+/**
+ * Actualiza visualmente el mapa interactivo y el panel de detalles de una región.
+ * Refresca el estado de los puntos (dots) en el mapa y la información del líder seleccionado
+ * sin necesidad de recargar toda la página, mejorando el rendimiento.
+ * @param {string} nombreRegion - Nombre de la región a actualizar.
+ */
 function actualizarInterfazMapa(nombreRegion) {
     const regionLower = nombreRegion.toLowerCase();
     const container = document.querySelector(`.${regionLower}-map-container`);
