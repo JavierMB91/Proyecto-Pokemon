@@ -1,4 +1,4 @@
-{
+
     "egg_group_1": {
         "id": 1,
         "name": "monster",
@@ -282,13 +282,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "かいじゅう"
+                "name": ""
             },
             "ko": {
-                "name": "괴수"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "怪獸"
+                "name": ""
             },
             "fr": {
                 "name": "Monstrueux"
@@ -306,7 +306,7 @@
                 "name": "Monster"
             },
             "zh-Hans": {
-                "name": "怪兽"
+                "name": ""
             }
         }
     },
@@ -629,13 +629,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "すいちゅう１"
+                "name": ""
             },
             "ko": {
-                "name": "수중 1"
+                "name": " 1"
             },
             "zh-Hant": {
-                "name": "水中1"
+                "name": "1"
             },
             "fr": {
                 "name": "Aquatique 1"
@@ -653,7 +653,7 @@
                 "name": "Water 1"
             },
             "zh-Hans": {
-                "name": "水中1"
+                "name": "1"
             }
         }
     },
@@ -924,19 +924,19 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "むし"
+                "name": ""
             },
             "ko": {
-                "name": "벌레"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "蟲"
+                "name": ""
             },
             "fr": {
-                "name": "Insectoïde"
+                "name": "Insectode"
             },
             "de": {
-                "name": "Käfer"
+                "name": "Kfer"
             },
             "es": {
                 "name": "Bicho"
@@ -948,7 +948,7 @@
                 "name": "Bug"
             },
             "zh-Hans": {
-                "name": "虫"
+                "name": ""
             }
         }
     },
@@ -1139,16 +1139,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ひこう"
+                "name": ""
             },
             "ko": {
-                "name": "비행"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "飛行"
+                "name": ""
             },
             "fr": {
-                "name": "Aérien"
+                "name": "Arien"
             },
             "de": {
                 "name": "Flug"
@@ -1163,7 +1163,7 @@
                 "name": "Flying"
             },
             "zh-Hans": {
-                "name": "飞行"
+                "name": ""
             }
         }
     },
@@ -1906,13 +1906,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "りくじょう"
+                "name": ""
             },
             "ko": {
-                "name": "육상"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "陸上"
+                "name": ""
             },
             "fr": {
                 "name": "Terrestre"
@@ -1930,7 +1930,7 @@
                 "name": "Field"
             },
             "zh-Hans": {
-                "name": "陆上"
+                "name": ""
             }
         }
     },
@@ -2093,16 +2093,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ようせい"
+                "name": ""
             },
             "ko": {
-                "name": "요정"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "妖精"
+                "name": ""
             },
             "fr": {
-                "name": "Féerique"
+                "name": "Ferique"
             },
             "de": {
                 "name": "Fee"
@@ -2117,7 +2117,7 @@
                 "name": "Fairy"
             },
             "zh-Hans": {
-                "name": "妖精"
+                "name": ""
             }
         }
     },
@@ -2356,16 +2356,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "しょくぶつ"
+                "name": ""
             },
             "ko": {
-                "name": "식물"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "植物"
+                "name": ""
             },
             "fr": {
-                "name": "Végétal"
+                "name": "Vgtal"
             },
             "de": {
                 "name": "Pflanze"
@@ -2380,7 +2380,7 @@
                 "name": "Grass"
             },
             "zh-Hans": {
-                "name": "植物"
+                "name": ""
             }
         }
     },
@@ -2603,16 +2603,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ひとがた"
+                "name": ""
             },
             "ko": {
-                "name": "인간형"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "人型"
+                "name": ""
             },
             "fr": {
-                "name": "Humanoïde"
+                "name": "Humanode"
             },
             "de": {
                 "name": "Humanotyp"
@@ -2627,7 +2627,7 @@
                 "name": "Human-Like"
             },
             "zh-Hans": {
-                "name": "人型"
+                "name": ""
             }
         }
     },
@@ -2738,13 +2738,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "すいちゅう３"
+                "name": ""
             },
             "ko": {
-                "name": "수중 3"
+                "name": " 3"
             },
             "zh-Hant": {
-                "name": "水中3"
+                "name": "3"
             },
             "fr": {
                 "name": "Aquatique 3"
@@ -2762,7 +2762,7 @@
                 "name": "Water 3"
             },
             "zh-Hans": {
-                "name": "水中３"
+                "name": ""
             }
         }
     },
@@ -2965,16 +2965,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "こうぶつ"
+                "name": ""
             },
             "ko": {
-                "name": "광물"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "礦物"
+                "name": ""
             },
             "fr": {
-                "name": "Minéral"
+                "name": "Minral"
             },
             "de": {
                 "name": "Mineral"
@@ -2989,7 +2989,7 @@
                 "name": "Mineral"
             },
             "zh-Hans": {
-                "name": "矿物"
+                "name": ""
             }
         }
     },
@@ -3180,13 +3180,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ふていけい"
+                "name": ""
             },
             "ko": {
-                "name": "부정형"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "不定形"
+                "name": ""
             },
             "fr": {
                 "name": "Amorphe"
@@ -3204,7 +3204,7 @@
                 "name": "Amorphous"
             },
             "zh-Hans": {
-                "name": "不定形"
+                "name": ""
             }
         }
     },
@@ -3299,13 +3299,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "すいちゅう２"
+                "name": ""
             },
             "ko": {
-                "name": "수중 2"
+                "name": " 2"
             },
             "zh-Hant": {
-                "name": "水中2"
+                "name": "2"
             },
             "fr": {
                 "name": "Aquatique 2"
@@ -3323,7 +3323,7 @@
                 "name": "Water 2"
             },
             "zh-Hans": {
-                "name": "水中2"
+                "name": "2"
             }
         }
     },
@@ -3338,16 +3338,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "メタモン"
+                "name": ""
             },
             "ko": {
-                "name": "메타몽"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "百變怪"
+                "name": ""
             },
             "fr": {
-                "name": "Métamorph"
+                "name": "Mtamorph"
             },
             "de": {
                 "name": "Ditto"
@@ -3362,7 +3362,7 @@
                 "name": "Ditto"
             },
             "zh-Hans": {
-                "name": "百变怪"
+                "name": ""
             }
         }
     },
@@ -3529,13 +3529,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ドラゴン"
+                "name": ""
             },
             "ko": {
-                "name": "드래곤"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "龍"
+                "name": ""
             },
             "fr": {
                 "name": "Draconique"
@@ -3544,7 +3544,7 @@
                 "name": "Drache"
             },
             "es": {
-                "name": "Dragón"
+                "name": "Dragn"
             },
             "it": {
                 "name": "Drago"
@@ -3553,7 +3553,7 @@
                 "name": "Dragon"
             },
             "zh-Hans": {
-                "name": "龙"
+                "name": ""
             }
         }
     },
@@ -3828,13 +3828,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "タマゴみはっけん"
+                "name": ""
             },
             "ko": {
-                "name": "알미발견"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "未發現"
+                "name": ""
             },
             "fr": {
                 "name": "Inconnu"
@@ -3852,7 +3852,7 @@
                 "name": "Undiscovered"
             },
             "zh-Hans": {
-                "name": "未发现"
+                "name": ""
             }
         }
     }

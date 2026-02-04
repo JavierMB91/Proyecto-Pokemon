@@ -1,4 +1,4 @@
-{
+
     "grass": {
         "pokemon": [
             {
@@ -478,13 +478,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "くさ"
+                "name": ""
             },
             "ko": {
-                "name": "풀"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "草"
+                "name": ""
             },
             "fr": {
                 "name": "Plante"
@@ -502,10 +502,10 @@
                 "name": "Grass"
             },
             "ja": {
-                "name": "くさ"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "草"
+                "name": ""
             }
         }
     },
@@ -832,13 +832,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "どく"
+                "name": ""
             },
             "ko": {
-                "name": "독"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "毒"
+                "name": ""
             },
             "fr": {
                 "name": "Poison"
@@ -856,10 +856,10 @@
                 "name": "Poison"
             },
             "ja": {
-                "name": "どく"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "毒"
+                "name": ""
             }
         }
     },
@@ -1194,13 +1194,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ほのお"
+                "name": ""
             },
             "ko": {
-                "name": "불꽃"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "火"
+                "name": ""
             },
             "fr": {
                 "name": "Feu"
@@ -1218,10 +1218,10 @@
                 "name": "Fire"
             },
             "ja": {
-                "name": "ほのお"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "火"
+                "name": ""
             }
         }
     },
@@ -1672,13 +1672,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ひこう"
+                "name": ""
             },
             "ko": {
-                "name": "비행"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "飛行"
+                "name": ""
             },
             "fr": {
                 "name": "Vol"
@@ -1696,10 +1696,10 @@
                 "name": "Flying"
             },
             "ja": {
-                "name": "ひこう"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "飞行"
+                "name": ""
             }
         }
     },
@@ -2278,13 +2278,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "みず"
+                "name": ""
             },
             "ko": {
-                "name": "물"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "水"
+                "name": ""
             },
             "fr": {
                 "name": "Eau"
@@ -2302,10 +2302,10 @@
                 "name": "Water"
             },
             "ja": {
-                "name": "みず"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "水"
+                "name": ""
             }
         }
     },
@@ -2688,19 +2688,19 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "むし"
+                "name": ""
             },
             "ko": {
-                "name": "벌레"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "蟲"
+                "name": ""
             },
             "fr": {
                 "name": "Insecte"
             },
             "de": {
-                "name": "Käfer"
+                "name": "Kfer"
             },
             "es": {
                 "name": "Bicho"
@@ -2712,10 +2712,10 @@
                 "name": "Bug"
             },
             "ja": {
-                "name": "むし"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "虫"
+                "name": ""
             }
         }
     },
@@ -3798,13 +3798,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ノーマル"
+                "name": ""
             },
             "ko": {
-                "name": "노말"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "一般"
+                "name": ""
             },
             "fr": {
                 "name": "Normal"
@@ -3822,10 +3822,10 @@
                 "name": "Normal"
             },
             "ja": {
-                "name": "ノーマル"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "一般"
+                "name": ""
             }
         }
     },
@@ -4100,22 +4100,22 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "でんき"
+                "name": ""
             },
             "ko": {
-                "name": "전기"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "電"
+                "name": ""
             },
             "fr": {
-                "name": "Électrik"
+                "name": "lectrik"
             },
             "de": {
                 "name": "Elektro"
             },
             "es": {
-                "name": "Eléctrico"
+                "name": "Elctrico"
             },
             "it": {
                 "name": "Elettro"
@@ -4124,10 +4124,10 @@
                 "name": "Electric"
             },
             "ja": {
-                "name": "でんき"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "电"
+                "name": ""
             }
         }
     },
@@ -4454,13 +4454,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "じめん"
+                "name": ""
             },
             "ko": {
-                "name": "땅"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "地面"
+                "name": ""
             },
             "fr": {
                 "name": "Sol"
@@ -4478,10 +4478,10 @@
                 "name": "Ground"
             },
             "ja": {
-                "name": "じめん"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "地面"
+                "name": ""
             }
         }
     },
@@ -4820,13 +4820,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "かくとう"
+                "name": ""
             },
             "ko": {
-                "name": "격투"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "格鬥"
+                "name": ""
             },
             "fr": {
                 "name": "Combat"
@@ -4844,10 +4844,10 @@
                 "name": "Fighting"
             },
             "ja": {
-                "name": "かくとう"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "格斗"
+                "name": ""
             }
         }
     },
@@ -5470,13 +5470,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "エスパー"
+                "name": ""
             },
             "ko": {
-                "name": "에스퍼"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "超能力"
+                "name": ""
             },
             "fr": {
                 "name": "Psy"
@@ -5485,7 +5485,7 @@
                 "name": "Psycho"
             },
             "es": {
-                "name": "Psíquico"
+                "name": "Psquico"
             },
             "it": {
                 "name": "Psico"
@@ -5494,10 +5494,10 @@
                 "name": "Psychic"
             },
             "ja": {
-                "name": "エスパー"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "超能力"
+                "name": ""
             }
         }
     },
@@ -5760,13 +5760,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "いわ"
+                "name": ""
             },
             "ko": {
-                "name": "바위"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "岩石"
+                "name": ""
             },
             "fr": {
                 "name": "Roche"
@@ -5784,10 +5784,10 @@
                 "name": "Rock"
             },
             "ja": {
-                "name": "いわ"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "岩石"
+                "name": ""
             }
         }
     },
@@ -6042,13 +6042,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "はがね"
+                "name": ""
             },
             "ko": {
-                "name": "강철"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "鋼"
+                "name": ""
             },
             "fr": {
                 "name": "Acier"
@@ -6066,10 +6066,10 @@
                 "name": "Steel"
             },
             "ja": {
-                "name": "はがね"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "钢"
+                "name": ""
             }
         }
     },
@@ -6296,13 +6296,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "こおり"
+                "name": ""
             },
             "ko": {
-                "name": "얼음"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "冰"
+                "name": ""
             },
             "fr": {
                 "name": "Glace"
@@ -6320,10 +6320,10 @@
                 "name": "Ice"
             },
             "ja": {
-                "name": "こおり"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "冰"
+                "name": ""
             }
         }
     },
@@ -6514,13 +6514,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ゴースト"
+                "name": ""
             },
             "ko": {
-                "name": "고스트"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "幽靈"
+                "name": ""
             },
             "fr": {
                 "name": "Spectre"
@@ -6538,10 +6538,10 @@
                 "name": "Ghost"
             },
             "ja": {
-                "name": "ゴースト"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "幽灵"
+                "name": ""
             }
         }
     },
@@ -6736,13 +6736,13 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "ドラゴン"
+                "name": ""
             },
             "ko": {
-                "name": "드래곤"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "龍"
+                "name": ""
             },
             "fr": {
                 "name": "Dragon"
@@ -6751,7 +6751,7 @@
                 "name": "Drache"
             },
             "es": {
-                "name": "Dragón"
+                "name": "Dragn"
             },
             "it": {
                 "name": "Drago"
@@ -6760,10 +6760,10 @@
                 "name": "Dragon"
             },
             "ja": {
-                "name": "ドラゴン"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "龙"
+                "name": ""
             }
         }
     },
@@ -7050,16 +7050,16 @@
         ],
         "name_translations": {
             "ja-Hrkt": {
-                "name": "あく"
+                "name": ""
             },
             "ko": {
-                "name": "악"
+                "name": ""
             },
             "zh-Hant": {
-                "name": "惡"
+                "name": ""
             },
             "fr": {
-                "name": "Ténèbres"
+                "name": "Tnbres"
             },
             "de": {
                 "name": "Unlicht"
@@ -7074,10 +7074,10 @@
                 "name": "Dark"
             },
             "ja": {
-                "name": "あく"
+                "name": ""
             },
             "zh-Hans": {
-                "name": "恶"
+                "name": ""
             }
         }
     }
