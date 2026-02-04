@@ -1,49 +1,30 @@
-// Alternar estado del gimnasio (Controlador)
+/**
+ * ui.js
+ * 
+ * Controlador principal de la Interfaz de Usuario. Este archivo orquesta la renderización
+ * completa de la aplicación, delegando lógica específica a otros módulos cuando es necesario.
+ * Gestiona la actualización global de temporizadores, la creación de tarjetas de región,
+ * el manejo de modales (reinicio, imágenes), la navegación y las funciones de importación/exportación de datos.
+ */
+
+/**
+ * Controlador principal de clics en elementos de lista (Gimnasios o Huerto).
+ * Delega la acción a `procesarClickSemilla` o `procesarClickGimnasio` según el tipo.
+ */
 function alternarGimnasio(nombreRegion, datosGimnasio, elemento) {
-    const idUnico = datosGimnasio.id || datosGimnasio.lider;
-    const id = obtenerIdGimnasio(nombreRegion, idUnico);
-    
-    if (datosGimnasio.tipo === 'seed-plant') {
-        return;
-    } else if (datosGimnasio.tipo === 'seed-water') {
-        const timer = elemento.querySelector('.gym-timer');
-        if (timer && !timer.classList.contains('ready')) {
-            return; 
-        }
-        progresoUsuario[id] = { timestamp: new Date().toISOString() };
-    } else if (datosGimnasio.tipo === 'seed-harvest') {
-        const idRaiz = obtenerIdGimnasio(nombreRegion, datosGimnasio.idRaiz); 
-        const idRiego = obtenerIdGimnasio(nombreRegion, datosGimnasio.idAnterior); 
-        
-        if (progresoUsuario[id]) delete progresoUsuario[id];
-        if (progresoUsuario[idRaiz]) delete progresoUsuario[idRaiz];
-        if (progresoUsuario[idRiego]) delete progresoUsuario[idRiego];
-        
-        guardarProgreso();
-        renderizarAplicacion();
-        return;
+    // Delegar a la lógica específica según el tipo
+    if (datosGimnasio.tipo && datosGimnasio.tipo.startsWith('seed')) {
+        procesarClickSemilla(nombreRegion, datosGimnasio, elemento);
     } else {
-        if (progresoUsuario[id]) {
-            delete progresoUsuario[id];
-        } else {
-            progresoUsuario[id] = {
-                timestamp: new Date().toISOString()
-            };
-        }
-    }
-    
-    guardarProgreso();
-    
-    const ruta = window.location.pathname.toLowerCase();
-    const regionesConMapa = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Teselia'];
-    if (ruta.includes('battletracker') && regionesConMapa.includes(nombreRegion)) {
-        actualizarInterfazMapa(nombreRegion);
-    } else {
-        renderizarAplicacion(); 
+        procesarClickGimnasio(nombreRegion, datosGimnasio, elemento);
     }
 }
 
-// Actualizar temporizadores en el DOM
+/**
+ * Recorre todos los temporizadores activos en el DOM y actualiza su tiempo restante.
+ * Gestiona la finalización de cuentas atrás, mostrando "Disponible" o reiniciando automáticamente.
+ * Se ejecuta periódicamente (cada segundo).
+ */
 function actualizarTemporizadores() {
     const temporizadores = document.querySelectorAll('.gym-timer[data-timestamp]');
     const ahora = new Date().getTime();
@@ -106,7 +87,13 @@ function actualizarTemporizadores() {
     }
 }
 
-// Helper para crear el elemento HTML de un gimnasio/entrenador
+/**
+ * Genera el componente visual (HTML) para un gimnasio, entrenador o parcela de huerto.
+ * Calcula estados como: completado, deshabilitado (por cooldown o requisitos previos) y construye la interfaz.
+ * @param {string} nombreRegion - Región a la que pertenece.
+ * @param {object} gimnasio - Datos del gimnasio/entrenador/parcela.
+ * @returns {HTMLElement} Elemento <li> completo con eventos y estilos.
+ */
 function crearElementoGimnasio(nombreRegion, gimnasio) {
     const idUnico = gimnasio.id || gimnasio.lider;
     const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
@@ -195,10 +182,12 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         if (gimnasio.tipo === 'seed-plant') {
             htmlFecha = '';
         } else {
+            const esHuerto = gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest';
+            const claseTimerHuerto = esHuerto ? claseTimer + ' temporizador-huerto' : claseTimer;
             const cadenaHoraFin = formatearFecha(horaFin);
             htmlFecha = `
                 <div class="gym-status-right">
-                    <p class="${claseTimer}" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
+                    <p class="${claseTimerHuerto}" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
                        data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}>${contenidoTimer}</p>
                     <p class="gym-end-time large-date">${cadenaHoraFin}</p>
                 </div>`;
@@ -223,14 +212,14 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
             });
             
             textoInfo = `
-                <div class="seed-plant-controls" onclick="event.stopPropagation()">
+                <div class="controles-plantar" onclick="event.stopPropagation()">
                     <div class="control-group">
                         <label class="input-label">Seleccionar Baya</label>
-                        <select class="gym-berry-select">${opciones}</select>
+                        <select class="selector-baya">${opciones}</select>
                     </div>
                     <div class="control-group">
                         <label class="input-label">Nº Semillas</label>
-                        <input type="number" class="seed-count-input" placeholder="Cantidad" min="1">
+                        <input type="number" class="input-cantidad-semillas" placeholder="Cantidad" min="1">
                     </div>
                     <button class="btn-plant-confirm" onclick="window.manejarPlantadoEnLinea('${nombreRegion}', '${idUnico}', this)">✔</button>
                 </div>
@@ -293,295 +282,11 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     return elementoLista;
 }
 
-// Helper para crear el elemento de Encuentros
-function crearElementoEncuentro(nombreRegion, gimnasio) {
-    const elementoLista = document.createElement('li');
-    elementoLista.className = 'gym-item';
-    
-    let gifPokemon = '';
-    const legendarios = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
-    if (legendarios.includes(gimnasio.lider)) {
-        gifPokemon = `<div style="margin-top: 5px;"><img src="../img/${gimnasio.lider.toLowerCase()}.gif" alt="${gimnasio.lider}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
-    }
-
-    elementoLista.innerHTML = `
-        <div class="gym-info">
-            <h3>${gimnasio.lider}</h3>
-            ${gifPokemon}
-            <p>Región: ${gimnasio.ciudad}</p>
-        </div>
-    `;
-    
-    return elementoLista;
-}
-
-function generarHTMLMedallas(nombreRegion) {
-    if (!medallasPorRegion[nombreRegion]) return '';
-
-    const regionData = datosGimnasios.find(r => r.nombre === nombreRegion);
-    if (!regionData) return '';
-
-    const medallas = medallasPorRegion[nombreRegion];
-    const regionFolder = `gimnasios_${nombreRegion.toLowerCase()}`;
-    
-    const gimnasiosBadge = regionData.gimnasios.filter(g => g.lider !== 'Alto Mando' && g.id !== 'elite4');
-
-    let htmlPepitas = '';
-    let zIndexOffset = 0;
-    if (nombreRegion === 'Teselia' && regionData.entrenadoresEspeciales) {
-        const specialTrainers = regionData.entrenadoresEspeciales;
-        zIndexOffset = specialTrainers.length; 
-
-        htmlPepitas = specialTrainers.map((trainer, idx) => {
-            const idUnico = trainer.id || trainer.lider;
-            const idTrainer = obtenerIdGimnasio(nombreRegion, idUnico);
-            const isCompleted = !!progresoUsuario[idTrainer];
-
-            const filterStyle = isCompleted 
-                ? 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))' 
-                : 'grayscale(100%) brightness(30%) opacity(0.7)';
-
-            const estiloPepita = `
-                height: 40px; width: 40px; object-fit: contain; 
-                margin-left: ${idx > 0 ? '-20px' : '0'}; 
-                position: relative; z-index: ${idx};
-                filter: ${filterStyle}; transition: filter 0.3s ease;
-            `;
-            return `<img src="../img/pepita.png" alt="${trainer.lider}" style="${estiloPepita}" title="${isCompleted ? 'Vencido: ' + trainer.lider : 'No vencido: ' + trainer.lider}">`;
-        }).join('');
-    }
-
-    const badgeImgs = medallas.map((item, index) => {
-        let isObtained = false;
-        if (index < gimnasiosBadge.length) {
-            const gym = gimnasiosBadge[index];
-            const idUnico = gym.id || gym.lider;
-            const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
-            if (progresoUsuario[idGimnasio]) {
-                isObtained = true;
-            }
-        }
-
-        const nombre = `Medalla ${item.charAt(0).toUpperCase() + item.slice(1)}`;
-        const src = `../img/${regionFolder}/medalla_${item}.png`;
-        
-        const filterStyle = isObtained 
-            ? 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))' 
-            : 'grayscale(100%) brightness(30%) opacity(0.7)';
-
-        const estilo = `
-            height: 40px; 
-            width: 40px; 
-            object-fit: contain; 
-            margin-left: ${index > 0 ? '-20px' : (nombreRegion === 'Teselia' ? '15px' : '0')}; 
-            position: relative; 
-            z-index: ${index + zIndexOffset};
-            filter: ${filterStyle};
-            transition: filter 0.3s ease;
-        `;
-        return `<img src="${src}" alt="${nombre}" style="${estilo}" title="${isObtained ? 'Obtenida' : 'No obtenida'}">`;
-    }).join('');
-
-    let htmlMasterBall = '';
-    const elite4Gym = regionData.gimnasios.find(g => g.lider === 'Alto Mando' || g.id === 'elite4');
-    
-    if (elite4Gym) {
-        const idUnico = elite4Gym.id || elite4Gym.lider;
-        const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
-        const isElite4Completed = !!progresoUsuario[idGimnasio];
-        
-        const filterStyleMB = isElite4Completed 
-            ? 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))' 
-            : 'grayscale(100%) brightness(30%) opacity(0.7)';
-
-        htmlMasterBall = `<img src="../img/master_ball.png" alt="Liga Pokémon" style="
-            height: 40px; width: 40px; object-fit: contain; margin-left: 10px; position: relative; z-index: ${medallas.length + zIndexOffset};
-            filter: ${filterStyleMB}; transition: filter 0.3s ease;" title="${isElite4Completed ? 'Liga Pokémon Completada' : 'Liga Pokémon No Completada'}">`;
-    }
-
-    return `<div class="region-badges" style="display: flex; align-items: center;">${htmlPepitas}${badgeImgs}${htmlMasterBall}</div>`;
-}
-
-// Función para actualizar solo la interfaz del mapa (sin re-renderizar todo)
-function actualizarInterfazMapa(nombreRegion) {
-    const regionLower = nombreRegion.toLowerCase();
-    const container = document.querySelector(`.${regionLower}-map-container`);
-    if (!container) return;
-
-    const regionData = datosGimnasios.find(r => r.nombre === nombreRegion);
-    if (!regionData) return;
-    
-    const tarjeta = container.closest('.battle-region-card');
-    if (tarjeta) {
-        const gimnasiosRequeridos = regionData.gimnasios.filter(g => g.lider !== 'Alto Mando' && g.id !== 'elite4');
-        const regionCompletada = gimnasiosRequeridos.length > 0 && gimnasiosRequeridos.every(g => {
-            const idUnico = g.id || g.lider;
-            const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
-            return progresoUsuario[idGimnasio];
-        });
-
-        if (regionCompletada) {
-            tarjeta.classList.add('region-completed');
-        } else {
-            tarjeta.classList.remove('region-completed');
-        }
-
-        const badgesContainer = tarjeta.querySelector('.region-badges');
-        if (badgesContainer) {
-            badgesContainer.outerHTML = generarHTMLMedallas(nombreRegion);
-        }
-    }
-
-    let ciudadSeleccionada = null;
-    
-    switch (nombreRegion) {
-        case 'Kanto': ciudadSeleccionada = ciudadSeleccionadaKanto; break;
-        case 'Johto': ciudadSeleccionada = ciudadSeleccionadaJohto; break;
-        case 'Hoenn': ciudadSeleccionada = ciudadSeleccionadaHoenn; break;
-        case 'Sinnoh': ciudadSeleccionada = ciudadSeleccionadaSinnoh; break;
-        case 'Teselia': ciudadSeleccionada = ciudadSeleccionadaTeselia; break;
-    }
-
-    const dots = container.querySelectorAll('.map-city-dot');
-    dots.forEach(dot => {
-        const ciudad = dot.title;
-        let gimnasio = regionData.gimnasios.find(g => g.ciudad === ciudad);
-        if (!gimnasio && regionData.entrenadoresEspeciales) {
-            gimnasio = regionData.entrenadoresEspeciales.find(g => g.ciudad === ciudad);
-        }
-        
-        if (ciudad === ciudadSeleccionada) {
-            dot.classList.add('active');
-        } else {
-            dot.classList.remove('active');
-        }
-
-        if (gimnasio) {
-            const idUnico = gimnasio.id || gimnasio.lider;
-            const idGimnasio = obtenerIdGimnasio(nombreRegion, idUnico);
-            if (progresoUsuario[idGimnasio]) {
-                dot.classList.add('completed');
-            } else {
-                dot.classList.remove('completed');
-            }
-        }
-    });
-
-    const panelDetalles = container.querySelector(`.${regionLower}-details-panel`);
-    if (!panelDetalles) return;
-    
-    const currentImg = panelDetalles.querySelector('.leader-model');
-    const currentAlt = currentImg ? (currentImg.alt || currentImg.getAttribute('alt')) : null;
-    
-    let gymSeleccionado = null;
-    if (ciudadSeleccionada) {
-        gymSeleccionado = regionData.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
-        if (!gymSeleccionado && regionData.entrenadoresEspeciales) {
-            gymSeleccionado = regionData.entrenadoresEspeciales.find(g => g.ciudad === ciudadSeleccionada);
-        }
-    }
-
-    if (gymSeleccionado && currentAlt === gymSeleccionado.lider) {
-        const listaDetalle = panelDetalles.querySelector('.gym-list');
-        if (listaDetalle) {
-            listaDetalle.innerHTML = '';
-            listaDetalle.appendChild(crearElementoGimnasio(nombreRegion, gymSeleccionado));
-        }
-    } else {
-        panelDetalles.innerHTML = '';
-
-        if (gymSeleccionado) {
-            if (gymSeleccionado.lider === 'Vito y Leti') {
-                const divLider = document.createElement('div');
-                divLider.className = 'leader-model';
-                divLider.style.display = 'flex';
-                divLider.style.justifyContent = 'center';
-                divLider.style.alignItems = 'center';
-                divLider.setAttribute('alt', gymSeleccionado.lider);
-                divLider.style.cursor = 'pointer';
-                divLider.onclick = () => alternarGimnasio(nombreRegion, gymSeleccionado, null);
-
-                const lideres = ['Vito', 'Leti'];
-                lideres.forEach((lider, index) => {
-                    const img = document.createElement('img');
-                    img.src = `../img/gimnasios_hoenn/${lider}.png`;
-                    img.alt = lider;
-                    img.style.height = '100%';
-                    img.style.width = 'auto';
-                    img.style.objectFit = 'contain';
-                    if (index === 1) img.style.marginLeft = '-90px'; 
-                    img.style.position = 'relative';
-                    img.style.zIndex = index;
-                    img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
-                    divLider.appendChild(img);
-                });
-                panelDetalles.appendChild(divLider);
-            } else if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
-                const divLider = document.createElement('div');
-                divLider.className = 'leader-model';
-                divLider.style.display = 'flex';
-                divLider.style.justifyContent = 'center';
-                divLider.style.alignItems = 'center';
-                divLider.setAttribute('alt', gymSeleccionado.lider);
-                divLider.style.cursor = 'pointer';
-                divLider.onclick = () => alternarGimnasio(nombreRegion, gymSeleccionado, null);
-
-                const lideres = ['Zeo', 'Maiz', 'Millo'];
-                lideres.forEach((lider, index) => {
-                    const img = document.createElement('img');
-                    img.src = `../img/gimnasios_teselia/${lider}.png`;
-                    img.alt = lider;
-                    img.style.height = '100%';
-                    img.style.width = 'auto';
-                    img.style.objectFit = 'contain';
-                    if (index === 1) img.style.marginLeft = '-115px';
-                    if (index === 2) img.style.marginLeft = '-130px';
-                    img.style.position = 'relative';
-                    img.style.zIndex = index;
-                    img.style.filter = 'drop-shadow(2px 0 2px rgba(0,0,0,0.5))';
-                    divLider.appendChild(img);
-                });
-                panelDetalles.appendChild(divLider);
-            } else {
-                const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
-                const imgLider = document.createElement('img');
-                imgLider.className = 'leader-model';
-                imgLider.style.cursor = 'pointer';
-                imgLider.onclick = () => alternarGimnasio(nombreRegion, gymSeleccionado, null);
-                            
-                if (gymSeleccionado.imagen) {
-                    imgLider.src = `../img/${gymSeleccionado.imagen}`;
-                } else if (gymSeleccionado.lider === 'Alto Mando') {
-                    imgLider.src = '../img/alto_mando.png';
-                } else {
-                    imgLider.src = `../img/gimnasios_${regionLower}/${nombreArchivo}.png`;
-                }
-
-                if (gymSeleccionado.lider === 'Cintia') {
-                    imgLider.onerror = function() {
-                        this.onerror = null;
-                        this.src = `../img/gimnasios_sinnoh/${nombreArchivo}.png`;
-                    };
-                }
-                imgLider.alt = gymSeleccionado.lider;
-                panelDetalles.appendChild(imgLider);
-            }
-
-            const listaDetalle = document.createElement('ul');
-            listaDetalle.className = 'gym-list detail-view';
-            listaDetalle.style.width = '100%';
-            listaDetalle.style.background = 'transparent';
-            listaDetalle.appendChild(crearElementoGimnasio(nombreRegion, gymSeleccionado));
-            panelDetalles.appendChild(listaDetalle);
-        } else {
-            panelDetalles.innerHTML = `<p style="color: var(--text-muted); text-align: center;">Selecciona una ciudad en el mapa para ver al Líder de Gimnasio.</p>`;
-        }
-    }
-    
-    actualizarTemporizadores();
-}
-
-// Renderizar la interfaz
+/**
+ * Función principal de renderizado. Limpia el contenedor principal y reconstruye la interfaz
+ * basándose en la ruta actual (URL) y los datos cargados.
+ * Maneja la vista de Battle Tracker, Huerto o Rotación de Legendarios.
+ */
 function renderizarAplicacion() {
     const contenedorApp = document.getElementById('app');
     if (!contenedorApp) return; 
@@ -938,7 +643,13 @@ function renderizarAplicacion() {
     actualizarTemporizadores();
 }
 
-// Función auxiliar para renderizar un conjunto de regiones
+/**
+ * Renderiza una lista de regiones (tarjetas) en el contenedor especificado.
+ * @param {Array} datos - Array de datos de regiones.
+ * @param {HTMLElement} contenedor - Elemento donde insertar las tarjetas.
+ * @param {number} maxSlots - Número máximo de slots a mostrar (rellena con placeholders).
+ * @param {boolean} esAncho - Si true, aplica estilos de tarjeta ancha (horizontal).
+ */
 function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
     const ruta = window.location.pathname.toLowerCase();
 
@@ -983,7 +694,7 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
 
         region.gimnasios.forEach(gimnasio => {
             if (gimnasio.tipo === 'encounter') {
-                lista.appendChild(crearElementoEncuentro(region.nombre, gimnasio));
+                lista.appendChild(crearElementoEncuentro(gimnasio));
             } else {
                 lista.appendChild(crearElementoGimnasio(region.nombre, gimnasio));
             }
@@ -1027,99 +738,10 @@ function renderizarConjuntoRegiones(datos, contenedor, maxSlots, esAncho) {
     });
 }
 
-// Renderizar la información de las bayas
-function renderizarInfoBayas() {
-    const contenedor = document.getElementById('berry-info-container');
-    if (!contenedor) return;
-
-    contenedor.innerHTML = ''; 
- 
-    const tarjeta = document.createElement('div');
-    tarjeta.className = 'region-card';
- 
-    const cabecera = document.createElement('div');
-    cabecera.className = 'region-header';
-    cabecera.innerHTML = `<span style="flex-grow: 1; text-align: center;">Información sobre Bayas</span>`;
-    cabecera.style.cursor = 'default';
-    tarjeta.appendChild(cabecera);
- 
-    const envoltorio = document.createElement('div');
-    envoltorio.className = 'berry-selector-wrapper';
- 
-    const selector = document.createElement('select');
-    selector.className = 'berry-select';
-    selector.innerHTML = `<option value="">Seleccione una baya...</option>`;
- 
-    const bayasOrdenadas = [...datosBayas].sort((a, b) => a.nombre.localeCompare(b.nombre));
- 
-    bayasOrdenadas.forEach(baya => {
-        selector.innerHTML += `<option value="${baya.nombre}">${baya.nombre}</option>`;
-    });
- 
-    const contenedorInfo = document.createElement('div');
-    contenedorInfo.id = 'selected-berry-info';
-    contenedorInfo.className = 'berry-content-display';
-    contenedorInfo.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
- 
-    const generarNombreImagen = (nombre) => {
-        return nombre.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
-    };
- 
-    selector.addEventListener('change', (evento) => {
-        const nombreSeleccionado = evento.target.value;
- 
-        if (nombreSeleccionado) {
-            const baya = datosBayas.find(b => b.nombre === nombreSeleccionado);
-            if (baya) {
-                const nombreImagenFinal = generarNombreImagen(baya.nombre);
-                
-                const procesarCombinacion = (texto) => {
-                    const procesarLinea = (linea) => {
-                        return linea.replace(/Sem\.\s+([^x\+\n]+)/gi, (match, sabor) => {
-                            let nombreLimpio = sabor.trim().toLowerCase()
-                                .replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u').replace(/ñ/g, 'n')
-                                .replace(/\s+/g, '_');
-                            const nombreImagen = `sem_${nombreLimpio}.png`;
-                            return `<img src="../img/bayas/${nombreImagen}" alt="${sabor.trim()}" title="${sabor.trim()}" style="width: 24px; height: 24px; vertical-align: middle; margin-right: 4px;" onerror="this.style.display='none';">${match}`;
-                        });
-                    };
-
-                    const lineas = texto.split('\n');
-                    return `<ul style="margin: 0; padding-left: 0; list-style-type: none;">${lineas.map(l => `<li style="margin-bottom: 4px;">${procesarLinea(l)}</li>`).join('')}</ul>`;
-                };
- 
-                let htmlContenido = `
-                    <div class="selected-berry-header">
-                        <img src="../img/bayas/${nombreImagenFinal}" alt="${baya.nombre}" class="berry-image" onerror="this.src='../img/bayas/sem_picante.png'; this.style.filter='grayscale(1)';">
-                        <span class="berry-name">${baya.nombre}</span>
-                    </div>
-                    <div class="selected-berry-details">
-                        <table class="berry-info-table">
-                            <tbody>
-                                <tr><th>Uso</th><td>${baya.uso}</td></tr>
-                                <tr><th>Combinación</th><td>${procesarCombinacion(baya.combinacion)}</td></tr>
-                                <tr><th>Riego</th><td>Cada ${baya.tiempoRiego}</td></tr>
-                                <tr><th>Cosecha</th><td>${baya.tiempoCosecha}</td></tr>
-                                <tr><th>Sabor</th><td>${baya.sabor}</td></tr>
-                                <tr><th>Color</th><td>${baya.color}</td></tr>
-                            </tbody>
-                        </table>
-                    </div>`;
-                
-                contenedorInfo.innerHTML = htmlContenido;
-            }
-        } else {
-            contenedorInfo.innerHTML = '<p class="berry-placeholder">Selecciona una baya para ver su información</p>';
-        }
-    });
- 
-    envoltorio.appendChild(selector);
-    envoltorio.appendChild(contenedorInfo);
-    tarjeta.appendChild(envoltorio);
-    contenedor.appendChild(tarjeta);
-}
-
 // --- NAVEGACIÓN ---
+/**
+ * Carga asíncronamente el archivo `nav.html` e inyecta la barra de navegación en la página.
+ */
 async function cargarNavegacion() {
     const marcadorPosicion = document.getElementById('nav-placeholder');
     if (!marcadorPosicion) return;
@@ -1138,65 +760,38 @@ async function cargarNavegacion() {
 }
 
 // Funciones del Modal
+/**
+ * Muestra el modal de confirmación para reiniciar el progreso.
+ * @param {string} contexto - Contexto opcional para reiniciar solo una sección ('gyms', etc.).
+ */
 function mostrarModalReinicio(contexto) {
+    const ruta = window.location.pathname.toLowerCase();
+    if (ruta.includes('rotacionlegendarios')) return;
+
     if (typeof contexto === 'string') {
         contextoReinicio = contexto;
     } else {
         contextoReinicio = null;
     }
 
-    document.getElementById('modal-overlay').classList.add('active');
     const modal = document.getElementById('modal-overlay');
-    
-    const ruta = window.location.pathname.toLowerCase();
-    if (ruta.includes('rotacionlegendarios')) {
-        const contenido = modal.querySelector('.modal-content');
-        
-        let htmlBotones = '';
-        datosRotacionLegendarios.forEach(region => {
-            const idSeguro = region.nombre.replace(/\s+/g, '-').toLowerCase();
-            htmlBotones += `<button class="btn-modal btn-confirm" id="reset-${idSeguro}">${region.nombre}</button>`;
-        });
+    if (!modal) return;
 
-        contenido.innerHTML = `
-            <h3>Reiniciar Encuentros</h3>
-            <p>Selecciona la región a reiniciar:</p>
-            <div class="modal-actions" style="flex-wrap: wrap; gap: 10px;">
-                <button class="btn-modal btn-cancel" id="modal-cancel-dynamic">Cancelar</button>
-                ${htmlBotones}
-            </div>
-        `;
-        
-        document.getElementById('modal-cancel-dynamic').onclick = ocultarModalReinicio;
-        datosRotacionLegendarios.forEach(region => {
-            const idSeguro = region.nombre.replace(/\s+/g, '-').toLowerCase();
-            const boton = document.getElementById(`reset-${idSeguro}`);
-            if (boton) boton.onclick = () => reiniciarRegionEspecifica(region.nombre);
-        });
-    }
-    
     modal.classList.add('active');
 }
 window.mostrarModalReinicio = mostrarModalReinicio;
 
+/**
+ * Oculta el modal de reinicio.
+ */
 function ocultarModalReinicio() {
     document.getElementById('modal-overlay').classList.remove('active');
 }
 
-function reiniciarRegionEspecifica(nombreRegion) {
-    const region = datosRotacionLegendarios.find(r => r.nombre === nombreRegion);
-    if (region) {
-        region.gimnasios.forEach(item => {
-            const idUnico = item.id || item.lider;
-            const id = obtenerIdGimnasio(region.nombre, idUnico);
-            delete progresoUsuario[id];
-        });
-        guardarProgreso();
-        renderizarAplicacion();
-    }
-    ocultarModalReinicio();
-}
-
+/**
+ * Ejecuta el reinicio de progreso confirmado por el usuario.
+ * Borra las entradas correspondientes en `progresoUsuario` y recarga la interfaz.
+ */
 function confirmarReinicio() {
     let conjuntosDatosAReiniciar = [];
     const ruta = window.location.pathname.toLowerCase();
@@ -1236,6 +831,10 @@ function confirmarReinicio() {
 }
 
 // --- MODAL DE IMAGEN ---
+/**
+ * Crea e inserta en el DOM la estructura HTML para el modal de visualización de imágenes.
+ * Se ejecuta una sola vez al inicio.
+ */
 function configurarModalImagen() {
     if (!document.getElementById('img-modal-overlay')) {
         const modal = document.createElement('div');
@@ -1254,6 +853,10 @@ function configurarModalImagen() {
     }
 }
 
+/**
+ * Abre el modal de imagen mostrando la imagen especificada.
+ * @param {string} src - Ruta de la imagen a mostrar.
+ */
 window.mostrarModalImagen = function(src) {
     const modal = document.getElementById('img-modal-overlay');
     const img = document.getElementById('img-modal-target');
@@ -1263,46 +866,12 @@ window.mostrarModalImagen = function(src) {
     }
 };
 
-// --- FUNCIÓN PLANTAR EN LÍNEA ---
-window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
-    const contenedor = elementoBoton.parentElement;
-    const selector = contenedor.querySelector('.gym-berry-select');
-    const inputCantidad = contenedor.querySelector('.seed-count-input');
-
-    const nombreBaya = selector.value;
-
-    if (!nombreBaya) {
-        alert("Por favor, selecciona una baya.");
-        return;
-    }
-
-    const validacion = validateSeedInput(inputCantidad.value);
-    if (!validacion.valid) {
-        alert(validacion.message);
-        return;
-    }
-
-    const cantidad = parseInt(inputCantidad.value);
-
-    const baya = datosBayas.find(b => b.nombre === nombreBaya);
-    const horasCosecha = analizarHorasBaya(baya.tiempoCosecha);
-    const horasRiego = analizarHorasBaya(baya.tiempoRiego);
-
-    const id = obtenerIdGimnasio(nombreRegion, idUnico);
-    progresoUsuario[id] = {
-        timestamp: new Date().toISOString(),
-        cantidad: cantidad,
-        nombreBaya: nombreBaya,
-        intervaloCosecha: horasCosecha,
-        intervaloRiego: horasRiego
-    };
-
-    guardarProgreso();
-    renderizarAplicacion();
-};
-
 // --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
-function configurarInterfazAuth() {
+/**
+ * Configura los botones de Exportar e Importar datos en el encabezado.
+ * Crea los elementos del DOM y asigna sus eventos.
+ */
+function configurarInterfazDatos() {
     const cabecera = document.querySelector('header');
     if (!cabecera) return;
 

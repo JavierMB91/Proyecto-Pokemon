@@ -1,9 +1,17 @@
 /**
+ * validaciones.js
+ * 
+ * Módulo de validación de datos de entrada. Contiene funciones puras para verificar
+ * que los inputs del usuario (como cantidad de semillas a plantar o número de encuentros)
+ * cumplan con los requisitos de formato, tipo y rango antes de ser procesados por la lógica de negocio.
+ */
+
+/**
  * Valida el número de semillas introducido.
  * @param {string} value - El valor del input.
  * @returns {object} - Objeto con propiedad 'valid' (boolean) y 'message' (string).
  */
-function validateSeedInput(value) {
+function validarInputSemillas(value) {
     // Convertir a número
     const number = Number(value);
     
@@ -29,43 +37,6 @@ function validateSeedInput(value) {
 
     if (number > 1000) {
         return { valid: false, message: "La cantidad de semillas no puede superar 1000." };
-    }
-
-    return { valid: true };
-}
-
-/**
- * Valida el número de encuentros introducido.
- * @param {string} value - El valor del input.
- * @returns {object} - Objeto con propiedad 'valid' (boolean) y 'message' (string).
- */
-function validateEncounterInput(value) {
-    // Convertir a número
-    const number = Number(value);
-    
-    // Validar si está vacío
-    if (value === '' || value === null) {
-        return { valid: false, message: "El campo no puede estar vacío." };
-    }
-
-    // Validar si es un número
-    if (isNaN(number)) {
-        return { valid: false, message: "Por favor, introduce un número válido." };
-    }
-
-    // Validar si es entero
-    if (!Number.isInteger(number)) {
-        return { valid: false, message: "El número de encuentros debe ser un entero." };
-    }
-
-    // Validar rango (ej: positivo)
-    if (number <= 0) {
-        return { valid: false, message: "Debes añadir al menos 1 encuentro." };
-    }
-
-    // Límite razonable para una sola sesión de input (mucho mayor que semillas)
-    if (number > 100000) {
-        return { valid: false, message: "La cantidad es demasiado alta para un solo registro (máx 100.000)." };
     }
 
     return { valid: true };

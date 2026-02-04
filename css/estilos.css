@@ -429,7 +429,9 @@ header::after {
     flex-shrink: 0;
 }
 
-.gym-timer {
+/* Temporizador (gimnasios y huerto) */
+.gym-timer,
+.temporizador-huerto {
     font-size: 0.95rem;
     font-weight: bold;
     color: var(--poke-yellow);
@@ -439,7 +441,8 @@ header::after {
     font-variant-numeric: tabular-nums;
 }
 
-.gym-timer.ready {
+.gym-timer.ready,
+.temporizador-huerto.ready {
     color: var(--success-green);
     font-family: inherit;
     letter-spacing: normal;
@@ -891,7 +894,8 @@ header::after {
     background-color: transparent;
 }
 
-/* Controles en línea para plantar */
+/* Controles en línea para plantar (huerto) */
+.controles-plantar,
 .seed-plant-controls {
     display: flex;
     align-items: flex-end;
@@ -914,6 +918,7 @@ header::after {
     text-transform: uppercase;
 }
 
+.controles-plantar .selector-baya,
 .seed-plant-controls .gym-berry-select {
     margin-top: 0;
     width: 180px;
@@ -921,6 +926,21 @@ header::after {
     max-width: none;
 }
 
+/* Selector de baya y cantidad de semillas (huerto) */
+.selector-baya {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    font-size: 0.9rem;
+    width: 100%;
+    max-width: 220px;
+    margin-top: 8px;
+    cursor: pointer;
+    background-color: var(--bg-input);
+    color: white;
+}
+
+.input-cantidad-semillas,
 .seed-count-input {
     width: 100px;
     padding: 8px;

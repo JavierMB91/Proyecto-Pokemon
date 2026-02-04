@@ -1,3 +1,15 @@
+// Variables globales de datos (antes en archivos JS separados)
+var datosGimnasios = [];
+var coordenadasKanto = {};
+var coordenadasJohto = {};
+var coordenadasHoenn = {};
+var coordenadasSinnoh = {};
+var coordenadasTeselia = {};
+var medallasPorRegion = {};
+var datosBayas = [];
+var datosHuerto = [];
+var datosRotacionLegendarios = [];
+
 // --- CONFIGURACIÓN LOCAL (SIN SERVIDOR) ---
 const CLAVE_ALMACENAMIENTO = 'pokemmo_gym_progress';
 let progresoUsuario = {};
@@ -11,19 +23,28 @@ let ciudadSeleccionadaHoenn = null;
 let ciudadSeleccionadaSinnoh = null;
 let ciudadSeleccionadaTeselia = null;
 
-// Cargar progreso desde LocalStorage
+/**
+ * Recupera el progreso del usuario almacenado en el navegador (LocalStorage).
+ * Parsea el JSON almacenado y lo carga en la variable global `progresoUsuario`.
+ */
 async function cargarProgreso() {
     progresoUsuario = {};
     const almacenado = localStorage.getItem(CLAVE_ALMACENAMIENTO);
     if (almacenado) progresoUsuario = JSON.parse(almacenado);
 }
 
-// Guardar progreso en LocalStorage
+/**
+ * Guarda el estado actual de `progresoUsuario` en el LocalStorage del navegador.
+ * Convierte el objeto a JSON string.
+ */
 async function guardarProgreso() {
     localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(progresoUsuario));
 }
 
-// Exportar datos a archivo JSON
+/**
+ * Genera un archivo .json descargable con el progreso actual del usuario.
+ * Permite hacer copias de seguridad de los datos.
+ */
 function exportarDatos() {
     const cadenaDatos = JSON.stringify(progresoUsuario, null, 2);
     const blob = new Blob([cadenaDatos], { type: "application/json" });
@@ -38,7 +59,11 @@ function exportarDatos() {
     URL.revokeObjectURL(url);
 }
 
-// Importar datos desde archivo JSON
+/**
+ * Lee un archivo JSON seleccionado por el usuario y restaura el progreso.
+ * Valida el JSON, actualiza `progresoUsuario`, guarda y recarga la interfaz.
+ * @param {Event} evento - Evento del input file.
+ */
 function importarDatos(evento) {
     const archivo = evento.target.files[0];
     if (!archivo) return;
@@ -58,4 +83,39 @@ function importarDatos(evento) {
     };
     lector.readAsText(archivo);
     evento.target.value = '';
+}
+
+/**
+ * Carga todos los datos estáticos de configuración (gimnasios, bayas, legendarios)
+ * desde los archivos JSON del servidor/local. Inicializa las variables globales de datos.
+ */
+async function cargarDatos() {
+    try {
+        const [gymsRes, bayasRes, legendsRes] = await Promise.all([
+            fetch('../js/data/gimnasios.json'),
+            fetch('../js/data/bayas.json'),
+            fetch('../js/data/legendarios.json')
+        ]);
+
+        if (!gymsRes.ok || !bayasRes.ok || !legendsRes.ok) throw new Error("Error cargando archivos JSON");
+
+        const gymsData = await gymsRes.json();
+        datosGimnasios = gymsData.datosGimnasios;
+        coordenadasKanto = gymsData.coordenadasKanto;
+        coordenadasJohto = gymsData.coordenadasJohto;
+        coordenadasHoenn = gymsData.coordenadasHoenn;
+        coordenadasSinnoh = gymsData.coordenadasSinnoh;
+        coordenadasTeselia = gymsData.coordenadasTeselia;
+        medallasPorRegion = gymsData.medallasPorRegion;
+
+        const bayasData = await bayasRes.json();
+        datosBayas = bayasData.datosBayas;
+        datosHuerto = bayasData.datosHuerto;
+
+        datosRotacionLegendarios = await legendsRes.json();
+        
+    } catch (e) {
+        console.error("Error inicializando datos:", e);
+        alert("Error cargando los datos del juego. Revisa la consola.");
+    }
 }

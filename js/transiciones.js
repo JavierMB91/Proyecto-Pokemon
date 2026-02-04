@@ -1,4 +1,11 @@
-// c:\Users\thafl\Desktop\Proyecto Pokemon\transitions.js
+/**
+ * transiciones.js
+ * 
+ * Archivo encargado de los efectos visuales y transiciones de la página.
+ * Maneja principalmente el efecto de "fade-in" al cargar la web para una experiencia
+ * de usuario más suave, y asegura que la página se visualice correctamente al navegar
+ * hacia atrás en el historial del navegador (bfcache).
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Efecto Fade-In (Aparecer) al cargar la página
