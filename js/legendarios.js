@@ -1,10 +1,10 @@
 /**
  * legendarios.js
  * 
- * Módulo encargado de la lógica específica para los Encuentros con Pokémon Legendarios.
- * Gestiona la rotación mensual de legendarios errantes (Kanto y Johto), actualiza
- * los datos de encuentros según la fecha actual y genera los elementos del DOM
- * necesarios para visualizar estos eventos especiales en la interfaz.
+ * LÓGICA DE LEGENDARIOS ERRANTES
+ * ------------------------------
+ * Calcula qué legendario está activo en Kanto y Johto basándose en el mes actual.
+ * Sigue un patrón cíclico de 3 meses.
  */
 
 // Lógica específica de Legendarios
@@ -22,8 +22,8 @@ function obtenerLegendariosErrantes(mes) {
     // Rotación Johto: Entei -> Suicune -> Raikou
     const rotacionJohto = ["Entei", "Suicune", "Raikou"];
 
-    // Calculamos el índice (0, 1 o 2) basado en el mes
-    // (Mes - 1) % 3 asegura que Enero (1) sea índice 0
+    // FÓRMULA DE ROTACIÓN:
+    // (Mes - 1) % 3 nos da un ciclo 0, 1, 2 que se repite trimestralmente.
     const indice = (mes - 1) % 3;
 
     return {
@@ -33,8 +33,7 @@ function obtenerLegendariosErrantes(mes) {
 }
 
 /**
- * Actualiza los datos globales de rotación de legendarios con la información del mes actual.
- * Modifica `datosRotacionLegendarios` para reflejar los encuentros activos.
+ * Inyecta los legendarios activos del mes en la estructura de datos global.
  */
 function actualizarRotacionMensual() {
     const fecha = new Date();
@@ -44,7 +43,7 @@ function actualizarRotacionMensual() {
     
     const legendarios = obtenerLegendariosErrantes(mesActual);
 
-    // Actualizar la tarjeta del mes (Índice 0 en datosRotacionLegendarios)
+    // Modificamos directamente el objeto de datos que usa el renderizador
     datosRotacionLegendarios[0].nombre = mesCapitalizado;
     datosRotacionLegendarios[0].gimnasios = [
         {
@@ -63,9 +62,7 @@ function actualizarRotacionMensual() {
 }
 
 /**
- * Crea el elemento HTML (DOM) para mostrar una tarjeta de encuentro con un legendario.
- * Incluye la imagen (gif) y la información de la región.
- * @param {object} encuentro - Datos del encuentro (lider, ciudad, etc.).
+ * Generador de DOM para las tarjetas de encuentro (Items de la lista).
  * @returns {HTMLElement} Elemento de lista (li) listo para insertar en el DOM.
  */
 function crearElementoEncuentro(encuentro) {

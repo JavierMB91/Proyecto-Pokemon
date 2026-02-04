@@ -1,10 +1,10 @@
 /**
  * script.js
  * 
- * Punto de entrada principal (Entry Point) de la aplicación.
- * Se encarga de la inicialización cuando el DOM está listo: carga la navegación,
- * configura los eventos iniciales, determina el contexto de la página actual (semillas, legendarios, etc.),
- * inicia la carga de datos de progreso y establece los intervalos de actualización para los temporizadores.
+ * PUNTO DE ENTRADA (ENTRY POINT)
+ * ------------------------------
+ * Orquesta la inicialización de la aplicación. Garantiza que los datos estáticos y
+ * el progreso del usuario estén listos antes de pintar la interfaz.
  */
 
 // --- INICIALIZACIÓN ---
@@ -14,34 +14,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Configura el modal para visualizar imágenes ampliadas (mapas, puzzles)
     configurarModalImagen();
     
-    // Cargar datos estáticos antes de cualquier lógica
+    // 1. CARGA DE DATOS ESTÁTICOS (JSONs)
+    // Es vital esperar (await) a que esto termine antes de intentar renderizar nada.
     await cargarDatos();
 
-    // Actualizar rotación mensual solo una vez al cargar
+    // 2. LÓGICA ESPECÍFICA POR PÁGINA
+    // Detectamos en qué URL estamos para activar lógicas específicas (ej: rotación de legendarios).
     const ruta = window.location.pathname.toLowerCase();
+    
     if (ruta.includes('semillas')) {
         document.body.classList.add('page-semillas');
     }
+    
     if (ruta.includes('rotacionlegendarios')) {
         actualizarRotacionMensual();
     }
 
-    // Iniciar aplicación local
-    // Configura botones de exportar/importar y carga el progreso guardado
+    // 3. GESTIÓN DE PROGRESO Y UI
+    // Configura los listeners para Importar/Exportar datos.
     configurarInterfazDatos();
+    // Recupera el estado guardado en LocalStorage.
     await cargarProgreso();
-    // Renderiza la vista principal según la URL actual
+    
+    // 4. RENDERIZADO INICIAL
+    // Pinta la aplicación basándose en los datos cargados y el progreso recuperado.
     renderizarAplicacion();
     
-    // Renderizar información de bayas si estamos en la página de semillas
+    // Si estamos en la sección de huerto, inicializamos el panel de información de bayas.
     if (ruta.includes('semillas')) {
         renderizarInfoBayas();
     }
 
-    // Actualizar temporizadores cada segundo (1000 ms)
+    // 5. BUCLE PRINCIPAL (TICK)
+    // Actualiza los contadores de tiempo cada segundo.
     setInterval(actualizarTemporizadores, 1000);
     
-    // Asignar evento al botón de reset
+    // 6. EVENTOS GLOBALES (Reset y Modales)
     const botonReinicio = document.getElementById('btn-reset');
     if(botonReinicio) {
         botonReinicio.addEventListener('click', mostrarModalReinicio);

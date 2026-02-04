@@ -1,4 +1,14 @@
-// Variables globales de datos (antes en archivos JS separados)
+/**
+ * state.js
+ * 
+ * GESTIÓN DEL ESTADO Y DATOS
+ * --------------------------
+ * Centraliza las variables globales, la carga de datos estáticos (JSON)
+ * y la persistencia del progreso del usuario (LocalStorage / Archivos).
+ */
+
+// --- VARIABLES GLOBALES DE DATOS ESTÁTICOS ---
+// Se llenan al inicio mediante cargarDatos()
 var datosGimnasios = [];
 var coordenadasKanto = {};
 var coordenadasJohto = {};
@@ -10,7 +20,7 @@ var datosBayas = [];
 var datosHuerto = [];
 var datosRotacionLegendarios = [];
 
-// --- CONFIGURACIÓN LOCAL (SIN SERVIDOR) ---
+// --- ESTADO DE LA APLICACIÓN (DINÁMICO) ---
 const CLAVE_ALMACENAMIENTO = 'pokemmo_gym_progress';
 let progresoUsuario = {};
 let contextoReinicio = null; // Variable para saber qué sección reiniciar
@@ -24,8 +34,7 @@ let ciudadSeleccionadaSinnoh = null;
 let ciudadSeleccionadaTeselia = null;
 
 /**
- * Recupera el progreso del usuario almacenado en el navegador (LocalStorage).
- * Parsea el JSON almacenado y lo carga en la variable global `progresoUsuario`.
+ * Carga el progreso desde LocalStorage al iniciar la app.
  */
 async function cargarProgreso() {
     progresoUsuario = {};
@@ -34,16 +43,14 @@ async function cargarProgreso() {
 }
 
 /**
- * Guarda el estado actual de `progresoUsuario` en el LocalStorage del navegador.
- * Convierte el objeto a JSON string.
+ * Persiste el estado actual en el navegador.
  */
 async function guardarProgreso() {
     localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(progresoUsuario));
 }
 
 /**
- * Genera un archivo .json descargable con el progreso actual del usuario.
- * Permite hacer copias de seguridad de los datos.
+ * Exportar Datos: Genera y descarga un archivo JSON con el progreso.
  */
 function exportarDatos() {
     const cadenaDatos = JSON.stringify(progresoUsuario, null, 2);
@@ -60,8 +67,7 @@ function exportarDatos() {
 }
 
 /**
- * Lee un archivo JSON seleccionado por el usuario y restaura el progreso.
- * Valida el JSON, actualiza `progresoUsuario`, guarda y recarga la interfaz.
+ * Importar Datos: Lee un archivo JSON subido por el usuario y restaura el estado.
  * @param {Event} evento - Evento del input file.
  */
 function importarDatos(evento) {
@@ -86,8 +92,8 @@ function importarDatos(evento) {
 }
 
 /**
- * Carga todos los datos estáticos de configuración (gimnasios, bayas, legendarios)
- * desde los archivos JSON del servidor/local. Inicializa las variables globales de datos.
+ * Carga inicial de datos estáticos (JSONs).
+ * Utiliza Promise.all para cargar todo en paralelo por eficiencia.
  */
 async function cargarDatos() {
     try {

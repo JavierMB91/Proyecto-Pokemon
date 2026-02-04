@@ -1,35 +1,46 @@
 /**
  * semillas.js
  * 
- * Módulo dedicado a la funcionalidad del Huerto de Bayas. Contiene toda la lógica
- * del ciclo de vida de las plantas: plantado, riego y cosecha. Gestiona los temporizadores
- * específicos de crecimiento, la selección de bayas, la validación de inputs de plantado
- * y la renderización de la información detallada de cada tipo de baya.
+ * MÓDULO DE HUERTO Y BAYAS
+ * ------------------------
+ * Gestiona el ciclo de vida completo de las plantas:
+ * 1. Plantado (Input de usuario)
+ * 2. Riego (Temporizador de espera)
+ * 3. Cosecha (Recolección y limpieza)
  */
 
-// Lógica específica de Semillas y Huerto
-
 /**
- * Gestiona la lógica principal del huerto cuando el usuario interactúa con una parcela.
- * Controla el flujo: Plantar -> Regar (con espera) -> Cosechar (con espera).
- * Actualiza el estado en `progresoUsuario` y guarda los cambios.
+ * Máquina de estados para las parcelas del huerto.
+ * Determina qué acción realizar según el estado actual de la parcela (tipo).
+ * 
  * @param {string} nombreRegion - Contexto de la región (generalmente "Huerto").
  * @param {object} datosEtapaHuerto - Datos de configuración de la etapa actual.
  * @param {HTMLElement} elemento - Elemento DOM clicado.
  */
 function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
+    // Generamos el ID único para buscar en el progreso guardado
     const idUnico = datosEtapaHuerto.id || datosEtapaHuerto.lider;
     const id = generarIdElemento(nombreRegion, idUnico);
     
+    // CASO 1: PLANTAR
+    // Este paso se maneja vía UI (botón "Plantar"), no por click directo en la tarjeta vacía aquí.
     if (datosEtapaHuerto.tipo === 'seed-plant') {
         return;
+    
+    // CASO 2: REGAR
     } else if (datosEtapaHuerto.tipo === 'seed-water') {
         const temporizador = elemento.querySelector('.temporizador-huerto');
+        // Si el temporizador no ha terminado (no tiene clase 'ready'), no permitimos regar.
         if (temporizador && !temporizador.classList.contains('ready')) {
             return; 
         }
+        // Guardamos el momento del riego para iniciar la siguiente fase
         progresoUsuario[id] = { timestamp: new Date().toISOString() };
+    
+    // CASO 3: COSECHAR
     } else if (datosEtapaHuerto.tipo === 'seed-harvest') {
+        // Al cosechar, debemos limpiar todo el historial de esa parcela (plantado, riego y cosecha)
+        // para dejarla libre de nuevo.
         const idRaiz = generarIdElemento(nombreRegion, datosEtapaHuerto.idRaiz); 
         const idRiego = generarIdElemento(nombreRegion, datosEtapaHuerto.idAnterior); 
         
@@ -48,6 +59,7 @@ function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
 
 /**
  * Extrae el valor numérico de horas de una cadena de texto.
+ * Ej: "16 horas" -> 16
  * @param {string} cadenaTiempo - Cadena como "16 horas".
  * @returns {number} Número de horas (ej: 16).
  */
@@ -57,8 +69,8 @@ function analizarHorasBaya(cadenaTiempo) {
 }
 
 /**
- * Genera y renderiza el panel de información detallada de las bayas.
- * Crea un selector desplegable y muestra datos (sabor, tiempo, combinación) de la baya seleccionada.
+ * Construye el panel interactivo de "Información sobre Bayas".
+ * Incluye el selector (dropdown) y la tarjeta de detalles dinámica.
  */
 function renderizarInfoBayas() {
     const contenedor = document.getElementById('berry-info-container');
@@ -82,6 +94,7 @@ function renderizarInfoBayas() {
     selector.className = 'berry-select';
     selector.innerHTML = `<option value="">Seleccione una baya...</option>`;
  
+    // Ordenamos las bayas alfabéticamente para facilitar la búsqueda
     const bayasOrdenadas = [...datosBayas].sort((a, b) => a.nombre.localeCompare(b.nombre));
  
     bayasOrdenadas.forEach(baya => {
@@ -97,6 +110,7 @@ function renderizarInfoBayas() {
         return nombre.toLowerCase().replace('baya ', 'baya_').replace(/\s+/g, '_') + '.png';
     };
  
+    // Evento: Cuando el usuario cambia la baya seleccionada
     selector.addEventListener('change', (evento) => {
         const nombreSeleccionado = evento.target.value;
  
@@ -105,6 +119,8 @@ function renderizarInfoBayas() {
             if (baya) {
                 const nombreImagenFinal = generarNombreImagen(baya.nombre);
                 
+                // Función auxiliar para convertir texto de recetas (ej: "Sem. Picante") 
+                // en imágenes HTML pequeñas inline.
                 const procesarCombinacion = (texto) => {
                     const procesarLinea = (linea) => {
                         return linea.replace(/Sem\.\s+([^x\+\n]+)/gi, (match, sabor) => {
@@ -152,8 +168,8 @@ function renderizarInfoBayas() {
 }
 
 /**
- * Maneja el evento de plantar semillas directamente desde la interfaz de la tarjeta.
- * Valida la entrada, calcula tiempos de riego/cosecha y guarda el estado inicial del cultivo.
+ * Acción de Plantar: Valida inputs y guarda el estado inicial.
+ * Se invoca desde el botón "Plantar" en la tarjeta del huerto.
  * @param {string} nombreRegion - Región del huerto.
  * @param {string} idUnico - ID de la parcela.
  * @param {HTMLElement} elementoBoton - Botón que disparó la acción.
@@ -183,6 +199,8 @@ window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     const horasRiego = analizarHorasBaya(baya.tiempoRiego);
 
     const id = generarIdElemento(nombreRegion, idUnico);
+    
+    // Guardamos toda la info necesaria para calcular los temporizadores después
     progresoUsuario[id] = {
         timestamp: new Date().toISOString(),
         cantidad: cantidad,

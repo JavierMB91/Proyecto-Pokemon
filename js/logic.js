@@ -1,10 +1,10 @@
 /**
  * logic.js
  * 
- * Este archivo contiene funciones de utilidad general que son utilizadas transversalmente
- * por toda la aplicación. Incluye helpers para la generación de identificadores únicos,
- * formateo de fechas y gestión de reproducción de sonidos. Actúa como una biblioteca
- * de herramientas base para la lógica de negocio.
+ * UTILIDADES GENERALES (HELPERS)
+ * ------------------------------
+ * Funciones puras o de soporte usadas en múltiples partes de la aplicación.
+ * (IDs, Fechas, Audio).
  */
 
 /**
@@ -32,8 +32,7 @@ function formatearFecha(fecha) {
 }
 
 /**
- * Reproduce un efecto de sonido específico según la acción realizada.
- * @param {string} tipo - Tipo de sonido ('water' para regar, 'harvest' para recoger).
+ * Sistema de audio simple.
  */
 function reproducirSonido(tipo) {
     let rutaAudio = '';

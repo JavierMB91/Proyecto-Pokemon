@@ -1,10 +1,10 @@
 /**
  * transiciones.js
  * 
- * Archivo encargado de los efectos visuales y transiciones de la página.
- * Maneja principalmente el efecto de "fade-in" al cargar la web para una experiencia
- * de usuario más suave, y asegura que la página se visualice correctamente al navegar
- * hacia atrás en el historial del navegador (bfcache).
+ * EFECTOS VISUALES Y UX
+ * ---------------------
+ * Controla la aparición suave (fade-in) de la página y corrige problemas
+ * de visualización con el caché del navegador (bfcache).
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 10);
 });
 
-// 3. Solución para el botón "Atrás" del navegador (bfcache)
-// Si el usuario vuelve atrás, forzamos que la página sea visible
+// FIX: Solución para el botón "Atrás" del navegador (bfcache)
+// Algunos navegadores guardan el estado "oculto" (opacity: 0) al salir.
+// Al volver, el evento 'pageshow' nos permite restaurar la visibilidad.
 window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
         document.body.classList.add('page-loaded');

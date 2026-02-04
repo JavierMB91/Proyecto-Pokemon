@@ -1,9 +1,9 @@
 /**
  * validaciones.js
  * 
- * Módulo de validación de datos de entrada. Contiene funciones puras para verificar
- * que los inputs del usuario (como cantidad de semillas a plantar o número de encuentros)
- * cumplan con los requisitos de formato, tipo y rango antes de ser procesados por la lógica de negocio.
+ * REGLAS DE VALIDACIÓN
+ * --------------------
+ * Funciones puras que retornan objetos {valid: bool, message: string}.
  */
 
 /**
@@ -30,7 +30,7 @@ function validarInputSemillas(value) {
         return { valid: false, message: "El número de semillas debe ser un entero." };
     }
 
-    // Validar rango (ej: positivo y no excesivo)
+    // Validar rangos lógicos
     if (number <= 0) {
         return { valid: false, message: "Debes plantar al menos 1 semilla." };
     }
