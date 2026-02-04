@@ -8,6 +8,42 @@
  */
 
 /**
+ * --- FUNCIONES DE UTILIDAD Y ESTADO GLOBAL (Faltantes) ---
+ * Estas funciones son requeridas por el resto de módulos para funcionar.
+ */
+
+// Inicializar estado de progreso si no existe
+if (typeof progresoUsuario === 'undefined') {
+    window.progresoUsuario = JSON.parse(localStorage.getItem('progresoUsuario')) || {};
+}
+
+window.guardarProgreso = function() {
+    localStorage.setItem('progresoUsuario', JSON.stringify(progresoUsuario));
+};
+
+window.obtenerIdGimnasio = function(region, id) {
+    if (!region || !id) return 'unknown-id';
+    // Genera un ID consistente: "Region-Lider" -> "region-lider"
+    return `${region}-${id}`.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+};
+
+window.formatearFecha = function(fecha) {
+    return new Date(fecha).toLocaleString();
+};
+
+window.reproducirSonido = function(sonido) {
+    // Placeholder para evitar errores si falta el sistema de audio
+    // console.log(`Reproduciendo sonido: ${sonido}`);
+};
+
+window.crearElementoEncuentro = function(gimnasio) {
+    const li = document.createElement('li');
+    li.className = 'gym-item encounter';
+    li.innerHTML = `<div class="gym-info"><h3>Encuentro: ${gimnasio.lider || 'Desconocido'}</h3></div>`;
+    return li;
+};
+
+/**
  * Controlador principal de clics en elementos de lista (Gimnasios o Huerto).
  * Delega la acción a `procesarClickSemilla` o `procesarClickGimnasio` según el tipo.
  */
@@ -916,3 +952,35 @@ function configurarInterfazDatos() {
     contenedorUsuario.appendChild(botonImportar);
     contenedorUsuario.appendChild(inputArchivo);
 }
+
+// --- INICIALIZACIÓN DE LA APLICACIÓN ---
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Definir variables globales de datos si no existen para evitar errores de referencia
+    if (typeof datosGimnasios === 'undefined') window.datosGimnasios = [];
+    if (typeof datosHuerto === 'undefined') window.datosHuerto = [];
+    if (typeof datosBayas === 'undefined') window.datosBayas = [];
+    if (typeof datosRotacionLegendarios === 'undefined') window.datosRotacionLegendarios = [];
+
+    // 2. Intentar cargar datos de bayas.json si datosHuerto está vacío
+    if (window.datosHuerto.length === 0) {
+        try {
+            // Ajusta la ruta relativa según tu estructura de carpetas
+            const response = await fetch('js/data/bayas.json');
+            if (response.ok) {
+                const data = await response.json();
+                window.datosHuerto = data.datosHuerto;
+                window.datosBayas = data.datosBayas;
+                console.log("Datos de bayas cargados correctamente.");
+            }
+        } catch (error) {
+            console.warn("No se pudo cargar js/data/bayas.json automáticamente. Asegúrate de que el archivo existe y estás usando un servidor local (http://) y no file://", error);
+        }
+    }
+
+    // 3. Configurar componentes y renderizar
+    configurarModalImagen();
+    configurarInterfazDatos();
+    cargarNavegacion();
+    renderizarAplicacion();
+    setInterval(actualizarTemporizadores, 1000);
+});
