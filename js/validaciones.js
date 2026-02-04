@@ -11,7 +11,7 @@
  * @param {string} value - El valor del input.
  * @returns {object} - Objeto con propiedad 'valid' (boolean) y 'message' (string).
  */
-function validateSeedInput(value) {
+function validarInputSemillas(value) {
     // Convertir a número
     const number = Number(value);
     
@@ -47,7 +47,7 @@ function validateSeedInput(value) {
  * @param {string} value - El valor del input.
  * @returns {object} - Objeto con propiedad 'valid' (boolean) y 'message' (string).
  */
-function validateEncounterInput(value) {
+function validarInputEncuentros(value) {
     // Convertir a número
     const number = Number(value);
     

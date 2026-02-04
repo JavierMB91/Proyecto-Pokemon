@@ -9,22 +9,22 @@
 
 // Lógica específica de Semillas y Huerto
 
-// Procesar el click en una fase de semilla (plantar, regar, recoger)
-function procesarClickSemilla(nombreRegion, datosGimnasio, elemento) {
-    const idUnico = datosGimnasio.id || datosGimnasio.lider;
+// Procesar el click en una etapa del huerto (plantar, regar, recoger)
+function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
+    const idUnico = datosEtapaHuerto.id || datosEtapaHuerto.lider;
     const id = obtenerIdGimnasio(nombreRegion, idUnico);
     
-    if (datosGimnasio.tipo === 'seed-plant') {
+    if (datosEtapaHuerto.tipo === 'seed-plant') {
         return;
-    } else if (datosGimnasio.tipo === 'seed-water') {
-        const timer = elemento.querySelector('.gym-timer');
-        if (timer && !timer.classList.contains('ready')) {
+    } else if (datosEtapaHuerto.tipo === 'seed-water') {
+        const temporizador = elemento.querySelector('.temporizador-huerto');
+        if (temporizador && !temporizador.classList.contains('ready')) {
             return; 
         }
         progresoUsuario[id] = { timestamp: new Date().toISOString() };
-    } else if (datosGimnasio.tipo === 'seed-harvest') {
-        const idRaiz = obtenerIdGimnasio(nombreRegion, datosGimnasio.idRaiz); 
-        const idRiego = obtenerIdGimnasio(nombreRegion, datosGimnasio.idAnterior); 
+    } else if (datosEtapaHuerto.tipo === 'seed-harvest') {
+        const idRaiz = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idRaiz); 
+        const idRiego = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idAnterior); 
         
         if (progresoUsuario[id]) delete progresoUsuario[id];
         if (progresoUsuario[idRaiz]) delete progresoUsuario[idRaiz];
@@ -140,23 +140,23 @@ function renderizarInfoBayas() {
 // --- FUNCIÓN PLANTAR EN LÍNEA ---
 window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     const contenedor = elementoBoton.parentElement;
-    const selector = contenedor.querySelector('.gym-berry-select');
-    const inputCantidad = contenedor.querySelector('.seed-count-input');
+    const selectorBaya = contenedor.querySelector('.selector-baya');
+    const inputCantidadSemillas = contenedor.querySelector('.input-cantidad-semillas');
 
-    const nombreBaya = selector.value;
+    const nombreBaya = selectorBaya.value;
 
     if (!nombreBaya) {
         alert("Por favor, selecciona una baya.");
         return;
     }
 
-    const validacion = validateSeedInput(inputCantidad.value);
+    const validacion = validarInputSemillas(inputCantidadSemillas.value);
     if (!validacion.valid) {
         alert(validacion.message);
         return;
     }
 
-    const cantidad = parseInt(inputCantidad.value);
+    const cantidad = parseInt(inputCantidadSemillas.value);
 
     const baya = datosBayas.find(b => b.nombre === nombreBaya);
     const horasCosecha = analizarHorasBaya(baya.tiempoCosecha);

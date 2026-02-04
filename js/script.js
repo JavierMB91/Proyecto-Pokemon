@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Iniciar aplicación local
-    configurarInterfazAuth();
+    configurarInterfazDatos();
     await cargarProgreso();
     renderizarAplicacion();
     

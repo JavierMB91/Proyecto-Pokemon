@@ -7,8 +7,6 @@
  * hacia atrás en el historial del navegador (bfcache).
  */
 
-// c:\Users\thafl\Desktop\Proyecto Pokemon\transitions.js
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Efecto Fade-In (Aparecer) al cargar la página
     // Usamos un pequeño timeout para asegurar que el navegador detecta el cambio de clase

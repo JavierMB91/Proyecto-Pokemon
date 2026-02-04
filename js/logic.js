@@ -7,9 +7,9 @@
  * de herramientas base para la lógica de negocio.
  */
 
-// Generar ID único para cada gimnasio
-function obtenerIdGimnasio(nombreRegion, nombreLider) {
-    return `${nombreRegion}-${nombreLider}`.replace(/\s+/g, '-').toLowerCase();
+// Generar ID único para un elemento (gimnasio, paso de huerto, encuentro, etc.)
+function obtenerIdGimnasio(nombreRegion, idONombre) {
+    return `${nombreRegion}-${idONombre}`.replace(/\s+/g, '-').toLowerCase();
 }
 
 // Helper para formatear fecha

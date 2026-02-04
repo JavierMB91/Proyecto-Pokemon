@@ -169,10 +169,12 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         if (gimnasio.tipo === 'seed-plant') {
             htmlFecha = '';
         } else {
+            const esHuerto = gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest';
+            const claseTimerHuerto = esHuerto ? claseTimer + ' temporizador-huerto' : claseTimer;
             const cadenaHoraFin = formatearFecha(horaFin);
             htmlFecha = `
                 <div class="gym-status-right">
-                    <p class="${claseTimer}" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
+                    <p class="${claseTimerHuerto}" data-timestamp="${timestampAUsar}" data-cooldown="${enfriamiento}" data-gym-id="${idGimnasio}"
                        data-prefix="${prefijo}" data-ready-label="${etiquetaListo}" ${debeReiniciarseAuto ? 'data-auto-reset="true"' : ''}>${contenidoTimer}</p>
                     <p class="gym-end-time large-date">${cadenaHoraFin}</p>
                 </div>`;
@@ -197,14 +199,14 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
             });
             
             textoInfo = `
-                <div class="seed-plant-controls" onclick="event.stopPropagation()">
+                <div class="controles-plantar" onclick="event.stopPropagation()">
                     <div class="control-group">
                         <label class="input-label">Seleccionar Baya</label>
-                        <select class="gym-berry-select">${opciones}</select>
+                        <select class="selector-baya">${opciones}</select>
                     </div>
                     <div class="control-group">
                         <label class="input-label">Nº Semillas</label>
-                        <input type="number" class="seed-count-input" placeholder="Cantidad" min="1">
+                        <input type="number" class="input-cantidad-semillas" placeholder="Cantidad" min="1">
                     </div>
                     <button class="btn-plant-confirm" onclick="window.manejarPlantadoEnLinea('${nombreRegion}', '${idUnico}', this)">✔</button>
                 </div>
@@ -733,42 +735,18 @@ async function cargarNavegacion() {
 
 // Funciones del Modal
 function mostrarModalReinicio(contexto) {
+    const ruta = window.location.pathname.toLowerCase();
+    if (ruta.includes('rotacionlegendarios')) return;
+
     if (typeof contexto === 'string') {
         contextoReinicio = contexto;
     } else {
         contextoReinicio = null;
     }
 
-    document.getElementById('modal-overlay').classList.add('active');
     const modal = document.getElementById('modal-overlay');
-    
-    const ruta = window.location.pathname.toLowerCase();
-    if (ruta.includes('rotacionlegendarios')) {
-        const contenido = modal.querySelector('.modal-content');
-        
-        let htmlBotones = '';
-        datosRotacionLegendarios.forEach(region => {
-            const idSeguro = region.nombre.replace(/\s+/g, '-').toLowerCase();
-            htmlBotones += `<button class="btn-modal btn-confirm" id="reset-${idSeguro}">${region.nombre}</button>`;
-        });
+    if (!modal) return;
 
-        contenido.innerHTML = `
-            <h3>Reiniciar Encuentros</h3>
-            <p>Selecciona la región a reiniciar:</p>
-            <div class="modal-actions" style="flex-wrap: wrap; gap: 10px;">
-                <button class="btn-modal btn-cancel" id="modal-cancel-dynamic">Cancelar</button>
-                ${htmlBotones}
-            </div>
-        `;
-        
-        document.getElementById('modal-cancel-dynamic').onclick = ocultarModalReinicio;
-        datosRotacionLegendarios.forEach(region => {
-            const idSeguro = region.nombre.replace(/\s+/g, '-').toLowerCase();
-            const boton = document.getElementById(`reset-${idSeguro}`);
-            if (boton) boton.onclick = () => reiniciarRegionEspecifica(region.nombre);
-        });
-    }
-    
     modal.classList.add('active');
 }
 window.mostrarModalReinicio = mostrarModalReinicio;
@@ -844,7 +822,7 @@ window.mostrarModalImagen = function(src) {
 };
 
 // --- GESTIÓN DE DATOS (EXPORTAR/IMPORTAR) ---
-function configurarInterfazAuth() {
+function configurarInterfazDatos() {
     const cabecera = document.querySelector('header');
     if (!cabecera) return;
 
