@@ -964,8 +964,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 2. Intentar cargar datos de bayas.json si datosHuerto está vacío
     if (window.datosHuerto.length === 0) {
         try {
-            // Ajusta la ruta relativa según tu estructura de carpetas
-            const response = await fetch('js/data/bayas.json');
+            // Intentar cargar desde ruta relativa (para subcarpetas) o fallback a ruta raíz
+            let response = await fetch('../js/data/bayas.json');
+            
+            if (!response.ok) {
+                response = await fetch('js/data/bayas.json');
+            }
+
             if (response.ok) {
                 const data = await response.json();
                 window.datosHuerto = data.datosHuerto;
