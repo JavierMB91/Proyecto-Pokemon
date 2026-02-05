@@ -20,7 +20,7 @@
 function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
     // Generamos el ID único para buscar en el progreso guardado
     const idUnico = datosEtapaHuerto.id || datosEtapaHuerto.lider;
-    const id = generarIdElemento(nombreRegion, idUnico);
+    const id = obtenerIdGimnasio(nombreRegion, idUnico);
     
     // CASO 1: PLANTAR
     // Este paso se maneja vía UI (botón "Plantar"), no por click directo en la tarjeta vacía aquí.
@@ -34,15 +34,27 @@ function procesarClickSemilla(nombreRegion, datosEtapaHuerto, elemento) {
         if (temporizador && !temporizador.classList.contains('ready')) {
             return; 
         }
-        // Guardamos el momento del riego para iniciar la siguiente fase
-        progresoUsuario[id] = { timestamp: new Date().toISOString() };
+        
+        // Obtenemos el ID de la parcela plantada (para saber cuántos riegos quedan)
+        const idRaiz = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idAnterior);
+        const datosPlanta = progresoUsuario[idRaiz];
+        
+        if (datosPlanta && datosPlanta.numRiegos && datosPlanta.riegosRealizados !== undefined) {
+            datosPlanta.riegosRealizados++;
+            
+            // Reiniciamos el temporizador de riego
+            progresoUsuario[id] = { timestamp: new Date().toISOString() };
+        } else {
+            // Caso antiguo: riego simple sin múltiples riegos (legacy)
+            progresoUsuario[id] = { timestamp: new Date().toISOString() };
+        }
     
     // CASO 3: COSECHAR
     } else if (datosEtapaHuerto.tipo === 'seed-harvest') {
         // Al cosechar, debemos limpiar todo el historial de esa parcela (plantado, riego y cosecha)
         // para dejarla libre de nuevo.
-        const idRaiz = generarIdElemento(nombreRegion, datosEtapaHuerto.idRaiz); 
-        const idRiego = generarIdElemento(nombreRegion, datosEtapaHuerto.idAnterior); 
+        const idRaiz = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idRaiz); 
+        const idRiego = obtenerIdGimnasio(nombreRegion, datosEtapaHuerto.idAnterior); 
         
         if (progresoUsuario[id]) delete progresoUsuario[id];
         if (progresoUsuario[idRaiz]) delete progresoUsuario[idRaiz];
@@ -178,6 +190,7 @@ window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     const contenedor = elementoBoton.parentElement;
     const selectorBaya = contenedor.querySelector('.selector-baya');
     const inputCantidadSemillas = contenedor.querySelector('.input-cantidad-semillas');
+    const inputNumRiegos = contenedor.querySelector('.input-num-riegos');
 
     const nombreBaya = selectorBaya.value;
 
@@ -193,12 +206,18 @@ window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
     }
 
     const cantidad = parseInt(inputCantidadSemillas.value);
+    const numRiegos = parseInt(inputNumRiegos.value) || 1;
+
+    if (numRiegos < 1 || numRiegos > 5) {
+        alert("El número de riegos debe estar entre 1 y 5.");
+        return;
+    }
 
     const baya = datosBayas.find(b => b.nombre === nombreBaya);
     const horasCosecha = analizarHorasBaya(baya.tiempoCosecha);
     const horasRiego = analizarHorasBaya(baya.tiempoRiego);
 
-    const id = generarIdElemento(nombreRegion, idUnico);
+    const id = obtenerIdGimnasio(nombreRegion, idUnico);
     
     // Guardamos toda la info necesaria para calcular los temporizadores después
     progresoUsuario[id] = {
@@ -206,7 +225,9 @@ window.manejarPlantadoEnLinea = function(nombreRegion, idUnico, elementoBoton) {
         cantidad: cantidad,
         nombreBaya: nombreBaya,
         intervaloCosecha: horasCosecha,
-        intervaloRiego: horasRiego
+        intervaloRiego: horasRiego,
+        numRiegos: numRiegos,
+        riegosRealizados: 0
     };
 
     guardarProgreso();

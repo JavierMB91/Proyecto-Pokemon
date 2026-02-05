@@ -39,7 +39,14 @@ window.reproducirSonido = function(sonido) {
 window.crearElementoEncuentro = function(gimnasio) {
     const li = document.createElement('li');
     li.className = 'gym-item encounter';
-    li.innerHTML = `<div class="gym-info"><h3>Encuentro: ${gimnasio.lider || 'Desconocido'}</h3></div>`;
+    
+    let gifPokemon = '';
+    const legendarios = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
+    if (legendarios.includes(gimnasio.lider)) {
+        gifPokemon = `<div style="margin-top: 5px;"><img src="../img/${gimnasio.lider.toLowerCase()}.gif" alt="${gimnasio.lider}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
+    }
+    
+    li.innerHTML = `<div class="gym-info"><h3>${gimnasio.lider || 'Desconocido'}</h3>${gifPokemon}</div>`;
     return li;
 };
 
@@ -87,14 +94,26 @@ function actualizarTemporizadores() {
                 idsParaReiniciar.push(temporizador.getAttribute('data-gym-id'));
             } else {
                 if (!temporizador.classList.contains('ready')) {
+                    const idGimnasioActual = temporizador.getAttribute('data-gym-id');
                     const etiquetaListo = temporizador.getAttribute('data-ready-label') || 'Disponible';
+                    
+                    // Verificar si esto es un riego con múltiples riegos pendientes
+                    let hayRiegosPendientes = false;
+                    if (idGimnasioActual && idGimnasioActual.includes('spicy-seeds-water')) {
+                        // Obtener el ID de la planta raíz (seed-plant)
+                        const idRaiz = idGimnasioActual.replace('-water', '-plant');
+                        const datosPlanta = progresoUsuario[idRaiz];
+                        if (datosPlanta && datosPlanta.numRiegos && datosPlanta.riegosRealizados !== undefined) {
+                            hayRiegosPendientes = datosPlanta.riegosRealizados < datosPlanta.numRiegos;
+                        }
+                    }
+                    
                     temporizador.innerHTML = `✅ ${etiquetaListo}`;
                     temporizador.classList.add('ready');
                     
-                    const idGimnasioActual = temporizador.getAttribute('data-gym-id');
                     if (idGimnasioActual) {
                         const itemSiguienteEtapa = document.querySelector(`.gym-item[data-prev-id="${idGimnasioActual}"]`);
-                        if (itemSiguienteEtapa) {
+                        if (itemSiguienteEtapa && !hayRiegosPendientes) {
                             itemSiguienteEtapa.classList.remove('disabled');
                         }
                         if (idGimnasioActual.includes('spicy-seeds-water')) {
@@ -234,12 +253,16 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
     if (gimnasio.tipo === 'seed-plant') {
         if (estaCompletado) {
             const nombreBaya = datosProgreso.nombreBaya || "Semilla";
+            const numRiegos = datosProgreso.numRiegos || 1;
+            const riegosRealizados = datosProgreso.riegosRealizados || 0;
+            const textoRiegos = numRiegos === 1 ? `Riegos: ${riegosRealizados}/${numRiegos}` : `Riegos: ${riegosRealizados}/${numRiegos}`;
             textoInfo = `
                 <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
                     <p class="planted-berry-title" style="margin-bottom: 0;">${nombreBaya}</p>
                     <button class="btn-reset" onclick="window.mostrarModalReinicio()" style="font-size: 0.85rem; padding: 6px 12px; margin-left: 10px; text-transform: none; line-height: 1;">Reiniciar Huerto</button>
                 </div>
-                <p>Semillas: ${datosProgreso.cantidad}</p>`;
+                <p>Semillas: ${datosProgreso.cantidad}</p>
+                <p>${textoRiegos}</p>`;
         } else {
             const bayasOrdenadas = [...datosBayas].sort((a, b) => a.nombre.localeCompare(b.nombre));
             let opciones = `<option value="">-- Elegir Baya --</option>`;
@@ -257,11 +280,25 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
                         <label class="input-label">Nº Semillas</label>
                         <input type="number" class="input-cantidad-semillas" placeholder="Cantidad" min="1">
                     </div>
+                    <div class="control-group">
+                        <label class="input-label">Nº Riegos</label>
+                        <input type="number" class="input-num-riegos" placeholder="Riegos" min="1" max="5" value="1">
+                    </div>
                     <button class="btn-plant-confirm" onclick="window.manejarPlantadoEnLinea('${nombreRegion}', '${idUnico}', this)">✔</button>
                 </div>
             `;
         }
-    } else if (gimnasio.tipo === 'seed-water' || gimnasio.tipo === 'seed-harvest') {
+    } else if (gimnasio.tipo === 'seed-water') {
+        // Mostrar información sobre riegos pendientes
+        const idRaiz = obtenerIdGimnasio(nombreRegion, gimnasio.idAnterior);
+        const datosPlanta = progresoUsuario[idRaiz];
+        if (datosPlanta && datosPlanta.numRiegos && datosPlanta.riegosRealizados !== undefined) {
+            const riegosRestantes = datosPlanta.numRiegos - datosPlanta.riegosRealizados;
+            textoInfo = `<p>Riegos pendientes: ${riegosRestantes}</p>`;
+        } else {
+            textoInfo = '';
+        }
+    } else if (gimnasio.tipo === 'seed-harvest') {
         textoInfo = ''; 
     }
 
@@ -301,10 +338,13 @@ function crearElementoGimnasio(nombreRegion, gimnasio) {
         if (gimnasio.tipo === 'seed-plant') {
             imgInterna.style.cursor = 'default';
         } else if (gimnasio.tipo === 'seed-water') {
+            // Permitir click si el timer ha terminado (yaTerminado)
             if (yaTerminado) {
                 imgInterna.style.cursor = 'pointer';
+                imgInterna.style.filter = 'brightness(1.1)';
             } else {
                 imgInterna.style.cursor = 'default';
+                imgInterna.style.filter = 'brightness(1)';
             }
         } else {
             imgInterna.style.cursor = 'pointer';
@@ -336,6 +376,48 @@ function renderizarAplicacion() {
         secciones.push({ datos: datosRotacionLegendarios, maxSlots: 2, ancho: true });
     } else if (ruta.includes('semillas')) {
         secciones.push({ datos: datosHuerto, maxSlots: 1 });
+    } else if (ruta.includes('pokedex')) {
+        // Estructura de la Pokédex
+        const pokedexContainer = document.createElement('div');
+        pokedexContainer.className = 'pokedex-container';
+        
+        // Sección de búsqueda y filtros
+        const searchSection = document.createElement('section');
+        searchSection.className = 'search-section';
+        searchSection.innerHTML = `
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Buscar Pokémon por nombre..." 
+                    class="search-input"
+                >
+            </div>
+
+            <div class="filters">
+                <select id="typeFilter" class="filter-select">
+                    <option value="">Todos los tipos</option>
+                </select>
+
+                <select id="generationFilter" class="filter-select">
+                    <option value="">Todas las generaciones</option>
+                </select>
+
+                <select id="regionFilter" class="filter-select">
+                    <option value="">Todas las regiones</option>
+                </select>
+            </div>
+        `;
+        pokedexContainer.appendChild(searchSection);
+        
+        // Sección de galería de Pokémon
+        const gridSection = document.createElement('section');
+        gridSection.className = 'pokedex-grid';
+        gridSection.id = 'pokemonGrid';
+        pokedexContainer.appendChild(gridSection);
+        
+        contenedorApp.appendChild(pokedexContainer);
+        return;
     } else {
         const tablero = document.createElement('div');
         tablero.className = 'battle-dashboard';

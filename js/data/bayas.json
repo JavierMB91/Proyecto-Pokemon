@@ -1,4 +1,4 @@
-
+{
   "datosBayas": [
     { "nombre": "Baya Acardo", "uso": "Al estar equipada, baja a la mitad el dao de un ataque super efectivo de tipo tierra.", "combinacion": "Sem. Muy picante x1 + Sem. Muy Dulce x1", "tiempoCosecha": "42 horas", "tiempoRiego": "5 horas", "sabor": "Dulce", "color": "Rosa" },
     { "nombre": "Baya Alcho", "uso": "Al estar equipada, baja a la mitad el dao de un ataque super efectivo de tipo roca.", "combinacion": "Sem. Muy picante x1 + Sem. Muy seca x1", "tiempoCosecha": "42 horas", "tiempoRiego": "5 horas", "sabor": "Seco", "color": "Azul" },
