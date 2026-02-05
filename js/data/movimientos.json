@@ -499,7 +499,7 @@
                 "name": "Duplexhieb"
             },
             "es": {
-                "name": "Doble Bofetn"
+                "name": "Doble Bofetón"
             },
             "it": {
                 "name": "Doppiasberla"
@@ -721,7 +721,7 @@
                 "name": "Kometenhieb"
             },
             "es": {
-                "name": "Puo Cometa"
+                "name": "puño Cometa"
             },
             "it": {
                 "name": "Cometapugno"
@@ -831,7 +831,7 @@
                 "name": "Megahieb"
             },
             "es": {
-                "name": "Megapuo"
+                "name": "Megapuño"
             },
             "it": {
                 "name": "Megapugno"
@@ -863,7 +863,7 @@
                 "effect": "Ein unglaublich krftiger Hieb."
             },
             "es": {
-                "effect": "Un puetazo de gran potencia."
+                "effect": "Un puñetazo de gran potencia."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un pugno poderoso."
@@ -1847,7 +1847,7 @@
                 "name": "Feuerschlag"
             },
             "es": {
-                "name": "Puo Fuego"
+                "name": "puño Fuego"
             },
             "it": {
                 "name": "Fuocopugno"
@@ -1879,7 +1879,7 @@
                 "effect": "Feuriger Schlag, der dem Ziel eventuell\nVerbrennungen zufgt."
             },
             "es": {
-                "effect": "Puetazo ardiente. Puede quemar."
+                "effect": "Puñetazo ardiente. Puede quemar."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un pugno ardente\nche pu scottarlo."
@@ -2485,7 +2485,7 @@
                 "name": "Eishieb"
             },
             "es": {
-                "name": "Puo Hielo"
+                "name": "puño Hielo"
             },
             "it": {
                 "name": "Gelopugno"
@@ -2517,7 +2517,7 @@
                 "effect": "Ein eisiger Schlag, der das Ziel eventuell einfriert."
             },
             "es": {
-                "effect": "Puetazo helado. Puede congelar."
+                "effect": "Puñetazo helado. Puede congelar."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un pugno di ghiaccio\nche pu congelarlo."
@@ -3175,7 +3175,7 @@
                 "name": "Donnerschlag"
             },
             "es": {
-                "name": "Puo Trueno"
+                "name": "puño Trueno"
             },
             "it": {
                 "name": "Tuonopugno"
@@ -3207,7 +3207,7 @@
                 "effect": "Ein elektrischer Schlag, der das Ziel eventuell\nparalysiert."
             },
             "es": {
-                "effect": "Puetazo elctrico. Puede paralizar."
+                "effect": "Puñetazo eléctrico. Puede paralizar."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un pugno elettrico\nche pu paralizzarlo."
@@ -4555,7 +4555,7 @@
                 "effect": "Eine Attacke, die ber zwei Runden geht.\nHohe Volltrefferquote."
             },
             "es": {
-                "effect": "Primero se prepara y en el segundo turno ataca\nal oponente con rfagas de viento cortante. Alta\nprobabilidad de ser crtico."
+                "effect": "Primero se prepara y en el segundo turno ataca\nal oponente con ráfagas de viento cortante. Alta\nprobabilidad de ser crtico."
             },
             "it": {
                 "effect": "Chi la usa genera un turbine al primo turno\ne attacca al secondo. Probabile brutto colpo."
@@ -5755,7 +5755,7 @@
                 "effect": "Ein Basisangriff mit Schere oder Klaue.\nDamit knnen kleine Bume gefllt werden."
             },
             "es": {
-                "effect": "Corta con garras, guadaas, etc. Tambin sirve\npara cortar rboles finos."
+                "effect": "Corta con garras, guadañas, etc. También sirve\npara cortar árboles finos."
             },
             "it": {
                 "effect": "Attacca il bersaglio con artigli o falci affilate.\nFuori dalla lotta si usa per tagliare piccoli alberi."
@@ -7389,7 +7389,7 @@
                 "effect": "Weht das Ziel weg und ersetzt es durch ein\nanderes Pokmon. In der Wildnis endet der Kampf."
             },
             "es": {
-                "effect": "Se lleva al objetivo, que es cambiado por otro\nPokmon. Si es un Pokmon salvaje, acaba el\ncombate."
+                "effect": "Se lleva al objetivo, que es cambiado por otro\nPokémon. Si es un Pokémon salvaje, acaba el\ncombate."
             },
             "it": {
                 "effect": "Il bersaglio lascia il campo e viene sostituito.\nMette fine alle lotte contro singoli Pokmon\nselvatici."
@@ -8983,7 +8983,7 @@
                 "effect": "Stampfen mit dem Fu. Das Ziel schreckt eventuell\nzurck."
             },
             "es": {
-                "effect": "Tremendo pisotn que puede hacer retroceder\nal objetivo."
+                "effect": "Tremendo pisotón que puede hacer retroceder\nal objetivo."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un grosso piede\ne pu anche farlo tentennare."
@@ -10609,7 +10609,7 @@
                 "effect": "Senkt Genauigkeit des Zieles, indem ihm Sand\nins Gesicht geworfen wird."
             },
             "es": {
-                "effect": "Arroja arena a la cara y baja la Precisin."
+                "effect": "Arroja arena a la cara y baja la Precisión."
             },
             "it": {
                 "effect": "Getta sabbia in faccia al bersaglio e ne riduce\nla precisione."
@@ -21741,7 +21741,7 @@
                 "effect": "Angriff mit Giftstachel. Das Ziel wird eventuell\nvergiftet."
             },
             "es": {
-                "effect": "Lanza un aguijn txico que puede envenenar\nal objetivo."
+                "effect": "Lanza un aguijón tóxico que puede envenenar\nal objetivo."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un aculeo tossico\nche pu anche avvelenarlo."
@@ -24449,7 +24449,7 @@
                 "effect": "Verjagt das Ziel und ersetzt es durch ein anderes\nPokmon. Beendet den Kampf in der Wildnis."
             },
             "es": {
-                "effect": "Se lleva al objetivo, que es cambiado por otro\nPokmon. Si es un Pokmon salvaje, acaba el\ncombate."
+                "effect": "Se lleva al objetivo, que es cambiado por otro\nPokémon. Si es un Pokémon salvaje, acaba el\ncombate."
             },
             "it": {
                 "effect": "Il bersaglio lascia il campo e viene sostituito.\nMette fine alle lotte contro singoli Pokmon\nselvatici."
@@ -26097,7 +26097,7 @@
                 "effect": "Die zuletzt eingesetzte Attacke des Zieles\nwird fr mehrere Runden blockiert."
             },
             "es": {
-                "effect": "Desactiva el ltimo movimiento del objetivo\ndurante cuatro turnos."
+                "effect": "Desactiva el úúltimo movimiento del objetivo\ndurante cuatro turnos."
             },
             "it": {
                 "effect": "Per quattro turni impedisce al bersaglio\ndi riutilizzare lultima mossa usata."
@@ -26971,7 +26971,7 @@
                 "effect": "Starke Feuer-Attacke, durch die das Ziel eventuell\nVerbrennungen erleidet."
             },
             "es": {
-                "effect": "Ataca con una gran rfaga de fuego que puede\ncausar quemaduras."
+                "effect": "Ataca con una gran ráfaga de fuego que puede\ncausar quemaduras."
             },
             "it": {
                 "effect": "Il bersaglio viene colpito da intense fiammate\nche possono anche scottarlo."
@@ -32197,7 +32197,7 @@
                 "effect": "Feuert einen Strahl ab, der das Ziel verwirren kann."
             },
             "es": {
-                "effect": "Extrao rayo que puede causar confusin."
+                "effect": "Extraño rayo que puede causar confusión."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un raggio speciale.\nPu anche confonderlo."
@@ -35357,7 +35357,7 @@
                 "effect": "Harte Krperattacke, bei der sich der Angreifer\nselbst leicht verletzt."
             },
             "es": {
-                "effect": "Tira al objetivo al suelo. Tambin hiere al agresor."
+                "effect": "Tira al objetivo al suelo. También hiere al agresor."
             },
             "it": {
                 "effect": "Chi la usa carica il bersaglio in modo spericolato,\nma danneggia anche se stesso."
@@ -35719,7 +35719,7 @@
                 "effect": "Ein Tritt, der das Ziel umwirft. Je schwerer das Ziel\nist, desto mehr Schaden fgt ihm die Attacke zu."
             },
             "es": {
-                "effect": "Patada baja. Cuanto ms pesa el objetivo, ms\ndao causa."
+                "effect": "Patada baja. Cuanto ms pesa el objetivo, ms\ndaño causa."
             },
             "it": {
                 "effect": "Un calcio basso e potente che fa cadere il bersaglio.\nDanneggia maggiormente i Pokmon pi pesanti."
@@ -37949,7 +37949,7 @@
                 "effect": "Das Ziel wird extrem stark getroffen.\nMacht Verschieben von Felsen mglich."
             },
             "es": {
-                "effect": "Potente puetazo. Fuera de combate sirve para\nmover rocas."
+                "effect": "Potente puñetazo. Fuera de combate sirve para\nmover rocas."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con unenorme energia.\nFuori dalla lotta si usa per spostare i massi."
@@ -39395,7 +39395,7 @@
                 "effect": "Attacke, die die Hlfte des Schadens absorbiert."
             },
             "es": {
-                "effect": "Absorbe la mitad del dao producido en el objetivo\npara restaurar los PS del usuario."
+                "effect": "Absorbe la mitad del daño producido en el objetivo\npara restaurar los PS del usuario."
             },
             "it": {
                 "effect": "Mossa che assorbe PS. Chi la usa recupera una\nquantit di PS pari alla met del danno inferto."
@@ -39761,7 +39761,7 @@
                 "effect": "Attacke, die die Hlfte des Schadens absorbiert."
             },
             "es": {
-                "effect": "Absorbe la mitad del dao producido en el objetivo\npara restaurar los PS del usuario."
+                "effect": "Absorbe la mitad del daño producido en el objetivo\npara restaurar los PS del usuario."
             },
             "it": {
                 "effect": "Mossa che assorbe PS. Chi la usa recupera una\nquantit di PS pari alla met del danno inferto."
@@ -42154,7 +42154,7 @@
                 "effect": "Verstreut giftigen Puder auf das Ziel."
             },
             "es": {
-                "effect": "Polvo txico que envenena al objetivo."
+                "effect": "Polvo tóxico que envenena al objetivo."
             },
             "it": {
                 "effect": "Investe il bersaglio con una nuvola di polvere\ntossica che avvelena."
@@ -43941,7 +43941,7 @@
                 "effect": "Eine Elektro-Attacke, die das Ziel eventuell\nparalysiert."
             },
             "es": {
-                "effect": "Ataque elctrico que puede paralizar al objetivo."
+                "effect": "Ataque eléctrico que puede paralizar al objetivo."
             },
             "it": {
                 "effect": "Danneggia il bersaglio con una scarica elettrica\nche pu anche paralizzarlo."
@@ -44171,7 +44171,7 @@
                 "effect": "Eine starke Elektro-Attacke, die das Ziel eventuell\nparalysiert."
             },
             "es": {
-                "effect": "Potente ataque elctrico que puede paralizar al\nobjetivo."
+                "effect": "Potente ataque eléctrico que puede paralizar al\nobjetivo."
             },
             "it": {
                 "effect": "Il bersaglio viene colpito da una potente scarica\nelettrica che pu anche paralizzarlo."
@@ -47167,7 +47167,7 @@
                 "effect": "Ein mchtiges Beben, das die anderen Pokmon\nin der Nhe des Anwenders trifft."
             },
             "es": {
-                "effect": "Un terremoto que afecta a los Pokmon de\nalrededor en combate."
+                "effect": "Un terremoto que afecta a los Pokémon de\nalrededor en combate."
             },
             "it": {
                 "effect": "Chi la usa provoca un potente sisma che colpisce\ni Pokmon che ha intorno."
@@ -48479,7 +48479,7 @@
                 "effect": "In Runde 1 grbt sich der Anwender ein und\nin Runde 2 greift er an. Macht Flucht aus\nHhlen mglich."
             },
             "es": {
-                "effect": "Primer turno: cava. Segundo turno: ataca. Tambin\nsirve para salir de ciertas zonas."
+                "effect": "Primer turno: cava. Segundo turno: ataca. También\nsirve para salir de ciertas zonas."
             },
             "it": {
                 "effect": "Chi la usa scava al primo turno e attacca\nal successivo. Fuori dalla lotta fa uscire\nda alcuni luoghi."
@@ -49737,7 +49737,7 @@
                 "effect": "Vergiftet das Ziel mit einem potenten Toxin schwer.\nVergiftung wird von Runde zu Runde strker."
             },
             "es": {
-                "effect": "Envenena gravemente al objetivo y causa un dao\nmayor en cada turno."
+                "effect": "Envenena gravemente al objetivo y causa un daño\nmayor en cada turno."
             },
             "it": {
                 "effect": "Iperavvelena il bersaglio con una potente tossina.\nIl danno peggiora a ogni turno."
@@ -52475,7 +52475,7 @@
                 "name": "Konfusion"
             },
             "es": {
-                "name": "Confusin"
+                "name": "Confusión"
             },
             "it": {
                 "name": "Confusione"
@@ -52507,7 +52507,7 @@
                 "effect": "Das Ziel wird von schwacher telekinetischer\nEnergie getroffen und eventuell verwirrt."
             },
             "es": {
-                "effect": "Dbil ataque telequintico que puede causar\nconfusin."
+                "effect": "Débil ataque telequinético que puede causar\nconfusión."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con una leggera forza\ntelecinetica e pu anche confonderlo."
@@ -53013,7 +53013,7 @@
                 "effect": "Starke Psycho-Attacke, die eventuell die\nSpezial-Verteidigung des Zieles senkt."
             },
             "es": {
-                "effect": "Fuerte ataque telequintico que puede bajar la\nDefensa Especial del objetivo."
+                "effect": "Fuerte ataque telequinético que puede bajar la\nDefensa Especial del objetivo."
             },
             "it": {
                 "effect": "Il bersaglio viene colpito da una potente\nforza telecinetica che pu anche ridurne\nla Difesa Speciale."
@@ -55273,7 +55273,7 @@
                 "name": "Ruckzuckhieb"
             },
             "es": {
-                "name": "Ataque Rpido"
+                "name": "Ataque rápido"
             },
             "it": {
                 "name": "Attacco Rapido"
@@ -55305,7 +55305,7 @@
                 "effect": "Sehr schneller Angriff mit Erstschlaggarantie."
             },
             "es": {
-                "effect": "Ataque rpido que permite golpear en primer lugar."
+                "effect": "Ataque rápido que permite golpear en primer lugar."
             },
             "it": {
                 "effect": "Chi la usa colpisce sempre per primo e a una tale\nvelocit da rendersi quasi invisibile."
@@ -56865,7 +56865,7 @@
                 "effect": "Ermglicht die sofortige Flucht vor wilden\nPokmon. Kann den Anwender auerdem zum\nzuletzt besuchten Pokmon-Center teleportieren."
             },
             "es": {
-                "effect": "Permite huir al instante de combates contra\nPokmon salvajes o viajar al ltimo Centro\nPokmon visitado."
+                "effect": "Permite huir al instante de combates contra\nPokémon salvajes o viajar al úúltimo Centro\nPokémon visitado."
             },
             "it": {
                 "effect": "Fa fuggire dai Pokmon selvatici. Fuori dalla lotta\nporta allultimo Centro Pokmon visitato."
@@ -57489,7 +57489,7 @@
                 "effect": "Kopiert die zuvor ausgefhrte Attacke des Zieles.\nKann im Kampf bis zur Auswechslung verwendet\nwerden."
             },
             "es": {
-                "effect": "Copia el ltimo movimiento usado por el objetivo.\nDicho movimiento se podr usar mientras el\nPokmon no sea cambiado."
+                "effect": "Copia el úúltimo movimiento usado por el objetivo.\nDicho movimiento se podr usar mientras el\nPokémon no sea cambiado."
             },
             "it": {
                 "effect": "Copia lultima mossa usata dal bersaglio. La mossa\ncopiata si pu utilizzare fino alla sostituzione\ndel Pokmon che lha usata."
@@ -63565,7 +63565,7 @@
                 "effect": "Senkt Genauigkeit des Zieles mit Rauch,\nTinte oder hnlichem."
             },
             "es": {
-                "effect": "Baja la Precisin del objetivo con una nube de\nhumo o tinta."
+                "effect": "Baja la Precisión del objetivo con una nube de\nhumo o tinta."
             },
             "it": {
                 "effect": "Nuvola di fumo o inchiostro che riduce\nla precisione del bersaglio."
@@ -64499,7 +64499,7 @@
                 "effect": "Verbirgt Schwchen durch Einrollen und\nhebt gleichzeitig den Verteidigungs-Wert."
             },
             "es": {
-                "effect": "Se enrosca para ocultar su punto dbil. Sube la\nDefensa."
+                "effect": "Se enrosca para ocultar su punto débil. Sube la\nDefensa."
             },
             "it": {
                 "effect": "Chi la usa si raggomitola per nascondere\ni punti deboli e aumentare la propria Difesa."
@@ -65503,7 +65503,7 @@
                 "effect": "Erzeugt eine Lichtwand und senkt den Schaden\ndurch Spezial-Angriffe fr fnf Runden."
             },
             "es": {
-                "effect": "Pared de luz que reduce durante cinco turnos el\ndao producido por los ataques especiales."
+                "effect": "Pared de luz que reduce durante cinco turnos el\ndaño producido por los ataques especiales."
             },
             "it": {
                 "effect": "Innalza una barriera di luce fantastica che riduce\ni danni degli attacchi speciali per s e gli alleati\nper cinque turni."
@@ -66509,7 +66509,7 @@
                 "effect": "Erzeugt einen dunklen Nebel.\nAlle Vernderungen der Statuswerte\nder Kampfteilnehmer werden annulliert."
             },
             "es": {
-                "effect": "Neblina que elimina los cambios de caractersticas\nde todos los Pokmon en combate."
+                "effect": "Neblina que elimina los cambios de caractersticas\nde todos los Pokémon en combate."
             },
             "it": {
                 "effect": "Chi la usa crea una nube nera che annulla\nogni modifica alle statistiche di tutti i Pokmon\nin campo."
@@ -66963,7 +66963,7 @@
                 "effect": "Eine mysterise Wand, die fnf Runden\nden Schaden von physischen gegnerischen\nTreffern reduziert."
             },
             "es": {
-                "effect": "Pared de luz que reduce durante cinco turnos el\ndao producido por los ataques fsicos."
+                "effect": "Pared de luz que reduce durante cinco turnos el\ndaño producido por los ataques fsicos."
             },
             "it": {
                 "effect": "Innalza una barriera di luce fantastica che riduce\ni danni degli attacchi fisici per s e gli alleati\nper cinque turni."
@@ -68587,7 +68587,7 @@
                 "effect": "Ertrgt zwei Runden Angriffe und schlgt dann\nmit dem doppelten Wert des erlittenen Schadens\nzurck."
             },
             "es": {
-                "effect": "Espera dos turnos para atacar con el doble de\npotencia del dao recibido."
+                "effect": "Espera dos turnos para atacar con el doble de\npotencia del daño recibido."
             },
             "it": {
                 "effect": "Chi la usa subisce attacchi per due turni\ne poi restituisce il danno moltiplicato per due."
@@ -70725,7 +70725,7 @@
                 "effect": "Leck-Attacke mit langer Zunge.\nDas Ziel wird eventuell paralysiert."
             },
             "es": {
-                "effect": "Una lengua ataca al objetivo. Puede causar\nparlisis."
+                "effect": "Una lengua ataca al objetivo. Puede causar\nparálisis."
             },
             "it": {
                 "effect": "Una lingua lunga infligge danni al bersaglio\ne pu anche paralizzarlo."
@@ -70923,7 +70923,7 @@
                 "effect": "Angriff mit Gas. Das Ziel kann\neventuell vergiftet werden."
             },
             "es": {
-                "effect": "El objetivo es atacado con gases txicos que\npueden llegar a envenenar."
+                "effect": "El objetivo es atacado con gases tóxicos que\npueden llegar a envenenar."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con una scarica di gas\nmaleodoranti. Pu anche avvelenarlo."
@@ -72047,7 +72047,7 @@
                 "effect": "Eine mchtige Attacke, durch die das Ziel\neventuell zurckschreckt. Wasserflle knnen\ndamit erklommen werden."
             },
             "es": {
-                "effect": "Embiste con un gran impulso que puede hacer\nretroceder. Tambin sirve para remontar cascadas."
+                "effect": "Embiste con un gran impulso que puede hacer\nretroceder. También sirve para remontar cascadas."
             },
             "it": {
                 "effect": "Carica il bersaglio a grande velocit e pu farlo\ntentennare. Fuori dalla lotta fa risalire le cascate."
@@ -75793,7 +75793,7 @@
                 "effect": "Lenkt Ziel durch Verbiegen eines Lffels ab.\nSenkt dessen Genauigkeit."
             },
             "es": {
-                "effect": "Dobla una cuchara para distraer al objetivo y bajar\nsu nivel de Precisin."
+                "effect": "Dobla una cuchara para distraer al objetivo y bajar\nsu nivel de Precisión."
             },
             "it": {
                 "effect": "Chi la usa distrae il bersaglio piegando\nun cucchiaio e ne riduce la precisione."
@@ -76257,7 +76257,7 @@
                 "effect": "Attacke gegen schlafendes Ziel.\nDie Hlfte des zugefgten Schadens\nwird dem Anwender gutgeschrieben."
             },
             "es": {
-                "effect": "Restaura al usuario la mitad del dao causado a un\nobjetivo dormido."
+                "effect": "Restaura al usuario la mitad del daño causado a un\nobjetivo dormido."
             },
             "it": {
                 "effect": "Attacco che funziona solo su un bersaglio\nche dorme. Chi lo usa riceve met dei PS\npersi dal Pokmon colpito."
@@ -77051,7 +77051,7 @@
                 "effect": "Hllt Ziele in der Umgebung in Gas ein,\ndas sie eventuell vergiftet."
             },
             "es": {
-                "effect": "Lanza una nube de gas txico a los rivales.\nProduce envenenamiento."
+                "effect": "Lanza una nube de gas tóxico a los rivales.\nProduce envenenamiento."
             },
             "it": {
                 "effect": "Spruzza in faccia ai nemici che ha intorno\nuna nuvola di gas tossico che avvelena."
@@ -77295,7 +77295,7 @@
                 "effect": "Die Hlfte des zugefgten Schadens\nwird dem Anwender gutgeschrieben."
             },
             "es": {
-                "effect": "Restaura al usuario la mitad del dao causado al\nobjetivo."
+                "effect": "Restaura al usuario la mitad del daño causado al\nobjetivo."
             },
             "it": {
                 "effect": "Mossa succhiasangue. Chi la usa recupera\nuna quantit di PS pari alla met del danno inferto."
@@ -78305,7 +78305,7 @@
                 "name": "Irrschlag"
             },
             "es": {
-                "name": "Puo Mareo"
+                "name": "puño Mareo"
             },
             "it": {
                 "name": "Stordipugno"
@@ -78325,7 +78325,7 @@
                 "effect": "Has a 20% chance to confuse the target."
             },
             "es": {
-                "effect": "Rtmicos puetazos que pueden causar confusin. "
+                "effect": "Rítmicos puñetazos que pueden causar confusión. "
             },
             "fr": {
                 "effect": "Un enchanement de coups de poing\ncadencs. Peut aussi rendre confus."
@@ -78669,7 +78669,7 @@
                 "effect": "Erzeugt helles Licht, das die Genauigkeit\ndes Zieles senkt."
             },
             "es": {
-                "effect": "Luz cegadora que baja la Precisin del objetivo."
+                "effect": "Luz cegadora que baja la Precisión del objetivo."
             },
             "it": {
                 "effect": "Investe il bersaglio con una luce abbagliante\nche ne riduce la precisione."
@@ -89847,7 +89847,7 @@
                 "effect": "Angriff nur bei verbrauchten AP.\nAnwender verletzt sich selbst leicht."
             },
             "es": {
-                "effect": "Solo se usa como ltimo recurso al acabarse los\nPP. Hiere un poco al agresor."
+                "effect": "Solo se usa como úúltimo recurso al acabarse los\nPP. Hiere un poco al agresor."
             },
             "it": {
                 "effect": "Mossa da usare solo in caso estremo, quando\nnon si hanno pi PP. Danneggia anche chi la usa."
@@ -89923,7 +89923,7 @@
                 "effect": "Anwender lernt die letzte Attacke des Zieles\ndauerhaft. Nachahmer verschwindet nach\nGebrauch."
             },
             "es": {
-                "effect": "Aprende de forma permanente el ltimo movimiento\nutilizado por el objetivo. Es de un solo uso."
+                "effect": "Aprende de forma permanente el úúltimo movimiento\nutilizado por el objetivo. Es de un solo uso."
             },
             "it": {
                 "effect": "Permette a chi la usa di imparare lultima mossa\nusata dal bersaglio. La nuova mossa appresa\nsostituisce Schizzo."
@@ -96817,7 +96817,7 @@
                 "effect": "Attacke richtet mehr Schaden an,\nwenn eigene KP niedrig sind."
             },
             "es": {
-                "effect": "Ataque frentico. Cuantos menos PS tenga el\nusuario, ms dao producir."
+                "effect": "Ataque frentico. Cuantos menos PS tenga el\nusuario, ms daño producir."
             },
             "it": {
                 "effect": "Chi la usa si dimena per attaccare.  pi efficace\nse i suoi PS sono bassi."
@@ -97447,7 +97447,7 @@
                 "effect": "Anwender ndert Typ und wird gegen\nletzten Angriffstyp resistent."
             },
             "es": {
-                "effect": "El usuario cambia de tipo para hacerse resistente\nal ltimo tipo de movimiento usado por el objetivo."
+                "effect": "El usuario cambia de tipo para hacerse resistente\nal úúltimo tipo de movimiento usado por el objetivo."
             },
             "it": {
                 "effect": "Chi la usa cambia tipo per rendersi resistente\nal tipo dellultima mossa usata dal bersaglio."
@@ -97765,7 +97765,7 @@
                 "effect": "Richtet mehr Schaden an, wenn eigene KP\nniedrig sind."
             },
             "es": {
-                "effect": "Ataque desesperado que causa ms dao cuantos\nmenos PS tenga el usuario."
+                "effect": "Ataque desesperado que causa ms daño cuantos\nmenos PS tenga el usuario."
             },
             "it": {
                 "effect": "Chi la usa attacca con tutte le sue forze.\nPi i PS sono bassi, maggiore  la potenza\ndi questa mossa."
@@ -98323,7 +98323,7 @@
                 "effect": "AP der letzten Attacke des Zieles\nwerden um 4 gesenkt."
             },
             "es": {
-                "effect": "Da rienda suelta a su rencor para reducir cuatro PP\ndel ltimo movimiento usado por el objetivo."
+                "effect": "Da rienda suelta a su rencor para reducir cuatro PP\ndel úúltimo movimiento usado por el objetivo."
             },
             "it": {
                 "effect": "Chi la usa sfoga la propria rabbia sullultima mossa\nusata dal bersaglio e le sottrae quattro PP."
@@ -101825,7 +101825,7 @@
                 "name": "Tempohieb"
             },
             "es": {
-                "name": "Ultrapuo"
+                "name": "Ultrapuño"
             },
             "it": {
                 "name": "Pugnorapido"
@@ -101845,7 +101845,7 @@
                 "effect": "Inflicts regular damage with no additional effect."
             },
             "es": {
-                "effect": "Puetazo que se da rpido para golpear primero. "
+                "effect": "Puñetazo que se da rápido para golpear primero. "
             },
             "fr": {
                 "effect": "Coup de poing fulgurant.\nFrappe en premier."
@@ -103069,7 +103069,7 @@
                 "effect": "Anwender nhert sich mit Unschuldsmiene\ndem Ziel und schlgt zu, sobald dieses\nunachtsam wird. Ein Treffer ist gewiss."
             },
             "es": {
-                "effect": "Engaa al objetivo para acercarse y dar un\npuetazo que no falla."
+                "effect": "Engaa al objetivo para acercarse y dar un\npuñetazo que no falla."
             },
             "it": {
                 "effect": "Chi la usa si avvicina al bersaglio facendo finta\ndi niente, per poi scagliare un pugno infallibile\na tradimento."
@@ -103615,7 +103615,7 @@
                 "effect": "Anwender ksst das Ziel, das durch\ndiese Niedlichkeit verwirrt wird."
             },
             "es": {
-                "effect": "Da un beso con tal dulzura que causa confusin."
+                "effect": "Da un beso con tal dulzura que causa confusión."
             },
             "it": {
                 "effect": "Chi la usa bacia il bersaglio con una dolcezza\nangelica, confondendolo."
@@ -104713,7 +104713,7 @@
                 "name": "Lehmschelle"
             },
             "es": {
-                "name": "Bofetn Lodo"
+                "name": "Bofetón Lodo"
             },
             "it": {
                 "name": "Fangosberla"
@@ -104745,7 +104745,7 @@
                 "effect": "Schadet dem Ziel durch Matsch.\nDessen Genauigkeit sinkt."
             },
             "es": {
-                "effect": "Echa lodo en la cara para bajar la Precisin."
+                "effect": "Echa lodo en la cara para bajar la Precisión."
             },
             "it": {
                 "effect": "Chi la usa butta fango in faccia al bersaglio\nper arrecargli danni e ridurne la precisione."
@@ -106487,7 +106487,7 @@
                 "effect": "Schiet mit Tinte, um Schaden anzurichten\nund die Genauigkeit zu senken."
             },
             "es": {
-                "effect": "Dispara tinta a la cara. Puede bajar la Precisin."
+                "effect": "Dispara tinta a la cara. Puede bajar la Precisión."
             },
             "it": {
                 "effect": "Chi la usa spruzza inchiostro in faccia al bersaglio.\nPu anche ridurne la precisione."
@@ -106593,7 +106593,7 @@
                 "effect": "Der Anwender verteilt Stacheln,\ndie gegnerische Pokmon verletzen,\ndie in den Kampf gerufen werden."
             },
             "es": {
-                "effect": "Esparce pas en el equipo rival. Las pas hieren\na los Pokmon rivales que entran en combate."
+                "effect": "Esparce pas en el equipo rival. Las pas hieren\na los Pokémon rivales que entran en combate."
             },
             "it": {
                 "effect": "Chi la usa piazza sul terreno una trappola\ndi punte che danneggia i nemici quando\nscendono in campo."
@@ -106855,7 +106855,7 @@
                 "effect": "Kanonenhnlicher Elektro-Schuss,\nder schadet und paralysiert."
             },
             "es": {
-                "effect": "Dispara una descarga elctrica que causa dao\ny parlisis."
+                "effect": "Dispara una descarga eléctrica que causa daño\ny parálisis."
             },
             "it": {
                 "effect": "Chi la usa provoca unesplosione elettrica\nche infligge danni e paralizza il bersaglio."
@@ -107333,7 +107333,7 @@
                 "effect": "Erlaubt es, Geist-Pokmon mit Normal-\nund Kampf-Attacken anzugreifen.\nIgnoriert den Fluchtwert des Zieles."
             },
             "es": {
-                "effect": "Permite atacar con cualquier movimiento a\nobjetivos de tipo Fantasma y golpear a Pokmon\nevasivos."
+                "effect": "Permite atacar con cualquier movimiento a\nobjetivos de tipo Fantasma y golpear a Pokémon\nevasivos."
             },
             "it": {
                 "effect": "Chi la usa rende i Pokmon di tipo Spettro\nvulnerabili a qualsiasi tipo di mossa e pu,\ninoltre, colpire i nemici sfuggenti."
@@ -107723,7 +107723,7 @@
                 "effect": "Wird der Anwender nach Einsatz dieser Attacke\nbesiegt, fhrt dies auch beim Ziel zum K.O."
             },
             "es": {
-                "effect": "Si el usuario se debilita por un ataque rival antes\nde usar otro movimiento, el Pokmon rival se\ndebilitar tambin."
+                "effect": "Si el usuario se debilita por un ataque rival antes\nde usar otro movimiento, el Pokémon rival se\ndebilitar tambin."
             },
             "it": {
                 "effect": "Se chi la usa va KO prima del turno successivo,\nchi ha sferrato il colpo da KO fa la stessa fine."
@@ -107961,7 +107961,7 @@
                 "effect": "Wer diese Musik hrt, wird nach drei Runden\nbesiegt. Rettung ist durch den Eintausch\neines neuen Pokmon mglich."
             },
             "es": {
-                "effect": "Si un Pokmon escucha este canto y no es\ncambiado por otro en tres turnos, acaba\ndebilitndose."
+                "effect": "Si un Pokémon escucha este canto y no es\ncambiado por otro en tres turnos, acaba\ndebilitndose."
             },
             "it": {
                 "effect": "Qualunque Pokmon che senta questo canto va\nKO in tre turni, se non lo si sostituisce."
@@ -111635,7 +111635,7 @@
                 "effect": "Das Ziel wird angegriffen und die Hlfte\ndes zugefgten Schadens dem Angreifer\nals KP gutgeschrieben."
             },
             "es": {
-                "effect": "Un ataque que absorbe nutrientes. Quien lo usa\nrecupera la mitad de los PS del dao que produce."
+                "effect": "Un ataque que absorbe nutrientes. Quien lo usa\nrecupera la mitad de los PS del daño que produce."
             },
             "it": {
                 "effect": "Mossa che assorbe PS. Chi la usa recupera\nuna quantit di PS pari alla met del danno inferto."
@@ -117017,7 +117017,7 @@
                 "effect": "Verwirrt das Ziel und erhht dessen\nAngriffs-Wert stark."
             },
             "es": {
-                "effect": "Provoca confusin en el objetivo, pero tambin\nsube mucho su Ataque."
+                "effect": "Provoca confusión en el objetivo, pero tambin\nsube mucho su Ataque."
             },
             "it": {
                 "effect": "Chi la usa provoca il bersaglio e lo confonde,\nfacendo aumentare per di molto il suo Attacco."
@@ -119897,7 +119897,7 @@
                 "effect": "Elektro-Hieb, der das Ziel paralysieren kann."
             },
             "es": {
-                "effect": "Ataque elctrico que puede llegar a paralizar."
+                "effect": "Ataque eléctrico que puede llegar a paralizar."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con una scarica elettrica\ne pu anche paralizzarlo."
@@ -120131,7 +120131,7 @@
                 "effect": "Eine Attacke mit Scheren oder Klauen, deren Hrte\nbei aufeinanderfolgenden Treffern zunimmt."
             },
             "es": {
-                "effect": "Ataque con garras o guadaa que crece en\nintensidad si se usa repetidas veces."
+                "effect": "Ataque con garras o guadaña que crece en\nintensidad si se usa repetidas veces."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con falci o artigli. Se usata\nin successione aumenta di potenza ogni volta\nche va a segno."
@@ -126741,7 +126741,7 @@
                 "effect": "Lutet beruhigend und heilt alle Statusprobleme\nim Team."
             },
             "es": {
-                "effect": "Taido que cura los problemas de estado de todos\nlos Pokmon del equipo."
+                "effect": "Taido que cura los problemas de estado de todos\nlos Pokémon del equipo."
             },
             "it": {
                 "effect": "Chi la usa produce uno scampanellio che cura\ni problemi di stato suoi e dei Pokmon alleati."
@@ -132785,7 +132785,7 @@
                 "effect": "Team des Anwenders ist fnf Runden\nvor Statusproblemen geschtzt."
             },
             "es": {
-                "effect": "Un escudo que protege de problemas de estado,\ncomo el sueo o la parlisis, durante cinco turnos."
+                "effect": "Un escudo que protege de problemas de estado,\ncomo el sueo o la parálisis, durante cinco turnos."
             },
             "it": {
                 "effect": "Chi la usa crea un campo protettivo che evita\nproblemi di stato per s e gli alleati\nper cinque turni."
@@ -134323,7 +134323,7 @@
                 "effect": "Erdbebenartiger Angriff von zuflliger Strke gegen\nandere Pokmon in der Umgebung des Anwenders."
             },
             "es": {
-                "effect": "Sacudida ssmica de intensidad variable que afecta\na todos los Pokmon a su alrededor."
+                "effect": "Sacudida ssmica de intensidad variable que afecta\na todos los Pokémon a su alrededor."
             },
             "it": {
                 "effect": "Chi la usa scatena un terremoto dintensit\nvariabile che danneggia i Pokmon che ha intorno."
@@ -134485,7 +134485,7 @@
                 "name": "Wuchtschlag"
             },
             "es": {
-                "name": "Puo Dinmico"
+                "name": "puño Dinmico"
             },
             "it": {
                 "name": "Dinamipugno"
@@ -134517,7 +134517,7 @@
                 "effect": "Krftiger Schlag, der das Ziel bei Erfolg verwirrt."
             },
             "es": {
-                "effect": "Puetazo con toda la fuerza concentrada. Causa\nconfusin si atina."
+                "effect": "Puñetazo con toda la fuerza concentrada. Causa\nconfusión si atina."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un pugno davvero forte.\nSe va a segno, lo confonde."
@@ -135361,7 +135361,7 @@
                 "effect": "Fegt das Ziel mit zerstrerisch heiem Atem weg.\nParalysiert das Ziel eventuell."
             },
             "es": {
-                "effect": "Poderosa rfaga de aliento que golpea al objetivo\ny puede paralizarlo."
+                "effect": "Poderosa ráfaga de aliento que golpea al objetivo\ny puede paralizarlo."
             },
             "it": {
                 "effect": "Investe il bersaglio con una raffica potentissima\nche arreca danni. Pu anche paralizzarlo."
@@ -136277,7 +136277,7 @@
                 "effect": "Das Ziel wiederholt die letzte Attacke\ndrei Runden lang."
             },
             "es": {
-                "effect": "El objetivo repite su ltimo movimiento durante\ntres turnos."
+                "effect": "El objetivo repite su úúltimo movimiento durante\ntres turnos."
             },
             "it": {
                 "effect": "Chi la usa obbliga il bersaglio a ripetere per tre\nturni lultima mossa eseguita."
@@ -136919,7 +136919,7 @@
                 "effect": "Die Attacke richtet beim Ziel doppelten\nSchaden an, falls es ausgetauscht wird."
             },
             "es": {
-                "effect": "Hace el doble de dao al objetivo que pide el\nrelevo."
+                "effect": "Hace el doble de daño al objetivo que pide el\nrelevo."
             },
             "it": {
                 "effect": "Una mossa dattacco che infligge un danno doppio\nse il bersaglio  in fase di sostituzione."
@@ -137513,7 +137513,7 @@
                 "name": "Turbodreher"
             },
             "es": {
-                "name": "Giro Rpido"
+                "name": "Giro rápido"
             },
             "it": {
                 "name": "Rapigiro"
@@ -137759,7 +137759,7 @@
                 "effect": "Lockt Ziele an und senkt deren Fluchtwert.\nLockt im Gras auch wilde Pokmon an."
             },
             "es": {
-                "effect": "Un dulce aroma engatusa al objetivo, por lo que\nse reduce mucho su Evasin. En la hierba\nalta sirve para atraer a Pokmon salvajes."
+                "effect": "Un dulce aroma engatusa al objetivo, por lo que\nse reduce mucho su Evasin. En la hierba\nalta sirve para atraer a Pokémon salvajes."
             },
             "it": {
                 "effect": "Un dolce profumo che riduce di molto lelusione\ndei nemici intorno a chi la usa. Fuori dalla lotta\nattira i Pokmon selvatici."
@@ -139620,7 +139620,7 @@
                 "effect": "Anwender greift als Letzter an, hat dafr aber\neine Treffergarantie beim eigenen Angriff."
             },
             "es": {
-                "effect": "El usuario ataca el ltimo, pero no falla."
+                "effect": "El usuario ataca el úúltimo, pero no falla."
             },
             "it": {
                 "effect": "Chi la usa attacca per ultimo, ma il colpo\n sempre infallibile."
@@ -140509,7 +140509,7 @@
                 "effect": "Wirkung und Typ der Attacke hngen\nvom Anwender ab."
             },
             "es": {
-                "effect": "Movimiento cuyo tipo vara en funcin del\nPokmon que lo usa."
+                "effect": "Movimiento cuyo tipo vara en funcin del\nPokémon que lo usa."
             },
             "it": {
                 "effect": "Mossa singolare che cambia tipo a seconda\ndel Pokmon che la usa."
@@ -149008,7 +149008,7 @@
                 "effect": "Kontert den Spezial-Angriff des Gegners\nmit doppeltem Schaden."
             },
             "es": {
-                "effect": "Responde a un ataque especial ocasionando el\ndoble del dao recibido."
+                "effect": "Responde a un ataque especial ocasionando el\ndoble del daño recibido."
             },
             "it": {
                 "effect": "Mossa che replica ogni attacco speciale,\narrecando il doppio del danno ricevuto."
@@ -150345,7 +150345,7 @@
                 "effect": "Extrem schnelle und kraftvolle Attacke,\ndie stets zuerst trifft."
             },
             "es": {
-                "effect": "Ataque muy rpido que siempre se realiza el\nprimero."
+                "effect": "Ataque muy rápido que siempre se realiza el\nprimero."
             },
             "it": {
                 "effect": "Chi la usa carica il bersaglio a una velocit\nimpressionante e attacca sempre per primo."
@@ -152869,7 +152869,7 @@
                 "effect": "Diese steinbrechende Attacke kann den\nVerteidigungs-Wert des Zieles senken und\nauerhalb von Kmpfen rissige Felsen zertrmmern."
             },
             "es": {
-                "effect": "Ataque con los puos. Puede bajar la Defensa del\nobjetivo. Puede romper rocas fuera del combate."
+                "effect": "Ataque con los puños. Puede bajar la Defensa del\nobjetivo. Puede romper rocas fuera del combate."
             },
             "it": {
                 "effect": "Chi la usa colpisce il bersaglio con un pugno\nin grado di frantumare anche la roccia.\nPu anche ridurne la Difesa."
@@ -155133,7 +155133,7 @@
                 "effect": "Das gesamte Team nimmt aktiv am Kampf teil.\nJe mehr Pokmon, desto hher die Anzahl der\nAngriffe."
             },
             "es": {
-                "effect": "Ataque de todo el equipo Pokmon. Cuantos ms\nhaya, ms veces se atacar."
+                "effect": "Ataque de todo el equipo Pokémon. Cuantos ms\nhaya, ms veces se atacar."
             },
             "it": {
                 "effect": "Chi la usa chiama in aiuto i Pokmon della\nsquadra: pi ce ne sono, maggiore  il numero\ndi attacchi."
@@ -163271,7 +163271,7 @@
                 "name": "Power-Punch"
             },
             "es": {
-                "name": "Puo Certero"
+                "name": "puño Certero"
             },
             "it": {
                 "name": "Centripugno"
@@ -163303,7 +163303,7 @@
                 "effect": "Anwender konzentriert sich, bevor er angreift.\nWird er vorher getroffen, ist die Attacke erfolglos."
             },
             "es": {
-                "effect": "Se concentra para dar un puetazo. Falla si se\nsufre un golpe antes de su uso."
+                "effect": "Se concentra para dar un puñetazo. Falla si se\nsufre un golpe antes de su uso."
             },
             "it": {
                 "effect": "Chi la usa prende la mira prima di sferrare\nun pugno. Fallir se verr colpito prima\ndi eseguire la mossa."
@@ -164137,7 +164137,7 @@
                 "effect": "Doppelt wirksam gegen paralysierte Ziele,\nheilt sie aber auch von der Paralyse."
             },
             "es": {
-                "effect": "Hace el doble de dao a objetivos paralizados,\npero tambin cura la parlisis."
+                "effect": "Hace el doble de daño a objetivos paralizados,\npero tambin cura la parálisis."
             },
             "it": {
                 "effect": "Infligge un danno doppio a un bersaglio\nparalizzato, ma ne cura anche la paralisi."
@@ -165003,7 +165003,7 @@
                 "effect": "Ldt Energie fr die kommende Elektro-Attacke\nauf. Erhht die Spezial-Verteidigung."
             },
             "es": {
-                "effect": "Recarga energa para potenciar el siguiente\nmovimiento de tipo Elctrico. Tambin sube la\nDefensa Especial."
+                "effect": "Recarga energa para potenciar el siguiente\nmovimiento de tipo eléctrico. También sube la\nDefensa Especial."
             },
             "it": {
                 "effect": "Potenzia la mossa di tipo Elettro usata subito\ndopo. Aumenta anche la Difesa Speciale\ndi chi la usa."
@@ -171641,7 +171641,7 @@
                 "effect": "Schaden verdoppelt sich, wenn der Anwender\nin der Runde bereits Schaden vom Ziel\ndes Angriffes genommen hat."
             },
             "es": {
-                "effect": "Ataque que produce el doble de dao si el usuario\nes herido en el mismo turno."
+                "effect": "Ataque que produce el doble de daño si el usuario\nes herido en el mismo turno."
             },
             "it": {
                 "effect": "Mossa dattacco che infligge un danno doppio\nse si  stati colpiti dal Pokmon bersaglio nello\nstesso turno."
@@ -175475,7 +175475,7 @@
                 "effect": "Explosiver Angriff. Je hher die KP des Anwenders\nsind, desto mehr Schaden wird angerichtet."
             },
             "es": {
-                "effect": "Furia explosiva. Cuanto menor sea el nmero de\nPS del usuario, menos dao har el ataque."
+                "effect": "Furia explosiva. Cuanto menor sea el nmero de\nPS del usuario, menos daño har el ataque."
             },
             "it": {
                 "effect": "Attacco impetuoso ed esplosivo la cui potenza\n proporzionale ai PS di chi lo usa."
@@ -176641,7 +176641,7 @@
                 "effect": "Selbstheilung bei Vergiftung,\nParalyse und Verbrennung."
             },
             "es": {
-                "effect": "Descansa para curar parlisis, envenenamiento o\nquemaduras."
+                "effect": "Descansa para curar parálisis, envenenamiento o\nquemaduras."
             },
             "it": {
                 "effect": "Chi la usa riposa per guarire da avvelenamento,\nparalisi e scottatura."
@@ -177179,7 +177179,7 @@
                 "effect": "Bei K.O. des Anwenders werden die AP\nder Attacke, durch die er besiegt wurde,\nauf 0 herabgesetzt."
             },
             "es": {
-                "effect": "Si el usuario se debilita al recibir un ataque, todos\nlos PP de este ltimo ataque sern eliminados."
+                "effect": "Si el usuario se debilita al recibir un ataque, todos\nlos PP de este úúltimo ataque sern eliminados."
             },
             "it": {
                 "effect": "Se chi la usa va KO, i PP della mossa nemica\nche lo ha messo fuori gioco si azzerano."
@@ -177883,7 +177883,7 @@
                 "name": "Geheimpower"
             },
             "es": {
-                "name": "Dao Secreto"
+                "name": "Poder Secreto"
             },
             "it": {
                 "name": "Forzasegreta"
@@ -181373,7 +181373,7 @@
                 "effect": "Der Typ des Anwenders passt sich der Umgebung\nan, sei es im Wasser, im Gras oder in einer Hhle."
             },
             "es": {
-                "effect": "Modifica el tipo del Pokmon segn el terreno de\ncombate donde est."
+                "effect": "Modifica el tipo del Pokémon segn el terreno de\ncombate donde est."
             },
             "it": {
                 "effect": "Modifica il tipo di chi la usa a seconda del luogo,\nad esempio sullacqua, nellerba o in una grotta."
@@ -181543,7 +181543,7 @@
                 "effect": "Ein blinkendes Licht, das den Spezial-Angriff\ndrastisch erhht."
             },
             "es": {
-                "effect": "Se concentra en una rfaga de luz que sube\nmuchsimo el Ataque Especial."
+                "effect": "Se concentra en una ráfaga de luz que sube\nmuchsimo el Ataque Especial."
             },
             "it": {
                 "effect": "Chi la usa fissa una luce forte per concentrarsi\ne aumentare moltissimo lAttacco Speciale."
@@ -182059,7 +182059,7 @@
                 "effect": "Ein Wackeltanz, der andere Pokmon\nin der Umgebung des Anwenders verwirrt."
             },
             "es": {
-                "effect": "Danza histrica que confunde a los Pokmon que\nestn alrededor del usuario."
+                "effect": "Danza histrica que confunde a los Pokémon que\nestn alrededor del usuario."
             },
             "it": {
                 "effect": "Chi la usa esegue una danza goffa che confonde\ntutti i Pokmon attorno."
@@ -182399,7 +182399,7 @@
                 "effect": "Schwcht Elektro-Attacken, solang der Anwender\nam Kampf teilnimmt."
             },
             "es": {
-                "effect": "El usuario esparce lodo a su alrededor, lo que\ndebilita los movimientos de tipo Elctrico durante\ncinco turnos."
+                "effect": "El usuario esparce lodo a su alrededor, lo que\ndebilita los movimientos de tipo eléctrico durante\ncinco turnos."
             },
             "it": {
                 "effect": "Chi la usa sparge fango sul campo di lotta\nindebolendo per cinque turni le mosse\ndi tipo Elettro."
@@ -183151,7 +183151,7 @@
                 "effect": "Laute Attacke mit Schallwellen."
             },
             "es": {
-                "effect": "Grito desgarrador que inflige dao al objetivo."
+                "effect": "Grito desgarrador que inflige daño al objetivo."
             },
             "it": {
                 "effect": "Chi la usa lancia un urlo straziante che danneggia\ni nemici intorno a s."
@@ -183797,7 +183797,7 @@
                 "effect": "Angriff mit giftigen Reizhnen.\nDas Ziel wird eventuell schwer vergiftet."
             },
             "es": {
-                "effect": "Colmillos txicos que pueden envenenar\ngravemente al objetivo."
+                "effect": "Colmillos tóxicos que pueden envenenar\ngravemente al objetivo."
             },
             "it": {
                 "effect": "Chi la usa morde il bersaglio con denti avvelenati\nche possono anche iperavvelenarlo."
@@ -184493,7 +184493,7 @@
                 "name": "Sternenhieb"
             },
             "es": {
-                "name": "Puo Meteoro"
+                "name": "puño Meteoro"
             },
             "it": {
                 "name": "Meteorpugno"
@@ -184525,7 +184525,7 @@
                 "effect": "Angriff mit einem harten, schnellen Schlag.\nErhht eventuell Angriffs-Wert des Anwenders."
             },
             "es": {
-                "effect": "Puetazo que impacta como un meteorito y puede\nsubir el Ataque del agresor."
+                "effect": "Puñetazo que impacta como un meteorito y puede\nsubir el Ataque del agresor."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con un pugno veloce come\nuna meteora. Pu far salire lAttacco di chi la usa."
@@ -187231,7 +187231,7 @@
                 "effect": "Erlaubt es, Geist-Pokmon mit Normal-\nund Kampf-Attacken anzugreifen.\nIgnoriert den Fluchtwert des Zieles."
             },
             "es": {
-                "effect": "Permite atacar con cualquier movimiento a\nobjetivos de tipo Fantasma y golpear a Pokmon\nevasivos."
+                "effect": "Permite atacar con cualquier movimiento a\nobjetivos de tipo Fantasma y golpear a Pokémon\nevasivos."
             },
             "it": {
                 "effect": "Chi la usa rende i Pokmon di tipo Spettro\nvulnerabili a qualsiasi tipo di mossa e pu,\ninoltre, colpire i nemici sfuggenti."
@@ -191349,7 +191349,7 @@
                 "name": "Finsterfaust"
             },
             "es": {
-                "name": "Puo Sombra"
+                "name": "puño Sombra"
             },
             "it": {
                 "name": "Pugnodombra"
@@ -191381,7 +191381,7 @@
                 "effect": "Angriff mit der Faust aus dem Schattenreich.\nAusweichen unmglich."
             },
             "es": {
-                "effect": "Puetazo ineludible procedente de las sombras."
+                "effect": "Puñetazo ineludible procedente de las sombras."
             },
             "it": {
                 "effect": "Il bersaglio riceve un pugno proveniente\ndalle tenebre. Questa mossa  infallibile."
@@ -192511,7 +192511,7 @@
                 "effect": "Greift mit Matsch an und senkt eventuell\ndie Genauigkeit des Zieles."
             },
             "es": {
-                "effect": "Ataque con agua lodosa que puede bajar la\nPrecisin del equipo rival."
+                "effect": "Ataque con agua lodosa que puede bajar la\nPrecisión del equipo rival."
             },
             "it": {
                 "effect": "Chi la usa attacca i nemici che ha intorno con un\ngetto di fango che pu anche ridurne la precisione."
@@ -192905,7 +192905,7 @@
                 "effect": "Der Anwender wirft zwei- bis fnfmal\nin rascher Folge Samen auf das Ziel."
             },
             "es": {
-                "effect": "Dispara rpido de dos a cinco rfagas de semillas\nde manera consecutiva."
+                "effect": "Dispara rápido de dos a cinco ráfagas de semillas\nde manera consecutiva."
             },
             "it": {
                 "effect": "Chi la usa spara da due a cinque raffiche di semi\ncontro il bersaglio in successione."
@@ -193407,7 +193407,7 @@
                 "effect": "Eine extrem schnelle Attacke, der das Ziel\nnicht ausweichen kann."
             },
             "es": {
-                "effect": "El usuario lanza un ataque muy rpido e ineludible."
+                "effect": "El usuario lanza un ataque muy rápido e ineludible."
             },
             "it": {
                 "effect": "Chi la usa attacca il bersaglio a grande velocit.\nQuesta mossa  infallibile."
@@ -194589,7 +194589,7 @@
                 "effect": "Feuert zwei bis fnf Eiszapfen auf das Ziel."
             },
             "es": {
-                "effect": "Ataca lanzando de dos a cinco rfagas\nconsecutivas de carmbanos."
+                "effect": "Ataca lanzando de dos a cinco ráfagas\nconsecutivas de carmbanos."
             },
             "it": {
                 "effect": "Chi la usa spara ghiaccioli affilati contro il bersaglio\nda due a cinque volte di fila."
@@ -201549,7 +201549,7 @@
                 "effect": "Angriff mit schnellem Elektro-Schlag.\nAusweichen nicht mglich."
             },
             "es": {
-                "effect": "Ataque elctrico muy rpido e ineludible."
+                "effect": "Ataque eléctrico muy rápido e ineludible."
             },
             "it": {
                 "effect": "Chi la usa colpisce il bersaglio con una scossa\ndi elettricit.  impossibile eludere questa mossa."
@@ -204837,7 +204837,7 @@
                 "effect": "Erlaubt es, Unlicht-Pokmon mit Psycho-Attacken\nanzugreifen. Ignoriert den Fluchtwert des Zieles."
             },
             "es": {
-                "effect": "Permite atacar con cualquier movimiento a\nobjetivos de tipo Siniestro y golpear a Pokmon\nevasivos."
+                "effect": "Permite atacar con cualquier movimiento a\nobjetivos de tipo Siniestro y golpear a Pokémon\nevasivos."
             },
             "it": {
                 "effect": "Chi la usa rende i Pokmon di tipo Buio vulnerabili\na qualsiasi tipo di mossa e pu, inoltre, colpire\ni nemici sfuggenti."
@@ -204979,7 +204979,7 @@
                 "effect": "Richtet groen Schaden bei einem schlafenden Ziel\nan, weckt es aber auch auf."
             },
             "es": {
-                "effect": "Inflige gran dao a objetivos dormidos.\nSin embargo, los bofetones tambin los despiertan."
+                "effect": "Inflige gran daño a objetivos dormidos.\nSin embargo, los bofetones tambin los despiertan."
             },
             "it": {
                 "effect": "Questa mossa infligge un danno doppio a un\nbersaglio addormentato, ma allo stesso tempo\nlo risveglia."
@@ -205217,7 +205217,7 @@
                 "effect": "Anwender trifft mit einem starken Hieb.\nSenkt Initiative des Anwenders."
             },
             "es": {
-                "effect": "Gira con fuerza el puo y da un gran golpe. No\nobstante, baja la Velocidad."
+                "effect": "Gira con fuerza el puño y da un gran golpe. No\nobstante, baja la Velocidad."
             },
             "it": {
                 "effect": "Chi la usa colpisce il bersaglio con il suo pugno\nforte e pesante, ma perde Velocit."
@@ -205494,7 +205494,7 @@
                 "effect": "Angriff mit hoher Geschwindigkeit. Je niedriger\ndie Initiative des Anwenders, desto hher\nder Schaden."
             },
             "es": {
-                "effect": "Embiste al objetivo con un potente ataque giratorio.\nCuanto ms lento es el usuario, ms dao causa."
+                "effect": "Embiste al objetivo con un potente ataque giratorio.\nCuanto ms lento es el usuario, ms daño causa."
             },
             "it": {
                 "effect": "Chi la usa colpisce il bersaglio con un vortice\nrapidissimo. Pi lento  chi la usa, maggiore\n il danno."
@@ -205861,7 +205861,7 @@
                 "effect": "Anwender geht K.O. Das an seine Stelle tretende\nPokmon hat volle KP. Statusprobleme werden\ngeheilt."
             },
             "es": {
-                "effect": "El Pokmon cae debilitado, pero su sustituto\nrecupera su estado y los PS."
+                "effect": "El Pokémon cae debilitado, pero su sustituto\nrecupera su estado y los PS."
             },
             "it": {
                 "effect": "Chi la usa va KO, ma il Pokmon che lo sostituisce\nrecupera tutti i PS e guarisce dai problemi di stato."
@@ -209423,7 +209423,7 @@
                 "effect": "Anwender erzeugt einen Wirbelwind,\nder die Initiative aller Pokmon im Team\nfr vier Runden steigert."
             },
             "es": {
-                "effect": "Crea un fuerte remolino que aumenta la Velocidad\nde los Pokmon de tu equipo durante cuatro\nturnos."
+                "effect": "Crea un fuerte remolino que aumenta la Velocidad\nde los Pokémon de tu equipo durante cuatro\nturnos."
             },
             "it": {
                 "effect": "Chi la usa scatena un turbine che aumenta\nla Velocit di tutti i Pokmon della squadra\nper quattro turni."
@@ -210139,7 +210139,7 @@
                 "effect": "Attacke mit groer Kraft gegen das Ziel,\ndas dem Anwender in derselben Runde\nzuletzt Schaden zufgte."
             },
             "es": {
-                "effect": "Devuelve al objetivo el ltimo ataque recibido,\npero con mucha ms fuerza."
+                "effect": "Devuelve al objetivo el úúltimo ataque recibido,\npero con mucha ms fuerza."
             },
             "it": {
                 "effect": "Chi la usa si vendica sul nemico che lha appena\nferito con una mossa anche pi potente."
@@ -210293,7 +210293,7 @@
                 "effect": "Nach der Attacke eilt der Anwender zurck und\ntauscht den Platz mit einem anderen Pokmon."
             },
             "es": {
-                "effect": "Tras atacar, vuelve a toda prisa para dar paso a\notro Pokmon del equipo."
+                "effect": "Tras atacar, vuelve a toda prisa para dar paso a\notro Pokémon del equipo."
             },
             "it": {
                 "effect": "Chi usa questa mossa fa marcia indietro per farsi\nsostituire dopo aver sferrato lattacco."
@@ -210863,7 +210863,7 @@
                 "effect": "Nahkampf-Attacke ohne Rcksicht auf Verluste.\nSenkt Verteidigung und Spezial-Verteidigung\ndes Anwenders."
             },
             "es": {
-                "effect": "Lucha abiertamente contra el objetivo sin\nprotegerse. Tambin reduce la Defensa y la\nDefensa Especial del usuario."
+                "effect": "Lucha abiertamente contra el objetivo sin\nprotegerse. También reduce la Defensa y la\nDefensa Especial del usuario."
             },
             "it": {
                 "effect": "Chi la usa attacca abbassando la guardia.\nLa propria Difesa e la Difesa Speciale si riducono."
@@ -212143,7 +212143,7 @@
                 "effect": "Hat das Ziel whrend der Runde schon Schaden\ngenommen, wird die Kraft der Attacke verdoppelt."
             },
             "es": {
-                "effect": "Si el objetivo ya ha sufrido dao en ese turno, la\nfuerza del ataque se duplica."
+                "effect": "Si el objetivo ya ha sufrido daño en ese turno, la\nfuerza del ataque se duplica."
             },
             "it": {
                 "effect": "Se il bersaglio ha gi subito dei danni nello stesso\nturno, la potenza di questa mossa raddoppia."
@@ -216953,7 +216953,7 @@
                 "name": "Zuflucht"
             },
             "es": {
-                "name": "ltima Baza"
+                "name": "úúltima Baza"
             },
             "it": {
                 "name": "Ultimascelta"
@@ -216985,7 +216985,7 @@
                 "effect": "Diese Attacke kann nur eingesetzt werden,\nnachdem alle verfgbaren Attacken ausgefhrt\nworden sind."
             },
             "es": {
-                "effect": "Este movimiento solo puede utilizarse tras haber\nusado al menos una vez todos los dems\nconocidos por el Pokmon."
+                "effect": "Este movimiento solo puede utilizarse tras haber\nusado al menos una vez todos los dems\nconocidos por el Pokémon."
             },
             "it": {
                 "effect": "Per usare questa mossa, bisogna prima avvalersi\nin lotta di tutte le altre mosse conosciute."
@@ -218507,7 +218507,7 @@
                 "effect": "Anwender legt eine Falle mit Giftdornen aus.\nIn den Kampf eingewechselte gegnerische\nPokmon werden vergiftet."
             },
             "es": {
-                "effect": "Lanza una trampa de pas txicas a los pies del\nobjetivo. El veneno afecta a los Pokmon que\nentran en combate."
+                "effect": "Lanza una trampa de pas tóxicas a los pies del\nobjetivo. El veneno afecta a los Pokémon que\nentran en combate."
             },
             "it": {
                 "effect": "Chi la usa piazza una trappola di punte che\navvelenano i nemici che scendono in campo."
@@ -218899,7 +218899,7 @@
                 "effect": "Anwender umgibt sich mit einem Schleier aus\nWasser. Dabei regeneriert er einige KP pro Runde."
             },
             "es": {
-                "effect": "Un manto de agua cubre al Pokmon que lo usa.\nRecupera algunos PS en cada turno."
+                "effect": "Un manto de agua cubre al Pokémon que lo usa.\nRecupera algunos PS en cada turno."
             },
             "it": {
                 "effect": "Chi la usa si avvolge in un velo dacqua. Recupera\nalcuni PS a ogni turno."
@@ -219567,7 +219567,7 @@
                 "effect": "Anwender hllt sich in Flammen und strmt\nauf das Ziel zu, das sich eventuell verbrennt.\nAnwender nimmt selbst groen Schaden."
             },
             "es": {
-                "effect": "El Pokmon se cubre de llamas y carga contra el\nobjetivo, aunque l tambin recibe daos. Puede\nquemar."
+                "effect": "El Pokémon se cubre de llamas y carga contra el\nobjetivo, aunque l tambin recibe daños. Puede\nquemar."
             },
             "it": {
                 "effect": "Chi la usa si ricopre di fuoco e carica il bersaglio,\nma subisce il contraccolpo. Pu anche scottare\nil Pokmon colpito."
@@ -223633,7 +223633,7 @@
                 "effect": "Das Ziel wird mit einer Luftklinge angegriffen.\nZiel schreckt eventuell zurck."
             },
             "es": {
-                "effect": "Ataca con una hoja de aire que incluso corta el\ncielo. Tambin puede hacer retroceder al objetivo."
+                "effect": "Ataca con una hoja de aire que incluso corta el\ncielo. También puede hacer retroceder al objetivo."
             },
             "it": {
                 "effect": "Chi la usa attacca con un vento tagliente\nche squarcia il cielo. Pu anche far tentennare\nil Pokmon colpito."
@@ -224171,7 +224171,7 @@
                 "effect": "Der Anwender fhrt eine Attacke aus,\ndie einer Scherenbewegung hnelt."
             },
             "es": {
-                "effect": "Cruza las guadaas o las garras para atacar al\nobjetivo como si fueran unas tijeras."
+                "effect": "Cruza las guadañas o las garras para atacar al\nobjetivo como si fueran unas tijeras."
             },
             "it": {
                 "effect": "Chi la usa colpisce il bersaglio usando le sue falci\no i suoi artigli come se fossero delle forbici."
@@ -224629,7 +224629,7 @@
                 "effect": "Anwender schlgt mit den Flgeln und\nerzeugt eine Schockwelle. Senkt eventuell\nSpezial-Verteidigung des Zieles."
             },
             "es": {
-                "effect": "El movimiento de las alas crea una onda snica\ndaina. Tambin puede disminuir la Defensa\nEspecial del objetivo."
+                "effect": "El movimiento de las alas crea una onda snica\ndaina. También puede disminuir la Defensa\nEspecial del objetivo."
             },
             "it": {
                 "effect": "Chi la usa fa vibrare le ali creando unonda sonora\npericolosa. Pu anche ridurre la Difesa Speciale\ndel bersaglio."
@@ -225429,7 +225429,7 @@
                 "effect": "Anwender fhrt einen gefhrlichen Angriff aus.\nDas Ziel schreckt eventuell zurck."
             },
             "es": {
-                "effect": "Ataca de forma brutal mientras intimida al objetivo.\nTambin puede hacerlo retroceder."
+                "effect": "Ataca de forma brutal mientras intimida al objetivo.\nTambién puede hacerlo retroceder."
             },
             "it": {
                 "effect": "Chi la usa attacca con fare minaccioso e in questo\nmodo pu anche far tentennare il bersaglio."
@@ -225909,7 +225909,7 @@
                 "name": "Ableithieb"
             },
             "es": {
-                "name": "Puo Drenaje"
+                "name": "puño Drenaje"
             },
             "it": {
                 "name": "Assorbipugno"
@@ -225944,7 +225944,7 @@
                 "effect": "Entzieht dem Ziel Energie. Die Hlfte des\nSchadens wird den KP des Anwenders\nzugerechnet."
             },
             "es": {
-                "effect": "Un golpe que drena energa. El Pokmon recupera\nla mitad de los PS arrebatados al objetivo."
+                "effect": "Un golpe que drena energa. El Pokémon recupera\nla mitad de los PS arrebatados al objetivo."
             },
             "it": {
                 "effect": "Pugno che assorbe energia. Fa recuperare una\nquantit di PS pari alla met del danno inferto."
@@ -226415,7 +226415,7 @@
                 "effect": "Ein Faustwirbel sendet eine Vakuumwelle\nauf das Ziel. Erstschlaggarantie."
             },
             "es": {
-                "effect": "Gira los puos y libera una onda de vaco contra\nel objetivo. Este movimiento siempre va primero."
+                "effect": "Gira los puños y libera una onda de vaco contra\nel objetivo. Este movimiento siempre va primero."
             },
             "it": {
                 "effect": "Chi la usa rotea i pugni per lanciare unonda di\nvuoto assoluto verso il bersaglio e attacca\nper primo."
@@ -228293,7 +228293,7 @@
                 "effect": "Anwender greift aus niedriger Hhe an. Er erleidet\nbei dieser Attacke selbst groen Schaden."
             },
             "es": {
-                "effect": "Pliega sus alas y ataca con un vuelo rasante. El\nPokmon que lo usa tambin resulta seriamente\ndaado."
+                "effect": "Pliega sus alas y ataca con un vuelo rasante. El\nPokémon que lo usa tambin resulta seriamente\ndaado."
             },
             "it": {
                 "effect": "Chi la usa si nasconde sotto le ali e carica da\nbassa quota. Tuttavia, subisce considerevoli danni."
@@ -229241,7 +229241,7 @@
                 "effect": "Item wird in Windeseile mit dem Ziel getauscht."
             },
             "es": {
-                "effect": "Intercambia con el objetivo los objetos que llevan\ntan rpido que es imposible verlo a simple vista."
+                "effect": "Intercambia con el objetivo los objetos que llevan\ntan rápido que es imposible verlo a simple vista."
             },
             "it": {
                 "effect": "Chi la usa scambia lo strumento che ha con quello\ndel bersaglio a una velocit impressionante."
@@ -229474,7 +229474,7 @@
                 "effect": "Anwender rennt mit seiner ganzen Kraft gegen\ndas Ziel an und muss dann eine Runde ruhen."
             },
             "es": {
-                "effect": "Carga contra el objetivo usando toda la fuerza que\ntiene. El Pokmon descansa el turno siguiente."
+                "effect": "Carga contra el objetivo usando toda la fuerza que\ntiene. El Pokémon descansa el turno siguiente."
             },
             "it": {
                 "effect": "Chi la usa carica il bersaglio usando tutta la sua\nforza, ma al turno successivo deve riposarsi."
@@ -231679,7 +231679,7 @@
                 "name": "Patronenhieb"
             },
             "es": {
-                "name": "Puo Bala"
+                "name": "puño Bala"
             },
             "it": {
                 "name": "Pugnoscarica"
@@ -231711,7 +231711,7 @@
                 "effect": "Das Ziel wird von ultraschnellen Hieben getroffen.\nErstschlaggarantie."
             },
             "es": {
-                "effect": "Ataca con fuertes puetazos tan rpidos como\nproyectiles. Este movimiento siempre va primero."
+                "effect": "Ataca con fuertes puñetazos tan rápidos como\nproyectiles. Este movimiento siempre va primero."
             },
             "it": {
                 "effect": "Chi la usa attacca con una scarica di pugni\nveloci come proiettili. Con questa mossa\nsi colpisce per primi."
@@ -231865,7 +231865,7 @@
                 "effect": "Wurde der Anwender in dieser Runde vom Ziel\ngetroffen, macht diese Attacke doppelten\nSchaden."
             },
             "es": {
-                "effect": "Este ataque inflige el doble de dao a un objetivo\nque haya golpeado al usuario en ese mismo turno."
+                "effect": "Este ataque inflige el doble de daño a un objetivo\nque haya golpeado al usuario en ese mismo turno."
             },
             "it": {
                 "effect": "Mossa dattacco che infligge doppi danni se chi\nla usa  stato ferito dal Pokmon bersaglio nello\nstesso turno."
@@ -234267,7 +234267,7 @@
                 "effect": "Anwender greift mit einem festen Schlammklumpen\nan. Senkt eventuell Genauigkeit des Zieles."
             },
             "es": {
-                "effect": "Ataca lanzando una compacta bola de fango.\nPuede bajar la Precisin del objetivo."
+                "effect": "Ataca lanzando una compacta bola de fango.\nPuede bajar la Precisión del objetivo."
             },
             "it": {
                 "effect": "Chi la usa lancia una compatta palla di fango. Pu\nanche ridurre la precisione del Pokmon colpito."
@@ -235797,7 +235797,7 @@
                 "effect": "Anwender feuert Energiestrahl aus seinem Krper\nab. Senkt eventuell Genauigkeit des Zieles."
             },
             "es": {
-                "effect": "El usuario libera un haz de energa desde su\npulido cuerpo. Puede bajar la Precisin."
+                "effect": "El usuario libera un haz de energa desde su\npulido cuerpo. Puede bajar la Precisión."
             },
             "it": {
                 "effect": "Chi la usa rilascia fasci denergia dal corpo\nlevigato. Pu anche ridurre la precisione\ndel bersaglio."
@@ -237669,7 +237669,7 @@
                 "effect": "Anwender erzeugt einen bizarren Raum,\nin dem langsame Pokmon fnf Runden\nlang zuerst agieren."
             },
             "es": {
-                "effect": "Se crea un espacio extrao en el que los Pokmon\nlentos se mueven primero durante cinco turnos."
+                "effect": "Se crea un espacio extraño en el que los Pokémon\nlentos se mueven primero durante cinco turnos."
             },
             "it": {
                 "effect": "Chi la usa crea una dimensione in cui i Pokmon\npi lenti agiscono per primi per cinque turni."
@@ -238473,7 +238473,7 @@
                 "effect": "Anwender greift die Pokmon in seiner Umgebung\nmit Elektrizitt an. Paralysiert eventuell."
             },
             "es": {
-                "effect": "Una deslumbradora onda elctrica afecta a los\nPokmon que hay combatiendo alrededor. Puede\nparalizar."
+                "effect": "Una deslumbradora onda eléctrica afecta a los\nPokémon que hay combatiendo alrededor. Puede\nparalizar."
             },
             "it": {
                 "effect": "Chi la usa colpisce i Pokmon che ha intorno\ncon un bagliore elettrico. Pu anche paralizzarli."
@@ -238755,7 +238755,7 @@
                 "effect": "Greift alles in seiner Umgebung mit tiefroten\nFlammen an. Ziel kann Verbrennungen erleiden."
             },
             "es": {
-                "effect": "Un infierno de llamas daa a los Pokmon\nadyacentes en combate. Puede quemar."
+                "effect": "Un infierno de llamas daa a los Pokémon\nadyacentes en combate. Puede quemar."
             },
             "it": {
                 "effect": "Chi la usa lancia fiamme scarlatte su tutti i\nPokmon nelle vicinanze, danneggiandoli.\nPu anche scottarli."
@@ -244301,7 +244301,7 @@
                 "effect": "Ziel wird durch Gras ins Straucheln gebracht.\nJe schwerer das Ziel, desto mehr Schaden."
             },
             "es": {
-                "effect": "Enreda al objetivo con hierba y lo derriba.\nCuanto ms pesado es el objetivo, ms dao\ninflige."
+                "effect": "Enreda al objetivo con hierba y lo derriba.\nCuanto ms pesado es el objetivo, ms daño\ninflige."
             },
             "it": {
                 "effect": "Chi la usa intrappola il bersaglio con lerba e lo fa\ncadere. Danneggia maggiormente i Pokmon\npi pesanti."
@@ -246045,7 +246045,7 @@
                 "effect": "Ziel wird von einem Elektrostrahl getroffen.\nSteigert eventuell Spezial-Angriff des Anwenders."
             },
             "es": {
-                "effect": "Lanza un rayo elctrico contra el objetivo. Puede\nsubir el Ataque Especial de quien lo usa."
+                "effect": "Lanza un rayo eléctrico contra el objetivo. Puede\nsubir el Ataque Especial de quien lo usa."
             },
             "it": {
                 "effect": "Chi la usa lancia un fascio di elettricit molto\nintensa. Pu anche aumentare il suo Attacco\nSpeciale."
@@ -246787,7 +246787,7 @@
                 "effect": "Anwender attackiert mit seinem robusten Krper.\nEr erleidet dabei auch selbst groen Schaden."
             },
             "es": {
-                "effect": "Arremete contra el objetivo con su robusto cuerpo.\nEl agresor tambin sufre bastante dao."
+                "effect": "Arremete contra el objetivo con su robusto cuerpo.\nEl agresor tambin sufre bastante daño."
             },
             "it": {
                 "effect": "Chi la usa si lancia con tutto il corpo contro\nil bersaglio, ma subisce anche considerevoli danni."
@@ -246893,7 +246893,7 @@
                 "effect": "Sehr schneller Angriff mit Erstschlaggarantie."
             },
             "es": {
-                "effect": "Ataque rpido que permite golpear en primer lugar."
+                "effect": "Ataque rápido que permite golpear en primer lugar."
             },
             "it": {
                 "effect": "Chi la usa colpisce sempre per primo e a una tale\nvelocit da rendersi quasi invisibile."
@@ -248153,7 +248153,7 @@
                 "effect": "Anwender geht K.O. Das an seine Stelle\ntretende Pokmon hat dafr volle KP und AP.\nStatusprobleme werden geheilt."
             },
             "es": {
-                "effect": "El usuario se debilita, pero el Pokmon que lo\nsustituye recupera su estado, los PS y los PP."
+                "effect": "El usuario se debilita, pero el Pokémon que lo\nsustituye recupera su estado, los PS y los PP."
             },
             "it": {
                 "effect": "Chi la usa va KO. Il Pokmon che lo sostituisce\nguarisce dai propri problemi di stato e recupera\nPS e PP."
@@ -249299,7 +249299,7 @@
                 "effect": "Wetzt seine Klauen, um sie zu schrfen.\nErhht Angriff und Genauigkeit des Anwenders."
             },
             "es": {
-                "effect": "El usuario se afila las garras para aumentar su\nAtaque y Precisin."
+                "effect": "El usuario se afila las garras para aumentar su\nAtaque y Precisión."
             },
             "it": {
                 "effect": "Chi la usa affila i propri artigli aumentando\nAttacco e precisione."
@@ -250619,7 +250619,7 @@
                 "effect": "Anwender erzeugt bizarren Raum, in dem ber\nfnf Runden die Verteidigung aller Pokmon\nmit ihrer Spezial-Verteidigung getauscht wird."
             },
             "es": {
-                "effect": "Crea una zona misteriosa donde se intercambian\nla Defensa y la Defensa Especial de todos los\nPokmon durante cinco turnos."
+                "effect": "Crea una zona misteriosa donde se intercambian\nla Defensa y la Defensa Especial de todos los\nPokémon durante cinco turnos."
             },
             "it": {
                 "effect": "Chi la usa crea una dimensione in cui Difesa\ne Difesa Speciale di tutti i Pokmon vengono\nscambiate per cinque turni."
@@ -250961,7 +250961,7 @@
                 "effect": "Anwender erzeugt eine seltsame Energiewelle,\ndie dem Ziel physischen Schaden zufgt."
             },
             "es": {
-                "effect": "Crea una onda psquica que causa dao fsico al\nobjetivo."
+                "effect": "Crea una onda psquica que causa daño fsico al\nobjetivo."
             },
             "it": {
                 "effect": "Chi la usa attacca il bersaglio facendo\nmaterializzare un misterioso raggio psichico\nche provoca danni fisici."
@@ -251459,7 +251459,7 @@
                 "effect": "berschttet das Ziel mit einer speziellen\ntoxischen Flssigkeit. Doppelt so stark gegen\nvergiftete Ziele."
             },
             "es": {
-                "effect": "Ataca cubriendo al objetivo con un lquido\nvenenoso. El dao ser doble si este ya est\nenvenenado."
+                "effect": "Ataca cubriendo al objetivo con un lquido\nvenenoso. El daño ser doble si este ya est\nenvenenado."
             },
             "it": {
                 "effect": "Lancia uno speciale liquido tossico sul bersaglio.\nSe questi  avvelenato, il danno provocato\nraddoppia."
@@ -252827,7 +252827,7 @@
                 "effect": "Anwender erzeugt einen bizarren Raum,\nin dem ber fnf Runden die Wirkung aller von\nPokmon getragenen Items aufgehoben ist."
             },
             "es": {
-                "effect": "Crea un espacio misterioso que inutiliza todos los\nobjetos de los Pokmon durante cinco turnos."
+                "effect": "Crea un espacio misterioso que inutiliza todos los\nobjetos de los Pokémon durante cinco turnos."
             },
             "it": {
                 "effect": "Chi la usa crea una dimensione in cui leffetto\ndegli strumenti di tutti i Pokmon  annullato\nper cinque turni."
@@ -253669,7 +253669,7 @@
                 "effect": "Bei Erfolg greift der Anwender mit berstenden\nFeuerblasen an. Die Funken der geplatzten Blasen\ntreffen auch benachbarte Ziele."
             },
             "es": {
-                "effect": "Golpea al objetivo con una llamarada que afecta\ntambin a los Pokmon adyacentes."
+                "effect": "Golpea al objetivo con una llamarada que afecta\ntambin a los Pokémon adyacentes."
             },
             "it": {
                 "effect": "Chi la usa emana una fiammata che colpisce\nil bersaglio e si propaga fino a raggiungere\ni Pokmon vicini."
@@ -253879,7 +253879,7 @@
                 "effect": "Greift Pokmon in der Nhe des Anwenders mit\neiner Schlammwelle an. Diese werden eventuell\nvergiftet."
             },
             "es": {
-                "effect": "Una onda txica que daa a los Pokmon de\nalrededor. Puede envenenar."
+                "effect": "Una onda tóxica que daa a los Pokémon de\nalrededor. Puede envenenar."
             },
             "it": {
                 "effect": "Lancia unonda di fango che attacca tutti\ni Pokmon nelle vicinanze. Pu anche avvelenarli."
@@ -254311,7 +254311,7 @@
                 "effect": "Anwender rammt das Ziel mit massivem Krper.\nJe schwerer er im Vergleich zum Ziel ist,\ndesto strker die Attacke."
             },
             "es": {
-                "effect": "El usuario golpea con todo su cuerpo. Cuanto\nmayor sea su peso comparado con el del objetivo,\nms dao causar."
+                "effect": "El usuario golpea con todo su cuerpo. Cuanto\nmayor sea su peso comparado con el del objetivo,\nms daño causar."
             },
             "it": {
                 "effect": "Chi la usa si lancia contro il bersaglio con tutto\nil proprio peso. Pi  pesante rispetto ad esso,\npi danni causa."
@@ -254737,7 +254737,7 @@
                 "effect": "Fgt Pokmon vom selben Typ, die sich in der\nNhe des Anwenders aufhalten, mit seltsamen\nDruckwellen Schaden zu."
             },
             "es": {
-                "effect": "Una extraa onda que daa a todos los Pokmon\nadyacentes del mismo tipo que el que la ejecuta."
+                "effect": "Una extraa onda que daa a todos los Pokémon\nadyacentes del mismo tipo que el que la ejecuta."
             },
             "it": {
                 "effect": "Chi la usa infligge danni a tutti i Pokmon\ndello stesso tipo che si trovano nelle vicinanze\nusando misteriose onde elettromagnetiche."
@@ -254951,7 +254951,7 @@
                 "effect": "Je hher die Initiative des Anwenders im Vergleich\nzum Ziel ist, desto strker trifft dieses eine\ngeballte Ladung Strom."
             },
             "es": {
-                "effect": "Lanza una bola elctrica. Cuanto mayor sea la\nVelocidad del usuario en comparacin con la del\nobjetivo, mayor ser el dao causado."
+                "effect": "Lanza una bola eléctrica. Cuanto mayor sea la\nVelocidad del usuario en comparacin con la del\nobjetivo, mayor ser el daño causado."
             },
             "it": {
                 "effect": "Chi la usa attacca con una sfera denergia elettrica.\nPi  rapido rispetto al bersaglio, pi danni arreca."
@@ -255213,7 +255213,7 @@
                 "effect": "berschttet das Ziel mit Unmengen an Wasser\nund ndert den Typ damit in Wasser um."
             },
             "es": {
-                "effect": "Potente lluvia que transforma al objetivo en un\nPokmon de tipo Agua."
+                "effect": "Potente lluvia que transforma al objetivo en un\nPokémon de tipo Agua."
             },
             "it": {
                 "effect": "Chi la usa proietta un lungo getto dacqua contro\nil bersaglio e lo rende un Pokmon di tipo Acqua."
@@ -255708,7 +255708,7 @@
                 "effect": "Anwender rollt sich zusammen und sammelt sich.\nDabei werden Angriff, Verteidigung und\nGenauigkeit erhht."
             },
             "es": {
-                "effect": "El usuario se concentra, lo que le permite\naumentar su Ataque, Defensa y Precisin."
+                "effect": "El usuario se concentra, lo que le permite\naumentar su Ataque, Defensa y Precisión."
             },
             "it": {
                 "effect": "Chi la usa si concentra aumentando Attacco,\nDifesa e precisione."
@@ -255839,7 +255839,7 @@
                 "effect": "Anwender greift mit blitzschnellen Bewegungen\ndie Beine des Zieles an und senkt dessen Initiative."
             },
             "es": {
-                "effect": "Ataque rpido dirigido a los pies del objetivo que\nle hace perder Velocidad."
+                "effect": "Ataque rápido dirigido a los pies del objetivo que\nle hace perder Velocidad."
             },
             "it": {
                 "effect": "Chi la usa colpisce con un attacco fulmineo\nla parte inferiore del corpo del bersaglio,\nriducendone la Velocit."
@@ -256643,7 +256643,7 @@
                 "effect": "Anwender macht sich die Kraft des Zieles zunutze.\nJe hher dessen Angriff, desto mehr Schaden\nrichtet die Attacke an."
             },
             "es": {
-                "effect": "El usuario emplea la fuerza del objetivo para\natacarlo. Cuanto mayor es el Ataque del objetivo,\nms dao provoca."
+                "effect": "El usuario emplea la fuerza del objetivo para\natacarlo. Cuanto mayor es el Ataque del objetivo,\nms daño provoca."
             },
             "it": {
                 "effect": "Chi la usa sfrutta la forza del bersaglio. Il danno\ninflitto  proporzionale allAttacco del nemico."
@@ -257505,7 +257505,7 @@
                 "effect": "Anwender ermglicht dem Ziel direkt nach ihm\nzu handeln, solange der Anwender als Erstes\nzum Zug kommt."
             },
             "es": {
-                "effect": "Si el usuario es el ms rpido, permite al objetivo\nusar un movimiento justo tras l, adelantndose a\nPokmon ms rpidos."
+                "effect": "Si el usuario es el ms rápido, permite al objetivo\nusar un movimiento justo tras l, adelantndose a\nPokémon ms rápidos."
             },
             "it": {
                 "effect": "Chi la usa aiuta un bersaglio pi lento\npermettendogli di agire subito dopo."
@@ -257855,7 +257855,7 @@
                 "effect": "Angriff mit Gesang. Singt der Anwender mit allen\nim Kanon, steigt die Strke."
             },
             "es": {
-                "effect": "Un canto que ataca al objetivo. Cuantos ms\nPokmon lo usan, ms aumenta de potencia."
+                "effect": "Un canto que ataca al objetivo. Cuantos ms\nPokémon lo usan, ms aumenta de potencia."
             },
             "it": {
                 "effect": "Attacca il bersaglio con una melodia. Se usata\ndurante lo stesso turno da pi Pokmon, i danni\ninflitti aumentano."
@@ -260633,7 +260633,7 @@
                 "effect": "Angriff mit widerhallender Stimme. Wenn in\njeder Runde ein Teilnehmer wiederholt\ndie Attacke einsetzt, steigt die Strke."
             },
             "es": {
-                "effect": "Un susurro que aumenta de potencia conforme el\nusuario y otros Pokmon lo van utilizando."
+                "effect": "Un susurro que aumenta de potencia conforme el\nusuario y otros Pokémon lo van utilizando."
             },
             "it": {
                 "effect": "Attacca il bersaglio con la propria voce\necheggiante. Se usata a ripetizione da uno\no pi Pokmon il danno aumenta."
@@ -261447,7 +261447,7 @@
                 "effect": "Eine durchdachte Attacke zu rechter Zeit.\nRichtet unabhngig von den Statusvernderungen\ndes Zieles Schaden an."
             },
             "es": {
-                "effect": "Un ataque que busca los puntos dbiles del\nobjetivo y puede causarle dao aunque cambien\nsus caractersticas."
+                "effect": "Un ataque que busca los puntos débiles del\nobjetivo y puede causarle daño aunque cambien\nsus caractersticas."
             },
             "it": {
                 "effect": "Chi la usa attacca non appena il bersaglio\nabbassa la guardia. Il danno inflitto prescinde\ndalle modifiche alle statistiche del bersaglio."
@@ -261951,7 +261951,7 @@
                 "effect": "Angriff mit angesparter Energie.\nJe hher die Statuswerte des Anwenders,\ndesto strker fllt die Attacke aus."
             },
             "es": {
-                "effect": "Acumula poder para golpear. Cuanto ms suban\nlas caractersticas del usuario, mayor ser el dao."
+                "effect": "Acumula poder para golpear. Cuanto ms suban\nlas caractersticas del usuario, mayor ser el daño."
             },
             "it": {
                 "effect": "Attacca il bersaglio con lenergia accumulata.\nPi sono state aumentate le statistiche, maggiore\n il danno inflitto."
@@ -262731,7 +262731,7 @@
                 "effect": "Wundersame Krfte teleportieren den Anwender\nan den Platz eines Mitstreiters."
             },
             "es": {
-                "effect": "Extrao poder que intercambia la posicin del\nusuario con la de un aliado sobre el terreno de\ncombate."
+                "effect": "Extraño poder que intercambia la posicin del\nusuario con la de un aliado sobre el terreno de\ncombate."
             },
             "it": {
                 "effect": "Chi la usa si teletrasporta al posto di un alleato\nin campo, grazie a un misterioso potere."
@@ -264195,7 +264195,7 @@
                 "effect": "Has double power if the target has a major status ailment."
             },
             "es": {
-                "effect": "Ataque que causa un gran dao a los objetivos que \nsufren problemas de estado."
+                "effect": "Ataque que causa un gran daño a los objetivos que \nsufren problemas de estado."
             },
             "fr": {
                 "effect": "Attaque acharne qui cause\ndavantage de dgts  lennemi\nsil a un problme de statut."
@@ -264917,7 +264917,7 @@
                 "effect": "Schleudert das Ziel davon und bewirkt damit,\ndass ein anderes Pokmon eingewechselt wird.\nBeendet Kmpfe gegen wilde Pokmon."
             },
             "es": {
-                "effect": "Lanza por los aires al objetivo y hace que salga\notro Pokmon. Si es uno salvaje, acaba el\ncombate."
+                "effect": "Lanza por los aires al objetivo y hace que salga\notro Pokémon. Si es uno salvaje, acaba el\ncombate."
             },
             "it": {
                 "effect": "Il bersaglio  scaraventato via ed  costretto\na lasciare il posto a un altro. Mette fine alle lotte\ncontro singoli Pokmon selvatici."
@@ -265785,7 +265785,7 @@
                 "name": "Verzgerung"
             },
             "es": {
-                "name": "ltimo Lugar"
+                "name": "úúltimo Lugar"
             },
             "it": {
                 "name": "Spintone"
@@ -265817,7 +265817,7 @@
                 "effect": "Anwender stemmt sich gegen das Ziel und bewirkt,\ndass dieses erst als Letztes angreift."
             },
             "es": {
-                "effect": "Consigue que el objetivo sea el ltimo en moverse."
+                "effect": "Consigue que el objetivo sea el úúltimo en moverse."
             },
             "it": {
                 "effect": "Chi la usa spinge via il bersaglio, costringendolo\nad agire per ultimo."
@@ -266517,7 +266517,7 @@
                 "effect": "Anwender bildet das Ziel nach und nimmt dabei\ndessen Typ an."
             },
             "es": {
-                "effect": "Cambia el tipo del Pokmon al mismo tipo que\nel del objetivo."
+                "effect": "Cambia el tipo del Pokémon al mismo tipo que\nel del objetivo."
             },
             "it": {
                 "effect": "Chi la usa cambia il proprio tipo in quello\ndel bersaglio."
@@ -267469,7 +267469,7 @@
                 "effect": "Ein Angriff, der dem Ziel Schaden in Hhe\nder aktuellen KP des Anwenders zufgt.\nLetzterer wird dadurch selbst besiegt."
             },
             "es": {
-                "effect": "El usuario se sacrifica causndole un dao al\nobjetivo equivalente a sus propios PS perdidos."
+                "effect": "El usuario se sacrifica causndole un daño al\nobjetivo equivalente a sus propios PS perdidos."
             },
             "it": {
                 "effect": "Chi la usa attacca con tutta la potenza di cui\ndispone e va KO, ma infligge al bersaglio un danno\npari ai PS che ha perso."
@@ -267813,7 +267813,7 @@
                 "effect": "Anwender greift das Ziel an, indem er es\nmit dichten Flammen umhllt. Ziel erleidet\nVerbrennungen."
             },
             "es": {
-                "effect": "Ataca con una gran rfaga de fuego que causa\nquemaduras."
+                "effect": "Ataca con una gran ráfaga de fuego que causa\nquemaduras."
             },
             "it": {
                 "effect": "Il bersaglio viene avvolto da intense fiammate\nche causano scottature."
@@ -268436,7 +268436,7 @@
                 "effect": "Anwender kehrt nach dem Angriff mit\natemberaubender Geschwindigkeit zurck\nund tauscht Platz mit einem anderen Pokmon."
             },
             "es": {
-                "effect": "Tras atacar, vuelve a toda prisa para dar paso a\notro Pokmon del equipo."
+                "effect": "Tras atacar, vuelve a toda prisa para dar paso a\notro Pokémon del equipo."
             },
             "it": {
                 "effect": "Chi usa questa mossa si tira indietro per farsi\nsostituire dopo aver sferrato lattacco."
@@ -268719,7 +268719,7 @@
                 "effect": "Anwender leistet Widerstand und greift an.\nDer Spezial-Angriff der Ziele sinkt."
             },
             "es": {
-                "effect": "El usuario opone resistencia y ataca a los\noponentes. Tambin reduce su Ataque Especial.\n"
+                "effect": "El usuario opone resistencia y ataca a los\noponentes. También reduce su Ataque Especial.\n"
             },
             "it": {
                 "effect": "Colpisce i nemici intorno opponendo resistenza\ne riducendo il loro Attacco Speciale."
@@ -269089,7 +269089,7 @@
                 "effect": "Anwender greift an, indem er den Boden\num sich herum plattwalzt. Die Initiative aller\nbetroffenen Pokmon sinkt."
             },
             "es": {
-                "effect": "Sacudida ssmica que afecta a los dems Pokmon\nadyacentes y tambin reduce su Velocidad."
+                "effect": "Sacudida ssmica que afecta a los dems Pokémon\nadyacentes y tambin reduce su Velocidad."
             },
             "it": {
                 "effect": "Chi la usa calpesta il terreno e scatena un\nterremoto che danneggia i Pokmon nei paraggi,\nriducendone la Velocit."
@@ -270381,7 +270381,7 @@
                 "effect": "Putzt das Ziel vom Feld und wechselt\nes mit einem anderen Pokmon aus.\nBeendet Kmpfe gegen wilde Pokmon."
             },
             "es": {
-                "effect": "Ataca al objetivo y lo obliga a cambiarse por otro\nPokmon. Si es uno salvaje, acaba el combate."
+                "effect": "Ataca al objetivo y lo obliga a cambiarse por otro\nPokémon. Si es uno salvaje, acaba el combate."
             },
             "it": {
                 "effect": "Chi la usa fa volar via il bersaglio in modo che\nvenga sostituito. Se il bersaglio  un singolo\nPokmon selvatico, la lotta finisce."
@@ -271741,7 +271741,7 @@
                 "effect": "Fngt Ziele mit einem elektrischen Netz\nund senkt deren Initiative."
             },
             "es": {
-                "effect": "Atrapa y ataca a los objetivos con una telaraa\nelctrica. Tambin reduce su Velocidad."
+                "effect": "Atrapa y ataca a los objetivos con una telaraa\neléctrica. También reduce su Velocidad."
             },
             "it": {
                 "effect": "Chi la usa attacca i nemici intorno a s\ncatturandoli con una ragnatela elettrica\ne riducendone la Velocit."
@@ -272111,7 +272111,7 @@
                 "effect": "Anwender erzeugt Spannung und greift an,\nindem er auf Kollisionskurs geht. Er selbst\nerleidet dabei ebenfalls leichten Schaden."
             },
             "es": {
-                "effect": "Carga elctrica muy potente que tambin hiere\nligeramente a quien la usa."
+                "effect": "Carga eléctrica muy potente que tambin hiere\nligeramente a quien la usa."
             },
             "it": {
                 "effect": "Chi la usa si carica di elettricit per poi scagliarsi\nsul bersaglio, ma subisce dei danni per\nil contraccolpo."
@@ -273175,7 +273175,7 @@
                 "effect": "Greift Ziel mit Astgeweih an und zapft diesem\nNhrstoffe ab. Anwender wird um die Hlfte\ndes zugefgten Schadens geheilt."
             },
             "es": {
-                "effect": "Un golpe que drena energa. El Pokmon recupera\nla mitad de los PS arrebatados al objetivo."
+                "effect": "Un golpe que drena energa. El Pokémon recupera\nla mitad de los PS arrebatados al objetivo."
             },
             "it": {
                 "effect": "Chi la usa infilza il bersaglio con le corna e\nassorbe una quantit di PS pari a met\ndel danno inferto."
@@ -273391,7 +273391,7 @@
                 "effect": "Schneideangriff mit einer scharfen Muschelschale.\nSenkt eventuell die Verteidigung des Zieles."
             },
             "es": {
-                "effect": "Una afilada vieira ataca al objetivo. Tambin puede\nhacer disminuir su Defensa."
+                "effect": "Una afilada vieira ataca al objetivo. También puede\nhacer disminuir su Defensa."
             },
             "it": {
                 "effect": "Chi la usa colpisce il bersaglio con il suo guscio\naffilato. Il colpo pu anche ridurre la Difesa\ndel bersaglio."
@@ -273533,7 +273533,7 @@
                 "effect": "Rempelattacke mit brennendem Krper.\nJe schwerer der Anwender im Vergleich\nzum Ziel ist, desto strker die Attacke."
             },
             "es": {
-                "effect": "El usuario ataca con su cuerpo ardiente. Cuanto\nmayor sea su peso comparado con el del objetivo,\nms dao causar."
+                "effect": "El usuario ataca con su cuerpo ardiente. Cuanto\nmayor sea su peso comparado con el del objetivo,\nms daño causar."
             },
             "it": {
                 "effect": "Chi la usa carica con il suo corpo rovente. Pi \npesante rispetto al bersaglio e pi danni causa."
@@ -273694,7 +273694,7 @@
                 "effect": "Anwender greift an, indem er das Ziel in scharfes\nBlattwerk einwickelt. Kann die Genauigkeit des Zieles\nsenken."
             },
             "es": {
-                "effect": "Tritura con afiladas hojas y puede bajar la Precisin \ndel objetivo."
+                "effect": "Tritura con afiladas hojas y puede bajar la Precisión \ndel objetivo."
             },
             "fr": {
                 "effect": "Lennemi est pris dans un tourbillon de\nfeuilles acres. Peut aussi baisser\nla Prcision de lennemi."
@@ -273911,7 +273911,7 @@
                 "effect": "Anwender schtzt sich, indem er\nsich in einen luftigen Flaum hllt.\nErhht die Verteidigung drastisch."
             },
             "es": {
-                "effect": "Cubre al Pokmon con una madeja protectora.\nAumenta muchsimo la Defensa."
+                "effect": "Cubre al Pokémon con una madeja protectora.\nAumenta muchsimo la Defensa."
             },
             "it": {
                 "effect": "Chi la usa avvolge il proprio corpo con del cotone\nmolto morbido, proteggendosi e aumentando\nmoltissimo la propria Difesa."
@@ -274033,7 +274033,7 @@
                 "effect": "Has a 40% chance to lower the target's accuracy by one stage."
             },
             "es": {
-                "effect": "Ataca al objetivo con una onda siniestra.\nPuede bajar su Precisin."
+                "effect": "Ataca al objetivo con una onda siniestra.\nPuede bajar su Precisión."
             },
             "fr": {
                 "effect": "Le lanceur attaque lennemi avec une onde\nde choc tnbreuse. Peut aussi baisser la\nPrcision de lennemi."
@@ -274135,7 +274135,7 @@
                 "effect": "Anwender erzeugt seltsame Energiewellen,\ndie dem Ziel physischen Schaden zufgen."
             },
             "es": {
-                "effect": "Crea una onda psquica que causa dao fsico al\nobjetivo."
+                "effect": "Crea una onda psquica que causa daño fsico al\nobjetivo."
             },
             "it": {
                 "effect": "Chi la usa attacca il bersaglio facendo\nmaterializzare un misterioso raggio psichico\nche provoca danni fisici."
@@ -274717,7 +274717,7 @@
                 "effect": "  \n  .\n   ."
             },
             "es": {
-                "effect": "Propina un tremendo cabezazo. Tambin daa al\nusuario un poco."
+                "effect": "Propina un tremendo cabezazo. También daa al\nusuario un poco."
             },
             "it": {
                 "effect": "Chi la usa carica il bersaglio con la testa in\nstile afro, ma subisce un po di danni per il\ncontraccolpo."
@@ -274897,7 +274897,7 @@
                 "effect": "Greift alles in seiner Umgebung mit tiefroten\nFlammen an. Ziel kann Verbrennungen erleiden."
             },
             "es": {
-                "effect": "Un infierno de llamas daa a los Pokmon\nadyacentes en combate. Puede quemar."
+                "effect": "Un infierno de llamas daa a los Pokémon\nadyacentes en combate. Puede quemar."
             },
             "it": {
                 "effect": "Chi la usa lancia fiamme scarlatte su tutti i Pokmon\nnelle vicinanze, danneggiandoli. Pu anche scottarli."
@@ -275175,7 +275175,7 @@
                 "effect": "Schneideangriff mit dem langen Schwert\ndes Anwenders. Die mysterise Kraft aus\ndem Horn erzeugt physischen Schaden."
             },
             "es": {
-                "effect": "Ensarta al objetivo con un sable, hirindolo con su\nmstico poder. Produce dao fsico."
+                "effect": "Ensarta al objetivo con un sable, hirindolo con su\nmstico poder. Produce daño fsico."
             },
             "it": {
                 "effect": "Chi la usa attacca il bersaglio tagliandolo con una\nspada mistica. La misteriosa energia sprigionata\nprovoca danni fisici."
@@ -275363,7 +275363,7 @@
                 "effect": "Ldt seinen Krper mit einer gewaltigen Menge\nan Elektrizitt auf und rammt damit das Ziel.\nZiel wird eventuell paralysiert."
             },
             "es": {
-                "effect": "Ataca envolvindose de una gran carga elctrica y\nembistiendo al objetivo con ella. Puede paralizar."
+                "effect": "Ataca envolvindose de una gran carga eléctrica y\nembistiendo al objetivo con ella. Puede paralizar."
             },
             "it": {
                 "effect": "Colpisce il bersaglio con una possente carica\nelettrica e pu anche paralizzarlo."
@@ -276439,7 +276439,7 @@
                 "name": "Kreuzflamme"
             },
             "es": {
-                "name": "Llama Fusin"
+                "name": "Llama Fusión"
             },
             "it": {
                 "name": "Incrofiamma"
@@ -276471,7 +276471,7 @@
                 "effect": "Feuert eine monstrse Flamme ab.\nWird die Attacke durch einen gigantischen\nBlitz modifiziert, steigt die Strke."
             },
             "es": {
-                "effect": "Ataca con una llamarada gigantesca. Aumenta su\npotencia si es influenciada por una gran energa\nelctrica."
+                "effect": "Ataca con una llamarada gigantesca. Aumenta su\npotencia si es influenciada por una gran energa\neléctrica."
             },
             "it": {
                 "effect": "Chi la usa lancia una fiammata enorme. Se usata in\ncombinazione con Incrotuono, il danno provocato\ndalla mossa aumenta."
@@ -276529,7 +276529,7 @@
                 "name": "Kreuzdonner"
             },
             "es": {
-                "name": "Rayo Fusin"
+                "name": "Rayo Fusión"
             },
             "it": {
                 "name": "Incrotuono"
@@ -276561,7 +276561,7 @@
                 "effect": "Feuert einen monstrsen Blitz ab.\nWird die Attacke durch eine gigantische\nFlamme modifiziert, steigt die Strke."
             },
             "es": {
-                "effect": "Ataca con una enorme descarga elctrica.\nAumenta su potencia si es influenciada por\nuna gigantesca llamarada."
+                "effect": "Ataca con una enorme descarga eléctrica.\nAumenta su potencia si es influenciada por\nuna gigantesca llamarada."
             },
             "it": {
                 "effect": "Chi la usa lancia un fulmine enorme. Se usata in\ncombinazione con Incrofiamma, il danno provocato\ndalla mossa aumenta."
