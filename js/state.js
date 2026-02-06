@@ -26,12 +26,17 @@ let progresoUsuario = {};
 let contextoReinicio = null; // Variable para saber qué sección reiniciar
 let estadoRegiones = {}; // Estado de colapso de las regiones
 
-// Estados de selección de ciudades para los mapas
-let ciudadSeleccionadaKanto = null;
-let ciudadSeleccionadaJohto = null;
-let ciudadSeleccionadaHoenn = null;
-let ciudadSeleccionadaSinnoh = null;
-let ciudadSeleccionadaTeselia = null;
+// Constantes
+const REGIONES_CON_MAPA = ['Kanto', 'Johto', 'Hoenn', 'Sinnoh', 'Teselia'];
+
+// Estados de selección de ciudades para los mapas (consolidados en un objeto)
+let ciudadesSeleccionadas = {
+    'Kanto': null,
+    'Johto': null,
+    'Hoenn': null,
+    'Sinnoh': null,
+    'Teselia': null
+};
 
 /**
  * Carga el progreso desde LocalStorage al iniciar la app.
@@ -133,4 +138,43 @@ function limpiarProgreso() {
     localStorage.removeItem(CLAVE_ALMACENAMIENTO);
     progresoUsuario = {};
     location.reload();
+}
+
+// --- FUNCIONES DE UTILIDAD ---
+
+/**
+ * Genera un ID único y consistente para un gimnasio.
+ * Formato: "region-lider" en minúsculas
+ * @param {string} region - Nombre de la región
+ * @param {string} id - ID único del gimnasio (nombre del líder)
+ * @returns {string} ID consistente
+ */
+function obtenerIdGimnasio(region, id) {
+    if (!region || !id) return 'unknown-id';
+    return `${region}-${id}`.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+}
+
+/**
+ * Formatea una fecha al formato local
+ * @param {string|Date} fecha - Fecha a formatear
+ * @returns {string} Fecha formateada
+ */
+function formatearFecha(fecha) {
+    return new Date(fecha).toLocaleString();
+}
+
+/**
+ * Normaliza el nombre de un líder para construir rutas de imágenes.
+ * Remueve acentos, caracteres especiales y convierte a minúsculas.
+ * @param {string} nombreLider - Nombre del líder
+ * @returns {string} Nombre normalizado
+ */
+function normalizarNombreLider(nombreLider) {
+    return nombreLider
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\./g, '')
+        .replace(/,/g, '')
+        .replace(/\s+/g, '_')
+        .toLowerCase();
 }

@@ -8,49 +8,6 @@
  */
 
 /**
- * --- FUNCIONES DE UTILIDAD Y ESTADO GLOBAL (Faltantes) ---
- * Estas funciones son requeridas por el resto de módulos para funcionar.
- */
-
-// Inicializar estado de progreso si no existe
-if (typeof progresoUsuario === 'undefined') {
-    window.progresoUsuario = JSON.parse(localStorage.getItem('progresoUsuario')) || {};
-}
-
-window.guardarProgreso = function() {
-    localStorage.setItem('progresoUsuario', JSON.stringify(progresoUsuario));
-};
-
-window.obtenerIdGimnasio = function(region, id) {
-    if (!region || !id) return 'unknown-id';
-    // Genera un ID consistente: "Region-Lider" -> "region-lider"
-    return `${region}-${id}`.toLowerCase().replace(/[^a-z0-9-]/g, '-');
-};
-
-window.formatearFecha = function(fecha) {
-    return new Date(fecha).toLocaleString();
-};
-
-window.reproducirSonido = function(sonido) {
-    // Placeholder para evitar errores si falta el sistema de audio
-    // console.log(`Reproduciendo sonido: ${sonido}`);
-};
-
-window.crearElementoEncuentro = function(gimnasio) {
-    const li = document.createElement('li');
-    li.className = 'gym-item encounter';
-    
-    let gifPokemon = '';
-    const legendarios = ['Zapdos', 'Moltres', 'Articuno', 'Entei', 'Suicune', 'Raikou'];
-    if (legendarios.includes(gimnasio.lider)) {
-        gifPokemon = `<div style="margin-top: 5px;"><img src="../img/${gimnasio.lider.toLowerCase()}.gif" alt="${gimnasio.lider}" style="height: 90px;" onerror="this.style.display='none'"></div>`;
-    }
-    
-    li.innerHTML = `<div class="gym-info"><h3>${gimnasio.lider || 'Desconocido'}</h3>${gifPokemon}</div>`;
-    return li;
-};
-
-/**
  * Controlador principal de clics en elementos de lista (Gimnasios o Huerto).
  * Delega la acción a `procesarClickSemilla` o `procesarClickGimnasio` según el tipo.
  */
@@ -531,40 +488,19 @@ function renderizarAplicacion() {
 
             tarjeta.appendChild(cabecera);
 
-            if (region.nombre === "Kanto" || region.nombre === "Johto" || region.nombre === "Hoenn" || region.nombre === "Sinnoh" || region.nombre === "Teselia") {
+            if (REGIONES_CON_MAPA.includes(region.nombre)) {
                 const regionLower = region.nombre.toLowerCase();
-                let coordsMap = {};
-                let ciudadSeleccionada = null;
-                let setCiudadSeleccionada = null;
-                let getCiudadSeleccionada = null;
-                let imgMapaSrc = `../img/mapas/${regionLower}_mapa.png`;
-
-                if (region.nombre === "Kanto") {
-                    coordsMap = coordenadasKanto;
-                    ciudadSeleccionada = ciudadSeleccionadaKanto;
-                    setCiudadSeleccionada = (c) => ciudadSeleccionadaKanto = c;
-                    getCiudadSeleccionada = () => ciudadSeleccionadaKanto;
-                } else if (region.nombre === "Johto") {
-                    coordsMap = coordenadasJohto;
-                    ciudadSeleccionada = ciudadSeleccionadaJohto;
-                    setCiudadSeleccionada = (c) => ciudadSeleccionadaJohto = c;
-                    getCiudadSeleccionada = () => ciudadSeleccionadaJohto;
-                } else if (region.nombre === "Hoenn") {
-                    coordsMap = coordenadasHoenn;
-                    ciudadSeleccionada = ciudadSeleccionadaHoenn;
-                    setCiudadSeleccionada = (c) => ciudadSeleccionadaHoenn = c;
-                    getCiudadSeleccionada = () => ciudadSeleccionadaHoenn;
-                } else if (region.nombre === "Sinnoh") {
-                    coordsMap = coordenadasSinnoh;
-                    ciudadSeleccionada = ciudadSeleccionadaSinnoh;
-                    setCiudadSeleccionada = (c) => ciudadSeleccionadaSinnoh = c;
-                    getCiudadSeleccionada = () => ciudadSeleccionadaSinnoh;
-                } else if (region.nombre === "Teselia") {
-                    coordsMap = coordenadasTeselia;
-                    ciudadSeleccionada = ciudadSeleccionadaTeselia;
-                    setCiudadSeleccionada = (c) => ciudadSeleccionadaTeselia = c;
-                    getCiudadSeleccionada = () => ciudadSeleccionadaTeselia;
-                }
+                
+                // Obtener coordenadas según la región
+                const coordsMapByRegion = {
+                    'Kanto': coordenadasKanto,
+                    'Johto': coordenadasJohto,
+                    'Hoenn': coordenadasHoenn,
+                    'Sinnoh': coordenadasSinnoh,
+                    'Teselia': coordenadasTeselia
+                };
+                const coordsMap = coordsMapByRegion[region.nombre];
+                const imgMapaSrc = `../img/mapas/${regionLower}_mapa.png`;
 
                 const contenedorMapa = document.createElement('div');
                 contenedorMapa.className = `${regionLower}-map-container`;
@@ -615,15 +551,15 @@ function renderizarAplicacion() {
 
                         dot.onclick = (e) => {
                             e.stopPropagation();
-                            if (getCiudadSeleccionada() === gimnasio.ciudad) {
-                                setCiudadSeleccionada(null);
+                            if (ciudadesSeleccionadas[region.nombre] === gimnasio.ciudad) {
+                                ciudadesSeleccionadas[region.nombre] = null;
                             } else {
-                                setCiudadSeleccionada(gimnasio.ciudad);
+                                ciudadesSeleccionadas[region.nombre] = gimnasio.ciudad;
                             }
                             actualizarInterfazMapa(region.nombre);
                         };
 
-                        if (ciudadSeleccionada === gimnasio.ciudad) {
+                        if (ciudadesSeleccionadas[region.nombre] === gimnasio.ciudad) {
                             dot.classList.add('active');
                         }
 
@@ -634,10 +570,10 @@ function renderizarAplicacion() {
                 const panelDetalles = document.createElement('div');
                 panelDetalles.className = `${regionLower}-details-panel`;
 
-                if (ciudadSeleccionada) {
-                    let gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadSeleccionada);
+                if (ciudadesSeleccionadas[region.nombre]) {
+                    let gymSeleccionado = region.gimnasios.find(g => g.ciudad === ciudadesSeleccionadas[region.nombre]);
                     if (!gymSeleccionado && region.entrenadoresEspeciales) {
-                        gymSeleccionado = region.entrenadoresEspeciales.find(g => g.ciudad === ciudadSeleccionada);
+                        gymSeleccionado = region.entrenadoresEspeciales.find(g => g.ciudad === ciudadesSeleccionadas[region.nombre]);
                     }
 
                     if (gymSeleccionado) {
@@ -693,7 +629,7 @@ function renderizarAplicacion() {
                             });
                             panelDetalles.appendChild(divLider);
                         } else {
-                            const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_').toLowerCase();
+                            const nombreArchivo = normalizarNombreLider(gymSeleccionado.lider);
                             const imgLider = document.createElement('img');
                             imgLider.className = 'leader-model';
                             imgLider.style.cursor = 'pointer';
@@ -731,7 +667,7 @@ function renderizarAplicacion() {
                     itemGimnasio.style.cursor = 'pointer';
                     itemGimnasio.onclick = () => alternarGimnasio(region.nombre, gimnasio, itemGimnasio);
                     
-                    const nombreArchivo = gimnasio.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_').toLowerCase();
+                    const nombreArchivo = normalizarNombreLider(gimnasio.lider);
                     
                     if (gimnasio.lider === 'Alto Mando') {
                         itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/alto_mando.png')`;
@@ -1034,40 +970,3 @@ function configurarInterfazDatos() {
     contenedorUsuario.appendChild(botonImportar);
     contenedorUsuario.appendChild(inputArchivo);
 }
-
-// --- INICIALIZACIÓN DE LA APLICACIÓN ---
-document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Definir variables globales de datos si no existen para evitar errores de referencia
-    if (typeof datosGimnasios === 'undefined') window.datosGimnasios = [];
-    if (typeof datosHuerto === 'undefined') window.datosHuerto = [];
-    if (typeof datosBayas === 'undefined') window.datosBayas = [];
-    if (typeof datosRotacionLegendarios === 'undefined') window.datosRotacionLegendarios = [];
-
-    // 2. Intentar cargar datos de bayas.json si datosHuerto está vacío
-    if (window.datosHuerto.length === 0) {
-        try {
-            // Intentar cargar desde ruta relativa (para subcarpetas) o fallback a ruta raíz
-            let response = await fetch('../js/data/bayas.json');
-            
-            if (!response.ok) {
-                response = await fetch('js/data/bayas.json');
-            }
-
-            if (response.ok) {
-                const data = await response.json();
-                window.datosHuerto = data.datosHuerto;
-                window.datosBayas = data.datosBayas;
-                console.log("Datos de bayas cargados correctamente.");
-            }
-        } catch (error) {
-            console.warn("No se pudo cargar js/data/bayas.json automáticamente. Asegúrate de que el archivo existe y estás usando un servidor local (http://) y no file://", error);
-        }
-    }
-
-    // 3. Configurar componentes y renderizar
-    configurarModalImagen();
-    configurarInterfazDatos();
-    cargarNavegacion();
-    renderizarAplicacion();
-    setInterval(actualizarTemporizadores, 1000);
-});

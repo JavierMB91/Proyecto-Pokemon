@@ -165,15 +165,7 @@ function actualizarInterfazMapa(nombreRegion) {
         }
     }
 
-    let ciudadSeleccionada = null;
-    
-    switch (nombreRegion) {
-        case 'Kanto': ciudadSeleccionada = ciudadSeleccionadaKanto; break;
-        case 'Johto': ciudadSeleccionada = ciudadSeleccionadaJohto; break;
-        case 'Hoenn': ciudadSeleccionada = ciudadSeleccionadaHoenn; break;
-        case 'Sinnoh': ciudadSeleccionada = ciudadSeleccionadaSinnoh; break;
-        case 'Teselia': ciudadSeleccionada = ciudadSeleccionadaTeselia; break;
-    }
+    const ciudadSeleccionada = ciudadesSeleccionadas[nombreRegion];
 
     const dots = container.querySelectorAll('.map-city-dot');
     dots.forEach(dot => {
@@ -267,7 +259,7 @@ function actualizarInterfazMapa(nombreRegion) {
                 });
                 panelDetalles.appendChild(divLider);
             } else {
-                const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_').toLowerCase();
+                const nombreArchivo = normalizarNombreLider(gymSeleccionado.lider);
                 const imgLider = document.createElement('img');
                 imgLider.className = 'leader-model';
                 imgLider.style.cursor = 'pointer';
