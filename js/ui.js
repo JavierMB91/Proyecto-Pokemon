@@ -666,7 +666,7 @@ function renderizarAplicacion() {
                                 divLider.appendChild(img);
                             });
                             panelDetalles.appendChild(divLider);
-                        } else if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
+                        } else if (gymSeleccionado.lider.includes('Zeo') && (gymSeleccionado.lider.includes('Millo') || gymSeleccionado.lider.includes('Maz'))) {
                             const divLider = document.createElement('div');
                             divLider.className = 'leader-model';
                             divLider.style.display = 'flex';
@@ -693,7 +693,7 @@ function renderizarAplicacion() {
                             });
                             panelDetalles.appendChild(divLider);
                         } else {
-                            const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                            const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_').toLowerCase();
                             const imgLider = document.createElement('img');
                             imgLider.className = 'leader-model';
                             imgLider.style.cursor = 'pointer';
@@ -731,7 +731,7 @@ function renderizarAplicacion() {
                     itemGimnasio.style.cursor = 'pointer';
                     itemGimnasio.onclick = () => alternarGimnasio(region.nombre, gimnasio, itemGimnasio);
                     
-                    const nombreArchivo = gimnasio.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                    const nombreArchivo = gimnasio.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_').toLowerCase();
                     
                     if (gimnasio.lider === 'Alto Mando') {
                         itemGimnasio.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/alto_mando.png')`;

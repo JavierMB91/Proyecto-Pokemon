@@ -125,3 +125,12 @@ async function cargarDatos() {
         alert("Error cargando los datos del juego. Revisa la consola.");
     }
 }
+
+/**
+ * Limpia completamente el progreso guardado y recarga la página.
+ */
+function limpiarProgreso() {
+    localStorage.removeItem(CLAVE_ALMACENAMIENTO);
+    progresoUsuario = {};
+    location.reload();
+}

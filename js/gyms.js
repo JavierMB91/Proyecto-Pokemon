@@ -240,7 +240,7 @@ function actualizarInterfazMapa(nombreRegion) {
                     divLider.appendChild(img);
                 });
                 panelDetalles.appendChild(divLider);
-            } else if (gymSeleccionado.lider === 'Zeo, Maíz y Millo') {
+            } else if (gymSeleccionado.lider.includes('Zeo') && (gymSeleccionado.lider.includes('Millo') || gymSeleccionado.lider.includes('Maz'))) {
                 const divLider = document.createElement('div');
                 divLider.className = 'leader-model';
                 divLider.style.display = 'flex';
@@ -267,7 +267,7 @@ function actualizarInterfazMapa(nombreRegion) {
                 });
                 panelDetalles.appendChild(divLider);
             } else {
-                const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_');
+                const nombreArchivo = gymSeleccionado.lider.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\./g, '').replace(/,/g, '').replace(/\s+/g, '_').toLowerCase();
                 const imgLider = document.createElement('img');
                 imgLider.className = 'leader-model';
                 imgLider.style.cursor = 'pointer';
