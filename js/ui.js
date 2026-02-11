@@ -333,48 +333,6 @@ function renderizarAplicacion() {
         secciones.push({ datos: datosRotacionLegendarios, maxSlots: 2, ancho: true });
     } else if (ruta.includes('semillas')) {
         secciones.push({ datos: datosHuerto, maxSlots: 1 });
-    } else if (ruta.includes('pokedex')) {
-        // Estructura de la Pokédex
-        const pokedexContainer = document.createElement('div');
-        pokedexContainer.className = 'pokedex-container';
-        
-        // Sección de búsqueda y filtros
-        const searchSection = document.createElement('section');
-        searchSection.className = 'search-section';
-        searchSection.innerHTML = `
-            <div class="search-bar">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Buscar Pokémon por nombre..." 
-                    class="search-input"
-                >
-            </div>
-
-            <div class="filters">
-                <select id="typeFilter" class="filter-select">
-                    <option value="">Todos los tipos</option>
-                </select>
-
-                <select id="generationFilter" class="filter-select">
-                    <option value="">Todas las generaciones</option>
-                </select>
-
-                <select id="regionFilter" class="filter-select">
-                    <option value="">Todas las regiones</option>
-                </select>
-            </div>
-        `;
-        pokedexContainer.appendChild(searchSection);
-        
-        // Sección de galería de Pokémon
-        const gridSection = document.createElement('section');
-        gridSection.className = 'pokedex-grid';
-        gridSection.id = 'pokemonGrid';
-        pokedexContainer.appendChild(gridSection);
-        
-        contenedorApp.appendChild(pokedexContainer);
-        return;
     } else {
         const tablero = document.createElement('div');
         tablero.className = 'battle-dashboard';
