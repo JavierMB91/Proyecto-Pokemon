@@ -48,7 +48,10 @@ function actualizarTemporizadores() {
             temporizador.classList.remove('ready');
         } else {
             if (temporizador.getAttribute('data-auto-reset') === 'true') {
-                idsParaReiniciar.push(temporizador.getAttribute('data-gym-id'));
+                const id = temporizador.getAttribute('data-gym-id');
+                if (!idsParaReiniciar.includes(id)) {
+                    idsParaReiniciar.push(id);
+                }
             } else {
                 if (!temporizador.classList.contains('ready')) {
                     const idGimnasioActual = temporizador.getAttribute('data-gym-id');
@@ -83,6 +86,44 @@ function actualizarTemporizadores() {
             }
         }
     });
+
+    // Verificación de vencimiento en segundo plano (para elementos no renderizados como en el mapa)
+    if (typeof datosGimnasios !== 'undefined' && Array.isArray(datosGimnasios)) {
+        datosGimnasios.forEach(region => {
+            const items = [...region.gimnasios];
+            if (region.entrenadoresEspeciales) {
+                items.push(...region.entrenadoresEspeciales);
+            }
+
+            items.forEach(gimnasio => {
+                // Excluir huerto (tienen tipo 'seed-...') ya que no se reinician solos
+                if (gimnasio.tipo && gimnasio.tipo.startsWith('seed')) return;
+
+                const idUnico = gimnasio.id || gimnasio.lider;
+                // Asegurarse de que obtenerIdGimnasio esté disponible
+                if (typeof obtenerIdGimnasio === 'function') {
+                    const idGimnasio = obtenerIdGimnasio(region.nombre, idUnico);
+                    
+                    // Si ya está en la lista por el DOM, saltar
+                    if (idsParaReiniciar.includes(idGimnasio)) return;
+
+                    const progreso = progresoUsuario[idGimnasio];
+                    if (progreso && progreso.timestamp) {
+                        const enfriamiento = gimnasio.duracion || gimnasio.enfriamiento || 18;
+                        // Usar duración personalizada si existe
+                        const duracionReal = progreso.duracionPersonalizada || enfriamiento;
+                        
+                        const fecha = new Date(progreso.timestamp);
+                        const tiempoReinicio = fecha.getTime() + (duracionReal * 60 * 60 * 1000);
+                        
+                        if (ahora >= tiempoReinicio) {
+                            idsParaReiniciar.push(idGimnasio);
+                        }
+                    }
+                }
+            });
+        });
+    }
 
     if (idsParaReiniciar.length > 0) {
         let cambiado = false;
