@@ -119,6 +119,21 @@ async function cargarDatos() {
         coordenadasTeselia = gymsData.coordenadasTeselia;
         medallasPorRegion = gymsData.medallasPorRegion;
 
+        // Corrección de datos para Teselia (Ciudad Caolín y Líder Iris)
+        const regionTeselia = datosGimnasios.find(r => r.nombre === 'Teselia');
+        if (regionTeselia) {
+            const gymCaolin = regionTeselia.gimnasios.find(g => g.ciudad === 'Ciudad Caoln');
+            if (gymCaolin) {
+                const ciudadErronea = gymCaolin.ciudad;
+                gymCaolin.ciudad = 'Ciudad Caolín';
+                gymCaolin.lider = 'Iris';
+                if (coordenadasTeselia && coordenadasTeselia[ciudadErronea]) {
+                    coordenadasTeselia['Ciudad Caolín'] = coordenadasTeselia[ciudadErronea];
+                    delete coordenadasTeselia[ciudadErronea];
+                }
+            }
+        }
+
         const bayasData = await bayasRes.json();
         datosBayas = bayasData.datosBayas;
         datosHuerto = bayasData.datosHuerto;
