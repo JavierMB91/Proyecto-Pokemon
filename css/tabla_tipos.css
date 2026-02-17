@@ -72,7 +72,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 25px;
-    min-height: 600px; /* Estabiliza el tamaño para que no salte al elegir tipos */
+    min-height: 600px;
 }
 
 .instruction {
@@ -87,7 +87,7 @@
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.2);
-    min-height: 120px; /* Asegura que las secciones vacías ocupen espacio */
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
@@ -96,6 +96,12 @@
 .effect-section.empty-section {
     opacity: 0.3;
     border-style: dashed;
+}
+
+/* New class for pre-selection state */
+.badges-grid.hidden-initial {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .effect-section h3 {

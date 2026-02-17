@@ -5,18 +5,17 @@ const typeData = {
     electrico: { agua: 2, electrico: 0.5, planta: 0.5, tierra: 0, volador: 2, dragon: 0.5 },
     planta: { fuego: 0.5, agua: 2, planta: 0.5, veneno: 0.5, tierra: 2, volador: 0.5, bicho: 0.5, roca: 2, dragon: 0.5, acero: 0.5 },
     hielo: { fuego: 0.5, agua: 0.5, planta: 2, hielo: 0.5, tierra: 2, volador: 2, dragon: 2, acero: 0.5 },
-    lucha: { normal: 2, hielo: 2, veneno: 0.5, volador: 0.5, psiquico: 0.5, bicho: 0.5, roca: 2, fantasma: 0, siniestro: 2, acero: 2, hada: 0.5 },
-    veneno: { planta: 2, veneno: 0.5, tierra: 0.5, roca: 0.5, fantasma: 0.5, acero: 0, hada: 2 },
+    lucha: { normal: 2, hielo: 2, veneno: 0.5, volador: 0.5, psiquico: 0.5, bicho: 0.5, roca: 2, fantasma: 0, siniestro: 2, acero: 2 },
+    veneno: { planta: 2, veneno: 0.5, tierra: 0.5, roca: 0.5, fantasma: 0.5, acero: 0 },
     tierra: { fuego: 2, electrico: 2, planta: 0.5, veneno: 2, volador: 0, bicho: 0.5, roca: 2, acero: 2 },
     volador: { electrico: 0.5, planta: 2, lucha: 2, bicho: 2, roca: 0.5, acero: 0.5 },
     psiquico: { lucha: 2, veneno: 2, psiquico: 0.5, siniestro: 0, acero: 0.5 },
-    bicho: { fuego: 0.5, planta: 2, lucha: 0.5, veneno: 0.5, volador: 0.5, psiquico: 2, fantasma: 0.5, siniestro: 2, acero: 0.5, hada: 0.5 },
+    bicho: { fuego: 0.5, planta: 2, lucha: 0.5, veneno: 0.5, volador: 0.5, psiquico: 2, fantasma: 0.5, siniestro: 2, acero: 0.5 },
     roca: { fuego: 2, hielo: 2, lucha: 0.5, tierra: 0.5, volador: 2, bicho: 2, acero: 0.5 },
-    fantasma: { normal: 0, psiquico: 2, fantasma: 2, siniestro: 0.5 },
-    dragon: { dragon: 2, acero: 0.5, hada: 0 },
-    siniestro: { lucha: 0.5, psiquico: 2, fantasma: 2, siniestro: 0.5, hada: 0.5 },
-    acero: { fuego: 0.5, agua: 0.5, electrico: 0.5, hielo: 2, roca: 2, acero: 0.5, hada: 2 },
-    hada: { fuego: 0.5, lucha: 2, veneno: 0.5, dragon: 2, siniestro: 2, acero: 0.5 }
+    fantasma: { normal: 0, psiquico: 2, fantasma: 2, siniestro: 0.5, acero: 0.5 },
+    dragon: { dragon: 2, acero: 0.5 },
+    siniestro: { lucha: 0.5, psiquico: 2, fantasma: 2, siniestro: 0.5, acero: 0.5 },
+    acero: { fuego: 0.5, agua: 0.5, electrico: 0.5, hielo: 2, roca: 2, acero: 0.5 }
 };
 
 const types = Object.keys(typeData).sort();
@@ -53,7 +52,6 @@ function toggleDefensiveType(type) {
             selectedDefensiveTypes.push(type);
             document.getElementById(`type-${type}`).classList.add('selected');
         } else {
-            // Replace the last one if we try to add a third
             const lastType = selectedDefensiveTypes.shift();
             document.getElementById(`type-${lastType}`).classList.remove('selected');
             selectedDefensiveTypes.push(type);
@@ -93,15 +91,18 @@ function displayResults(map) {
         { label: 'Inmunidades (x0)', mult: 0, class: 'immune' }
     ];
 
+    const isInitial = selectedDefensiveTypes.length === 0;
+
     categories.forEach(cat => {
         const filteredTypes = types.filter(t => map[t] === cat.mult);
-        // Always render the section to maintain layout, but maybe add a class if empty
+        
         const section = document.createElement('div');
         section.className = `effect-section ${cat.class} ${filteredTypes.length === 0 ? 'empty-section' : ''}`;
         section.innerHTML = `<h3>${cat.label}</h3>`;
         
         const badgesContainer = document.createElement('div');
-        badgesContainer.className = 'badges-grid';
+        // If nothing is selected, add 'hidden-initial' to keep the height but hide icons
+        badgesContainer.className = `badges-grid ${isInitial ? 'hidden-initial' : ''}`;
 
         filteredTypes.forEach(t => {
             const badge = document.createElement('div');
