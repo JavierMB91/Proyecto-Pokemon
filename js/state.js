@@ -155,41 +155,5 @@ function limpiarProgreso() {
     location.reload();
 }
 
-// --- FUNCIONES DE UTILIDAD ---
-
-/**
- * Genera un ID único y consistente para un gimnasio.
- * Formato: "region-lider" en minúsculas
- * @param {string} region - Nombre de la región
- * @param {string} id - ID único del gimnasio (nombre del líder)
- * @returns {string} ID consistente
- */
-function obtenerIdGimnasio(region, id) {
-    if (!region || !id) return 'unknown-id';
-    return `${region}-${id}`.toLowerCase().replace(/[^a-z0-9-]/g, '-');
-}
-
-/**
- * Formatea una fecha al formato local
- * @param {string|Date} fecha - Fecha a formatear
- * @returns {string} Fecha formateada
- */
-function formatearFecha(fecha) {
-    return new Date(fecha).toLocaleString();
-}
-
-/**
- * Normaliza el nombre de un líder para construir rutas de imágenes.
- * Remueve acentos, caracteres especiales y convierte a minúsculas.
- * @param {string} nombreLider - Nombre del líder
- * @returns {string} Nombre normalizado
- */
-function normalizarNombreLider(nombreLider) {
-    return nombreLider
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\./g, '')
-        .replace(/,/g, '')
-        .replace(/\s+/g, '_')
-        .toLowerCase();
-}
+// --- NOTA: Las funciones de utilidad (obtenerIdGimnasio, normalizarNombreLider, formatearFecha) 
+// han sido centralizadas en logic.js para evitar duplicidad y mejorar la mantenibilidad.
