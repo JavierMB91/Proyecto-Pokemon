@@ -2,6 +2,7 @@
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 800px; /* Ensure a minimum height for the whole container */
 }
 
 #selected-types-header {
@@ -70,7 +71,8 @@
 
 #effectiveness-results {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* Fixed 3 columns */
+    grid-template-rows: repeat(2, minmax(250px, auto)); /* Fixed 2 rows with min height */
     gap: 25px;
     min-height: 600px;
 }
@@ -87,10 +89,13 @@
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.2);
-    min-height: 120px;
+    height: 250px; /* Fixed height for all sections */
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
+    overflow-y: auto; /* Allow scrolling if many types fall into one category */
+    scrollbar-width: thin;
+    scrollbar-color: var(--light-purple) transparent;
 }
 
 .effect-section.empty-section {
