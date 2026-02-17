@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tipos - PokeMMO</title>
+    
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="stylesheet" href="../css/tabla_tipos.css">
+</head>
+<body class="page-loaded">
+
+    <header>
+        <h1>PokeMMO - Tabla de Tipos</h1>
+    </header>
+
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <div class="region-card wide-card">
+            <div class="region-header">
+                CALCULADORA DE EFECTIVIDAD POKÉMON
+            </div>
+            
+            <div class="type-chart-container">
+                <h2 id="selected-types-header">SELECCIONA TIPO(S)</h2>
+                
+                <div id="type-selection" class="type-selection-grid">
+                    <!-- Types populated by JS -->
+                </div>
+
+                <div id="effectiveness-results">
+                    <!-- Results populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../js/transiciones.js"></script>
+    <script src="../js/tabla_tipos.js"></script>
+    <script>
+        // Load navigation and footer if they are external
+        fetch('nav.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('nav-placeholder').innerHTML = html);
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer-placeholder').innerHTML = html);
+    </script>
+</body>
+</html>

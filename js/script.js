@@ -45,10 +45,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderizarInfoBayas();
     }
 
-    // Si estamos en la sección de pokédex, inicializamos la galería de pokémons.
-    if (ruta.includes('pokedex')) {
-        inicializarPokedex();
-    }
 
     // 5. BUCLE PRINCIPAL (TICK)
     // Actualiza los contadores de tiempo cada segundo.
